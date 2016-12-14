@@ -1,0 +1,14 @@
+---
+applications:
+- name: portal-api
+  memory: 1024M
+  instances: 1
+  host: portal-api-stg
+  path: build/libs/openPaasPaastaPortalApi-1.0-SNAPSHOT.war
+  buildpack: java_buildpack_offline
+  services:
+  - portal-eureka-service
+  - portal-glusterfs-service
+  env:
+    SPRING_PROFILES_ACTIVE: stg
+    test_value: STG_TEST_VALUE
