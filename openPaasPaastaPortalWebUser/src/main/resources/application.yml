@@ -1,0 +1,39 @@
+# Spring properties
+spring:
+  application:
+    name: portal-web-user  # Identify this application
+  redis:
+      host: ${vcap.services.portal-redis-session.credentials.host:localhost}
+      password: ${vcap.services.portal-redis-session.credentials.password:8e288be7-6f1c-4585-acfb-22e7c9ae77cf}
+      port: ${vcap.services.portal-redis-session.credentials.port:46690}
+      timeout: 2100
+
+multipart:
+  maxFileSize: 1000Mb
+  maxRequestSize: 1000Mb
+
+# HTTP Server
+server:
+  port: ${PORT:8080}   # HTTP (Tomcat) port
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.portal-eureka-service.credentials.uri:http://127.0.0.1:2221}/eureka/
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+
+# paasta
+paasta:
+  portal:
+    api:
+      authorization:
+        base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
+      url: http://PORTAL-API
+      autoSchedulerUrl: http://PORTAL-AUTO-SCALING
+ribbon:
+    eureka:
+        enabled: true
+    ConnectTimeout: 30000
+    ReadTimeout: 30000

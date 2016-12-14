@@ -1,0 +1,15 @@
+---
+applications:
+- name: portal-web-user
+  memory: 768M
+  instances: 1
+  host: portal-web-user-prd
+  path: build/libs/openPaasPaastaPortalWebUserServer-1.0-SNAPSHOT.war
+  domain: 115.68.46.29.xip.io
+  buildpack: java_buildpack_offline
+  services:
+  - portal-eureka-service
+  - portal-redis-session
+  env:
+    SPRING_PROFILES_ACTIVE: stg
+    test_value: PRD_TEST_VALUE

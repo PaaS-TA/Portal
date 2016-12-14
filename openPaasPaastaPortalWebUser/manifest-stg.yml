@@ -1,0 +1,14 @@
+---
+applications:
+- name: portal-web-user
+  memory: 768M
+  instances: 1
+  host: portal-web-user-stg
+  path: build/libs/openPaasPaastaPortalWebUserServer-1.0-SNAPSHOT.war
+  buildpack: java_pinpoint_buildpack
+  services:
+  - portal-eureka-service
+  - portal-redis-session
+  env:
+    SPRING_PROFILES_ACTIVE: stg
+    test_value: STG_TEST_VALUE
