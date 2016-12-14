@@ -1,0 +1,113 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+
+        //sonarqube
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+        //sonarqube
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'spring-boot'
+
+//war file, sonarqube project version
+version '1.0-SNAPSHOT'
+
+war {
+    baseName = 'openPaasPaastaPortalAutoScaling'
+    version "$version"
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-netflix:1.0.7.RELEASE'
+    }
+}
+
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.boot:spring-boot-starter-security')
+
+    // for redis session
+    compile('org.springframework.boot:spring-boot-starter-redis')
+    compile('org.springframework.session:spring-session:1.1.1.RELEASE')
+
+    testCompile (
+            "org.springframework.cloud:spring-cloud-starter-eureka",
+            "info.cukes:cucumber-jvm:1.2.4",
+            "info.cukes:cucumber-core:1.2.4",
+            "info.cukes:cucumber-java:1.2.4",
+            "info.cukes:cucumber-junit:1.2.4",
+            "info.cukes:cucumber-spring:1.2.4",
+            'commons-io:commons-io:2.4')
+}
+
+// test
+test {
+    exclude 'gradle/cucumber/*'
+}
+
+// cucumber
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            //args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+            args = ['--format', 'html:cucumber-html-report',
+                    '--format', 'junit:build/reports/cucumber-junit-report.xml',
+                    '--format', 'json:build/reports/cucumber-json-report.json',
+                    '-f', 'pretty',
+                    '--glue', 'gradle.cucumber', 'src/test/resources']
+
+            systemProperties = System.getProperties()
+
+        }
+    }
+}
+
+
+
+//이 설정이 없을 경우, 테스트 실패시 Sonarqube로 결과전송하지 않고 gradle task를 종료함
+test.ignoreFailures=true
+
+apply plugin: 'org.sonarqube'
+apply plugin: "jacoco"
+sonarqube {
+    properties {
+        property "sonar.projectName", "PaaSTA-Auto-Scaler"
+        property "sonar.projectKey", "PaaSTA-Auto-Scaler-Project-Key"
+        property "sonar.host.url", "http://115.68.46.180:9000"
+        property "sonar.working.directory", "$project.projectDir/sonar"
+        property "sonar.buildbreaker.skip" , "false"
+        property "sonar.projectVersion", "$version"
+    }
+}

@@ -1,0 +1,32 @@
+---
+applications:
+- name: portal-auto-scaler
+  memory: 512M
+  instances: 1
+  host: portal-auto-scaler
+  path: ./openPaasPaastaPortalAutoScaling-1.0-SNAPSHOT.war
+  buildpack: java_buildpack_offline
+  services:
+  - portal-eureka-service
+  - portal-redis-session
+  env:
+    SPRING_PROFILES_ACTIVE: stg
+
+    spring_application_name: portal-auto-scaling
+    spring_redis_host: ${vcap.services.portal-redis-session.credentials.host}
+    spring_redis_password: ${vcap.services.portal-redis-session.credentials.password}
+    spring_redis_port: ${vcap.services.portal-redis-session.credentials.port}
+    spring_redis_timeout: 2100
+
+    server_port: 8070
+
+    eureka_client_serviceUrl_defaultZone: ${vcap.services.portal-eureka-service.credentials.uri}/eureka/
+    eureka_instance_hostname: ${vcap.application.uris[0]}
+
+    paasta_portal_api_authorization_base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
+    paasta_portal_api_url: http://PORTAL-API
+    paasta_portal_api_monitor: http://115.68.46.185:9999
+
+    ribbon_eureka_enabled: true
+    ribbon_ConnectTimeout: 30000
+    ribbon_ReadTimeout: 30000
