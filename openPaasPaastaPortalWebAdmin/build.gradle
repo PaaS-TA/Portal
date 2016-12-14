@@ -1,0 +1,93 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+
+        //sonarqube
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+        //sonarqube
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+    }
+}
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'spring-boot'
+apply plugin: "io.spring.dependency-management"
+
+//war file, sonarqube project version
+version '1.0-SNAPSHOT'
+
+war {
+    baseName = 'openPaasPaastaPortalWebAdminServer'
+    version "$version"
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-netflix:1.0.7.RELEASE'
+    }
+}
+
+
+dependencies {
+    compile ('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+    compile ('javax.servlet.jsp:jsp-api:2.2.1-b03')
+    compile ('javax.servlet:jstl:1.2')
+
+    // for redis session
+    compile ('org.springframework.boot:spring-boot-starter-redis')
+    compile ('org.springframework.session:spring-session:1.1.1.RELEASE')
+
+    // http://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
+    compile ('org.springframework.security:spring-security-taglibs:4.1.0.RELEASE')
+}
+
+//sonarqube
+if(project.hasProperty("location")){
+    if (location=="dev") {
+        apply plugin: 'org.sonarqube'
+        sonarqube {
+            properties {
+                property "sonar.projectName", "PaaSTA-Portal-WebAdmin"
+                property "sonar.projectKey", "PaaSTA-Portal-WebAdmin-ProjectKey"
+                property "sonar.host.url", "http://115.68.46.180:9000"
+                property "sonar.working.directory", "$project.projectDir/sonar"
+                property "sonar.buildbreaker.skip" , "false"
+                property "sonar.projectVersion", "$version"
+            }
+        }
+    }
+    else if (location=="local") {
+        apply plugin: 'org.sonarqube'
+        sonarqube {
+            properties {
+                property "sonar.projectName", "PaaSTA-Portal-WebAdmin-LOCAL"
+                property "sonar.projectKey", "PaaSTA-Portal-WebAdmin-ProjectKey-LOCAL"
+                property "sonar.host.url", "http://115.68.46.180:9000"
+                property "sonar.working.directory", "$project.projectDir/sonar"
+                property "sonar.buildbreaker.skip" , "false"
+                property "sonar.projectVersion", "$version"
+            }
+        }
+    }
+}

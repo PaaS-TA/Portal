@@ -1,0 +1,14 @@
+---
+applications:
+- name: portal-web-admin
+  memory: 768M
+  instances: 1
+  host: portal-web-admin-dev
+  path: build/libs/openPaasPaastaPortalWebAdminServer-1.0-SNAPSHOT.war
+  buildpack: java_buildpack_offline
+  services:
+  - portal-eureka-service
+  - portal-redis-session
+  env:
+#    SPRING_PROFILES_ACTIVE: dev
+    test_value: DEV_TEST_VALUE
