@@ -1,0 +1,10 @@
+---
+applications:
+- name: portal-registration
+  memory: 512M
+  instances: 1
+  host: portal-registration-dev
+  path: build/libs/openPaasPaastaPortalRegistration-1.0-SNAPSHOT.war
+  buildpack: java_buildpack_offline
+  env:
+    test_value: DEV_TEST_VALUE

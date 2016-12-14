@@ -1,0 +1,14 @@
+# Configure this Discovery Server
+eureka:
+  instance:
+    hostname: localhost
+  client:  # Not a client, don't register with yourself
+    registerWithEureka: false
+    fetchRegistry: false
+    healthcheck:
+        enabled: true
+  server:
+    enableSelfPreservation: true
+
+server:
+  port: ${PORT:2221}   # HTTP (Tomcat) port

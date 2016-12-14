@@ -1,0 +1,16 @@
+---
+applications:
+- name: portal-registration
+  memory: 512M
+  instances: 1
+  host: portal-registration
+  path: ./openPaasPaastaPortalRegistration-1.0-SNAPSHOT.war
+  buildpack: java_buildpack_offline
+  env:
+    eureka_instance_hostname: localhost
+    eureka_client_registerWithEureka: false
+    eureka_client_fetchRegistry: false
+    eureka_client_healthcheck_enabled: true
+    eureka_server_enableSelfPreservation: true
+
+    server_port: 2221
