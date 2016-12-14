@@ -1,0 +1,68 @@
+---
+applications:
+- name: portal-api-v2
+  memory: 1536M
+  instances: 1
+  host: portal-api-v2
+  path: ./openPaasPaastaPortalApi-1.0-SNAPSHOT.war
+  buildpack: java_buildpack
+  services:
+  - portal-eureka-service
+  - portal-glusterfs-service
+  env:
+    spring_application_name: portal-api-v2
+    server_port: 8080
+
+    security_user_name: admin
+    security_user_password: openpaasta
+
+    multipart_maxFileSize: 1000Mb
+    multipart_maxRequestSize: 1000Mb
+
+    eureka_instance_hostname: localhost
+    eureka_client_serviceUrl_defaultZone: http://127.0.0.1:2221/eureka/
+
+    cf_apiHost: api.115.68.46.29.xip.io
+    cf_sslSkipValidation: true
+    cf_clientId: cf
+    cf_clientSecret:
+    cf_username: admin
+    cf_password: admin
+
+    datasource_cc_driverClassName: org.postgresql.Driver
+    datasource_cc_url: jdbc:postgresql://localhost:5524/ccdb
+    datasource_cc_username: ccadmin
+    datasource_cc_password: admin
+    datasource_portal_driverClassName: org.postgresql.Driver
+    datasource_portal_url: jdbc:postgresql://localhost:5524/portaldb
+    datasource_portal_username: portaladmin
+    datasource_portal_password: admin
+    #datasource_portal_driverClassName: com.mysql.jdbc.Driver
+    #datasource_portal_url: jdbc:mysql://localhost:3306/portaldb?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+    #datasource_portal_username: portaladmin
+    #datasource_portal_password: admin
+    datasource_uaa_driverClassName: org.postgresql.Driver
+    datasource_uaa_url: jdbc:postgresql://localhost:5524/uaadb
+    datasource_uaa_username: uaaadmin
+    datasource_uaa_password: admin
+
+    glusterfs_tenantName: op_3079b6c62314d512
+    glusterfs_username: a654aa1ccf074f21
+    glusterfs_password: 37e64201aeffb1d9
+    glusterfs_authUrl: http://52.201.48.51:5000/v2.0
+    glusterfs_containerName: portal-container
+
+    #mail_smtp_host: smtp.gmail.com
+    #mail_smtp_port: 465
+    #mail_smtp_username: OpenPaas ������
+    #mail_smtp_password: openpasta!
+    #mail_smtp_userEmail: openpasta@gmail.com
+    #mail_smtp_properties_auth: true
+    #mail_smtp_properties_starttls_enable: true
+    #mail_smtp_properties_starttls_required: truie
+    #mail_smtp_properties_maximumTotalQps: 90
+    #mail_smtp_properties_authUrl: http://localhost:8080
+    #mail_smtp_properties_imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
+    #mail_smtp_properties_sFile: emailTemplate.html
+    #mail_smtp_properties_subject: Open Paas User Potal ��������(Local)
+    #mail_smtp_properties_contextUrl: user/authUser

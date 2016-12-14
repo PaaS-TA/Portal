@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.openpaas.paasta.portal.api.mapper.portal.MyQuestionMapper">
+
+    <select id="getMyQuestionList" resultType="org.openpaas.paasta.portal.api.model.MyQuestion">
+        /* MyQuestion.getMyQuestionList */
+        SELECT
+            q.no AS "no",
+            q.title AS title,
+            q.classification AS classification,
+            (SELECT cd.value FROM code_detail cd WHERE cd.key = q.classification AND cd.group_id = 'QUESTION_CLASSIFICATION') AS classificationValue,
+            q.user_id AS userId,
+            q.content AS content,
+            q.cell_phone AS cellPhone,
+            q.status AS status,
+            (SELECT cd.value FROM code_detail cd WHERE cd.key = q.status AND cd.group_id = 'QUESTION_STATUS') AS statusValue,
+            q.file_name AS fileName,
+            q.file_path AS filePath,
+            q.file_size AS fileSize,
+
+            (SELECT
+                COUNT(1)
+            FROM question
+            WHERE 1=1
+            <if test="userId != '' and userId != null">
+                AND user_id = #{userId}
+            </if>
+            <if test="searchKeyword != '' and searchKeyword != null">
+                AND title LIKE concat('%', #{searchKeyword},'%')
+            </if>
+            ) AS totalCount,
+
+            q.created AS created,
+            q.lastmodified AS lastModified
+        FROM question q
+        WHERE 1=1
+        <if test="no != '' and no != null">
+            AND q.no = #{no}
+        </if>
+        <if test="userId != '' and userId != null">
+            AND q.user_id = #{userId}
+        </if>
+        <if test="searchKeyword != '' and searchKeyword != null">
+            AND q.title LIKE concat('%', #{searchKeyword},'%')
+        </if>
+
+        ORDER BY q.created DESC
+        LIMIT #{pageSize} OFFSET #{pageNo}
+    </select>
+
+
+    <insert id="insertMyQuestion" useGeneratedKeys="true" keyProperty="question.no">
+        /* MyQuestion.insertMyQuestion */
+        INSERT INTO question (
+            `title`,
+            classification,
+            user_id,
+            content,
+            cell_phone,
+            status,
+            file_name,
+            file_path,
+            file_size,
+            created,
+            lastmodified)
+        VALUES (
+            #{title},
+            #{classification},
+            #{userId},
+            #{content},
+            #{cellPhone},
+            #{status},
+            #{fileName},
+            #{filePath},
+            #{fileSize},
+            now(),
+            now());
+    </insert>
+
+
+    <update id="updateMyQuestion" >
+        /* MyQuestion.updateMyQuestion */
+        UPDATE question SET
+            <if test="title != '' and title != null">
+                title = #{title},
+            </if>
+            <if test="classification != '' and classification != null">
+                classification = #{classification},
+            </if>
+            <if test="content != '' and content != null">
+            <![CDATA[
+                content = #{content},
+            ]]>
+            </if>
+            cell_phone = #{cellPhone},
+            <if test="status != '' and status != null">
+                status = #{status},
+            </if>
+            file_name = #{fileName},
+            file_path = #{filePath},
+            file_size = #{fileSize},
+            lastModified = now()
+        WHERE `no` = #{no}
+    </update>
+
+
+    <delete id="deleteMyQuestion">
+        /* MyQuestion.deleteMyQuestion */
+        DELETE FROM question
+        WHERE `no` = #{no}
+    </delete>
+
+</mapper>
+

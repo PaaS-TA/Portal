@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.openpaas.paasta.portal.api.mapper.portal.AppAutoScaleModalMapper">
+    <select id="getAppAutoScaleInfo2" resultType="org.openpaas.paasta.portal.api.model.AppAutoScale" parameterType="string">
+            </select>
+    <select id="getAppAutoScaleInfo" resultType="map" parameterType="string">
+        /** AppAutoScaleModalMapper.getAppAutoScaleInfo */
+        select
+              no                    "no"
+            , guid                   "guid"
+            , name                  "name"
+            , use_yn                 "useYn"
+            , instance_min_cnt       "instanceMinCnt"
+            , instance_max_cnt       "instanceMaxCnt"
+            , cpu_threshold_min_per  "cpuThresholdMinPer"
+            , cpu_threshold_max_per  "cpuThresholdMaxPer"
+            , check_time_sec         "checkTimeSec"
+        from auto_scaling_config
+                where 1=1
+                <if test="'guid' != null and 'guid' != ''">
+                    AND guid = #{guid}
+                </if>
+        ORDER By no DESC
+    </select>
+    <insert id="insertAppAutoScale">
+      /** AppAutoScaleModalMapper.insertAppAutoScale */
+    <selectKey keyProperty="no" resultType="int" order="BEFORE">
+        select COALESCE(max(no),0)+1 as no from auto_scaling_config
+    </selectKey>
+      insert into auto_scaling_config(
+                  no
+                , guid
+                , name
+                , use_yn
+                , instance_min_cnt
+                , instance_max_cnt
+                , cpu_threshold_min_per
+                , cpu_threshold_max_per
+                , check_time_sec
+                )
+      values (
+                 #{no}
+                ,#{guid}
+                ,#{name}
+                ,#{useYn}
+                ,#{instanceMinCnt}
+                ,#{instanceMaxCnt}
+                ,#{cpuThresholdMinPer}
+                ,#{cpuThresholdMaxPer}
+                ,#{checkTimeSec}
+      );
+
+    </insert>
+
+    <update id="updateAppAutoScale" >
+    /** AppAutoScaleModalMapper.updateAppAutoScale */
+        update auto_scaling_config
+          SET
+         <if test = "null != guid and guid != ''">
+            guid = #{guid}
+        </if>
+        <if test="''!= name and null != name">
+            ,name = #{name}
+        </if>
+        <if test = "null != useYn and useYn != ''">
+            ,use_yn = #{useYn}
+        </if>
+        <if test = "null != instanceMinCnt and instanceMinCnt != '' and instanceMinCnt != '0' ">
+            ,instance_min_cnt = #{instanceMinCnt}
+        </if>
+        <if test = "null != instanceMaxCnt and instanceMaxCnt != '' and instanceMaxCnt != '0'">
+            ,instance_max_cnt = #{instanceMaxCnt}
+        </if>
+        <if test = "null != cpuThresholdMinPer and cpuThresholdMinPer != '' and cpuThresholdMinPer != '0.0'">
+            ,cpu_threshold_min_per = #{cpuThresholdMinPer}
+        </if>
+        <if test = "null != cpuThresholdMaxPer and cpuThresholdMaxPer != ''  and cpuThresholdMaxPer != '0.0'">
+            ,cpu_threshold_max_per = #{cpuThresholdMaxPer}
+        </if>
+        <if test = "null != checkTimeSec and checkTimeSec != '' and checkTimeSec != '0'">
+            ,check_time_sec = #{checkTimeSec}
+        </if>
+        WHERE 1=1
+        <if test = "null != guid and guid != ''">
+            AND guid = #{guid}
+        </if>
+    </update>
+
+    <delete id="deleteAppAutoScale">
+    /** AppAutoScaleModalMapper.deleteAppAutoScale */
+        delete from auto_scaling_config
+        where 1=1
+        <if test="'guid' != '' and 'guid' != null">
+            AND guid = #{guid}
+        </if>
+    </delete>
+
+</mapper>
+

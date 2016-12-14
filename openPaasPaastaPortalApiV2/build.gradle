@@ -1,0 +1,143 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        //sonarqube
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+        //sonarqube
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'spring-boot'
+apply plugin: "io.spring.dependency-management"
+
+//war file, sonarqube project version
+version '1.0-SNAPSHOT'
+
+war {
+    baseName = 'openPaasPaastaPortalApiV2'
+    version "$version"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'http://repo.spring.io/release' }
+    maven { url 'http://repo.spring.io/snapshot' }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-netflix:1.0.7.RELEASE'
+    }
+}
+
+dependencies {
+    // eureka
+    compile('org.springframework.cloud:spring-cloud-starter-eureka'){
+        exclude group: 'io.netty'
+    }
+
+    // spring security
+    compile('org.springframework.boot:spring-boot-starter-security')
+
+    // datasource
+    compile ('org.springframework.boot:spring-boot-starter-jdbc')
+    compile ('org.postgresql:postgresql')
+    compile ('mysql:mysql-connector-java:5.0.8')
+    compile ('org.mybatis:mybatis-spring:1.2.4')
+    compile ('org.mybatis:mybatis:3.3.1')
+    compile ('org.flywaydb:flyway-core:4.0.3')
+
+    //glusterFS
+    compile ('org.javaswift:joss:0.9.12')
+
+    // CloudFoundry
+    compile ('org.cloudfoundry:cloudfoundry-client-reactor:2.0.1.RELEASE')
+    compile ('org.cloudfoundry:cloudfoundry-operations:2.0.1.RELEASE')
+    compile ('io.projectreactor:reactor-core:3.0.2.RELEASE')
+    compile ('io.projectreactor.ipc:reactor-netty:0.5.1.RELEASE')
+
+    // jackson.annotate
+    compile ('org.codehaus.jackson:jackson-core-asl:1.9.13')
+
+    // scim
+    compile ('org.cloudfoundry.identity:cloudfoundry-identity-scim:2.7.4'){
+        exclude group: 'org.slf4j'
+    }
+
+    // test
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+//이 설정이 없을 경우, 테스트 실패시 Sonarqube로 결과전송하지 않고 gradle task를 종료함
+test.ignoreFailures=true
+
+//sonarqube
+if(project.hasProperty("location")){
+    if (location=="dev") {
+        apply plugin: 'org.sonarqube'
+        apply plugin: "jacoco"
+        sonarqube {
+            properties {
+                property "sonar.projectName", "PaaSTA-Portal-API"
+                property "sonar.projectKey", "PaaSTA-Portal-API-Project-Key"
+                property "sonar.host.url", "http://115.68.46.180:9000"
+                property "sonar.working.directory", "$project.projectDir/sonar"
+                property "sonar.buildbreaker.skip" , "false"
+                property "sonar.projectVersion", "$version"
+                property "sonar.exclusions",
+                        "src/main/java/org/openpaas/paasta/portal/api/common/config/CustomCloudControllerClientFactory.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/model/*," +
+                        "src/main/java/org/openpaas/paasta/portal/api/common/security/userdetails/User.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/config/ApiApplication.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/exception/GlobalControllerExceptionHandler.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/common/CustomCloudControllerResponseErrorHandler.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/common/CustomOauthClient.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/service/UserService.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/util/RestUtil.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/controller/*"
+            }
+        }
+    }
+    else if (location=="local") {
+        apply plugin: 'org.sonarqube'
+        apply plugin: "jacoco"
+        sonarqube {
+            properties {
+                property "sonar.projectName", "PaaSTA-Portal-API-LOCAL"
+                property "sonar.projectKey", "PaaSTA-Portal-API-Project-Key-LOCAL"
+                property "sonar.host.url", "http://115.68.46.180:9000"
+                property "sonar.working.directory", "$project.projectDir/sonar"
+                property "sonar.buildbreaker.skip" , "false"
+                property "sonar.projectVersion", "$version"
+                property "sonar.exclusions",
+                        "src/main/java/org/openpaas/paasta/portal/api/common/config/CustomCloudControllerClientFactory.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/model/*," +
+                        "src/main/java/org/openpaas/paasta/portal/api/common/security/userdetails/User.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/config/ApiApplication.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/exception/GlobalControllerExceptionHandler.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/common/CustomCloudControllerResponseErrorHandler.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/common/CustomOauthClient.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/service/UserService.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/util/RestUtil.java," +
+                        "src/main/java/org/openpaas/paasta/portal/api/controller/*"
+            }
+        }
+    }
+    test {
+        systemProperty 'spring.profiles.active', "$location"
+    }
+}

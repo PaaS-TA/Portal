@@ -1,0 +1,14 @@
+---
+applications:
+- name: portal-api-v2
+  memory: 1536M
+  instances: 1
+  host: portal-api-v2-dev
+  path: build/libs/openPaasPaastaPortalApi-1.0-SNAPSHOT.war
+  buildpack: java_buildpack
+  services:
+  - portal-eureka-service
+  - portal-glusterfs-service
+  env:
+    SPRING_PROFILES_ACTIVE: dev
+    test_value: DEV_TEST_VALUE
