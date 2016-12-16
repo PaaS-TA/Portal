@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * The type Security config.
+ *
+ * @throws Exception the exception
  */
 @Configuration
 @EnableWebSecurity

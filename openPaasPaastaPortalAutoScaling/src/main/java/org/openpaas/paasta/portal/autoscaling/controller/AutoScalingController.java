@@ -22,6 +22,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+
+/**
+ * AutoScaling Controller
+ *
+ * @author nawkm
+ * @version 1.0
+ * @since 2016.4.4 최초작성
+ */
 @RestController
 @Component
 @EnableAsync
@@ -29,15 +37,26 @@ public class AutoScalingController implements CommandLineRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoScalingController.class);
 
+    /**
+     * The Common.
+     */
     @Autowired
     public Common common;
 
+    /**
+     * The Auto scaling service.
+     */
     @Autowired
     public AutoScalingService autoScalingService;
 
     @Autowired
     private StringRedisTemplate redis;
 
+    /**
+     * run 실행
+     *
+     * @return ModelAndView model
+     */
     @Override
     public void run(String... args) throws Exception {
         autoScalingStopAll();
@@ -49,6 +68,8 @@ public class AutoScalingController implements CommandLineRunner {
      * Auto 스케일링 재시작
      *
      * @param guid the guid
+     * @throws JSONException        the json exception
+     * @throws InterruptedException the interrupted exception
      */
     @RequestMapping(value = {"/autoScalingRestart/{guid}"}, method = RequestMethod.GET)
     public void autoScalingRestart(@PathVariable String guid) throws JSONException, InterruptedException {
@@ -64,7 +85,11 @@ public class AutoScalingController implements CommandLineRunner {
         }
     }
 
-
+    /**
+     * Auto 스케일링 전체 시작
+     *
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/autoScalingStartAll"}, method = RequestMethod.GET)
     public void autoScalingStartAll() throws Exception {
 
@@ -108,7 +133,10 @@ public class AutoScalingController implements CommandLineRunner {
 
 
     /**
-     * Auto 스케일링 모두 정지
+     * Auto 스케일링 전체 정지
+     *
+     * @throws JSONException        the json exception
+     * @throws InterruptedException the interrupted exception
      */
     @RequestMapping(value = {"/autoScalingStopAll"}, method = RequestMethod.GET)
     public void autoScalingStopAll() throws JSONException, InterruptedException {

@@ -21,20 +21,45 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * AutoScaling Service
+ *
+ * @author nawkm
+ * @version 1.0
+ * @since 2016.4.4 최초작성
+ */
 @Component
 @EnableAsync
 public class AutoScalingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoScalingService.class);
+    /**
+     * The Monitor api url.
+     */
     @Value("${paasta.portal.api.monitor}")
     public String monitor_api_url;
+    /**
+     * The Common.
+     */
     @Autowired
     public Common common;
+    /**
+     * The Rest template.
+     */
     @Autowired
     public RestTemplate restTemplate;
     @Autowired
     private StringRedisTemplate redis;
 
+
+    /**
+     * Auto 스케일링 쓰레드 처리
+     *
+     * @param guid the guid
+     * @throws InterruptedException the interrupted exception
+     * @throws JSONException        the json exception
+     */
     @Async
     public void threadAppAutoScaling(String guid) throws InterruptedException, JSONException {
 
@@ -50,7 +75,7 @@ public class AutoScalingService {
 
         //Auto Scaling 설정 정보 DB 조회
         Map appInfoList = common.procRestTemplate("/app/getAppAutoScaleInfo", HttpMethod.POST, map, null);
-        LOGGER.info("appInfo: " + appInfoList);
+        //LOGGER.info("appInfo: " + appInfoList);
         Map appInfo = (Map) appInfoList.get("list");
 
         try {
@@ -128,10 +153,7 @@ public class AutoScalingService {
                 totCpuPercentage += (Double.parseDouble(jsonObj.getString("cpuPercentage")) / jsonArray.length());
             }
 
-            LOGGER.info("---------------------------------------------------------------------------");
-            LOGGER.info("threadAppAutoScaling Operating !!!!! - " + app.getName() + " (" + guid + ")");
-            LOGGER.info("cpuPercentage: " + totCpuPercentage + " memoryUsageBytes: " + totMemoryBytes + "/" + memQuota + " = " + totMemoryBytes / memQuota + "%");
-            LOGGER.info("memoryQuota:" + memQuotaMb + "  memoryMinPer:" + appInfo.get("memoryMinSize") + "  memoryMaxPer:" + appInfo.get("memoryMaxSize"));
+            LOGGER.info("threadAppAutoScaling Operating !!!!! - " + app.getName() + " (" + guid + ")" + " cpuPercentage: " + totCpuPercentage + " memoryUsageBytes: " + totMemoryBytes + "/" + memQuota + " = " + totMemoryBytes / memQuota + "%");
 
             //메모리 점유율 초과
             if (totMemoryBytes / memQuota * 100 >= (int) appInfo.get("memoryMaxSize") && appInfo.get("autoIncreaseYn").equals("Y")) {

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.web.user.service
+ * Common Class
  *
  * @author rex
  * @version 1.0
