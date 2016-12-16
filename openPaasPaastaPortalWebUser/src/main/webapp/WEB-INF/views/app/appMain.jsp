@@ -36,13 +36,6 @@
 
     $(document).ready(function () {
 
-        $('#eventTab').show();
-        $('#statusTab').hide();
-        $('#serviceTab').hide();
-        $('#envTab').hide();
-        $('#routeTab').hide();
-        $('#logTab').hide();
-        $('#deliveryTab').hide();
         $("#instances").spinner({
             min: 1, max: 1000, step: 1, start: 0
         });
@@ -476,7 +469,8 @@
         param = {
             orgName: currentOrg,
             spaceName: currentSpace,
-            name: currentApp
+            name: currentApp,
+            guid: currentAppGuid
         };
 
         $.ajax({
@@ -912,25 +906,21 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" id="myTabs">
                 <li role="presentation" class="active"><a href="#eventTab" aria-controls="eventTab" role="tab"
-                                                          data-toggle="tab"
-                                                          onClick="$('#eventTab').show();$('#statusTab').hide();$('#serviceTab').hide();$('#envTab').hide();$('#routeTab').hide();$('#logTab').hide();$('#deliveryTab').hide();">이벤트</a>
+                                                          data-toggle="tab">이벤트</a>
                 </li>
-                <li role="presentation"><a href="#statusTab" aria-controls="statusTab" role="tab" data-toggle="tab"
-                                           onClick="$('#eventTab').hide();$('#statusTab').show();$('#serviceTab').hide();$('#envTab').hide();$('#routeTab').hide();$('#logTab').hide();$('#deliveryTab').hide();">상태</a>
+                <li role="presentation"><a href="#statusTab" aria-controls="statusTab" role="tab"
+                                           data-toggle="tab">상태</a>
                 </li>
-                <li role="presentation"><a href="#serviceTab" aria-controls="serviceTab" role="tab" data-toggle="tab"
-                                           onClick="$('#eventTab').hide();$('#statusTab').hide();$('#serviceTab').show();$('#envTab').hide();$('#routeTab').hide();$('#logTab').hide();$('#deliveryTab').hide();">서비스(<span
+                <li role="presentation"><a href="#serviceTab" aria-controls="serviceTab" role="tab" data-toggle="tab">서비스(<span
                         id="serviceCnt">0</span>)</a>
                 </li>
-                <li role="presentation"><a href="#envTab" aria-controls="envTab" role="tab" data-toggle="tab"
-                                           onClick="$('#eventTab').hide();$('#statusTab').hide();$('#serviceTab').hide();$('#envTab').show();$('#routeTab').hide();$('#logTab').hide();$('#deliveryTab').hide();">환경변수</a>
+                <li role="presentation"><a href="#envTab" aria-controls="envTab" role="tab" data-toggle="tab">환경변수</a>
                 </li>
-                <li role="presentation"><a href="#routeTab" aria-controls="routeTab" role="tab" data-toggle="tab"
-                                           onClick="$('#eventTab').hide();$('#statusTab').hide();$('#serviceTab').hide();$('#envTab').hide();$('#routeTab').show();$('#logTab').hide();$('#deliveryTab').hide();">라우트(<span
+                <li role="presentation"><a href="#routeTab" aria-controls="routeTab" role="tab"
+                                           data-toggle="tab">라우트(<span
                         id="routeCount">0</span>)</a>
                 </li>
-                <li role="presentation"><a href="#logTab" aria-controls="logTab" role="tab" data-toggle="tab"
-                                           onClick="$('#eventTab').hide();$('#statusTab').hide();$('#serviceTab').hide();$('#envTab').hide();$('#routeTab').hide();$('#logTab').show();$('#deliveryTab').hide(); LogTabinit();">로그</a>
+                <li role="presentation"><a href="#logTab" aria-controls="logTab" role="tab" data-toggle="tab">로그</a>
                 </li>
                 <!--<li role="presentation"><a href="#deliveryTab" aria-controls="deliveryTa
         </div>b" role="tab" data-toggle="tab" onClick="$('#eventTab').hide();$('#serviceTab').hide();$('#envTab').hide();$('#routeTab').hide();$('#logTab').hide();$('#deliveryTab').show();">배포정보</a></li>-->
@@ -942,23 +932,23 @@
                     <%@include file="./eventTab.jsp" %>
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade in active" id="statusTab" style="display:none">
+                <div role="tabpanel" class="tab-pane fade in " id="statusTab">
                     <%@include file="./statusTab.jsp" %>
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade in active" id="serviceTab" style="display:none">
+                <div role="tabpanel" class="tab-pane fade in " id="serviceTab">
                     <%@include file="./serviceTab.jsp" %>
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade in active" id="envTab" style="display:none">
+                <div role="tabpanel" class="tab-pane fade in " id="envTab">
                     <%@include file="./envTab.jsp" %>
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade in active" id="routeTab" style="display:none">
+                <div role="tabpanel" class="tab-pane fade in " id="routeTab">
                     <%@include file="./routeTab.jsp" %>
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade in active" id="logTab" style="display:none">
+                <div role="tabpanel" class="tab-pane fade in " id="logTab">
                     <%@include file="./logTab.jsp" %>
                 </div>
             </div>

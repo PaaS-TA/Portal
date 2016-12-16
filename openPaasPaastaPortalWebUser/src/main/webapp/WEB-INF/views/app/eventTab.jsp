@@ -115,5 +115,6 @@
     </table>
 </div>
 <div align="center" style="margin: 5px;width:99%;">
-    <span class="glyphicon glyphicon-chevron-down" style="point" onClick="getEventList(eventList);"></span>
+    <span class="glyphicon glyphicon-chevron-down btn-lg" style="cursor:pointer"
+          onClick="getEventList(eventList);"></span>
 </div>

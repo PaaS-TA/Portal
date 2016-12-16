@@ -1,11 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <div style="margin: 10px; border: 1px solid #b3b3b3;">
     <div style="height: 50px; background-color: #fafafa; line-height: 50px;">
-        <div style=" float: left">
-            <div style="margin-left: 5px;">최근로그</div>
+        <div style=" float: left; margin-left: 20px">
+            <font size="4px"> 로그</font>
         </div>
         <div style=" float: right">
-            <div style="margin-left: 5px;"> Tail Logs</div>
+            <div style="margin-right: 20px;"><a href="#none" onClick="LogTabinit();"><span
+                    class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></div>
         </div>
     </div>
     <div id="addRouteBox" style="background-color: white; margin-left: 20px; margin-bottom: 10px;">

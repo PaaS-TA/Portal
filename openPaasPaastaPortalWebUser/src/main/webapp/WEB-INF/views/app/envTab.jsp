@@ -26,7 +26,7 @@
             success: function (data) {
                 if (data) {
 
-                    //document.getElementById("systemProvidedEnv").innerHTML = JSON.stringify(data, undefined, 2)
+                    document.getElementById("systemProvidedEnv").innerHTML = JSON.stringify(data, undefined, 2)
                     if (JSON.stringify(data.environment_json) == "{}") {
                         document.getElementById("noEnvMsg").style = ""
                     } else {
@@ -241,7 +241,7 @@
     <div class="tab-title-box" style="margin-top: 10px; background-color: #fafafa;">
         시스템 제공
     </div>
-    <pre style="border:none; line-height: 20px; font-size: small; height:150px;">
+    <pre id="systemProvidedEnv" style="border:none; line-height: 20px; font-size: small; height:150px;">
 
     </pre>
 
