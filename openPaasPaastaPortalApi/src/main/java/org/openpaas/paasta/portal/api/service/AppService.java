@@ -37,6 +37,9 @@ public class AppService extends Common {
     @Autowired
     private AppMapper appMapper;
 
+    @Autowired
+    private AppAutoScaleModalService appAutoScaleModalService;
+
     /**
      * 앱 요약 정보 조회
      *
@@ -118,7 +121,11 @@ public class AppService extends Common {
      */
     public void deleteApp(App app,  CloudFoundryClient client) throws Exception {
 
+        //앱 삭제
         client.deleteApplication(app.getName());
+
+        //AutoScale 설정 삭제
+        appAutoScaleModalService.deleteAppAutoScale(String.valueOf(app.getGuid()));
     }
 
 
