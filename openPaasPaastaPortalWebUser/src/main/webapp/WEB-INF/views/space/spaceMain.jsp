@@ -139,7 +139,7 @@
         $("#AXGridTarget2").hide();
         $("#AXGridTarget2View").hide();
         $("#AXGridTarget2Empty").show();
-        $("#createUP-Btn").show();
+        $("#createUP-Btn").hide();
     }
 
 

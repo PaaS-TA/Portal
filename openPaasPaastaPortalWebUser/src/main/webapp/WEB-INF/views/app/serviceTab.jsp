@@ -45,10 +45,10 @@
 
 
                     if (JSON.stringify(serviceList).indexOf(list.name) < 0) {
-                        $("#serviceSelect").append("<option value='" + list.name + "'>" + list.name + "</option>");
+                        $("#serviceSelect").append("<option value='" + list.guid + "'>" + list.name + "</option>");
                     } else {
                         $("#spaceList2").append(" <tr height='40'>" +
-                                "<td style='height:20px;padding-left:20px;text-align:left;color:#979696' width='25%' class='eventTable'> " + list.name + "</td>" +
+                                "<td style='height:20px;padding-left:20px;text-align:left;color:#979696' width='25%' class='eventTable'> <a href='#none' onClick='popupServiceEnv(\"" + label + "\",\"" + list.name + "\")'>" + list.name + "</a></td>" +
                                 "<td style='padding-left:20px;text-align:left;color:#979696' width='25%' class='eventTable' > &nbsp;" + servicePlan + "</td>" +
                                 "<td style='padding-left:20px;text-align:left;color:#979696' width='25%' class='eventTable' > &nbsp;" + label + "</td>" +
                                 "<td style='padding-left:20px;text-align:center;color:#979696' width='20%' class='eventTable'> <button type='button' class='btn btn-delete  btn-sm' style='margin-top: 0px;' onClick='unbindService(\"" + list.name + "\")'>연결해제</button> </td>" +
@@ -61,6 +61,21 @@
         });
     }
 
+    function popupServiceEnv(label, name) {
+
+        var vcapService = JSON.stringify(vcapServices.VCAP_SERVICES).replace(label, "thisService");
+        var newArr = JSON.parse(vcapService);
+        var thisService = JSON.stringify(newArr.thisService[0].credentials).replace("{", "").replace("}", "").replace(/"/gi, " ");
+
+        $("#modalTitle").html(name + " 서비스 환경변수");
+        $("#modalText").html(thisService.replace(/,/gi, "<br>"));
+        $("#modalCancelBtn").text("닫기");
+        $("#modalExecuteBtn").hide();
+
+        $('#modal').modal('toggle');
+
+    }
+
 
     function bindService() {
 
@@ -70,12 +85,13 @@
         param = {
             orgName: currentOrg,
             spaceName: currentSpace,
-            name: currentApp,
-            serviceName: $("#serviceSelect").val()
+            appName: currentApp,
+            serviceInstanceGuid: $("#serviceSelect").val(),
+            parameters: $("#serviceParam").val()
         }
 
         $.ajax({
-            url: "/app/bindService",
+            url: "/catalog/appBindServiceV2",
             method: "POST",
             data: JSON.stringify(param),
             dataType: 'json',
@@ -151,7 +167,7 @@
 
         서비스명 : <select id="serviceSelect" style="width: 20%;height: 30px"></select>&nbsp;&nbsp;&nbsp;
 
-        파라미터 : <input id="addServiceParam" type="text" maxlength="200" class="form-control-warning" style="width: 25%;">
+        파라미터 : <input id="serviceParam" type="text" maxlength="200" class="form-control-warning" style="width: 25%;">
 
         <button id="btn-addService" type="button" class="btn btn-save btn-sm" style='margin-top: -3px;'
                 onclick="bindService()">

@@ -35,7 +35,8 @@
                         });
                         document.getElementById("noEnvMsg").style = "display: none"
                     }
-                    environment = data.environment_json
+                    environment = data.environment_json;
+                    vcapServices = data.system_env_json;
                 }
             },
             error: function (xhr, status, error) {
@@ -241,7 +242,7 @@
     <div class="tab-title-box" style="margin-top: 10px; background-color: #fafafa;">
         시스템 제공
     </div>
-    <pre id="systemProvidedEnv" style="border:none; line-height: 20px; font-size: small; height:150px;">
+    <pre id="systemProvidedEnv" style="border:none; line-height: 20px; font-size: small; height:300px;">
 
     </pre>
 

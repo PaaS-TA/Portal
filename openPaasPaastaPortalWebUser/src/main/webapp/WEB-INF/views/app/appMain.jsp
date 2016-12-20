@@ -31,6 +31,7 @@
     var apmUrl;
     var apmAppName;
     var apmServer;
+    var vcapServices;
 
     var routeList = [];
 

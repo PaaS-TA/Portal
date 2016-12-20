@@ -1,8 +1,8 @@
 package org.openpaas.paasta.portal.web.user.controller;
 
 import org.openpaas.paasta.portal.web.user.common.Common;
-import org.openpaas.paasta.portal.web.user.common.Constants;
 import org.openpaas.paasta.portal.web.user.model.App;
+import org.openpaas.paasta.portal.web.user.model.Catalog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -264,18 +264,18 @@ public class AppController extends Common {
     /**
      * 앱-서비스 연결
      *
-     * @param app      the apps
+     * @param catalog      the apps
      * @return String rspApp
      */
     @RequestMapping(value = {"/app/bindService"}, method = RequestMethod.POST)
     @ResponseBody
-    public String bindService(@RequestBody App app) {
+    public String bindService(@RequestBody Catalog catalog) {
 
         String rspApp = "";
 
-        LOGGER.info("bindService Start : " + app.getGuid());
+        LOGGER.info("bindService Start : " + catalog.getAppName());
 
-        HttpEntity rssResponse = commonService.procRestTemplate("/app/bindService", HttpMethod.POST, app, getToken(), String.class);
+        HttpEntity rssResponse = commonService.procRestTemplate("/app/bindService", HttpMethod.POST, catalog, getToken(), String.class);
         rspApp = (String) rssResponse.getBody();
 
         LOGGER.info("bindService End ");

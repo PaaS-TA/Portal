@@ -12,6 +12,28 @@ import java.util.Map;
  */
 public class App {
     private int appInstanceIndex;
+    private String guid;
+    private String name;
+    private String newName;
+    private String orgName;
+    private String spaceName;
+    private String serviceName;
+    private String serviceParam;
+    private Map<String, String> environment;
+    private List<String> urls;
+    private List<String> services;
+    private int instances;
+    private int memory;
+    private int diskQuota;
+    private String state;
+    private String createdAt;
+    private String updatedAt;
+    private int totalUserCount;
+    private String buildPack;
+    private String stackName;
+    private Staging staging;
+    private String host;
+    private String domainName;
 
     public int getAppInstanceIndex() {
         return appInstanceIndex;
@@ -20,62 +42,6 @@ public class App {
     public void setAppInstanceIndex(int appInstanceIndex) {
         this.appInstanceIndex = appInstanceIndex;
     }
-
-    private String guid;
-    private String name;
-    private String newName;
-
-    private String orgName;
-    private String spaceName;
-
-    private String serviceName;
-
-    private Map<String, String> environment;
-
-    private List<String> urls;
-
-    private List<String> services;
-
-    private int instances;
-    private int memory;
-    private int diskQuota;
-    private String state;
-    private String createdAt;
-
-    private String updatedAt;
-
-    private int totalUserCount;
-
-    private String buildPack;
-    private String stackName;
-
-    private Staging staging;
-
-    public class Staging {
-        private String detectedBuildpack;
-        private String stack;
-
-        public String getDetectedBuildpack() {
-            return detectedBuildpack;
-        }
-
-        public void setDetectedBuildpack(String detectedBuildpack) {
-            this.detectedBuildpack = detectedBuildpack;
-            setBuildPack(detectedBuildpack);
-        }
-
-        public String getStack() {
-            return stack;
-        }
-
-        public void setStack(String stack) {
-            this.stack = stack;
-            setStackName(stack);
-        }
-    }
-
-    private String host;
-    private String domainName;
 
     public String getGuid() {
         return guid;
@@ -211,7 +177,6 @@ public class App {
         this.createdAt = createdAt;
     }
 
-
     public int getTotalUserCount() {
         return totalUserCount;
     }
@@ -268,7 +233,6 @@ public class App {
         this.newName = newName;
     }
 
-
     public String getSpaceName() {
         return spaceName;
     }
@@ -293,7 +257,6 @@ public class App {
         this.environment = environment;
     }
 
-
     public String getServiceName() {
         return serviceName;
     }
@@ -301,7 +264,6 @@ public class App {
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
-
 
     public String getDomainName() {
         return domainName;
@@ -317,5 +279,36 @@ public class App {
 
     public void setHost(String host) {
         this.host = host;
+    }
+
+    public String getServiceParam() {
+        return serviceParam;
+    }
+
+    public void setServiceParam(String serviceParam) {
+        this.serviceParam = serviceParam;
+    }
+
+    public class Staging {
+        private String detectedBuildpack;
+        private String stack;
+
+        public String getDetectedBuildpack() {
+            return detectedBuildpack;
+        }
+
+        public void setDetectedBuildpack(String detectedBuildpack) {
+            this.detectedBuildpack = detectedBuildpack;
+            setBuildPack(detectedBuildpack);
+        }
+
+        public String getStack() {
+            return stack;
+        }
+
+        public void setStack(String stack) {
+            this.stack = stack;
+            setStackName(stack);
+        }
     }
 }

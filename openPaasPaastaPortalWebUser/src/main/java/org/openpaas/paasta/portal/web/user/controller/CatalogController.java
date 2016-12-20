@@ -361,47 +361,8 @@ class CatalogController extends Common {
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/appBindServiceV2"}, method = RequestMethod.POST)
+    @ResponseBody
     public Map<String, Object> setAppBindServiceV2(@RequestBody Catalog param) throws Exception {
-        return this.procSetAppBindServiceV2(param);
-    }
-
-
-    /**
-     * 카탈로그 앱 서비스 바인드 (GET)
-     *
-     * @param orgName             the org name
-     * @param spaceName           the space name
-     * @param serviceInstanceGuid the service instance guid
-     * @param appName             the app name
-     * @param parameters          the parameters
-     * @return the app bind service v 2
-     * @throws Exception the exception
-     */
-    @RequestMapping(value = {"/appBindServiceV2/{orgName}/{spaceName}/{serviceInstanceGuid}/{appName}/{parameters}"}, method = RequestMethod.GET)
-    public Map<String, Object> setAppBindServiceV2(@PathVariable("orgName") String orgName,
-                                                   @PathVariable("spaceName") String spaceName,
-                                                   @PathVariable("serviceInstanceGuid") String serviceInstanceGuid,
-                                                   @PathVariable("appName") String appName,
-                                                   @PathVariable("parameters") String parameters) throws Exception {
-        Catalog param = new Catalog();
-        param.setOrgName(orgName);
-        param.setSpaceName(spaceName);
-        param.setServiceInstanceGuid(UUID.fromString(serviceInstanceGuid));
-        param.setAppName(appName);
-        param.setParameter(parameters);
-        return this.procSetAppBindServiceV2(param);
-    }
-
-
-    /**
-     * 카탈로그 앱 서비스 바인드
-     *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
-     */
-    private Map<String, Object> procSetAppBindServiceV2(Catalog param) throws Exception {
         return commonService.procRestTemplate("/catalog/appBindServiceV2", HttpMethod.POST, commonService.setUserId(param), this.getToken());
     }
-
 }

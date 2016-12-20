@@ -2,7 +2,7 @@
 <div style="margin: 10px; border: 1px solid #b3b3b3;">
     <div style="height: 50px; background-color: #fafafa; line-height: 50px;">
         <div style=" float: left; margin-left: 20px">
-            <font size="4px"> 로그</font>
+            <font size="4px"> </font>
         </div>
         <div style=" float: right">
             <div style="margin-right: 20px;"><a href="#none" onClick="LogTabinit();"><span
