@@ -502,7 +502,7 @@
 
         // BIND :: BUTTON EVENT
         $("#btnCancel").on("click", function() {
-            procMovePage(CATEGORY_HOME_URL);
+            procMovePage(CATEGORY_HOME_URL + "/<%= Constants.TAB_NAME_SERVICE_PACK %>");
         });
 
 

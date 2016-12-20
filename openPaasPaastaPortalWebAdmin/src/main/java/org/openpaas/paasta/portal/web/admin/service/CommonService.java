@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -28,17 +31,13 @@ import java.util.Map;
 public class CommonService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonService.class);
-
-    private final RestTemplate restTemplate;
-
-    @Value("${paasta.portal.api.url}")
-    private String apiUrl;
-
-    @Value("${paasta.portal.api.authorization.base64}")
-    private String base64Authorization;
-
     private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
     private static final String CF_AUTHORIZATION_HEADER_KEY = "cf-Authorization";
+    private final RestTemplate restTemplate;
+    @Value("${paasta.portal.api.url}")
+    private String apiUrl;
+    @Value("${paasta.portal.api.authorization.base64}")
+    private String base64Authorization;
 
     /**
      * Instantiates a new Common service.
@@ -105,6 +104,34 @@ public class CommonService {
         LOGGER.info("procRestTemplate resultMap :: {}", resultMap.toString());
         return resultMap;
     }
+
+
+    /**
+     * REST TEMPLATE 처리
+     *
+     * @param <T>          the type parameter
+     * @param reqUrl       the req url
+     * @param httpMethod   the http method
+     * @param obj          the obj
+     * @param reqToken     the req token
+     * @param responseType the response type
+     * @return response entity
+     */
+    public <T> ResponseEntity<T> procRestTemplate(String reqUrl, HttpMethod httpMethod, Object obj, String reqToken, Class<T> responseType) {
+
+        HttpHeaders reqHeaders = new HttpHeaders();
+        reqHeaders.add(AUTHORIZATION_HEADER_KEY, base64Authorization);
+
+        if (null != reqToken && !"".equals(reqToken)) reqHeaders.add(CF_AUTHORIZATION_HEADER_KEY, reqToken);
+
+        HttpEntity<Object> reqEntity = new HttpEntity<>(obj, reqHeaders);
+        ResponseEntity<T> result = restTemplate.exchange(apiUrl + reqUrl, httpMethod, reqEntity, responseType);
+
+        //LOGGER.info("procRestTemplate reqUrl :: {} || resultBody :: {}", reqUrl, result.getBody().toString());
+
+        return result;
+    }
+
 
 
     /**

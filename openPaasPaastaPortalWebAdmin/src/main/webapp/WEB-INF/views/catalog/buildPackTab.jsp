@@ -1,28 +1,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-<div>
-    <div style="float: right; padding: 0 0 10px 0;">
-        <button type="button" class="btn btn-primary btn-sm"
-                onclick="procMovePage(BUILD_PACK_INSERT_FORM_URL, '<%= Constants.CUD_C %>');"> 앱 개발환경 등록 </button>
-    </div>
-    <div id="buildPackMessageArea">
-    </div>
-    <table id="buildPackTableArea" class="table table-striped table-hover t1">
+<div class="col-sm-12 ml-10 tar">
+    <button type="button" class="btn btn-point btn-sm" onclick="procMovePage(BUILD_PACK_INSERT_FORM_URL, '<%= Constants.CUD_C %>');" >
+        앱 개발환경 등록
+    </button>
+</div>
+<div style="margin: 45px 0 0 10px;width:98%;">
+    <div id="buildPackMessageArea">	</div>
+    <table id="buildPackTableArea" class="table table-striped">
         <thead>
         <tr>
-            <th> 이름 </th>
-            <th> 요약 </th>
-            <th> 분류 </th>
-            <th> 공개 </th>
+            <th>이름</th>
+            <th>요약</th>
+            <th>분류</th>
+            <th>공개</th>
         </tr>
         </thead>
         <tbody id="buildPackListTable">
         </tbody>
+
     </table>
 </div>
-
-<form id="hiddenForm">
-    <input type="hidden" id="no" name="no" value="" />
+<form id="BuildPackHiddenForm">
+    <input type="hidden" id="BuildPackHiddenFormNo" name="no" value="" />
 </form>
 
 
@@ -37,7 +37,6 @@ SCRIPT BEGIN
 
     var BUILD_PACK_LIST_PROC_URL = "<c:url value='/catalog/getBuildPackCatalogList' />";
     var BUILD_PACK_INSERT_FORM_URL = "<c:url value='/catalog/buildPackForm' />";
-
 
     // GET LIST
     var getBuildPackList = function(reqParam) {
@@ -86,16 +85,12 @@ SCRIPT BEGIN
 
 
     // MOVE PAGE
-    var procMoveBuildPackInsertForm = function(reqNo) {
-        document.getElementById('no').value = reqNo;
-        $('#hiddenForm').attr({action:BUILD_PACK_INSERT_FORM_URL, method:"POST"}).submit();
+    var procMoveBuildPackInsertForm = function(reqParam) {
+        var hiddenForm = $('#BuildPackHiddenForm');
+        $('#BuildPackHiddenFormNo').val(reqParam);
+        hiddenForm.attr({action:BUILD_PACK_INSERT_FORM_URL, method:"POST"}).submit();
     };
 
-
-    // ON LOAD
-    $(document.body).ready(function() {
-        getBuildPackList();
-    });
 
 </script>
 

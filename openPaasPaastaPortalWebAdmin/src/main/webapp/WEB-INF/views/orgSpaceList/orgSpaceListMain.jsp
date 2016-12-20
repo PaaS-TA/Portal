@@ -10,15 +10,41 @@
 <script>
     var GET_ORGS_FOR_ADMIN_URL = "<c:url value='/orgSpaceList/getOrgsForAdmin'/>";
     var GET_SPACES_FOR_ADMIN_URL = "<c:url value='/orgSpaceList/getSpacesForAdmin'/>";
+    var domainNames;
+    var currentOrg;
 
     $(document).ready(function(){
-        getOrgsForAdmin()
+        getOrgsForAdmin();
+        getDomains();
 
     });
 
     function getOrgsForAdmin(){
         procCallAjax(GET_ORGS_FOR_ADMIN_URL, {},procCallbackGetOrgs)
     }
+
+
+    function getDomains() {
+
+        $.ajax({
+            url: "/domain/getDomains/shared",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (data) {
+                if (data) {
+                    domainNames = "";
+                    for (var i = 0; i < data.length; i++) {
+                        if (i != 0) domainNames += " , ";
+                        domainNames += data[i].name;
+                    }
+
+                }
+            }
+        });
+    }
+
+
 
     var procCallbackGetOrgs = function(data) {
         $("#orgTable").hide();
@@ -34,17 +60,17 @@
                     "</div>"
             )
 
-            var sortAry = new Array();
+            var orgName = new Array();
             for (var i = 0; i < data.orgList.length; i++) {
-                sortAry[i] = data.orgList[i].orgName.value;
+                orgName[i] = data.orgList[i].orgName.value;
             }
-            sortAry.sort();
+            orgName.sort();
 
             for (var i = 0; i < data.orgList.length; i++) {
                 $("#orgTable").append (
-                        "<div id='orgSpaceViewArea-table-content-org-no"+(i+1)+"' class='mainViewArea-table-content' name='"+sortAry[i].toString().toLowerCase()+"' onclick=selectOrg('"+sortAry[i]+"')>"+
-                        "<div class='table-contentLeft'>"+(i+1)+"</div>"+
-                        "<div class='table-contentRight'>"+sortAry[i]+"</div>"+
+                        "<div id='orgSpaceViewArea-table-content-org-no" + (i + 1) + "' class='mainViewArea-table-content' name='" + orgName[i].toString().toLowerCase() + "' >" +
+                        "<div class='table-contentLeft' >" + (i + 1) + "</div>" +
+                        "<div class='table-contentRight'><a href='#none' onClick=\"selectOrg('" + orgName[i] + "')\">" + orgName[i] + "</a> &nbsp;<a href='#none' onClick=\"procGetOrgSummary('" + orgName[i] + "')\" style='font-size:10px'>[상세정보]</a></div>" +
                         "</div>"
                 )
             }
@@ -60,13 +86,14 @@
 
             changeTableContentColor("org")
             $("#orgTable").show();
-            selectOrg(sortAry[0]);
+            selectOrg(orgName[0]);
         }
     }
 
     function getSpacesForAdmin(orgName){
         $("#spaceTable").hide();
         $("#noSpaceMessage").hide();
+        currentOrg = orgName;
         procCallAjax(GET_SPACES_FOR_ADMIN_URL, {"orgName":orgName},procCallbackGetSpaces)
     }
 
@@ -89,7 +116,7 @@
                 $("#spaceTable").append (
                         "<div id='orgSpaceViewArea-table-content-space-no"+(eventId+1)+"' class='mainViewArea-table-content' style='cursor: text'>"+
                         "<div class='table-contentLeft'>"+(eventId+1)+"</div>"+
-                        "<div class='table-contentRight'>"+space.spaceName.value+"</div>"+
+                        "<div class='table-contentRight'>" + space.spaceName.value + "&nbsp; <a href='#none' onClick=\"procGetSpaceSummary('" + currentOrg + "','" + space.spaceName.value + "')\" style='font-size:10px'>[상세정보]</a></div>" +
                         "</div>"
                 )
             });
@@ -101,6 +128,63 @@
     function selectOrg(orgName){
         getSpacesForAdmin(orgName)
     }
+
+    // GET ORG SUMMARY
+    var procGetOrgSummary = function (orgName) {
+        procCallAjax("/orgSpaceList/getOrgSummary", {orgName: orgName}, procCallbackGetOrgSummary);
+    };
+
+    // GET ORG SUMMARY CALLBACK
+    var procCallbackGetOrgSummary = function (data) {
+
+        spaces = "";
+        for (var i = 0; i < data.spaces.length; i++) {
+            if (i != 0) spaces += " , ";
+            spaces += data.spaces[i].name;
+        }
+
+
+        $("#popupTitle").html("조직 상세 정보");
+        $("#popupMessage").html("<b>Domains</b> : " + domainNames + "<br><b>Quota</b> : " + data.memoryLimit + "M memory limit" + "<br><b>Spaces</b> : " + spaces);
+        $("#popupButtonText").hide();
+
+        $('div.modal').modal('toggle');
+    }
+
+
+    // GET SPACE SUMMARY
+    var procGetSpaceSummary = function (orgName, spaceName) {
+        procCallAjax("/orgSpaceList/getSpaceSummary", {
+            orgName: orgName,
+            spaceName: spaceName
+        }, procCallbackGetSpaceSummary);
+    };
+
+    // GET ORG SUMMARY CALLBACK
+    var procCallbackGetSpaceSummary = function (data) {
+
+        apps = "";
+        for (var i = 0; i < data.apps.length; i++) {
+            if (i != 0) apps += " , ";
+            apps += data.apps[i].name;
+        }
+
+        services = "";
+        for (var i = 0; i < data.services.length; i++) {
+            if (i != 0) services += " , ";
+            services += data.services[i].name;
+        }
+
+
+        $("#popupTitle").html("조직 상세 정보");
+        $("#popupMessage").html("<b>Org</b> : " + currentOrg + "<br><b>Apps</b> : " + apps + "<br><b>Domains</b> : " + domainNames + "<br><b>Services</b> : " + services);
+        $("#popupButtonText").hide();
+
+        $('div.modal').modal('toggle');
+    }
+
+
+
 
     function searchOrg() {
         $('#spaceTable').hide();
@@ -138,7 +222,6 @@
             }
         });
     }
-
 
 
 </script>

@@ -7,26 +7,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+<div class="content-box2 col-md-12 col-md-offset-13">
 <div class="form-group col-sm-4 mr-60" style="width: 39%; margin-left: -20px">
-    <label class="control-label-gray col-sm-3 mt13" style="text-align:right;">게시일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+    <label class="control-label-white col-sm-3 mt13" style="text-align:right;">게시일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
     <div class="col-sm-4" style="width: 300px">
         <input type='text' class="form-control" size="20"
-               style="width: 130px; background:url(/resources/images/btn_cal.png) no-repeat right;  border-radius: 5px 5px 5px 5px;"
+               style="width: 130px; background:url(/resources/images/btn_cal.png) no-repeat right; background-color:#fafafa; border-radius: 5px 5px 5px 5px;"
                id='startDateInput-qna'/>
         &nbsp;&nbsp;&nbsp;
         ~
         &nbsp;&nbsp;
         <input type='text' class="form-control" size="20"
-               style="width: 130px; background:url(/resources/images/btn_cal.png) no-repeat right;  border-radius: 5px 5px 5px 5px;"
+               style="width: 130px; background:url(/resources/images/btn_cal.png) no-repeat right; background-color:#fafafa; border-radius: 5px 5px 5px 5px;"
                id='endDateInput-qna'/>
     </div>
 </div>
 
 
 <div class="form-group col-sm-2 mr-25" style="width: 20%;padding-left:20px">
-    <label for="searchTypeColumn-qna" class="control-label-gray col-sm-6 mt13 ml-10" style="text-align:right;">검색항목&nbsp;</label>
+    <label for="searchTypeColumn-qna" class="control-label-white col-sm-6 mt13 ml-10" style="text-align:right;">검색항목&nbsp;</label>
     <div class="col-sm-6">
-        <select id="searchTypeColumn-qna" name="searchTypeColumn-qna" class="form-control" style="background:url(/resources/images/btn_down.png) no-repeat right;">
+        <select id="searchTypeColumn-qna" name="searchTypeColumn-qna" class="form-control" style="background:url(/resources/images/btn_down.png) no-repeat right; background-color:#fafafa;">
             <option value="<%= Constants.SEARCH_TYPE_ALL %>">전체</option>
             <option value="<%= Constants.SEARCH_TYPE_CLASSIFICATION %>">분류</option>
             <option value="<%= Constants.SEARCH_TYPE_TITLE %>">제목</option>
@@ -36,10 +37,10 @@
 </div>
 
 <div class="form-group col-sm-2 mr-25" style="width: 19%;padding-left:0px">
-    <label for="searchTypeStatus" class="control-label-gray col-sm-6 mt13 ml-10"
+    <label for="searchTypeStatus" class="control-label-white col-sm-6 mt13 ml-10"
            style="text-align:right;">답변여부&nbsp;</label>
     <div class="col-sm-6">
-        <select id="searchTypeStatus" name="searchTypeStatus" class="form-control" style="background:url(/resources/images/btn_down.png) no-repeat right;">
+        <select id="searchTypeStatus" name="searchTypeStatus" class="form-control" style="background:url(/resources/images/btn_down.png) no-repeat right; background-color:#fafafa;">
             <option value="<%= Constants.SEARCH_TYPE_ALL %>">전체</option>
             <option value="<%= Constants.STATUS_ANSWERED %>">답변완료</option>
             <option value="<%= Constants.STATUS_WAITING %>">미답변</option>
@@ -48,7 +49,7 @@
 </div>
 
 <div class="form-group col-sm-4" style="width: 29%;padding-left:0px">
-    <label for="searchKeyword-qna" class="control-label-gray col-sm-3 mt13 ml-10" style="text-align:right;width:28%">검색어&nbsp;&nbsp;</label>
+    <label for="searchKeyword-qna" class="control-label-white col-sm-3 mt13 ml-10" style="text-align:right;width:28%">검색어&nbsp;&nbsp;</label>
     <div class="input-group col-sm-8 ml20">
         <input type="text" maxlength="100" id="searchKeyword-qna" class="form-control2 ml10" placeholder="검색어를 입력하세요." style="width: 97%; background-color: rgb(255, 255, 255);"  onkeypress="procCheckSearchFormKeyEventQnA(event);">
         <div class="input-group-btn">
@@ -60,6 +61,7 @@
     </div>
 </div>
 
+</div>
 
 <%-- datetimepicker library --%>
 <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"/>

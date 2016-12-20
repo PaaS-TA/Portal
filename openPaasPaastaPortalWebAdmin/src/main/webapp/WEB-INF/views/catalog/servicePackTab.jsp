@@ -1,28 +1,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-<div>
-    <div style="float: right; padding: 0 0 10px 0;">
-        <button type="button" class="btn btn-primary btn-sm"
-                onclick="procMovePage(SERVICE_PACK_INSERT_FORM_URL, '<%= Constants.CUD_C %>');"> 서비스 등록 </button>
-    </div>
-    <div id="servicePackMessageArea">
-    </div>
-    <table id="servicePackTableArea" class="table table-striped table-hover t1">
+<div class="col-sm-12 ml-10 tar">
+    <button type="button" class="btn btn-point btn-sm" onclick="procMovePage(SERVICE_PACK_INSERT_FORM_URL, '<%= Constants.CUD_C %>');">
+        서비스 등록
+    </button>
+</div>
+<div style="margin: 45px 0 0 10px;width:98%;">
+    <div id="servicePackMessageArea">	</div>
+    <table id="servicePackTableArea" class="table table-striped">
         <thead>
         <tr>
-            <th> 이름 </th>
-            <th> 요약 </th>
-            <th> 분류 </th>
-            <th> 공개 </th>
+            <th>이름</th>
+            <th>요약</th>
+            <th>분류</th>
+            <th>공개</th>
         </tr>
         </thead>
         <tbody id="servicePackListTable">
         </tbody>
+
     </table>
 </div>
-
-<form id="hiddenForm">
-    <input type="hidden" id="no" name="no" value="" />
+<form id="ServicePackHiddenForm">
+    <input type="hidden" id="ServicePackHiddenFormNo" name="no" value="" />
 </form>
 
 
@@ -37,7 +37,6 @@ SCRIPT BEGIN
 
     var SERVICE_PACK_LIST_PROC_URL = "<c:url value='/catalog/getServicePackCatalogList' />";
     var SERVICE_PACK_INSERT_FORM_URL = "<c:url value='/catalog/servicePackForm' />";
-
 
     // GET LIST
     var getServicePackList = function(reqParam) {
@@ -87,16 +86,12 @@ SCRIPT BEGIN
 
 
     // MOVE PAGE
-    var procMoveServicePackInsertForm = function(reqNo) {
-        document.getElementById('no').value = reqNo;
-        $('#hiddenForm').attr({action:SERVICE_PACK_INSERT_FORM_URL, method:"POST"}).submit();
+    var procMoveServicePackInsertForm = function(reqParam) {
+        var hiddenForm = $('#ServicePackHiddenForm');
+        $('#ServicePackHiddenFormNo').val(reqParam);
+        hiddenForm.attr({action:SERVICE_PACK_INSERT_FORM_URL, method:"POST"}).submit();
     };
 
-
-    // ON LOAD
-    $(document.body).ready(function() {
-        getServicePackList();
-    });
 
 </script>
 

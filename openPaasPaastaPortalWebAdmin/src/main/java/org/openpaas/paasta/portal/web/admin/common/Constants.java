@@ -56,7 +56,7 @@ public class Constants {
     public static final int PAGE_OFFSET = 0;
 
     public static final int USER_MANAGEMENT_PAGE_NO = 1;
-    public static final int USER_MANAGEMENT_PAGE_SIZE = 10;
+    public static final int USER_MANAGEMENT_PAGE_SIZE = 1000;
 
     public static final String USER_MANAGEMENT_STATUS_APPROVAL = "1";
 

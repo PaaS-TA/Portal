@@ -89,11 +89,11 @@
             <tbody id="userInfoTable">
             </tbody>
         </table>
-        <div id="buttonGetMoreList" class="mt30 tac">
+        <!--<div id="buttonGetMoreList" class="mt30 tac">
             <button type="button" class="btn btn-primary btn-sm" onclick="procGetMoreList();">
                 <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
             </button>
-        </div>
+        </div>-->
     </div>
 
 </div>
