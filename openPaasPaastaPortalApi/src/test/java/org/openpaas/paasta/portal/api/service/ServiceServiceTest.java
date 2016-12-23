@@ -5,7 +5,6 @@ import org.cloudfoundry.client.lib.CloudCredentials;
 import org.cloudfoundry.client.lib.CloudFoundryClient;
 import org.cloudfoundry.client.lib.CloudFoundryException;
 import org.cloudfoundry.client.lib.domain.CloudService;
-import org.cloudfoundry.client.lib.domain.CloudServiceInstance;
 import org.cloudfoundry.client.lib.org.codehaus.jackson.JsonParseException;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -21,9 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 import java.util.*;
@@ -37,28 +34,25 @@ import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ServiceServiceTest extends CommonTest {
 
-    @Autowired
-    private ServiceService serviceService;
-
     private static CloudFoundryClient clientAdmin;
     private static CustomCloudFoundryClient clientAdminCustom;
     private static CustomCloudFoundryClient customClient;
     private static CloudFoundryClient client;
-
     private static String customClientToken;
     private static UUID userProvidedInstanceGuid;
-
     private static String apiTarget = "";
     private static String serviceTestOrg = "";
     private static String serviceTestSpace = "";
     private static String userProvidedInstanceName = "";
     private static String createTestUP = "";
-
     private static String serviceBrokerName = "";
     private static String serviceBrokerUsername = "";
     private static String serviceBrokerPassword = "";
     private static String serviceBrokerUrl = "";
-
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+    @Autowired
+    private ServiceService serviceService;
 
     @BeforeClass
     public static void init() throws Exception {
@@ -110,9 +104,6 @@ public class ServiceServiceTest extends CommonTest {
         clientAdminCustom.deleteSpace(serviceTestOrg, serviceTestSpace);
         clientAdminCustom.deleteOrg(serviceTestOrg);
     }
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void getInstanceService() throws Exception {
@@ -412,17 +403,14 @@ public class ServiceServiceTest extends CommonTest {
     }
 
     @Test
-    public void createServiceBroker() throws Exception {
+    public void renameServiceBroker() throws Exception {
 
         ServiceBroker serviceBroker = new ServiceBroker();
         serviceBroker.setName(serviceBrokerName);
-        serviceBroker.setUsername(serviceBrokerUsername);
-        serviceBroker.setPassword(serviceBrokerPassword);
-        serviceBroker.setUrl(serviceBrokerUrl);
+        serviceBroker.setNewName(serviceBrokerName);
 
-        serviceService.createServiceBroker(serviceBroker, clientAdmin);
+        serviceService.renameServiceBroker(serviceBroker, clientAdminCustom);
     }
-
 
     @Test
     public void updateServiceBroker() throws Exception {
@@ -436,24 +424,30 @@ public class ServiceServiceTest extends CommonTest {
         serviceService.updateServiceBroker(serviceBroker, clientAdmin);
     }
 
-    @Test
-    public void renameServiceBroker() throws Exception {
 
-        ServiceBroker serviceBroker = new ServiceBroker();
-        serviceBroker.setName(serviceBrokerName);
-        serviceBroker.setNewName(serviceBrokerName);
+//    @Test
+//    public void createServiceBroker() throws Exception {
+//
+//        ServiceBroker serviceBroker = new ServiceBroker();
+//        serviceBroker.setName(serviceBrokerName);
+//        serviceBroker.setUsername(serviceBrokerUsername);
+//        serviceBroker.setPassword(serviceBrokerPassword);
+//        serviceBroker.setUrl(serviceBrokerUrl);
+//
+//        serviceService.createServiceBroker(serviceBroker, clientAdmin);
+//    }
+//
+//
 
-        serviceService.renameServiceBroker(serviceBroker, clientAdminCustom);
-    }
 
-
-    @Test
-    public void z_deleteServiceBroker() throws Exception {
-
-        ServiceBroker serviceBroker = new ServiceBroker();
-        serviceBroker.setName(serviceBrokerName);
-
-        serviceService.deleteServiceBroker(serviceBroker, clientAdmin);
-    }
+//
+//    @Test
+//    public void z_deleteServiceBroker() throws Exception {
+//
+//        ServiceBroker serviceBroker = new ServiceBroker();
+//        serviceBroker.setName(serviceBrokerName);
+//
+//        serviceService.deleteServiceBroker(serviceBroker, clientAdmin);
+//    }
 
 }

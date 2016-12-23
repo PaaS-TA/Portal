@@ -235,4 +235,25 @@ public class SpaceController extends Common {
 
         return new HashMap<String, Object>(){{put("spaceList", spaceList );}};
     }
+
+
+    /**
+     * 공간 쿼터
+     *
+     * @param space   the space
+     * @param request the request
+     * @return ModelAndView model
+     * @throws Exception the exception
+     */
+    @RequestMapping(value = {"/space/getSpaceQuota"}, method = RequestMethod.POST)
+    public Map<String, Object> getSpaceQuota(@RequestBody Space space, HttpServletRequest request) throws Exception {
+        LOGGER.info("getSpaceQuota Start ");
+
+        String spaceQuota = spaceService.getSpaceQuota(space, request.getHeader(AUTHORIZATION_HEADER_KEY));
+
+        Map map = new HashMap();
+        map.put("spaceQuota", spaceQuota);
+        return map;
+    }
+
 }

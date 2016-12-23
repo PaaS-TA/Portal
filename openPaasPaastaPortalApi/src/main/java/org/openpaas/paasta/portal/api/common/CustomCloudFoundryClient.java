@@ -356,5 +356,13 @@ public class CustomCloudFoundryClient {
 	public ResponseEntity<String> deleteClient(String clientId, String clientScret, String uaaTarget, Map<String, Object> param)  throws URISyntaxException, MalformedURLException {
 		return cc.deleteClient(clientId, clientScret, uaaTarget, param);
 	}
+
+	public String getSpaceQuota(String guid) {
+		return cc.getSpaceQuota(guid);
+	}
+
+	public String getSpace(String orgName, String spaceName) {
+		return cc.getSpace(orgName, spaceName);
+	}
 }
 

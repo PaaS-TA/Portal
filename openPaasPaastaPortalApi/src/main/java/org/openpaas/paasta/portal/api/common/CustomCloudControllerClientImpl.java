@@ -58,34 +58,24 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 
 	private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
 	private static final String PROXY_USER_HEADER_KEY = "Proxy-User";
-
-	private CustomOauthClient oauthClient;
-
 	private final CloudSpace sessionSpace;
-
 	private final CloudEntityResourceMapper resourceMapper = new CloudEntityResourceMapper();
-
+	private final Log LOGGER;
+	protected CloudCredentials cloudCredentials;
+	private CustomOauthClient oauthClient;
 	private RestTemplate restTemplate;
-
 	private URL cloudControllerUrl;
-
 	private LoggregatorClient loggregatorClient;
 
-	protected CloudCredentials cloudCredentials;
 
-	private final Log LOGGER;
+	public CustomCloudControllerClientImpl(URL cloudControllerUrl, RestTemplate restTemplate,
+										   CustomOauthClient oauthClient, LoggregatorClient loggregatorClient,
+										   CloudCredentials cloudCredentials, CloudSpace sessionSpace) {
+		LOGGER = LogFactory.getLog(getClass().getName());
 
+		initialize(cloudControllerUrl, restTemplate, oauthClient, loggregatorClient, cloudCredentials);
 
-//	public CloudSpace getSessionSpace() {
-//		return sessionSpace;
-//	}
-//
-//	public void setSessionSpace(CloudSpace sessionSpace) {
-//		this.sessionSpace = sessionSpace;
-//	}
-//
-	public LoggregatorClient getLoggregatorClient() {
-		return loggregatorClient;
+		this.sessionSpace = sessionSpace;
 	}
 //
 //	public void setLoggregatorClient(LoggregatorClient loggregatorClient) {
@@ -102,16 +92,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 
 	public CustomCloudControllerClientImpl(URL cloudControllerUrl, RestTemplate restTemplate,
 										   CustomOauthClient oauthClient, LoggregatorClient loggregatorClient,
-										   CloudCredentials cloudCredentials, CloudSpace sessionSpace) {
-		LOGGER = LogFactory.getLog(getClass().getName());
-
-		initialize(cloudControllerUrl, restTemplate, oauthClient, loggregatorClient, cloudCredentials);
-
-		this.sessionSpace = sessionSpace;
-	}
-
-	public CustomCloudControllerClientImpl(URL cloudControllerUrl, RestTemplate restTemplate,
-										   CustomOauthClient oauthClient, LoggregatorClient loggregatorClient,
 										   CloudCredentials cloudCredentials, String orgName, String spaceName) {
 		LOGGER = LogFactory.getLog(getClass().getName());
 		CustomCloudControllerClientImpl tempClient =
@@ -123,6 +103,17 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		this.sessionSpace = validateSpaceAndOrg(spaceName, orgName, tempClient);
 	}
 
+	//	public CloudSpace getSessionSpace() {
+//		return sessionSpace;
+//	}
+//
+//	public void setSessionSpace(CloudSpace sessionSpace) {
+//		this.sessionSpace = sessionSpace;
+//	}
+//
+	public LoggregatorClient getLoggregatorClient() {
+		return loggregatorClient;
+	}
 
 	private CloudSpace validateSpaceAndOrg(String spaceName, String orgName, CustomCloudControllerClientImpl client) {
 		List<CloudSpace> spaces = client.getSpaces();
@@ -177,80 +168,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		}
 	}
 
-	private class CloudFoundryClientHttpRequestFactory implements ClientHttpRequestFactory {
-		private final ClientHttpRequestFactory delegate;
-		//private Integer defaultSocketTimeout = 0;
-
-		public CloudFoundryClientHttpRequestFactory(ClientHttpRequestFactory delegate) {
-			this.delegate = delegate;
-			captureDefaultReadTimeout();
-		}
-
-		@Override
-		public ClientHttpRequest createRequest(URI uri, HttpMethod httpMethod) throws IOException {
-			ClientHttpRequest request = delegate.createRequest(uri, httpMethod);
-
-			String authorizationHeader = oauthClient.getAuthorizationHeader();
-			if (authorizationHeader != null) {
-				request.getHeaders().add(AUTHORIZATION_HEADER_KEY, authorizationHeader);
-			}
-
-			if (cloudCredentials != null && cloudCredentials.getProxyUser() != null) {
-				request.getHeaders().add(PROXY_USER_HEADER_KEY, cloudCredentials.getProxyUser());
-			}
-
-			return request;
-		}
-
-		private void captureDefaultReadTimeout() {
-			// As of HttpClient 4.3.x, obtaining the default parameters is deprecated and removed,
-			// so we fallback to java.net.Socket.
-
-//			if (defaultSocketTimeout == null) {
-//				try {
-//					defaultSocketTimeout = new Socket().getSoTimeout();
-//				} catch (SocketException e) {
-//					defaultSocketTimeout = 0;
-//				}
-//			}
-		}
-
-//		public void increaseReadTimeoutForStreamedTailedLogs(int timeout) {
-//			// May temporary increase read timeout on other unrelated concurrent
-//			// threads, but per-request read timeout don't seem easily
-//			// accessible
-//			if (delegate instanceof HttpComponentsClientHttpRequestFactory) {
-//				HttpComponentsClientHttpRequestFactory httpRequestFactory =
-//						(HttpComponentsClientHttpRequestFactory) delegate;
-//
-//				if (timeout > 0) {
-//					httpRequestFactory.setReadTimeout(timeout);
-//				} else {
-//					httpRequestFactory
-//							.setReadTimeout(defaultSocketTimeout);
-//				}
-//			}
-//		}
-
-	}
-
-//
-//	@Override
-//	public CloudSpace getSpace(String spaceName) {
-//		String urlPath = "/v2/spaces?inline-relations-depth=1&q=name:{name}";
-//		HashMap<String, Object> spaceRequest = new HashMap<String, Object>();
-//		spaceRequest.put("name", spaceName);
-//		List<Map<String, Object>> resourceList = getAllResources(urlPath, spaceRequest);
-//		CloudSpace space = null;
-//		if (resourceList.size() > 0) {
-//			Map<String, Object> resource = resourceList.get(0);
-//			space = resourceMapper.mapResource(resource, CloudSpace.class);
-//		}
-//		return space;
-//	}
-
-
-
 	@SuppressWarnings("unchecked")
 	private List<Map<String, Object>> getAllResources(String urlPath, Map<String, Object> urlVars) {
 		List<Map<String, Object>> allResources = new ArrayList<Map<String, Object>>();
@@ -273,17 +190,19 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 	}
 
 //
-//	@SuppressWarnings("unchecked")
-//	private String addPageOfResources(String nextUrl, List<Map<String, Object>> allResources) {
-//		String resp = getRestTemplate().getForObject(getUrl(nextUrl), String.class);
-//		Map<String, Object> respMap = JsonUtil.convertJsonToMap(resp);
-//		List<Map<String, Object>> newResources = (List<Map<String, Object>>) respMap.get("resources");
-//		if (newResources != null && newResources.size() > 0) {
-//			allResources.addAll(newResources);
+//	@Override
+//	public CloudSpace getSpace(String spaceName) {
+//		String urlPath = "/v2/spaces?inline-relations-depth=1&q=name:{name}";
+//		HashMap<String, Object> spaceRequest = new HashMap<String, Object>();
+//		spaceRequest.put("name", spaceName);
+//		List<Map<String, Object>> resourceList = getAllResources(urlPath, spaceRequest);
+//		CloudSpace space = null;
+//		if (resourceList.size() > 0) {
+//			Map<String, Object> resource = resourceList.get(0);
+//			space = resourceMapper.mapResource(resource, CloudSpace.class);
 //		}
-//		return (String) respMap.get("next_url");
+//		return space;
 //	}
-
 
 	/**
 	 * Get organization by given name.
@@ -314,7 +233,17 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		return org;
 	}
 
-
+//
+//	@SuppressWarnings("unchecked")
+//	private String addPageOfResources(String nextUrl, List<Map<String, Object>> allResources) {
+//		String resp = getRestTemplate().getForObject(getUrl(nextUrl), String.class);
+//		Map<String, Object> respMap = JsonUtil.convertJsonToMap(resp);
+//		List<Map<String, Object>> newResources = (List<Map<String, Object>>) respMap.get("resources");
+//		if (newResources != null && newResources.size() > 0) {
+//			allResources.addAll(newResources);
+//		}
+//		return (String) respMap.get("next_url");
+//	}
 
 	@Override
 	public List<CloudSpace> getSpaces() {
@@ -341,7 +270,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 			doCreateSpace(spaceName, orgGuid);
 		}
 	}
-
 
 	private UUID doCreateSpace(String spaceName, UUID orgGuid) {
 		String urlPath = "/v2/spaces";
@@ -416,8 +344,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		Assert.notNull(sessionSpace, "Unable to " + operation + " without specifying organization and space to use.");
 	}
 
-
-
 	@Override
 	public List<CloudOrganization> getOrganizations() {
 		String urlPath = "/v2/organizations?inline-relations-depth=0";
@@ -428,15 +354,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		}
 		return orgs;
 	}
-
-
-	/*
-	private UUID getSpaceGuid(String orgName, String spaceName) {
-		CloudOrganization org = getOrgByName(orgName, true);
-		return getSpaceGuid(spaceName, org.getMeta().getGuid());
-	}
-	*/
-
 
 	@SuppressWarnings("restriction")
 	private Map<String, Object> getUserInfo() {
@@ -457,6 +374,14 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		}
 		return JsonUtil.convertJsonToMap(userJson);
 	}
+
+
+	/*
+	private UUID getSpaceGuid(String orgName, String spaceName) {
+		CloudOrganization org = getOrgByName(orgName, true);
+		return getSpaceGuid(spaceName, org.getMeta().getGuid());
+	}
+	*/
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -494,7 +419,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		return new CloudInfo(name, support, authorizationEndpoint, build, version, (String)userMap.get("user_name"),
 				description, limits, usage, debug, loggregatorEndpoint);
 	}
-
 
 	//App 이름으로 App GUID를 획득하는데 쓰임
 	@SuppressWarnings("unchecked")
@@ -622,7 +546,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		LOGGER.info("deleteSpace end");
 	}
 
-
 	public void setOrgRole(String orgName, String userName, String orgRole) {
 		CloudOrganization org = getOrgByName(orgName, true);
 		UUID orgGuid = org.getMeta().getGuid();
@@ -667,6 +590,18 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		LOGGER.info("unsetSpaceRole end");
 	}
 
+	public String getOrgSummary(String orgName) {
+		UUID guid = getOrgByName(orgName, true).getMeta().getGuid();
+		Map<String, Object> urlVars = new HashMap<String, Object>();
+		String urlPath = "/v2/organizations/{guid}/summary";
+		LOGGER.info("urlPath: " + urlPath);
+		urlVars.put("name", orgName);
+		urlVars.put("guid", guid);
+		String resp = getRestTemplate().getForObject(getUrl(urlPath), String.class, urlVars);
+
+		return resp;
+	}
+
 
 //	public void removeUserFromOrg(String orgGuid, String userGuid){
 //		if (orgGuid != null && userGuid != null){
@@ -683,18 +618,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 //		Map managerList = getRestTemplate().getForObject(getUrl("/v2/organizations/{orgGuid}/managers"), HashMap.class, orgGuid);
 //		return managerList;
 //	}
-
-	public String getOrgSummary(String orgName) {
-		UUID guid = getOrgByName(orgName, true).getMeta().getGuid();
-		Map<String, Object> urlVars = new HashMap<String, Object>();
-		String urlPath = "/v2/organizations/{guid}/summary";
-		LOGGER.info("urlPath: " + urlPath);
-		urlVars.put("name", orgName);
-		urlVars.put("guid", guid);
-		String resp = getRestTemplate().getForObject(getUrl(urlPath), String.class, urlVars);
-
-		return resp;
-	}
 
 	public String getUserGuid(){
 		LOGGER.info("getUserGuid start");
@@ -754,7 +677,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		LOGGER.info("listAllOrgOrSpaceForTheUser end");
 		return listAllOrgOrSpace;
 	}
-
 
 	public String getAppSummary(UUID appGuid) {
 		Map<String, Object> urlVars = new HashMap<String, Object>();
@@ -824,8 +746,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		}
 
 	}
-
-
 
 	@Override
 	public void updatePassword(String newPassword) {
@@ -1131,7 +1051,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		return orgUserList;
 	}
 
-
 	@Override
 	public Map<String, Object> getUserProvidedServiceInstance(String orgName, String spaceName, String serviceInstanceName) {
 		UUID orgGuid = getOrgByName(orgName, true).getMeta().getGuid();
@@ -1207,15 +1126,16 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		getRestTemplate().put(getUrl("/v2/user_provided_service_instances/{userProvidedGuid}"), updateRequest, userProvidedGuid);
 
 	}
+
 	@Override
 	public Map resetPassword(String userId, String newPassword, String clientId, String clientSecret, String uaaTarget) throws URISyntaxException, MalformedURLException {
 		return oauthClient.resetPassword(userId, newPassword, clientId, clientSecret, uaaTarget) ;
 	}
+
 	@Override
 	public Map register(ScimUser scimUser) throws MalformedURLException {
 		return oauthClient.register(scimUser) ;
 	}
-
 
 	public void updateBuildPack(UUID guid, int position, boolean enable, boolean lock) {
 		HashMap<String, Object> updateRequest = new HashMap<>();
@@ -1227,15 +1147,10 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		getRestTemplate().put(getUrl("/v2/buildpacks/{guid}"), updateRequest, guid);
 
 	}
+
 	public Map getUaaAccessToken(String clientId, String clientSecret, String uaaTarget) throws MalformedURLException{
 		return oauthClient.getUaaAccessToken(clientId, clientSecret, uaaTarget) ;
 	}
-
-//	@Override
-//	public void register(String email, String password); {
-//		oauthClient.register(email, password);
-//	}
-
 
 	public void renameServiceBroker(String name, String newName) {
 		HashMap<String, Object> updateRequest = new HashMap<>();
@@ -1247,6 +1162,11 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		getRestTemplate().put(getUrl("/v2/service_brokers/{guid}"), serviceRequest, existingBroker.getMeta().getGuid());
 
 	}
+
+//	@Override
+//	public void register(String email, String password); {
+//		oauthClient.register(email, password);
+//	}
 
 	public CloudServiceBroker getServiceBroker(String name) {
 		String urlPath = "/v2/service_brokers?q={q}";
@@ -1260,7 +1180,6 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 		}
 		return serviceBroker;
 	}
-
 
 	@Override
 	public ResponseEntity<String> getClientList(String clientId, String clientSecret, String uaaTarget) throws URISyntaxException, MalformedURLException {
@@ -1285,5 +1204,85 @@ public class CustomCloudControllerClientImpl implements CustomCloudControllerCli
 	@Override
 	public ResponseEntity<String> deleteClient(String clientId, String clientSecret, String uaaTarget, Map<String, Object> param) throws URISyntaxException, MalformedURLException {
 		return oauthClient.deleteClient(clientId, clientSecret, uaaTarget, param) ;
+	}
+
+	public String getSpaceQuota(String guid) {
+
+		Map<String, Object> urlVars = new HashMap<String, Object>();
+		String urlPath = "/v2/space_quota_definitions/{guid}";
+		LOGGER.info("urlPath: " + urlPath);
+		String resp = getRestTemplate().getForObject(getUrl(urlPath), String.class, guid);
+
+		return resp;
+	}
+
+	@Override
+	public String getSpace(String orgName, String spaceName) {
+		UUID orgGuid = getOrgByName(orgName, true).getMeta().getGuid();
+		UUID spaceGuid = getSpaceGuid(spaceName, orgGuid);
+
+		Map<String, Object> urlVars = new HashMap<String, Object>();
+		String urlPath = "/v2/spaces/{spaceGuid}";
+		LOGGER.info("urlPath: " + urlPath);
+		String resp = getRestTemplate().getForObject(getUrl(urlPath), String.class, spaceGuid);
+
+		return resp;
+	}
+
+	private class CloudFoundryClientHttpRequestFactory implements ClientHttpRequestFactory {
+		private final ClientHttpRequestFactory delegate;
+		//private Integer defaultSocketTimeout = 0;
+
+		public CloudFoundryClientHttpRequestFactory(ClientHttpRequestFactory delegate) {
+			this.delegate = delegate;
+			captureDefaultReadTimeout();
+		}
+
+		@Override
+		public ClientHttpRequest createRequest(URI uri, HttpMethod httpMethod) throws IOException {
+			ClientHttpRequest request = delegate.createRequest(uri, httpMethod);
+
+			String authorizationHeader = oauthClient.getAuthorizationHeader();
+			if (authorizationHeader != null) {
+				request.getHeaders().add(AUTHORIZATION_HEADER_KEY, authorizationHeader);
+			}
+
+			if (cloudCredentials != null && cloudCredentials.getProxyUser() != null) {
+				request.getHeaders().add(PROXY_USER_HEADER_KEY, cloudCredentials.getProxyUser());
+			}
+
+			return request;
+		}
+
+		private void captureDefaultReadTimeout() {
+			// As of HttpClient 4.3.x, obtaining the default parameters is deprecated and removed,
+			// so we fallback to java.net.Socket.
+
+//			if (defaultSocketTimeout == null) {
+//				try {
+//					defaultSocketTimeout = new Socket().getSoTimeout();
+//				} catch (SocketException e) {
+//					defaultSocketTimeout = 0;
+//				}
+//			}
+		}
+
+//		public void increaseReadTimeoutForStreamedTailedLogs(int timeout) {
+//			// May temporary increase read timeout on other unrelated concurrent
+//			// threads, but per-request read timeout don't seem easily
+//			// accessible
+//			if (delegate instanceof HttpComponentsClientHttpRequestFactory) {
+//				HttpComponentsClientHttpRequestFactory httpRequestFactory =
+//						(HttpComponentsClientHttpRequestFactory) delegate;
+//
+//				if (timeout > 0) {
+//					httpRequestFactory.setReadTimeout(timeout);
+//				} else {
+//					httpRequestFactory
+//							.setReadTimeout(defaultSocketTimeout);
+//				}
+//			}
+//		}
+
 	}
 }

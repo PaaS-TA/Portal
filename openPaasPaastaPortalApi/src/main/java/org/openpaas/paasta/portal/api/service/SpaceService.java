@@ -6,7 +6,6 @@ import org.cloudfoundry.client.lib.domain.CloudUser;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.openpaas.paasta.portal.api.common.Common;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
-import org.openpaas.paasta.portal.api.controller.ServiceController;
 import org.openpaas.paasta.portal.api.mapper.cc.OrgMapper;
 import org.openpaas.paasta.portal.api.mapper.cc.SpaceMapper;
 import org.openpaas.paasta.portal.api.model.App;
@@ -28,16 +27,13 @@ import java.util.stream.Collectors;
 @Service
 public class SpaceService extends Common {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpaceService.class);
     @Autowired
     private AsyncUtilService asyncUtilService;
-
     @Autowired
     private SpaceMapper spaceMapper;
-
     @Autowired
     private OrgMapper orgMapper;
-
-//    private static final Logger LOGGER = LoggerFactory.getLogger(SpaceService.class);
 
     /**
      * 공간(스페이스) 목록 조회
@@ -401,5 +397,43 @@ public class SpaceService extends Common {
         List selectSpace = spaceMapper.getSpacesInfoById(map);
         return selectSpace;
     }
+
+
+    /**
+     * 공간 쿼터
+     *
+     * @param space the space
+     * @param token the token
+     * @return boolean boolean
+     * @throws Exception the exception
+     * @author kimdojun
+     * @version 1.0
+     * @since 2016.7.11 최초작성
+     */
+    public String getSpaceQuota(Space space, String token) throws Exception {
+
+        String orgName = space.getOrgName();
+        String spaceName = space.getSpaceName();
+
+        if (!stringNullCheck(orgName, spaceName)) {
+            throw new CloudFoundryException(HttpStatus.BAD_REQUEST, "Bad Request", "Required request body content is missing");
+        }
+
+        CustomCloudFoundryClient client = getCustomCloudFoundryClient(token);
+
+        String spaceInfo = client.getSpace(orgName, spaceName);
+
+        LOGGER.info(spaceInfo);
+
+        Space respSpace = new ObjectMapper().readValue(spaceInfo, Space.class);
+
+        if (respSpace.getEntity().getSpaceQuotaDefinitionGuid() == null) {
+            return null;
+        } else {
+            return client.getSpaceQuota(respSpace.getEntity().getSpaceQuotaDefinitionGuid());
+        }
+
+    }
+
 
 }

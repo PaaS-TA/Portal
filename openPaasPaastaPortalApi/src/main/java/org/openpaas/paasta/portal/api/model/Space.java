@@ -54,8 +54,18 @@ public class Space {
 
     private List<Service> services = new ArrayList<Service>();
 
+    private Entity entity;
+
     public Space(){
         //empty
+    }
+
+    public Entity getEntity() {
+        return entity;
+    }
+
+    public void setEntity(Entity entity) {
+        this.entity = entity;
     }
 
     public String getOrgName() {
@@ -186,7 +196,6 @@ public class Space {
         this.services = services;
     }
 
-
     public int getSpaceId() {
         return spaceId;
     }
@@ -225,6 +234,20 @@ public class Space {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public class Entity {
+        @JsonProperty("space_quota_definition_guid")
+        private String spaceQuotaDefinitionGuid;
+
+        public String getSpaceQuotaDefinitionGuid() {
+            return spaceQuotaDefinitionGuid;
+        }
+
+        public void setSpaceQuotaDefinitionGuid(String spaceQuotaDefinitionGuid) {
+            this.spaceQuotaDefinitionGuid = spaceQuotaDefinitionGuid;
+        }
     }
 
 }

@@ -178,4 +178,7 @@ public interface CustomCloudControllerClient {
 
     ResponseEntity<String> deleteClient(String clientId, String clientScret, String uaaTarget, Map<String, Object> param) throws URISyntaxException, MalformedURLException;
 
+    String getSpaceQuota(String guid);
+
+    String getSpace(String orgName, String spaceName);
 }
