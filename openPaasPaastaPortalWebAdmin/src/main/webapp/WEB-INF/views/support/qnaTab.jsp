@@ -55,7 +55,7 @@ SCRIPT BEGIN
 --%>
 
 <%-- twbs-pagination library --%>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.3.1/jquery.twbsPagination.js"></script>
+<script type="text/javascript" src="/resources/js/lib/jquery.twbsPagination.js"></script>
 
 
 <script type="text/javascript">

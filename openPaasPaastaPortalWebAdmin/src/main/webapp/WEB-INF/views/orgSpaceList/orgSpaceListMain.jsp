@@ -13,6 +13,17 @@
     var domainNames;
     var currentOrg;
 
+    var quotaName;
+    var totalRoutes;
+    var totalRoutes;
+    var paidServices;
+
+    var quotaNameSpace;
+    var totalRoutesSpace;
+    var totalRoutesSpace;
+    var paidServicesSpace;
+    var spaceQuotaText;
+
     $(document).ready(function(){
         getOrgsForAdmin();
         getDomains();
@@ -75,15 +86,6 @@
                 )
             }
 
-//            $.each(data.orgList, function (eventId, org) {
-//                $("#orgTable").append (
-//                        "<div id='orgSpaceViewArea-table-content-org-no"+(eventId+1)+"' class='mainViewArea-table-content' name='"+org.orgName.value.toLowerCase()+"' onclick=selectOrg('"+org.orgName.value+"')>"+
-//                        "<div class='table-contentLeft'>"+(eventId+1)+"</div>"+
-//                        "<div class='table-contentRight'>"+org.orgName.value+"</div>"+
-//                        "</div>"
-//                )
-//            });
-
             changeTableContentColor("org")
             $("#orgTable").show();
             selectOrg(orgName[0]);
@@ -131,8 +133,25 @@
 
     // GET ORG SUMMARY
     var procGetOrgSummary = function (orgName) {
+
+        procCallAjax("/orgSpaceList/getOrgByName", {orgName: orgName}, procCallbackGetOrgQuota);
+
         procCallAjax("/orgSpaceList/getOrgSummary", {orgName: orgName}, procCallbackGetOrgSummary);
+
     };
+
+    // GET ORG SUMMARY CALLBACK
+    var procCallbackGetOrgQuota = function (data) {
+
+        quotaName = data.quota.name;
+        totalRoutes = data.quota.totalRoutes;
+        totalServices = data.quota.totalServices;
+        if (data.quota.nonBasicServicesAllowed) {
+            paidServices = "paid services allowed";
+        } else {
+            paidServices = "paid services disallowed";
+        }
+    }
 
     // GET ORG SUMMARY CALLBACK
     var procCallbackGetOrgSummary = function (data) {
@@ -145,20 +164,50 @@
 
 
         $("#popupTitle").html("조직 상세 정보");
-        $("#popupMessage").html("<b>Domains</b> : " + domainNames + "<br><b>Quota</b> : " + data.memoryLimit + "M memory limit" + "<br><b>Spaces</b> : " + spaces);
+        $("#popupMessage").html("<b>Domains</b> : " + domainNames +
+                "<br><b>Quota</b> : " + quotaName + " (" + data.memoryLimit + "M memory limit, " + totalRoutes + " routes, " + totalServices + " services, " + paidServices + ")" +
+                "<br><b>Spaces</b> : " + spaces);
         $("#popupButtonText").hide();
-
+        $("#popupCancelButtonText").text("확인");
         $('div.modal').modal('toggle');
     }
 
 
     // GET SPACE SUMMARY
     var procGetSpaceSummary = function (orgName, spaceName) {
+
+        procCallAjax("/orgSpaceList/getSpaceQuota", {
+            orgName: orgName,
+            spaceName: spaceName
+        }, procCallbackGetSpaceQuota);
+
+
         procCallAjax("/orgSpaceList/getSpaceSummary", {
             orgName: orgName,
             spaceName: spaceName
         }, procCallbackGetSpaceSummary);
     };
+
+
+    // GET ORG SUMMARY CALLBACK
+    var procCallbackGetSpaceQuota = function (data) {
+
+        if (data.spaceQuota != null) {
+            var spaceQuota = JSON.parse(data.spaceQuota);
+            quotaNameSpace = spaceQuota.entity.name;
+            totalRoutesSpace = spaceQuota.entity.total_routes;
+            totalServicesSpace = spaceQuota.entity.total_services;
+            if (spaceQuota.entity.non_basic_services_allowed) {
+                paidServicesSpace = "paid services allowed";
+            } else {
+                paidServicesSpace = "paid services disallowed";
+            }
+            spaceQuotaText = quotaNameSpace + " (" + spaceQuota.entity.memory_limit + "M memory limit, " + totalRoutesSpace + " routes, " + totalServicesSpace + " services, " + paidServicesSpace + ")";
+        } else {
+            spaceQuotaText = "";
+        }
+
+    }
 
     // GET ORG SUMMARY CALLBACK
     var procCallbackGetSpaceSummary = function (data) {
@@ -175,11 +224,13 @@
             services += data.services[i].name;
         }
 
-
-        $("#popupTitle").html("조직 상세 정보");
-        $("#popupMessage").html("<b>Org</b> : " + currentOrg + "<br><b>Apps</b> : " + apps + "<br><b>Domains</b> : " + domainNames + "<br><b>Services</b> : " + services);
+        $("#popupTitle").html("영역 상세 정보");
+        $("#popupMessage").html("<b>Org</b> : " + currentOrg + "<br><b>Apps</b> : " + apps +
+                "<br><b>Domains</b> : " + domainNames +
+                "<br><b>Services</b> : " + services +
+                "<br><b>Quota</b> : " + spaceQuotaText);
         $("#popupButtonText").hide();
-
+        $("#popupCancelButtonText").text("확인");
         $('div.modal').modal('toggle');
     }
 
@@ -278,37 +329,5 @@
 </div>
 
 <%--///////////--%>
-
-<%--
-<div class="mainViewArea" id="orgSpaceViewArea">
-    <h2> 조직 및 공간 조회 </h2>
-    <div class="orgArea">
-        <label class="control-label sr-only" for="org-searchKeyword"></label>
-        <div class="input-group">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </span>
-            <input type="text" class="form-control custom-input-text" id="org-searchKeyword" maxlength="100" placeholder="검색어를 입력하세요." onkeyup="searchOrg()">
-        </div>
-
-<div class="box">
-    <div class="custom-boxL">
-        <div class="orgArea">
-            <div class="mainViewArea-table" id="orgTable" style="display: none">
-            </div>
-            <div id="noOrgMessage" class='mainViewArea-message' style="display: none">생성된 조직이 없습니다.</div>
-            <div id="noSearchOrgMessage" class='mainViewArea-message' style="display: none">검색된 조직이 없습니다.</div>
-        </div>
-    </div>
-
-    <div class="custom-boxR">
-        <div class="spaceArea">
-            <div id="spaceTable" class="mainViewArea-table" style="display: none">
-            </div>
-            <div id="noSpaceMessage" class='mainViewArea-message' style="display: none">생성된 공간이 없습니다.</div>
-        </div>
-    </div>
-</div>--%>
-
 <%--FOOTER--%>
 <%@ include file="../common/footer.jsp"%>

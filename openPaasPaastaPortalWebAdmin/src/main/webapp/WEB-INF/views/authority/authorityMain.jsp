@@ -645,7 +645,9 @@
                     <div id="createAuthorityGroupBox" class="addBox" style="display: none; width:100%">
                         <div style="float: left; width: 70%;">
                             <div class="form-group has-feedback has-feedback-right" style="margin: 7px">
-                                <input id="group-create-name-input" type="text" class="form-control form-control-warning" placeholder="그룹 이름을 입력하세요." onkeyup="createGroupValidation()">
+                                <input id="group-create-name-input" type="text"
+                                       class="form-control form-control-warning" placeholder="그룹 이름을 입력하세요."
+                                       onkeyup="createGroupValidation()" style="margin-top: -3px">
                                 <span id="group-create-name-input-icon" class="form-control-feedback glyphicon status-icon-warning"></span>
                                 <div id="group-create-name-input-statusMessage"
                                      style="display: none; font-size:10pt; color: #ca0020; margin-top: 2px; padding-left: 12px">
@@ -685,7 +687,9 @@
                         <div id="addAuthorityGroupMemeberBox" class="addBox" style="display: none; width:100%">
                             <div style="float: left; width: 70%;">
                                 <div class="form-group has-feedback has-feedback-right" style="margin: 7px">
-                                    <input id="user-add-name-input" type="text" class="form-control form-control-warning" placeholder="유저이름을 입력하세요.">
+                                    <input id="user-add-name-input" type="text"
+                                           class="form-control form-control-warning" style="margin-top: -3px"
+                                           placeholder="유저이름을 입력하세요.">
                                     <span id="user-add-name-input-icon" class="form-control-feedback glyphicon status-icon-warning"></span>
                                     <div id="userName-auto-complete-area" class="auto-complete-area"></div>
                                 </div>

@@ -71,6 +71,24 @@ public class OrgSpaceListController extends Common {
 
 
     /**
+     * 조직 쿼터 정보
+     *
+     * @param org the org
+     * @return Org rspOrg
+     */
+    @RequestMapping(value = {"/getOrgByName"}, method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getOrgByName(@RequestBody Org org) {
+
+        if (org.getOrgName() == null) {
+            throw new IllegalArgumentException("조직정보가 존재하지 않습니다.");
+        }
+
+        return commonService.procRestTemplate("/org/getOrgByName", HttpMethod.POST, org, getToken());
+    }
+
+
+    /**
      * 영역 요약 정보 조회
      *
      * @param space the space
@@ -88,6 +106,32 @@ public class OrgSpaceListController extends Common {
         return rspSpace;
     }
 
+    /**
+     * 영역 쿼터 정보
+     *
+     * @param space the space
+     * @return Org rspOrg
+     */
+    @RequestMapping(value = {"/getSpaceQuota"}, method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getSpaceQuota(@RequestBody Space space) {
 
+        return commonService.procRestTemplate("/space/getSpaceQuota", HttpMethod.POST, space, getToken());
+
+    }
+
+    /**
+     * 특정 영역 정보
+     *
+     * @param space the space
+     * @return Org rspOrg
+     */
+    @RequestMapping(value = {"/getSpace"}, method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getSpace(@RequestBody Space space) {
+
+        return commonService.procRestTemplate("/space/getSpace", HttpMethod.POST, space, getToken());
+
+    }
 
 }

@@ -97,7 +97,7 @@
             <div class="col-sm-offset-1 col-sm-9" align="right" id = "statusActivity">
                 <div class="divButtons" style="width:97.8%;">
                     <button type="button" class="btn btn-cancel2 btn-sm" onClick="location.href='/service/serviceBrokerMain'">목록</button>
-                    <button type="button" class="btn btn-save btn-sm" onClick="updateServiceBroker()">등록</button>
+                    <button type="button" class="btn btn-save btn-sm" onClick="createServiceBroker()">등록</button>
                 </div>
             </div>
         </div>
