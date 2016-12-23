@@ -921,7 +921,8 @@
                                            data-toggle="tab">라우트(<span
                         id="routeCount">0</span>)</a>
                 </li>
-                <li role="presentation"><a href="#logTab" aria-controls="logTab" role="tab" data-toggle="tab">로그</a>
+                <li role="presentation"><a href="#logTab" aria-controls="logTab" role="tab" data-toggle="tab"
+                                           onClick="LogTabinit();">로그</a>
                 </li>
                 <!--<li role="presentation"><a href="#deliveryTab" aria-controls="deliveryTa
         </div>b" role="tab" data-toggle="tab" onClick="$('#eventTab').hide();$('#serviceTab').hide();$('#envTab').hide();$('#routeTab').hide();$('#logTab').hide();$('#deliveryTab').show();">배포정보</a></li>-->

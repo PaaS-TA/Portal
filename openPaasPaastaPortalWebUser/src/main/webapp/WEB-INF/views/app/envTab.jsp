@@ -207,8 +207,8 @@
     }
 
 </script>
-<div class="tab-title-box" style="text-align:center;background-color: #fafafa;"><font style="padding-left:38px;">사용자
-    정의</font>
+<div class="custom-tab-title-box" style="background-color: #f5f7f8;">사용자
+    정의
     <button type="button" class="btn btn-point btn-sm" style="float: right; margin:-3px"
             onclick="toggleAddUserEnvBox()">+ 추가
     </button>

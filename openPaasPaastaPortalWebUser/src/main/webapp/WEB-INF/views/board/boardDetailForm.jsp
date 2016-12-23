@@ -98,10 +98,10 @@
                                       id="afterEdit">
                                 <span id="modifySave" style="cursor: pointer; "><button type="button"
                                                                                         class="btn btn-point btn-sm"
-                                                                                        style="display:none;">저장</button></span>
+                                >저장</button></span>
                                 <span id="modifyCancel" style="cursor: pointer; "><button type="button"
                                                                                           class="btn btn-cancel btn-sm"
-                                                                                          style="display:none;">취소</button></span>
+                                >취소</button></span>
                             </span>
                             </div>
                         </div>

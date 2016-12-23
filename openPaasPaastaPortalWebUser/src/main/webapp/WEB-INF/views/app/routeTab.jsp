@@ -174,7 +174,7 @@
     }
 
 </script>
-<div class="tab-title-box" style="background-color: #fafafa;">라우트
+<div class="custom-tab-title-box" style="background-color: #f5f7f8;">라우트
     <button type="button" style="float: right; margin:-3px" class="btn btn-save btn-sm" onclick="toggleBox('addRoute')">
         + 연결
     </button>

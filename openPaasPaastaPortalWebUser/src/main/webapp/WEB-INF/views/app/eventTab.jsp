@@ -107,7 +107,8 @@
     <table width="100%" class="event-table">
         <thead>
         <tr height="40">
-            <td style="background-color: #f6f6f6; padding-left:20px;" colspan="5"><font size="4px"> 최근 이벤트</font></td>
+            <td style="background-color: #f5f7f8; padding-left:20px;" colspan="5" class="custom-tab-title-box"> 최근 이벤트
+            </td>
         </tr>
         </thead>
         <tbody id="eventList">
