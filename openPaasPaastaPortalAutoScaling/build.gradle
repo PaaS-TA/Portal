@@ -26,10 +26,10 @@ apply plugin: 'war'
 apply plugin: 'spring-boot'
 
 //war file, sonarqube project version
-version '1.0-SNAPSHOT'
+version '1.0'
 
 war {
-    baseName = 'openPaasPaastaPortalAutoScaling'
+    baseName = 'passta-portal-auto-scaler'
     version "$version"
 }
 

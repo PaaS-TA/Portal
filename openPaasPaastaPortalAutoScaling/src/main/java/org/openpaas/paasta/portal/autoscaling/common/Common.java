@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * Common Class
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.07.28
  */

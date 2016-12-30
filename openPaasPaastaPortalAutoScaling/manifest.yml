@@ -4,7 +4,7 @@ applications:
   memory: 512M
   instances: 1
   host: portal-auto-scaler
-  path: ./openPaasPaastaPortalAutoScaling-1.0-SNAPSHOT.war
+  path: ./passta-portal-auto-scaler-1.0.war
   buildpack: java_buildpack_offline
   services:
   - portal-eureka-service

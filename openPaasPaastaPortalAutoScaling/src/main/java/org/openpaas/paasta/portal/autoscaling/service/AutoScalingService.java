@@ -23,11 +23,11 @@ import java.util.Map;
 
 
 /**
- * AutoScaling Service
+ * Auto 스케일링 서비스 - 포탈에서 설정된 앱들의 Auto 스케일링 동작을 수행한다.
  *
  * @author nawkm
  * @version 1.0
- * @since 2016.4.4 최초작성
+ * @since 2016.11.4 최초작성
  */
 @Component
 @EnableAsync
@@ -54,7 +54,7 @@ public class AutoScalingService {
 
 
     /**
-     * Auto 스케일링 쓰레드 처리
+     * 앱들을 Auto 스케일링 쓰레드로 처리한다.
      *
      * @param guid the guid
      * @throws InterruptedException the interrupted exception

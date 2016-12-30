@@ -24,11 +24,11 @@ import java.util.Random;
 
 
 /**
- * AutoScaling Controller
+ * Auto 스케일링 컨트롤러 - 포탈에서 설정된 앱들의 Auto 스케일링 동작을 수행한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
- * @since 2016.4.4 최초작성
+ * @since 2016.11.4 최초작성
  */
 @RestController
 @Component
@@ -53,9 +53,8 @@ public class AutoScalingController implements CommandLineRunner {
     private StringRedisTemplate redis;
 
     /**
-     * run 실행
+     * Auto 스케일링 run 실행 메서드이다.
      *
-     * @return ModelAndView model
      */
     @Override
     public void run(String... args) throws Exception {
@@ -65,7 +64,7 @@ public class AutoScalingController implements CommandLineRunner {
     }
 
     /**
-     * Auto 스케일링 재시작
+     * Auto 스케일링을 재시작한다.
      *
      * @param guid the guid
      * @throws JSONException        the json exception
@@ -86,7 +85,7 @@ public class AutoScalingController implements CommandLineRunner {
     }
 
     /**
-     * Auto 스케일링 전체 시작
+     * Auto 스케일링을 전체 앱에서 시작한다.
      *
      * @throws Exception the exception
      */
@@ -133,7 +132,7 @@ public class AutoScalingController implements CommandLineRunner {
 
 
     /**
-     * Auto 스케일링 전체 정지
+     * Auto 스케일링이 전체 앱에서 정지된다.
      *
      * @throws JSONException        the json exception
      * @throws InterruptedException the interrupted exception
