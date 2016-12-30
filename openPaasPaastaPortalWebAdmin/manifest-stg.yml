@@ -1,10 +1,10 @@
 ---
 applications:
 - name: portal-web-admin
-  memory: 768M
+  memory: 512M
   instances: 1
   host: portal-web-admin-stg
-  path: build/libs/openPaasPaastaPortalWebAdminServer-1.0-SNAPSHOT.war
+  path: build/libs/paasta-portal-web-admin-1.0.war
   buildpack: java_pinpoint_buildpack
   services:
   - portal-eureka-service

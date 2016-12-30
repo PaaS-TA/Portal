@@ -16,7 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * Created by YJKim on 2016-07-25.
+ * DocumentsController.java
+ * 문서 조회, 등록, 수정 등 문서 관리에 필요한 API 를 호출 받는 컨트롤러
+ *
+ * @author yjkim
+ * @version 1.0
+ * @since 2016.07.25 최초작성
  */
 @Controller
 @RequestMapping(value = {"/documents"})
@@ -28,9 +33,9 @@ public class DocumentsController {
     /**
      * 문서 목록 조회
      *
-     * @param param the param
-     * @return Document list map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getDocumentsList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -39,11 +44,11 @@ public class DocumentsController {
     }
 
     /**
-     * 문서 조회
+     * 문서 상세정보 조회
      *
-     * @param param the param
-     * @return get Document map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getDocument"}, method = RequestMethod.POST)
     @ResponseBody
@@ -54,39 +59,38 @@ public class DocumentsController {
     /**
      * 문서 등록
      *
-     * @param param the param
-     * @return insert Document result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/insertDocument"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> insertDocument(@RequestBody Support param) throws Exception{
-        param.setUserId("admin");
-
+        param.setUserId(commonService.getUserId());
         return commonService.procRestTemplate("/documents/insertDocument", HttpMethod.POST, param, null);
     }
 
     /**
      * 문서 수정
      *
-     * @param param the param
-     * @return update Document result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateDocument"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> updateDocument(@RequestBody Support param) throws Exception{
 
-        param.setUserId("admin");
+        param.setUserId(commonService.getUserId());
         return commonService.procRestTemplate("/documents/updateDocument", HttpMethod.PUT, param, null);
     }
 
     /**
      * 문서 삭제
      *
-     * @param param the param
-     * @return delete Document result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST)
     @ResponseBody
@@ -99,7 +103,7 @@ public class DocumentsController {
     /**
      * 문서 메인 페이지 이동
      *
-     * @return documents main form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/documentsMain"}, method = RequestMethod.GET)
     public ModelAndView getDocumentsMain() {
@@ -113,7 +117,7 @@ public class DocumentsController {
     /**
      * 문서 등록 페이지 이동
      *
-     * @return documents insert form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/documentsForm"}, method = RequestMethod.GET)
     public ModelAndView documentForm() {
@@ -129,7 +133,8 @@ public class DocumentsController {
     /**
      * 문서 조회/수정 페이지 이동
      *
-     * @return documents update form
+     * @param req HttpServletRequest
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/documentsForm"}, method = RequestMethod.POST)
     public ModelAndView documentForm(HttpServletRequest req) {

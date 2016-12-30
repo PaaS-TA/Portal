@@ -2,8 +2,14 @@ package org.openpaas.paasta.portal.web.admin.model;
 
 
 /**
- * Created by YJKim on 2016-07-28.
+ * Support.java
+ * 모델 클래스
+ *
+ * @author yjkim
+ * @version 1.0
+ * @since 2016.7.28 최초작성
  */
+
 public class Support {
     private int no;
     private String title;

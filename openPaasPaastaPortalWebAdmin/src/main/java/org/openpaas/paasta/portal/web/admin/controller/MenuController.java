@@ -13,32 +13,34 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * 메뉴 컨트롤러
+ * 메뉴 목록 조회, 등록, 삭제 등 메뉴 관리의 API 를 호출 하는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.29
+ * @since 2016.09.29 최초작성
  */
 @Controller
 @RequestMapping(value = {"/menu"})
 public class MenuController extends Common {
 
     /**
-     * Gets menu main.
+     * 메뉴 메인페이지로 이동한다.
      *
-     * @return the menu main
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/menuMain"}, method = RequestMethod.GET)
     public ModelAndView getMenuMain() {
-        return new ModelAndView(){{setViewName("/menu/menuMain");}};
+        return new ModelAndView() {{
+            setViewName("/menu/menuMain");
+        }};
     }
 
 
     /**
-     * Gets menu max no list.
+     * 메뉴 최대값을 조회한다.
      *
-     * @param param the param
-     * @return menu max no list
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getMenuMaxNoList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -48,10 +50,10 @@ public class MenuController extends Common {
 
 
     /**
-     * Gets menu list.
+     * 메뉴를 조회한다.
      *
-     * @param param the param
-     * @return the menu list
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getMenuList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -61,10 +63,10 @@ public class MenuController extends Common {
 
 
     /**
-     * Gets menu detail.
+     * 메뉴 상세 조회를 한다.
      *
-     * @param param the param
-     * @return the menu detail
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getMenuDetail"}, method = RequestMethod.POST)
     @ResponseBody
@@ -74,11 +76,11 @@ public class MenuController extends Common {
 
 
     /**
-     * Insert menu.
+     * 메뉴를 등록한다.
      *
-     * @param param the param
-     * @return the map
-     * @throws Exception the exception
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertMenu"}, method = RequestMethod.POST)
     @ResponseBody
@@ -88,11 +90,11 @@ public class MenuController extends Common {
 
 
     /**
-     * Update menu.
+     * 메뉴를 수정한다.
      *
-     * @param param the param
-     * @return the map
-     * @throws Exception the exception
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/updateMenu"}, method = RequestMethod.POST)
     @ResponseBody
@@ -102,10 +104,10 @@ public class MenuController extends Common {
 
 
     /**
-     * Delete menu.
+     * 메뉴를 삭제한다.
      *
-     * @param param the param
-     * @return the map
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteMenu"}, method = RequestMethod.POST)
     @ResponseBody

@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * 카탈로그 컨트롤러
+ * 서비스 카탈로그, 개발 환경 카탈로그, 앱 템플릿 카탈로그 정보 조회 및 관리 등의 API 를 호출 하는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.07.04
+ * @since 2016.07.04 최초작성
  */
 @Controller
 @RequestMapping(value = {"/catalog"})
 class CatalogController extends Common {
 
     /**
-     * 카탈로그 메인페이지 이동
+     * 카탈로그 메인페이지로 이동한다.
      *
-     * @return the catalog main
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/catalogMain"}, method = RequestMethod.GET)
     public ModelAndView getCatalogMain() {
@@ -35,10 +35,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 카탈로그 메인페이지 이동
+     * 카탈로그 메인페이지로 이동한다.
      *
-     * @param tabName the tab name
-     * @return catalog main
+     * @param tabName 탭 이름(String)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/catalogMain/{tabName}"}, method = RequestMethod.GET)
     public ModelAndView getCatalogMain(@PathVariable("tabName") String tabName) {
@@ -57,10 +57,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 목록 조회
+     * 앱 개발환경 목록을 조회한다.
      *
-     * @param param the param
-     * @return build pack list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getBuildPackList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -70,10 +70,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 목록 조회
+     * 서비스 목록을 조회한다.
      *
-     * @param param the param
-     * @return service pack list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getServicePackList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -85,8 +85,8 @@ class CatalogController extends Common {
     /**
      * 앱 개발환경 카탈로그 목로 조회
      *
-     * @param param the param
-     * @return build pack catalog list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getBuildPackCatalogList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -96,10 +96,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 카탈로그 목록 조회
+     * 서비스 카탈로그 목록을 조회한다.
      *
-     * @param param the param
-     * @return service pack catalog list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getServicePackCatalogList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -111,8 +111,8 @@ class CatalogController extends Common {
     /**
      * 앱 개발환경 카탈로그 개수 조회
      *
-     * @param param the param
-     * @return build pack catalog count
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getBuildPackCatalogCount"}, method = RequestMethod.POST)
     @ResponseBody
@@ -124,8 +124,8 @@ class CatalogController extends Common {
     /**
      * 서비스 카탈로그 개수 조회
      *
-     * @param param the param
-     * @return service pack catalog count
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getServicePackCatalogCount"}, method = RequestMethod.POST)
     @ResponseBody
@@ -135,9 +135,9 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 저장페이지 이동
+     * 앱 개발환경 저장페이지로 이동한다.
      *
-     * @return build pack form
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/buildPackForm"}, method = RequestMethod.GET)
     public ModelAndView getBuildPackForm() {
@@ -149,10 +149,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 수정페이지 이동
+     * 앱 개발환경 수정페이지로 이동한다.
      *
-     * @param req the req
-     * @return build pack form
+     * @param req HttpServletRequest(자바클래스)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/buildPackForm"}, method = RequestMethod.POST)
     public ModelAndView getBuildPackForm(HttpServletRequest req) {
@@ -165,22 +165,22 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 저장페이지 이동
+     * 서비스 저장페이지로 이동한다.
      *
-     * @return service pack form
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/servicePackForm"}, method = RequestMethod.GET)
     public ModelAndView getServicePackForm() {
         return new ModelAndView(){{setViewName("/catalog/servicePackForm");
-                                    addObject("INSERT_FLAG", Constants.CUD_C);}};
+            addObject("INSERT_FLAG", Constants.CUD_C);}};
     }
 
 
     /**
-     * 서비스 수정페이지 이동
+     * 서비스 수정페이지로 이동한다.
      *
-     * @param req the req
-     * @return service pack form
+     * @param req HttpServletRequest(자바클래스)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/servicePackForm"}, method = RequestMethod.POST)
     public ModelAndView getServicePackForm(HttpServletRequest req) {
@@ -193,10 +193,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 저장
+     * 앱 개발환경 카탈로그를 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/insertBuildPackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -206,10 +206,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 카탈로그 저장
+     * 서비스 카탈로그를 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/insertServicePackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -219,10 +219,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 수정
+     * 앱 개발환경 카탈로그를 수정한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/updateBuildPackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -232,10 +232,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 카탈로그 수정
+     * 서비스 카탈로그를 수정한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/updateServicePackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -245,10 +245,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 삭제
+     * 앱 개발환경 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteBuildPackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -258,10 +258,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 카탈로그 삭제
+     * 서비스 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteServicePackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -271,10 +271,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 삭제 가능여부 조회
+     * 앱 개발환경 카탈로그 삭제 가능여부를 조회한다.
      *
-     * @param param the param
-     * @return check delete build pack catalog count
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCheckDeleteBuildPackCatalogCount"}, method = RequestMethod.POST)
     @ResponseBody
@@ -284,10 +284,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스 카탈로그 삭제 가능여부 조회
+     * 서비스 카탈로그 삭제 가능여부를 조회한다.
      *
-     * @param param the param
-     * @return check delete service pack catalog count
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCheckDeleteServicePackCatalogCount"}, method = RequestMethod.POST)
     @ResponseBody
@@ -297,11 +297,11 @@ class CatalogController extends Common {
 
 
     /**
-     * 이미지 파일 업로드
+     * 이미지 파일을 업로드한다.
      *
-     * @param multipartFile the multipart file
-     * @return map map
-     * @throws Exception the exception
+     * @param multipartFile MultipartFile(Spring 클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/uploadThumbnailImage"}, method = RequestMethod.POST)
     @ResponseBody
@@ -311,10 +311,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 이미지 파일 삭제
+     * 이미지 파일을 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteThumbnailImage"}, method = RequestMethod.POST)
     @ResponseBody
@@ -324,11 +324,11 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 샘플 파일 업로드
+     * 앱 샘플 파일을 업로드한다.
      *
-     * @param multipartFile the multipart file
-     * @return map map
-     * @throws Exception the exception
+     * @param multipartFile MultipartFile(Spring 클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/uploadAppSampleFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -338,10 +338,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 샘플 파일 삭제
+     * 앱 샘플 파일을 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteAppSampleFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -351,10 +351,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 개수 조회
+     * 앱 템플릿 카탈로그 개수를 조회한다.
      *
-     * @param param the param
-     * @return starter catalog count
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getStarterCatalogCount"}, method = RequestMethod.POST)
     @ResponseBody
@@ -364,10 +364,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿명 목록 조회
+     * 앱 템플릿명 목록을 조회한다.
      *
-     * @param param the param
-     * @return starter names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getStarterNamesList"}, method = RequestMethod.POST) // names
     @ResponseBody
@@ -377,10 +377,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 개발환경명 목록 조회
+     * 앱 개발환경명 목록을 조회한다.
      *
-     * @param param the param
-     * @return build pack names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getBuildPackNamesList"}, method = RequestMethod.POST) // names
     @ResponseBody
@@ -390,10 +390,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 서비스명 목록 조회
+     * 서비스명 목록을 조회한다.
      *
-     * @param param the param
-     * @return service pack names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getServicePackNamesList"}, method = RequestMethod.POST) // names
     @ResponseBody
@@ -403,10 +403,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 조회
+     * 앱 템플릿 카탈로그를 조회한다.
      *
-     * @param param the param
-     * @return one starter catalog
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getOneStarterCatalog"}, method = RequestMethod.POST) // names
     @ResponseBody
@@ -416,10 +416,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 저장
+     * 앱 템플릿 카탈로그를 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/insertStarterCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -429,10 +429,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 수정
+     * 앱 템플릿 카탈로그를 수정한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/updateStarterCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -442,10 +442,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 삭제
+     * 앱 템플릿 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteStarterCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -455,15 +455,14 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 저장페이지 이동
+     * 앱 템플릿 저장페이지로 이동한다.
      *
-     * @return starter form
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/starterForm"}, method = RequestMethod.GET)
     public ModelAndView getStarterForm() {
         ModelAndView mv = new ModelAndView();
 
-    //    mv.addObject("status", status);
         mv.addObject("INSERT_FLAG", Constants.CUD_C);
         mv.addObject("REQUEST_NO", -1);
 
@@ -474,16 +473,15 @@ class CatalogController extends Common {
 
 
     /**
-     * 앱 템플릿 수정페이지 이동
+     * 앱 템플릿 수정페이지로 이동한다.
      *
-     * @param req the req
-     * @return starter form
+     * @param req HttpServletRequest(자바클래스)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/starterForm"}, method = RequestMethod.POST)
     public ModelAndView getStarterForm(HttpServletRequest req) {
         ModelAndView mv = new ModelAndView();
 
-    //    mv.addObject("status", status);
         mv.addObject("INSERT_FLAG", Constants.CUD_U);
         mv.addObject("CONSTANT_CUD", Constants.CUD_U);
         mv.addObject("REQUEST_NO", req.getParameter("no"));

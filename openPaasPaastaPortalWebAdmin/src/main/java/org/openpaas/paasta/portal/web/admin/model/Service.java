@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * 서비스 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.5.30 최초작성
  */

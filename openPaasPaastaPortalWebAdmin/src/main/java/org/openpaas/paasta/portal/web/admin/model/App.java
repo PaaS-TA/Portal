@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 클래스 설명
+ * 앱 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.5.30 최초작성
  */

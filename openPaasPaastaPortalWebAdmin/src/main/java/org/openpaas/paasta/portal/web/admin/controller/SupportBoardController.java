@@ -13,8 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 /**
- * Created by YJKim on 2016-07-25.
+ * SupportBoardController.java
+ * 커뮤니티 게시판 조회, 등록, 수정 등 커뮤니티 게시판 관리에 필요한 API를 호출 받는 컨트롤러
+ *
+ * @author yjkim
+ * @version 1.0
+ * @since 2016.07.25 최초작성
  */
+
 @Controller
 @RequestMapping(value = {"/support"})
 public class SupportBoardController {
@@ -25,9 +31,9 @@ public class SupportBoardController {
     /**
      * 게시판 목록 조회
      *
-     * @param param
-     * @return Board list
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getBoardList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -36,11 +42,11 @@ public class SupportBoardController {
     }
 
     /**
-     * 게시판 조회
+     * 게시판 상세정보 조회
      *
-     * @param param
-     * @return get Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -52,9 +58,9 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 목록 조회
      *
-     * @param param
-     * @return Board list
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getBoardCommentList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -63,11 +69,11 @@ public class SupportBoardController {
     }
 
     /**
-     * 게시판 삭제
+     * 게시판 게시글 삭제
      *
-     * @param param
-     * @return delete Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -79,18 +85,16 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 삭제
      *
-     *
-     * @return delete Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
-/*
     @RequestMapping(value = {"/deleteBoardComment"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> deleteBoardComment(@RequestBody Support param) throws Exception{
 
         return commonService.procRestTemplate("/support/deleteBoardComment", HttpMethod.POST, param, null);
     }
-*/
 
 
 }

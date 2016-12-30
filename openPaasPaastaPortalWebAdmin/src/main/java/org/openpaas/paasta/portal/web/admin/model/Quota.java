@@ -1,7 +1,11 @@
 package org.openpaas.paasta.portal.web.admin.model;
 
 /**
- * @author Harry Zhang
+ * 쿼터 모델
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.5.30 최초작성
  */
 public class Quota extends Entity {
 

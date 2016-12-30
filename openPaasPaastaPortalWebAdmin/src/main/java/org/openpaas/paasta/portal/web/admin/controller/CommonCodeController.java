@@ -10,20 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * 공통코드 컨트롤러
+ * 코드 목록 조회, 등록, 삭제 등 코드 관리의 API 를 호출 하는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.06.17
+ * @since 2016.06.17 최초작성
  */
 @Controller
 @RequestMapping(value = {"/commonCode"})
 public class CommonCodeController extends Common {
 
     /**
-     * 공통코드 메인페이지 이동
+     * 공통코드 메인페이지로 이동한다.
      *
-     * @return common code main
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/commonCodeMain"}, method = RequestMethod.GET)
     public ModelAndView getCommonCodeMain() {
@@ -32,10 +32,10 @@ public class CommonCodeController extends Common {
 
 
     /**
-     * 공통코드 목록 조회
+     * 공통코드 목록을 조회한다.
      *
-     * @param codeId the code id
-     * @return common code
+     * @param codeId String(아이디)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCommonCode/{codeId}"}, method = RequestMethod.GET)
     @ResponseBody
@@ -45,10 +45,10 @@ public class CommonCodeController extends Common {
 
 
     /**
-     * 공통코드 목록 조회
+     * 공통코드 목록을 조회한다.
      *
      * @param param the param
-     * @return common code
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCommonCode"}, method = RequestMethod.POST)
     @ResponseBody
@@ -58,10 +58,10 @@ public class CommonCodeController extends Common {
 
 
     /**
-     * 공통코드 저장
+     * 공통코드를 저장한다.
      *
      * @param param the param
-     * @return map map
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/insertCommonCode"}, method = RequestMethod.POST)
     @ResponseBody
@@ -73,10 +73,10 @@ public class CommonCodeController extends Common {
 
 
     /**
-     * 공통코드 수정
+     * 공통코드를 수정한다.
      *
      * @param param the param
-     * @return map map
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/updateCommonCode"}, method = RequestMethod.POST)
     @ResponseBody
@@ -88,10 +88,10 @@ public class CommonCodeController extends Common {
 
 
     /**
-     * 공통코드 삭제
+     * 공통코드를 삭제한다.
      *
      * @param param the param
-     * @return map map
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteCommonCode"}, method = RequestMethod.POST)
     @ResponseBody

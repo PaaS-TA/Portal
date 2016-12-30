@@ -17,9 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * Created by yjkim on 2016-09-28.
+ * ClientController.java
+ * 클라이언트 목록 , 클라이언트 삭제 등 클라이언트 관련 API를 호출 받는 컨트롤러
+ *
+ * @author yjkim
+ * @version 1.0
+ * @since 2016.9.28 최초작성
  */
-
 @Controller
 @RequestMapping(value = {"/client"})
 public class ClientController {
@@ -32,7 +36,7 @@ public class ClientController {
     /**
      * 클라이언트 메인 페이지 이동
      *
-     * @return client main
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/clientMain"}, method = RequestMethod.GET)
     public ModelAndView getClientMain() {
@@ -42,7 +46,7 @@ public class ClientController {
     /**
      * 클라이언트 등록 페이지 이동
      *
-     * @return client insert form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/clientForm"}, method = RequestMethod.GET)
     public ModelAndView getClientForm() {
@@ -58,7 +62,7 @@ public class ClientController {
      * 클라이언트 조회/수정 페이지 이동
      *
      * @param req
-     * @return client update form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/clientForm"}, method = RequestMethod.POST)
     public ModelAndView getClientForm(HttpServletRequest req) {
@@ -75,15 +79,12 @@ public class ClientController {
     /**
      * 클라이언트 목록 조회
      *
-     * @param param the param
-     * @return client list (map)
+     * @param param Map
+     * @return Map
      */
     @RequestMapping(value = {"/getClientList"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> getClientList(@RequestBody Map<String, Object> param) throws Exception {
-        LOGGER.info("ClientController - getClientList " );
-        if (param.get("searchKeyword") != null)
-            LOGGER.info("kerword :  " + param.get("searchKeyword"));
         return commonService.procRestTemplate("/client/getClientList", HttpMethod.POST, param, null);
     }
 
@@ -91,8 +92,8 @@ public class ClientController {
     /**
      * 클라이언트 정보 조회
      *
-     * @param param the param
-     * @return client (map)
+     * @param param Map
+     * @return Map
      */
     @RequestMapping(value = {"/getClient"}, method = RequestMethod.POST)
     @ResponseBody
@@ -103,8 +104,8 @@ public class ClientController {
     /**
      * 클라이언트 등록
      *
-     * @param param the param
-     * @return result (map)
+     * @param param Map
+     * @return Map
      */
     @RequestMapping(value = {"/registerClient"}, method = RequestMethod.POST)
     @ResponseBody
@@ -115,8 +116,8 @@ public class ClientController {
     /**
      * 클라이언트 수정
      *
-     * @param param the param
-     * @return result (map)
+     * @param param Map
+     * @return Map
      */
     @RequestMapping(value = {"/updateClient"}, method = RequestMethod.POST)
     @ResponseBody
@@ -127,8 +128,8 @@ public class ClientController {
     /**
      * 클라이언트 삭제
      *
-     * @param param the param
-     * @return result (map)
+     * @param param Map
+     * @return Map
      */
     @RequestMapping(value = {"/deleteClient"}, method = RequestMethod.POST)
     @ResponseBody

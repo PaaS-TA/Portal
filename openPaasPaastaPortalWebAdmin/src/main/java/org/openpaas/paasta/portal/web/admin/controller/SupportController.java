@@ -14,8 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * Created by YJKim on 2016-07-25.
+ * SupportController.java
+ * 지원 관련 메뉴들(커뮤니티 게시판, 공지사항, 문의사항)의 공통 기능인 파일관련 API와
+ * 각각의 화면을 호출하는 API
+ *
+ * @author yjkim
+ * @version 1.0
+ * @since 2016.07.25 최초작성
  */
+
 @Controller
 @RequestMapping(value = {"/support"})
 public class SupportController {
@@ -26,22 +33,23 @@ public class SupportController {
    /**
      * 파일 업로드
      *
-     * @param multipartFile the multipart file
-     * @return map map
-     * @throws Exception the exception
+     * @param multipartFile MultipartFile
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> uploadThumbnailImage(@RequestParam("file") MultipartFile multipartFile) throws Exception {
-        return commonService.procRestTemplate("/file/uploadFile", multipartFile, null);    }
+        return commonService.procRestTemplate("/file/uploadFile", multipartFile, null);
+    }
 
 
     /**
      * 파일 삭제
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -53,7 +61,7 @@ public class SupportController {
     /**
      * 지원 메인 페이지 이동
      *
-     * @return support main form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/supportMain"}, method = RequestMethod.GET)
     public ModelAndView getSupportMain() {
@@ -67,8 +75,8 @@ public class SupportController {
     /**
      * 지원 메인 페이지 이동 (tab 이름에 따라 이동)
      *
-     * @param tabName
-     * @return support main form
+     * @param tabName String(PathVariable)
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/supportMain/{tabName}"}, method = RequestMethod.GET)
     public ModelAndView getSupportMain(@PathVariable("tabName") String tabName) {
@@ -91,7 +99,7 @@ public class SupportController {
     /**
      * 공지 등록 페이지 이동
      *
-     * @return insert notice form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/noticeForm"}, method = RequestMethod.GET)
     public ModelAndView getNoticeForm() {
@@ -107,7 +115,8 @@ public class SupportController {
     /**
      * 공지 조회/수정 페이지 이동
      *
-     * @return update notice form
+     * @param req HttpServletRequest
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/noticeForm"}, method = RequestMethod.POST)
     public ModelAndView getNoticeForm(HttpServletRequest req) {
@@ -121,9 +130,10 @@ public class SupportController {
     }
 
     /**
-     * 문의 조회/답변조회/답변등록/답편수정 페이지 이동
+     * 문의 조회/답변조회/답변등록/답변수정 페이지 이동
      *
-     * @return insert qna(answer) form
+     * @param req HttpServletRequest
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/qnaForm"}, method = RequestMethod.POST)
     public ModelAndView getQNAForm(HttpServletRequest req) {
@@ -139,7 +149,7 @@ public class SupportController {
     /**
      * 게시판 등록 페이지 이동
      *
-     * @return insert board form
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/boardForm"}, method = RequestMethod.GET)
     public ModelAndView getBoardForm() {
@@ -155,7 +165,8 @@ public class SupportController {
     /**
      * 게시판 조회/수정 페이지 이동
      *
-     * @return update board form
+     * @param req HttpServletRequest
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/boardForm"}, method = RequestMethod.POST)
     public ModelAndView getBoardForm(HttpServletRequest req) {

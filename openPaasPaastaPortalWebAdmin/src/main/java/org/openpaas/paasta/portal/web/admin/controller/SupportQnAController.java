@@ -26,9 +26,9 @@ public class SupportQnAController {
     /**
      * 문의 목록 조회
      *
-     * @param param
-     * @return question list map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getQnAList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -37,11 +37,11 @@ public class SupportQnAController {
     }
 
     /**
-     * 문의 조회
+     * 문의 상세정보 조회
      *
-     * @param param
-     * @return get question map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getQuestion"}, method = RequestMethod.POST)
     @ResponseBody
@@ -52,9 +52,9 @@ public class SupportQnAController {
     /**
      * 답변 조회
      *
-     * @param param
-     * @return get Answer result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getAnswer"}, method = RequestMethod.POST)
     @ResponseBody
@@ -62,45 +62,42 @@ public class SupportQnAController {
         return commonService.procRestTemplate("/support/getAnswer", HttpMethod.POST, param, null);
     }
 
-
     /**
      * 답변 등록
      *
-     * @param param
-     * @return insert Answer result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/insertAnswer"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> insertAnswer(@RequestBody Support param) throws Exception{
 
-        param.setAnswerer("admin"); // 추후 수정
-
+        param.setAnswerer(commonService.getUserId());
         return commonService.procRestTemplate("/support/insertAnswer", HttpMethod.POST, param, null);
     }
 
     /**
      * 답변 수정
      *
-     * @param param
-     * @return update Answer result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateAnswer"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> updateAnswer(@RequestBody Support param) throws Exception{
 
-        param.setAnswerer("admin"); // 추후 수정
-
+        param.setAnswerer(commonService.getUserId());
         return commonService.procRestTemplate("/support/updateAnswer", HttpMethod.PUT, param, null);
     }
 
     /**
      * 답변 삭제
      *
-     * @param param
-     * @return delete Answer result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteAnswer"}, method = RequestMethod.POST)
     @ResponseBody

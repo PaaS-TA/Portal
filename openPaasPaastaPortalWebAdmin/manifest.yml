@@ -4,7 +4,7 @@ applications:
   memory: 768M
   instances: 1
   host: portal-web-admin
-  path: ./openPaasPaastaPortalWebAdminServer-1.0-SNAPSHOT.war
+  path: ./paasta-portal-web-admin-1.0.war
   buildpack: java_buildpack_offline
   services:
   - portal-eureka-service

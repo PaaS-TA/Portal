@@ -1,47 +1,18 @@
+<!--
+=================================================================
+* 시  스  템  명 : PaaS-TA 관리자 포탈
+* 업    무    명 : 사용자 관리
+* 프로그램명(ID) : userManagementMain.jsp(사용자관리)
+* 프로그램  개요 : 사용자 관리 화면
+* 작    성    자 : 김도준
+* 작    성    일 : 2016.08.31
+=================================================================
+수정자 / 수정일 :
+수정사유 / 내역 :
+=================================================================
+-->
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../common/common.jsp"%>
-
-<%--
-<div id="userInfoViewArea">
-    <div class="search_box" style="min-height: 200px;">
-        <h2> 사용자 관리 </h2>
-        <label class="control-label sr-only" for="searchKeyword"></label>
-        <div class="input-group">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </span>
-            <input type="text" class="form-control custom-input-text" id="searchKeyword"
-                   maxlength="100" placeholder="검색어를 입력하세요." onkeypress="procCheckSearchFormKeyEvent(event);" />
-        </div>
-
-        <div class="mt20">
-            <div id="userInfoMessageArea" class="ml10 mt30 fl">
-            </div>
-            <table id="userInfoTableArea" class="table table-striped table-hover t1">
-                <thead>
-                <tr>
-                    <th> 사용자 계정 </th>
-                    <th> 이름 </th>
-                    <th> 전화번호 </th>
-                    <th> 관리자 유무 </th>
-                    <th> 상태 </th>
-                    <th> 관리 </th>
-                </tr>
-                </thead>
-                <tbody id="userInfoTable">
-                </tbody>
-            </table>
-            <div id="buttonGetMoreList" class="mt30 tac">
-                <button type="button" class="btn btn-primary btn-sm" onclick="procGetMoreList();">
-                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
---%>
-
 
 <%--TITLE--%>
 <div class="col-sm-6 pt30">
@@ -51,9 +22,6 @@
 <%--SEARCH FORM--%>
 <div class="content-box2 col-md-12 col-md-offset-13">
     <div class="box">
-
-        <%--<div class="form-group col-sm-9">--%>
-            <%--<label for="searchKeyword" class="control-label-white col-sm-3 mt13 ml-10"> 검색어 </label>--%>
             <div class="input-group col-sm-12 ml20">
 
                 <div class="input-group-btn">
@@ -61,11 +29,8 @@
                         <span class="glyphicon glyphicon-search" style="top: -1px; left: 4px;"></span>
                     </button>
                 </div>
-
                 <input type="text" id="searchKeyword" class="form-control ml3" style="top: -6px; left: -3px; width: 99%;" maxlength="100" placeholder="검색어를 입력하세요." onkeypress="procCheckSearchFormKeyEvent(event);">
-
             </div>
-        <%--</div>--%>
     </div>
 </div>
 
@@ -89,13 +54,7 @@
             <tbody id="userInfoTable">
             </tbody>
         </table>
-        <!--<div id="buttonGetMoreList" class="mt30 tac">
-            <button type="button" class="btn btn-primary btn-sm" onclick="procGetMoreList();">
-                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-            </button>
-        </div>-->
     </div>
-
 </div>
 </div>
 

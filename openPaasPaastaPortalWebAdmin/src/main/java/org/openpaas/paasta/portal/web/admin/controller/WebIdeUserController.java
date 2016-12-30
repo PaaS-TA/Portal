@@ -1,14 +1,10 @@
 package org.openpaas.paasta.portal.web.admin.controller;
 
 import org.openpaas.paasta.portal.web.admin.common.Common;
-import org.openpaas.paasta.portal.web.admin.model.ConfigInfo;
 import org.openpaas.paasta.portal.web.admin.model.WebIdeUser;
 import org.openpaas.paasta.portal.web.admin.service.CommonService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * Org Controller
+ * WEB IDE 관리 컨트롤러 - WEB IDE 신청자를 관리하는 컨트롤러이다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
- * @since 2016.8.29 최초작성
+ * @since 2016.4.4 최초작성
  */
 @Controller
 public class WebIdeUserController extends Common {
@@ -34,7 +30,7 @@ public class WebIdeUserController extends Common {
     private CommonService commonService;
 
     /**
-     * WEB IDE 화면
+     * WEB IDE 메인 화면이다.
      *
      * @return
      */
@@ -49,7 +45,7 @@ public class WebIdeUserController extends Common {
 
 
     /**
-     * WEB IDE 유저 조회
+     * WEB IDE 사용자 정보를 조회한다.
      *
      * @param webIdeUser the ConfigInfo
      * @return ModelAndView model
@@ -63,7 +59,7 @@ public class WebIdeUserController extends Common {
     }
 
     /**
-     * WEB IDE 정보 수정
+     * WEB IDE 사용자 정보를 수정한다.
      *
      * @param webIdeUser the webIdeUser
      * @return ModelAndView model
@@ -77,7 +73,7 @@ public class WebIdeUserController extends Common {
 
 
     /**
-     * WEB IDE 유저 삭제
+     * WEB IDE 사용자 정보를 삭제한다.
      *
      * @param webIdeUser the webIdeUser
      * @return ModelAndView model
@@ -91,7 +87,7 @@ public class WebIdeUserController extends Common {
     }
 
     /**
-     * WEB IDE 리스트 조회
+     * WEB IDE 사용자 리스트를 조회한다.
      *
      */
     @RequestMapping(value = {"/webIdeUser/getList"}, method = RequestMethod.POST)

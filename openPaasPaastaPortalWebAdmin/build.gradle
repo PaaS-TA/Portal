@@ -24,10 +24,10 @@ apply plugin: 'spring-boot'
 apply plugin: "io.spring.dependency-management"
 
 //war file, sonarqube project version
-version '1.0-SNAPSHOT'
+version '1.0'
 
 war {
-    baseName = 'openPaasPaastaPortalWebAdminServer'
+    baseName = 'paasta-portal-web-admin'
     version "$version"
 }
 

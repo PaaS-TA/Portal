@@ -15,11 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * Org Controller
+ * 서비스 브로커 관리 컨트롤러 - 서비스 브로커를 관리하는 컨트롤러이다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
- * @since 2016.8.29 최초작성
+ * @since 2016.4.4 최초작성
  */
 @Controller
 public class ServiceBrokerController extends Common {
@@ -30,7 +30,7 @@ public class ServiceBrokerController extends Common {
     private CommonService commonService;
 
     /**
-     * 서비스 브로커 화면
+     * 서비스 브로커 메인 화면이다.
      *
      * @return
      */
@@ -44,7 +44,7 @@ public class ServiceBrokerController extends Common {
     }
 
     /**
-     * 서비스 브로커상세 화면
+     * 서비스 브로커 상세 화면이다.
      *
      * @return
      */
@@ -59,7 +59,7 @@ public class ServiceBrokerController extends Common {
 
 
     /**
-     * 서비스 브로커 등록 화면
+     * 서비스 브로커 등록 화면이다.
      *
      * @return
      */
@@ -74,7 +74,7 @@ public class ServiceBrokerController extends Common {
 
 
     /**
-     * 서비스 브로커 리스트 조회
+     * 서비스 브로커 리스트를 조회한다.
      *
      * @param serviceBroker serviceBroker
      * @return ModelAndView model
@@ -88,7 +88,7 @@ public class ServiceBrokerController extends Common {
     }
 
     /**
-     * 서비스 브로커 조회
+     * 서비스 브로커를 조회한다.
      *
      * @param serviceBroker serviceBroker
      * @return ModelAndView model
@@ -103,7 +103,7 @@ public class ServiceBrokerController extends Common {
 
 
     /**
-     * 서비스 브로커 등록
+     * 서비스 브로커를 등록한다.
      *
      * @param serviceBroker the serviceBroker
      * @return ModelAndView model
@@ -117,7 +117,7 @@ public class ServiceBrokerController extends Common {
 
 
     /**
-     * 서비스 브로커 수정
+     * 서비스 브로커를 수정한다.
      *
      * @param serviceBroker the serviceBroker
      * @return ModelAndView model
@@ -131,7 +131,7 @@ public class ServiceBrokerController extends Common {
 
 
     /**
-     * 서비스 브로커 삭제
+     * 서비스 브로커를 삭제한다.
      *
      * @param serviceBroker the serviceBroker
      * @return ModelAndView model
@@ -146,7 +146,7 @@ public class ServiceBrokerController extends Common {
 
 
     /**
-     * 서비스 브로커 이름 수정
+     * 서비스 브로커 이름을 수정한다.
      *
      * @param serviceBroker the serviceBroker
      * @return ModelAndView model

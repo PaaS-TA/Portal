@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 /**
- * Created by YJKim on 2016-07-25.
+ * SupportNoticeController.java
+ * 공지사항 조회, 등록, 수정 등 공지사항 관리에 필요한 API 를 호출 받는 컨트롤러
+ *
+ * @author yjkim
+ * @version 1.0
+ * @since 2016.07.25 최초작성
  */
 @Controller
 @RequestMapping(value = {"/support"})
@@ -25,9 +30,9 @@ public class SupportNoticeController {
     /**
      * 공지 목록 조회
      *
-     * @param param
-     * @return notice list map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getNoticeList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -36,11 +41,11 @@ public class SupportNoticeController {
     }
 
     /**
-     * 공지 조회
+     * 공지 상세정보 조회
      *
-     * @param param
-     * @return notice map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getNotice"}, method = RequestMethod.POST)
     @ResponseBody
@@ -51,9 +56,9 @@ public class SupportNoticeController {
     /**
      * 공지 등록
      *
-     * @param param
-     * @return insert Notice result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/insertNotice"}, method = RequestMethod.POST)
     @ResponseBody
@@ -65,9 +70,9 @@ public class SupportNoticeController {
     /**
      * 공지 수정
      *
-     * @param param
-     * @return update Notice result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateNotice"}, method = RequestMethod.POST)
     @ResponseBody
@@ -79,9 +84,9 @@ public class SupportNoticeController {
     /**
      * 공지 삭제
      *
-     * @param param
-     * @return delete Notice result map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteNotice"}, method = RequestMethod.POST)
     @ResponseBody
