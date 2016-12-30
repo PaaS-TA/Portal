@@ -21,11 +21,11 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.web.user.service
+ * 공통 기능을 구현한 서비스 클래스이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.07.28
+ * @since 2016.07.28 최초작성
  */
 @Service
 public class CommonService {
@@ -34,16 +34,12 @@ public class CommonService {
     private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
     private static final String CF_AUTHORIZATION_HEADER_KEY = "cf-Authorization";
     private final RestTemplate restTemplate;
+
     @Value("${paasta.portal.api.url}")
     private String apiUrl;
     @Value("${paasta.portal.api.authorization.base64}")
     private String base64Authorization;
 
-    /**
-     * Instantiates a new Common service.
-     *
-     * @param restTemplate the rest template
-     */
     @Autowired
     public CommonService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -137,7 +133,7 @@ public class CommonService {
 
 
     /**
-     * USER ID 조회
+     * USER ID를 조회한다.
      *
      * @return user id
      */
@@ -148,7 +144,7 @@ public class CommonService {
 
 
     /**
-     * USER ID 설정
+     * USER ID를 설정한다.
      *
      * @param classObject the class object
      * @return the object

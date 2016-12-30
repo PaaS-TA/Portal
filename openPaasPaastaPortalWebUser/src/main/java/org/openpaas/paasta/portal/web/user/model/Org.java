@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * 클래스 설명
+ * 조직 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
- * @since 2016.4.4 최초작성
+ * @since 2016.5.30 최초작성
  */
 
 public class Org extends Entity {

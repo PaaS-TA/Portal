@@ -17,9 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mg on 2016-05-11.
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-05-11
  */
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired

@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Org Controller
+ * 앱 컨트롤러 - 애플리케이션 정보 조회, 구동, 정지 등의 API 를 호출 받는 컨트롤러이다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -41,7 +41,7 @@ public class AppController extends Common {
     private String autoSchedulerUrl;
 
     /**
-     * 앱 메인 화면
+     * 앱 메인의 화면이다.
      *
      * @return ModelAndView model
      */
@@ -68,9 +68,9 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 요약 정보 조회
+     * 앱 요약 정보를 조회한다.
      *
-     * @param app      the app
+     * @param app the app
      * @return String rspApp
      */
     @RequestMapping(value = {"/app/getAppSummary"}, method = RequestMethod.POST)
@@ -89,9 +89,9 @@ public class AppController extends Common {
     }
 
     /**
-     * 앱 상태 정보 조회
+     * 앱 상태 정보를 조회한다.
      *
-     * @param app      the app
+     * @param app the app
      * @return String rspApp
      */
     @RequestMapping(value = {"/app/getAppStats"}, method = RequestMethod.POST)
@@ -113,10 +113,10 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 명 변경
+     * 앱 명을 변경한다.
      *
-     * @param app      the app
-     * @return String rspApp
+     * @param app the app
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/app/renameApp"}, method = RequestMethod.POST)
     @ResponseBody
@@ -132,10 +132,10 @@ public class AppController extends Common {
     }
 
     /**
-     * 앱 삭제
+     * 앱을 삭제한다.
      *
-     * @param app      the apps
-     * @return boolean
+     * @param app the apps
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/app/deleteApp"}, method = RequestMethod.POST)
     @ResponseBody
@@ -152,10 +152,10 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 실행
+     * 앱을 실행한다.
      *
-     * @param app      the apps
-     * @return boolean
+     * @param app the apps
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/app/startApp"}, method = RequestMethod.POST)
     @ResponseBody
@@ -172,10 +172,10 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 중지
+     * 앱을 중지한다.
      *
-     * @param app      the apps
-     * @return boolean
+     * @param app the apps
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/app/stopApp"}, method = RequestMethod.POST)
     @ResponseBody
@@ -192,10 +192,10 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 인스턴스 변경
+     * 앱 인스턴스을 변경한다.
      *
-     * @param app      the apps
-     * @return boolean
+     * @param app the apps
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/app/updateApp"}, method = RequestMethod.POST)
     @ResponseBody
@@ -220,10 +220,10 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 리스테이지
+     * 앱을 리스테이징한다.
      *
-     * @param app      the apps
-     * @return boolean
+     * @param app the apps
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/app/restageApp"}, method = RequestMethod.POST)
     @ResponseBody
@@ -240,9 +240,9 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 이벤트 조회
+     * 앱 이벤트를 조회한다.
      *
-     * @param app      the apps
+     * @param app the apps
      * @return String rspApp
      */
     @RequestMapping(value = {"/app/getAppEvents"}, method = RequestMethod.POST)
@@ -262,9 +262,9 @@ public class AppController extends Common {
 
 
     /**
-     * 앱-서비스 연결
+     * 앱-서비스를 연결한다.
      *
-     * @param catalog      the apps
+     * @param catalog the apps
      * @return String rspApp
      */
     @RequestMapping(value = {"/app/bindService"}, method = RequestMethod.POST)
@@ -285,10 +285,10 @@ public class AppController extends Common {
 
 
     /**
-     * 앱-서비스 연결 해제
+     * 앱-서비스의 연결을 해제한다.
      *
-     * @param app      the apps
-     * @return String rspApp
+     * @param app the app
+     * @return string string
      */
     @RequestMapping(value = {"/app/unbindService"}, method = RequestMethod.POST)
     @ResponseBody
@@ -308,12 +308,11 @@ public class AppController extends Common {
 
 
     /**
-     * 앱 세션값 삽입
-     *
-     * @param app     the app
-     * @param session the session
+     * 앱 세션값을 삽입한다.
+     * @author 김도준
+     * @param app (자바 App 클래스)
+     * @param session 세션
      * @return void
-     * @author kimdojun
      * @version 1.0
      * @since 2016.5.26 최초작성
      */
@@ -330,11 +329,11 @@ public class AppController extends Common {
 
 
     /**
-     * app 환경변수 가져오기
+     * 앱 환경변수를 조회한다.
      *
-     * @param app      the app
-     * @return Map application env
-     * @author kimdojun
+     * @author 김도준
+     * @param app (자바 App 클래스)
+     * @return Map (자바 클래스)
      * @version 1.0
      * @since 2016.6.30 최초작성
      */
@@ -356,11 +355,11 @@ public class AppController extends Common {
     }
 
     /**
-     * app 환경변수 중 사용자 정의 환경변수 추가,수정
+     * 앱 환경변수 중 사용자 정의 환경변수를 추가, 수정한다.
      *
-     * @param app      the app
+     * @param app (자바 App 클래스)
      * @return Map boolean
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.30 최초작성
      */
@@ -377,11 +376,11 @@ public class AppController extends Common {
     }
 
     /**
-     * app uri(route + domain) 추가
+     * 앱 uri(route + domain) 추가한다.
      *
-     * @param app      the app
+     * @param app (자바 App 클래스)
      * @return boolean boolean
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.7.7 최초작성
      */
@@ -398,11 +397,11 @@ public class AppController extends Common {
     }
 
     /**
-     * app uri(route + domain) 제거
+     * 앱 uri(route + domain) 제거한다.
      *
-     * @param app      the app
+     * @param app (자바 App 클래스)
      * @return boolean boolean
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.7.7 최초작성
      */
@@ -419,11 +418,11 @@ public class AppController extends Common {
     }
 
     /**
-     * route삭제
+     * 라우트를 삭제한다.
      *
-     * @param body the body
+     * @param body (자바 Map 클래스)
      * @return boolean boolean
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.18 최초작성
      */
@@ -440,9 +439,9 @@ public class AppController extends Common {
     }
 
     /**
-     * Execute terminate app instance by index map.
+     * 인덱스에 의해 앱 인스턴스를 중지시킨다.
      *
-     * @param param the param
+     * @param param (자바 App 클래스)
      * @return map map
      */
     @RequestMapping(value = {"/app/executeTerminateAppInstanceByIndex"}, method = RequestMethod.POST)
@@ -453,11 +452,11 @@ public class AppController extends Common {
 
 
     /**
-     * app 이미지 가져오기
+     * 앱 이미지를 조회한다.
      *
-     * @param app the app
-     * @return Map application env
-     * @author kimdojun
+     * @param app (자바 App 클래스)
+     * @return imageUrl 이미지 url
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.30 최초작성
      */
@@ -474,6 +473,4 @@ public class AppController extends Common {
 
         return imageUrl;
     }
-
-
 }

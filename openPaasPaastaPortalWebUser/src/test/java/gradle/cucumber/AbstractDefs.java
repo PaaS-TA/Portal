@@ -25,7 +25,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 /**
- * Created by mg on 2016-08-26.
+ * 시나리오 테스트에 사용할 기본 환경을 설정하고,
+ * 공통으로 사용할 메소드 들을 정의한 클래스
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-08-26
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = WebUserApplication.class, loader = SpringApplicationContextLoader.class)
@@ -43,6 +48,14 @@ public class AbstractDefs
     protected static ResponseEntity<? extends Object> lastResponse = null;
     protected static String cookie = null;
 
+	/**
+	 * Get 방식으로 api를 호출한다. (공통)
+	 *
+	 * @param url 호출할 Api url
+	 * @param requestHeaders 요청 Header
+	 * @param body 요청 Body
+	 * @param responseType 응답 형태
+	 */
     protected void executeGet(String url, HttpHeaders requestHeaders, Object body, Class<? extends Object> responseType) {
         if (cookie != null) requestHeaders.add("Cookie", cookie);
         HttpEntity<Object> requestEntity = new HttpEntity<>(body, requestHeaders);
@@ -51,6 +64,14 @@ public class AbstractDefs
 
     }
 
+	/**
+	 * Post 방식으로 api를 호출한다. (공통)
+	 *
+	 * @param url 호출할 Api url
+	 * @param requestHeaders 요청 Header
+	 * @param body 요청 Body
+	 * @param responseType 응답 형태
+	 */
     protected void executePost(String url, HttpHeaders requestHeaders, Object body, Class<? extends Object> responseType) {
         if (cookie != null) requestHeaders.add("Cookie", cookie);
         HttpEntity<Object> requestEntity = new HttpEntity<>(body, requestHeaders);
@@ -58,6 +79,14 @@ public class AbstractDefs
         viewResponse(lastResponse);
     }
 
+	/**
+	 * Delete 방식으로 api를 호출한다. (공통)
+	 *
+	 * @param url 호출할 Api url
+	 * @param requestHeaders 요청 Header
+	 * @param body 요청 Body
+	 * @param responseType 응답 형태
+	 */
     protected void executeDelete(String url, HttpHeaders requestHeaders, Object body, Class<? extends Object> responseType) {
         if (cookie != null) requestHeaders.add("Cookie", cookie);
         HttpEntity<Object> requestEntity = new HttpEntity<>(body, requestHeaders);
@@ -65,6 +94,14 @@ public class AbstractDefs
         viewResponse(lastResponse);
     }
 
+	/**
+	 * 입력된 Http Method 의 방식으로 api를 호출한다. (공통)
+	 * @param url 호출할 Api url
+	 * @param httpMethod Http Method (Get, Post, Put ... etc)
+	 * @param requestHeaders 요청 Header
+	 * @param body 요청 Body
+	 * @param responseType 응답 형태
+	 */
     protected void execute(String url, HttpMethod httpMethod, HttpHeaders requestHeaders, Object body, Class<? extends Object> responseType) {
         if (cookie != null) requestHeaders.add("Cookie", cookie);
         HttpEntity<Object> requestEntity = new HttpEntity<>(body, requestHeaders);
@@ -72,7 +109,11 @@ public class AbstractDefs
         viewResponse(lastResponse);
     }
 
-    private void viewResponse(ResponseEntity response) {
+	/**
+	 * 응답에 대한 로그를 보여주는 공통 메소드
+	 * @param response API 요청에 대한 응답
+	 */
+	private void viewResponse(ResponseEntity response) {
         LOGGER.info("------> Response");
         LOGGER.info("-> Status Code: {}", response.getStatusCode().toString());
 
@@ -93,7 +134,14 @@ public class AbstractDefs
         LOGGER.info("<------ End");
     }
 
-
+	/**
+	 * PaaS-TA 의 Application 고유식별번호를 응답하는 메소드
+	 *
+	 * @param organization 조직이름
+	 * @param space 공간이름
+	 * @param application 앱이름
+	 * @return
+	 */
     protected String getApplicationGuidByApllicationName(String organization, String space, String application) {
         String applicationGuid = null;
 
@@ -125,11 +173,11 @@ public class AbstractDefs
     }
 
     /**
-     * service instance 를 조회한다.
+     * PaaS-TA의 Service Instance 를 조회한다.
      *
-     * @param organization
-     * @param space
-     * @param serviceInstanceName
+     * @param organization 조직이름
+     * @param space 공간이름
+     * @param serviceInstanceName Service Instance 이름
      * @return
      * @throws JSONException
      */
@@ -156,7 +204,7 @@ public class AbstractDefs
     /**
      * json string 을 json object 로 변환하여 반환한다.
      *
-     * @param jsonStr
+     * @param jsonStr Json 포멧에 맞는 문자열
      * @return
      * @throws JSONException
      */

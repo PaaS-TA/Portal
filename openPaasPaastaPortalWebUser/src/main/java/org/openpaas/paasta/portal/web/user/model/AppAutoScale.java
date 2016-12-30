@@ -3,9 +3,9 @@ package org.openpaas.paasta.portal.web.user.model;
 import java.util.Map;
 
 /**
- * 클래스 설명
+ * 앱 Auto 스케일
  *
- * @author injeong
+ * @author 이인정
  * @version 1.0
  * @since 2016.7.01 최초작성
  */

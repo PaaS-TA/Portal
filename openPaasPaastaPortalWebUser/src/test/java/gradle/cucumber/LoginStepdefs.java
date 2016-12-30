@@ -1,8 +1,6 @@
 package gradle.cucumber;
 
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +16,9 @@ import static org.hamcrest.Matchers.is;
 /**
  * Web 로그인을 테스트한다.
  *
- * Created by mg on 2016-09-01.
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-09-01
  */
 public class LoginStepdefs extends AbstractDefs {
 
@@ -28,8 +28,8 @@ public class LoginStepdefs extends AbstractDefs {
      * feature에 정의된 id, password로 로그인한다.
      * 이 후의 시나리오 테스트를 위해서 로그인 된 세션을 저장한다.
      *
-     * @param id
-     * @param password
+     * @param id 로그인 할 아이디
+     * @param password 로그인할 아이디의 비밀번호
      * @throws Throwable
      */
     @Given("i login by \"(.+)\" and \"(.+)\"")

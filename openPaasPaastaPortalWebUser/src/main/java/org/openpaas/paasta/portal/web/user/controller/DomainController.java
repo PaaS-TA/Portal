@@ -12,25 +12,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Dojun on 2016-07-26.
+ * 도메인 정보 조회, 추가, 삭제 등 도메인 관리의 API 를 호출 받는 컨트롤러이다.
+ *
+ * @author 김도준
+ * @version 1.0
+ * @since 2016-07-26
  */
-
 @Controller
 @RequestMapping(value = {"/domain"})
 public class DomainController extends Common {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DomainController.class);
 
+
     /**
-     *도메인 가져오기
+     * 도메인 목록을 가져온다.
      *
-     * @author kimdojun
-     * @version 1.0
-     * @param status
-     * @return
-     * @throws Exception
-     * @since 2016.7.26 최초작성
-     *
+     * @author 김도준
+     * @param status 도메인 종류 (private / shared)
+     * @return List (자바 클래스)
+     * @since 2016.7.27 최초작성
      */
     @RequestMapping(value = {"/getDomains/{status}"}, method = RequestMethod.POST)
     @ResponseBody
@@ -46,12 +47,12 @@ public class DomainController extends Common {
     }
 
     /**
-     *도메인 추가
+     * 신규 도메인을 추가한다.
      *
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
-     * @param body
-     * @return
+     * @param body (자바 Map 클래스)
+     * @return boolean (자바 클래스)
      * @throws Exception
      * @since 2016.7.27 최초작성
      *
@@ -70,12 +71,12 @@ public class DomainController extends Common {
     }
 
     /**
-     *도메인 삭제
+     * 도메인을 삭제한다.
      *
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
-     * @param body
-     * @return
+     * @param body (자바 Map 클래스)
+     * @return boolean (자바 클래스)
      * @throws Exception
      * @since 2016.7.27 최초작성
      *

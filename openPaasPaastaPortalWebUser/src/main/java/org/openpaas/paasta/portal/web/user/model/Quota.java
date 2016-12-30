@@ -1,9 +1,11 @@
 package org.openpaas.paasta.portal.web.user.model;
 
 /**
- * 
- * @author Harry Zhang
+ * 쿼터 모델
  *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.5.30 최초작성
  */
 public class Quota extends Entity {
 
@@ -59,13 +61,13 @@ public class Quota extends Entity {
 		this.memoryLimit = memoryLimit;
 	}
 
+	 public boolean isNonBasicServicesAllowed() {
+	        return nonBasicServicesAllowed;
+	    }
+
 	public void setNonBasicServicesAllowed(boolean nonBasicServicesAllowed) {
 		this.nonBasicServicesAllowed = nonBasicServicesAllowed;
 	}
 
-	 public boolean isNonBasicServicesAllowed() {
-	        return nonBasicServicesAllowed;
-	    }
-    
 
 }

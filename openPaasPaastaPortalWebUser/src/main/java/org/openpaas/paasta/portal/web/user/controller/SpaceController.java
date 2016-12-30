@@ -2,7 +2,6 @@ package org.openpaas.paasta.portal.web.user.controller;
 
 import org.openpaas.paasta.common.security.userdetails.User;
 import org.openpaas.paasta.portal.web.user.common.Common;
-import org.openpaas.paasta.portal.web.user.common.Constants;
 import org.openpaas.paasta.portal.web.user.model.Org;
 import org.openpaas.paasta.portal.web.user.model.Space;
 import org.slf4j.Logger;
@@ -19,9 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Org Controller
+ * 영역 컨트롤러 - 영역 목록 , 영역 이름 변경 , 영역 생성 및 삭제 등을 제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -31,7 +30,7 @@ public class SpaceController extends Common {
     private static final Logger LOGGER = LoggerFactory.getLogger(SpaceController.class);
 
     /**
-     * 영역 메인 화면
+     * 영역 메인 화면이다.
      *
      * @return ModelAndView model
      */
@@ -47,7 +46,7 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 영역 메인 화면
+     * 영역 메인 화면이다.
      *
      * @param spaceName the space name
      * @return model and view
@@ -73,7 +72,7 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 영역 요약 정보 조회
+     * 영역 요약 정보를 조회한다.
      *
      * @param space the space
      * @return Space rspSpace
@@ -96,10 +95,10 @@ public class SpaceController extends Common {
 
 
     /**
-     * 영역 생성
+     * 영역를 생성한다.
      *
      * @param space the space
-     * @return boolean
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/space/createSpace"}, method = RequestMethod.POST)
     @ResponseBody
@@ -115,10 +114,10 @@ public class SpaceController extends Common {
 
 
     /**
-     * 영역명 변경
+     * 영역명를 변경한다.
      *
      * @param space the space
-     * @return boolean
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/space/renameSpace"}, method = RequestMethod.POST)
     @ResponseBody
@@ -133,10 +132,10 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 조직 삭제
+     * 영역를 삭제한다.
      *
      * @param space the space
-     * @return boolean
+     * @return boolean boolean
      */
     @RequestMapping(value = {"/space/deleteSpace"}, method = RequestMethod.POST)
     @ResponseBody
@@ -151,11 +150,11 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 스페이스 목록 조회
+     * 영역 목록을 조회한다.
      *
-     * @param org the org
-     * @return String spaces
-     * @author kimdojun
+     * @param org 조직 객체
+     * @return String 문자열 형태의 영역 리스트
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.25 최초작성
      */
@@ -183,12 +182,12 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 영역(스페이스) 세션값 삽입
+     * 영역(스페이스) 세션값을 삽입한다.
      *
-     * @param space   the space
-     * @param session the session
-     * @return boolean space session
-     * @author kimdojun
+     * @param space  영역 객체
+     * @param session 세션
+     * @return boolean 작업 성공여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.26 최초작성
      */
@@ -204,11 +203,11 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 해당 영역에 특정 Role을 가진 유저목록
+     * 해당 영역에 특정 Role을 가진 유저목록를 조회한다.
      *
-     * @param body the body
-     * @return boolean users for org
-     * @author kimdojun
+     * @param body (자바 Map 클래스)
+     * @return boolean 작업 성공 여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.28 최초작성
      */
@@ -227,11 +226,11 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 특정 유저에게 특정 영역에 대한 특정 역할을 부여
+     * 특정 유저에게 특정 영역에 대한 특정 역할을 부여한다.
      *
-     * @param body the body
-     * @return boolean org role
-     * @author kimdojun
+     * @param body (자바 Map 클래스)
+     * @return boolean 작업 성공 여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.18 최초작성
      */
@@ -245,11 +244,11 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 특정 영역에 대한 특정 유저의 특정 역할을 제거
+     * 특정 영역에 대한 특정 유저의 특정 역할을 제거한다.
      *
-     * @param body the body
-     * @return boolean boolean
-     * @author kimdojun
+     * @param body (자바 Map 클래스)
+     * @return boolean 작업 성공 여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.18 최초작성
      */
@@ -262,7 +261,15 @@ public class SpaceController extends Common {
         return true;
     }
 
-
+    /**
+     * 특정 영역에서 특정 role을 가진 사용자를 조회한다.
+     *
+     * @param body (자바 Map 클래스)
+     * @return users 사용자 목록
+     * @author 김도준
+     * @version 1.0
+     * @since 2016.8.18 최초작성
+     */
     @RequestMapping(value = {"/space/getUsersForSpaceRole"}, method = RequestMethod.POST)
     @ResponseBody
     public List getUsersForSpaceRole(@RequestBody Map body) {

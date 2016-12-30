@@ -1,7 +1,13 @@
 package org.openpaas.paasta.portal.web.user.config.security;
 
 /**
- * Created by mg on 2016-05-12.
+ * 스프링 시큐리티의 사용자 인증방식을 구현한 클래스
+ * 기존의 id를 이용하여 Password를 비교하여 인증하는 방식대신
+ * PaaS-TA API의 Login 을 사용하여 인증하도록 수정하였다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-05-12
  */
 import org.openpaas.paasta.portal.web.user.config.security.userdetail.CustomUserDetailsService;
 import org.slf4j.Logger;
@@ -31,6 +37,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 */
 
+	/**
+	 * 로그인 폼에서 입력받은 id와 password를 이용하여 사용자 인증을 수행하는 메소드
+	 *
+	 * @param authentication
+	 * @return Authentication 사용자 인증정보
+	 * @throws AuthenticationException
+	 */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();

@@ -4,8 +4,8 @@ applications:
   memory: 768M
   instances: 1
   host: portal-web-user-prd
-  path: build/libs/openPaasPaastaPortalWebUserServer-1.0-SNAPSHOT.war
-  domain: 115.68.46.29.xip.io
+  path: build/libs/paasta-portal-web-user-1.0.war
+  domain: 115.68.46.30.xip.io
   buildpack: java_buildpack_offline
   services:
   - portal-eureka-service

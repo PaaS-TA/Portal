@@ -1,7 +1,6 @@
 package org.openpaas.paasta.portal.web.user.controller;
 
 import org.openpaas.paasta.portal.web.user.common.Common;
-import org.openpaas.paasta.portal.web.user.model.App;
 import org.openpaas.paasta.portal.web.user.model.WebIdeUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Org Controller
+ * WEB IDE 관리 컨트롤러 - WEB IDE 신청자를 관리하는 컨트롤러이다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.8.29 최초작성
  */
@@ -30,7 +25,7 @@ public class WebIdeUserController extends Common {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebIdeUserController.class);
 
     /**
-     * WEB IDE 사용자 정보 조회
+     * WEB IDE 사용자 정보를 조회한다.
      *
      * @param webIdeUser the webIdeUser
      * @return ModelAndView model
@@ -51,7 +46,7 @@ public class WebIdeUserController extends Common {
     }
 
     /**
-     * WEB IDE 사용자 신청
+     * WEB IDE 사용자를 신청한다.
      *
      * @param webIdeUser the webIdeUser
      * @return ModelAndView model
@@ -72,7 +67,7 @@ public class WebIdeUserController extends Common {
     }
 
     /**
-     * WEB IDE 사용자 신청 취소
+     * WEB IDE 사용자 신청을 취소한다.
      *
      * @param webIdeUser the webIdeUser
      * @return ModelAndView model

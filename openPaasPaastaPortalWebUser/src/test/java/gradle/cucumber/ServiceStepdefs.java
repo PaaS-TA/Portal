@@ -19,7 +19,9 @@ import static org.hamcrest.Matchers.not;
 /**
  * Service 의 동작을 테스트한다.
  *
- * Created by mg on 2016-09-05.
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-09-05
  */
 public class ServiceStepdefs extends AbstractDefs {
     private String testOrganization;
@@ -28,8 +30,8 @@ public class ServiceStepdefs extends AbstractDefs {
     /**
      * 테스트 대상(Organization, Space) 지정한다.
      *
-     * @param organization
-     * @param space
+     * @param organization 조직이름
+     * @param space 공간이름
      * @throws Throwable
      */
     @Then("^i will test in organization \"(.+)\", space \"(.+)\"")
@@ -44,9 +46,9 @@ public class ServiceStepdefs extends AbstractDefs {
     /**
      * Service Instance 생성을 테스트한다.
      *
-     * @param serviceInstanceName
-     * @param planName
-     * @param serviceName
+     * @param serviceInstanceName Service Instance 이름
+     * @param planName Plan 이름
+     * @param serviceName Service 이름
      * @throws Throwable
      */
     @When("^create service instance \"(.+)\" with plan \"(.+)\" and service \"(.+)\"")
@@ -97,6 +99,13 @@ public class ServiceStepdefs extends AbstractDefs {
 
     }
 
+	/**
+	 * Service 의 이름으로 Catalog 번호를 응답한다.
+	 * @param jsonBody Catalog 정보를 담고 있는 Json 데이터
+	 * @param service Service 이름
+	 * @return Int Catalog 번호
+	 * @throws JSONException
+	 */
     private int findCatalogNoByServiceName(JSONObject jsonBody, String service) throws JSONException {
         int catalogNo = 0;
 
@@ -113,6 +122,14 @@ public class ServiceStepdefs extends AbstractDefs {
         return catalogNo;
     }
 
+	/**
+	 * Plan 의 이름으로 Plan 고유식별번호를 응답한다.
+	 *
+	 * @param jsonBody Plan 정보를 담고 있는 Json 데이터
+	 * @param plan Plan 이름
+	 * @return String Plan 의 고유식별번호
+	 * @throws JSONException
+	 */
     private String findPlanGuidByPlanName(JSONObject jsonBody, String plan) throws JSONException {
         String planGuid = null;
 

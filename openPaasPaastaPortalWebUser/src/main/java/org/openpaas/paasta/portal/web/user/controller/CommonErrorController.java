@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by mg on 2016-08-02.
+ * (사용되지 않음)
+ * 각각의 에러 유형에 따른 기본 에러 페이지.
+ *
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-08-02
  */
 @Controller
 @RequestMapping("/common/error")

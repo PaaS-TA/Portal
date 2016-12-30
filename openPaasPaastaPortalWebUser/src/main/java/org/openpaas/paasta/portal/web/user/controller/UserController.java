@@ -165,8 +165,6 @@ public class UserController extends Common {
      * @return String
      * @author kimdojun
      * @version 1.0
-     * @author kimdojun
-     * @version 1.0
      * <p>
      * keyOfRole값을 파라미터로 보내 유저가 해당 role을 가지고 있는 모든 org 또는 space 정보를 가져온다.
      * ex: 'managed_organizations' 을 입력하여 해당 유저가 Org Manager role을 가지고 있는 모든 org를 확인할 수 있다.

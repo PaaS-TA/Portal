@@ -1,7 +1,6 @@
 package org.openpaas.paasta.portal.web.user.controller;
 
 import org.openpaas.paasta.portal.web.user.common.Common;
-import org.openpaas.paasta.portal.web.user.common.Constants;
 import org.openpaas.paasta.portal.web.user.model.Support;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
@@ -15,9 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.web.user.controller
+ * NoticeController.java
+ * 공지사항 조회, 등록, 수정 등 공지사항 관리에 필요한 API 를 호출 받는 컨트롤러
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.08.22
  */
@@ -29,7 +29,7 @@ public class NoticeController extends Common {
     /**
      * 공지 메인 이동
      *
-     * @return notice main
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/noticeMain"}, method = RequestMethod.GET)
     public ModelAndView getNoticeMain() {
@@ -44,8 +44,8 @@ public class NoticeController extends Common {
     /**
      * 공지 조회 페이지 이동
      *
-     * @param req
-     * @return notice view form
+     * @param req HttpServletRequest
+     * @return ModelAndView
      */
     @RequestMapping(value = {"/noticeMain/view"}, method = RequestMethod.POST)
     public ModelAndView getNoticeView2(HttpServletRequest req) {
@@ -61,8 +61,8 @@ public class NoticeController extends Common {
     /**
      * 공지 목록 조회
      *
-     * @param param the param
-     * @return notice list
+     * @param param Support
+     * @return Map
      */
     @RequestMapping(value = {"/getNoticeList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -74,10 +74,10 @@ public class NoticeController extends Common {
 
 
     /**
-     * 공지 조회
+     * 공지 상세정보 조회
      *
-     * @param param
-     * @return get Notice
+     * @param param Support
+     * @return Map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/getNotice"}, method = RequestMethod.POST)

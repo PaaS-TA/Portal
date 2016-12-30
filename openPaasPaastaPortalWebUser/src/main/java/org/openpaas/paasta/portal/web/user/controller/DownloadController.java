@@ -12,7 +12,10 @@ import java.net.URI;
 import java.net.URL;
 
 /**
- * Created by mg on 2016-09-06.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-09-06
  */
 @Controller
 public class DownloadController {

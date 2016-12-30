@@ -1,10 +1,10 @@
 ---
 applications:
 - name: portal-web-user
-  memory: 768M
+  memory: 512M
   instances: 1
   host: portal-web-user-stg
-  path: build/libs/openPaasPaastaPortalWebUserServer-1.0-SNAPSHOT.war
+  path: build/libs/paasta-portal-web-user-1.0.war
   buildpack: java_pinpoint_buildpack
   services:
   - portal-eureka-service

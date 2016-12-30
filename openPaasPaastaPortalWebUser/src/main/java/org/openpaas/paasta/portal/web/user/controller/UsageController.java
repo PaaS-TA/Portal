@@ -1,7 +1,6 @@
 package org.openpaas.paasta.portal.web.user.controller;
 
 import org.openpaas.paasta.portal.web.user.common.Common;
-import org.openpaas.paasta.portal.web.user.common.Constants;
 import org.openpaas.paasta.portal.web.user.model.Usage;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
@@ -11,20 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * 사용량 조회 컨트롤러
+ * 사용량 관련 API 를 호출 하는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.22
+ * @since 2016.09.22 최초작성
  */
 @Controller
 @RequestMapping(value = {"/usage"})
 public class UsageController extends Common {
 
     /**
-     * 사용량 조회 메인페이지 이동
+     * 사용량 조회 메인페이지로 이동한다.
      *
-     * @return usage main
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/usageMain"}, method = RequestMethod.GET)
     public ModelAndView getUsageMain() {
@@ -33,10 +32,10 @@ public class UsageController extends Common {
 
 
     /**
-     * 사용량 조직 조회
+     * 사용량 조직을 조회한다.
      *
-     * @param param the param
-     * @return usage organization list
+     * @param param Usage(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getUsageOrganizationList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -46,10 +45,10 @@ public class UsageController extends Common {
 
 
     /**
-     * 사용량 공간 조회
+     * 사용량 공간을 조회한다.
      *
-     * @param param the param
-     * @return usage space list
+     * @param param Usage(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getUsageSpaceList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -59,10 +58,10 @@ public class UsageController extends Common {
 
 
     /**
-     * 사용량 조회
+     * 사용량을 조회한다.
      *
-     * @param param the param
-     * @return usage search list
+     * @param param Usage(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getUsageSearchList"}, method = RequestMethod.POST)
     @ResponseBody

@@ -9,23 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
-import java.util.UUID;
 
 /**
- * 카탈로그 컨트롤러
+ * 서비스 카탈로그, 개발 환경 카탈로그, 앱 템플릿 카탈로그 정보 조회 및 관리 등의 API 를 호출 하는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.07.28
+ * @since 2016.07.28 최초작성
  */
 @Controller
 @RequestMapping(value = {"/catalog"})
 class CatalogController extends Common {
 
     /**
-     * 카탈로그 메인페이지 이동
+     * 카탈로그 메인페이지로 이동한다.
      *
-     * @return catalog main
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/catalogMain"}, method = RequestMethod.GET)
     public ModelAndView getCatalogMain() {
@@ -34,10 +33,10 @@ class CatalogController extends Common {
 
 
     /**
-     * 카탈로그 메인페이지 이동
+     * 카탈로그 메인페이지로 이동한다.
      *
-     * @param catalogType the catalog type
-     * @return catalog main
+     * @param catalogType 카탈로그 타입(String)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/catalogMain/{catalogType}"}, method = RequestMethod.GET)
     public ModelAndView getCatalogMain(@PathVariable("catalogType") String catalogType) {
@@ -49,11 +48,11 @@ class CatalogController extends Common {
 
 
     /**
-     * 카탈로그 메인페이지 이동
+     * 카탈로그 메인페이지로 이동한다.
      *
-     * @param catalogType    the catalog type
-     * @param catalogSubType the catalog sub type
-     * @return the catalog main
+     * @param catalogType    카탈로그 타입(String)
+     * @param catalogSubType 카탈로그 하위 타입(String)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/catalogMain/{catalogType}/{catalogSubType}"}, method = RequestMethod.GET)
     public ModelAndView getCatalogMain(@PathVariable("catalogType") String catalogType, @PathVariable("catalogSubType") String catalogSubType) {
@@ -65,11 +64,11 @@ class CatalogController extends Common {
 
 
     /**
-     * 카탈로그 저장페이지 이동
+     * 카탈로그 저장페이지로 이동한다.
      *
-     * @param catalogType the catalog type
-     * @param catalogNo   the catalog no
-     * @return catalog insert form
+     * @param catalogType 카탈로그 타입(String)
+     * @param catalogNo   카탈로그 번호(String)
+     * @return 카탈로그 타입(String)
      */
     @RequestMapping(value = {"/catalogMain/create/{catalogType}/{catalogNo}"}, method = RequestMethod.GET)
     public ModelAndView getCatalogInsertForm(@PathVariable("catalogType") String catalogType, @PathVariable("catalogNo") String catalogNo) {
@@ -90,8 +89,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 좌측 메뉴 목록 조회
      *
-     * @param param the param
-     * @return catalog left menu list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogLeftMenuList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -103,8 +102,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 내역 목록 조회
      *
-     * @param param the param
-     * @return catalog history list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogHistoryList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -116,8 +115,8 @@ class CatalogController extends Common {
     /**
      * 앱 템플릿명 목록 조회
      *
-     * @param param the param
-     * @return starter names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getStarterNamesList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -129,8 +128,8 @@ class CatalogController extends Common {
     /**
      * 앱 개발환경 카탈로그 목록 조회
      *
-     * @param param the param
-     * @return build pack catalog list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getBuildPackCatalogList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -142,8 +141,8 @@ class CatalogController extends Common {
     /**
      * 서비스 카탈로그 목록 조회
      *
-     * @param param the param
-     * @return service pack catalog list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getServicePackCatalogList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -155,8 +154,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 공간 목록 조회
      *
-     * @param param the param
-     * @return catalog space list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogSpaceList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -168,8 +167,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 도메인 목록 조회
      *
-     * @param param the param
-     * @return catalog domain list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogDomainList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -181,8 +180,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 서비스 이용사양 목록 조회
      *
-     * @param param the param
-     * @return catalog service plan list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogServicePlanList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -194,8 +193,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 서비스 이용사양 목록 조회
      *
-     * @param param the param
-     * @return catalog multi service plan list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogMultiServicePlanList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -207,8 +206,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 목록 조회
      *
-     * @param param the param
-     * @return catalog app list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogAppList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -220,8 +219,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 이름 생성여부 조회
      *
-     * @param param the param
-     * @return check catalog application name exists
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCheckCatalogApplicationNameExists"}, method = RequestMethod.POST)
     @ResponseBody
@@ -233,8 +232,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 서비스 이름 생성여부 조회
      *
-     * @param param the param
-     * @return check catalog service instance name exists
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCheckCatalogServiceInstanceNameExists"}, method = RequestMethod.POST)
     @ResponseBody
@@ -246,8 +245,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 URL 생성여부 조회
      *
-     * @param param the param
-     * @return check catalog route exists
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCheckCatalogRouteExists"}, method = RequestMethod.POST)
     @ResponseBody
@@ -259,8 +258,8 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 템플릿 구성 조회
      *
-     * @param param the param
-     * @return catalog starter relation list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCatalogStarterRelationList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -272,9 +271,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 템플릿 실행
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/executeCatalogStarter"}, method = RequestMethod.POST)
     @ResponseBody
@@ -286,9 +285,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 템플릿 내역 저장
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertCatalogHistoryStarter"}, method = RequestMethod.POST)
     @ResponseBody
@@ -300,9 +299,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 개발환경 실행
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/executeCatalogBuildPack"}, method = RequestMethod.POST)
     @ResponseBody
@@ -314,9 +313,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 개발환경 내역 저장
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertCatalogHistoryBuildPack"}, method = RequestMethod.POST)
     @ResponseBody
@@ -328,9 +327,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 서비스 실행
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/executeCatalogServicePack"}, method = RequestMethod.POST)
     @ResponseBody
@@ -342,9 +341,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 서비스 실행 내역 저장
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertCatalogHistoryServicePack"}, method = RequestMethod.POST)
     @ResponseBody
@@ -356,9 +355,9 @@ class CatalogController extends Common {
     /**
      * 카탈로그 앱 서비스 바인드 (POST)
      *
-     * @param param the param
-     * @return the app bind service v 2
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/appBindServiceV2"}, method = RequestMethod.POST)
     @ResponseBody

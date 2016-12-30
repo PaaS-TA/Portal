@@ -13,20 +13,20 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * 내 문의 컨트롤러
+ * 내 문의 관련 API 를 호출 하는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.08.22
+ * @since 2016.08.22 최초작성
  */
 @Controller
 @RequestMapping(value = {"/myQuestion"})
 class MyQuestionController extends Common {
 
     /**
-     * 내 문의 메인페이지 이동
+     * 내 문의 메인페이지로 이동한다.
      *
-     * @return my question main
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/myQuestionMain"}, method = RequestMethod.GET)
     public ModelAndView getMyQuestionMain() {
@@ -35,9 +35,9 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 등록페이지 이동
+     * 내 문의 등록페이지로 이동한다.
      *
-     * @return my question insert form
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/myQuestionMain/create"}, method = RequestMethod.GET)
     public ModelAndView getMyQuestionInsertForm() {
@@ -49,10 +49,10 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 수정페이지 이동
+     * 내 문의 수정페이지로 이동한다.
      *
-     * @param myQuestionNo the my question no
-     * @return my question insert form
+     * @param myQuestionNo 내 문의 번호(String)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/myQuestionMain/update/{myQuestionNo}"}, method = RequestMethod.GET)
     public ModelAndView getMyQuestionInsertForm(@PathVariable("myQuestionNo") String myQuestionNo) {
@@ -65,10 +65,10 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 상세페이지 이동
+     * 내 문의 상세페이지로 이동한다.
      *
-     * @param myQuestionNo the my question no
-     * @return my question detail form
+     * @param myQuestionNo 내 문의 번호(String)
+     * @return ModelAndView(Spring 클래스)
      */
     @RequestMapping(value = {"/myQuestionMain/detail/{myQuestionNo}"}, method = RequestMethod.GET)
     public ModelAndView getMyQuestionDetailForm(@PathVariable("myQuestionNo") String myQuestionNo) {
@@ -80,11 +80,11 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 목록 조회
+     * 내 문의 목록을 조회한다.
      *
-     * @param param the param
-     * @return my question list
-     * @throws Exception the exception
+     * @param param Support(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/getMyQuestionList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -94,10 +94,10 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 답변 조회
+     * 내 문의 답변을 조회한다.
      *
-     * @param param the param
-     * @return my question answer list
+     * @param param Support(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getMyQuestionAnswer"}, method = RequestMethod.POST)
     @ResponseBody
@@ -107,11 +107,11 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 파일 업로드
+     * 파일을 업로드한다.
      *
      * @param multipartFile the multipart file
-     * @return map map
-     * @throws Exception the exception
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -121,10 +121,10 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 파일 삭제
+     * 파일을 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Support(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -134,11 +134,11 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 저장
+     * 내 문의를 저장한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Support(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertMyQuestion"}, method = RequestMethod.POST)
     @ResponseBody
@@ -148,11 +148,11 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 수정
+     * 내 문의를 수정한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param Support(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/updateMyQuestion"}, method = RequestMethod.POST)
     @ResponseBody
@@ -162,10 +162,10 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 삭제
+     * 내 문의를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Support(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteMyQuestion"}, method = RequestMethod.POST)
     @ResponseBody
@@ -175,9 +175,9 @@ class MyQuestionController extends Common {
 
 
     /**
-     * 내 문의 조회 (내 계정)
+     * 내 문의를 조회한다. (내 계정)
      *
-     * @return my questions
+     * @return String(자바클래스)
      */
     @RequestMapping(value = {"/getMyQuestionsInMyAccount"}, method = RequestMethod.POST)
     @ResponseBody

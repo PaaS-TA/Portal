@@ -3,7 +3,10 @@ package org.openpaas.paasta.portal.web.user.model;
 import java.util.Map;
 
 /**
- * Created by mg on 2016-05-19.
+ * User 정보를 담고 있는 Model 클래스
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-05-19
  */
 public class User {
     private String userId;
@@ -19,11 +22,18 @@ public class User {
     private int count;
     private String refreshToken;
 
-    public User() {
+	/**
+	 * User 클래스의 기본 생성자
+	 */
+	public User() {
         //empty
     }
 
-    public User(Map user) {
+	/**
+	 * User 정보를 담고 있는 Map 을 입력받아 User 객체를 만드는 생성자
+	 * @param user User 정보를 담고 있는 Map
+	 */
+	public User(Map user) {
         this.userId = (user.containsKey("userId")) ? (String) user.get("userId") : null;
         this.userName = (user.containsKey("userName")) ? (String) user.get("userName") : null;
         this.password = (user.containsKey("password")) ? (String) user.get("password") : null;

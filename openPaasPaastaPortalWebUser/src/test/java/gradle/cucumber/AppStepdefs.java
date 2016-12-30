@@ -1,29 +1,25 @@
 package gradle.cucumber;
 
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.collections.map.HashedMap;
 import org.codehaus.jettison.json.JSONObject;
-import org.openpaas.paasta.portal.web.user.model.Space;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpHeaders;
 
 import java.util.Map;
-import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
 
 /**
- * App 동작을 테스트한다.
+ * Paas-TA의 Application에 대한 동작을 테스트한다.
  *
- * Created by mg on 2016-08-24.
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-08-24
  */
 public class AppStepdefs extends AbstractDefs {
 
@@ -37,9 +33,9 @@ public class AppStepdefs extends AbstractDefs {
     /**
      * feature에 정의된 ORG, SPACE의 APP을 테스트한다.
      *
-     * @param application
-     * @param org
-     * @param space
+     * @param application 어플리케이션 이름
+     * @param org 조직 이름
+     * @param space 공간 이름
      * @throws Throwable
      */
     @Then("^i will test \"(.+)\" in org \"(.+)\", space \"(.+)\"")
@@ -62,8 +58,8 @@ public class AppStepdefs extends AbstractDefs {
      * stop
      * restage
      *
-     * @param action
-     * @param url
+     * @param action 동작이름
+     * @param url API Url
      * @throws Throwable
      */
     @When("^\"(.+)\" application with url \"(.+)\"")
@@ -95,7 +91,7 @@ public class AppStepdefs extends AbstractDefs {
     /**
      * 이전 APP 동작수행 후에 기록된 APP 이벤트를 확인한다.
      *
-     * @param event
+     * @param event 이벤트 이름
      * @throws Throwable
      */
     @Then("^\"(.+)\" event occurs")
@@ -127,7 +123,7 @@ public class AppStepdefs extends AbstractDefs {
     /**
      * 이전 APP 동작 후의 APP 상태를 확인한다.
      *
-     * @param state
+     * @param state 어플리케이션의 상태
      * @throws Throwable
      */
     @And("^It is the \"(.+)\" status")

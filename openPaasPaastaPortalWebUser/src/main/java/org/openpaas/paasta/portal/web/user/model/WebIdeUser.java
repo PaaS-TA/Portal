@@ -3,7 +3,7 @@ package org.openpaas.paasta.portal.web.user.model;
 /**
  * Web Ide 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.8.30 최초작성
  */

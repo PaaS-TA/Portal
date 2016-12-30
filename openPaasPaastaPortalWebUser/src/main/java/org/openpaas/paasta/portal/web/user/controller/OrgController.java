@@ -5,7 +5,6 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.openpaas.paasta.common.security.userdetails.User;
 import org.openpaas.paasta.portal.web.user.common.Common;
-import org.openpaas.paasta.portal.web.user.common.Constants;
 import org.openpaas.paasta.portal.web.user.model.Org;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +23,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Org Controller
+ * 조직 컨트롤러 - 조직 목록, 조직 이름 변경, 조직 생성 및 삭제 등을 제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -37,12 +36,12 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직 메인 화면
+     * 조직 메인 화면이다.
      *
-     * @param response the response
-     * @param session  the session
-     * @return ModelAndView model
-     * @throws JSONException the json exception
+     * @param response 응답 객체
+     * @param session  세션
+     * @return ModelAndView (자바 클래스)
+     * @throws JSONException
      */
     @RequestMapping(value = {"/org/orgMain"}, method = RequestMethod.GET)
     public ModelAndView orgMain(HttpServletResponse response, HttpSession session) throws JSONException {
@@ -64,12 +63,12 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직 생성 화면으로 이동
+     * 조직 생성 화면이다.
      *
-     * @return ModelAndView model and view
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.17 최초작성
+     * @return ModelAndView(자바클래스)
      */
     @RequestMapping(value = {"/org/createOrgMain"}, method = RequestMethod.GET)
     public ModelAndView createOrgMainPage() {
@@ -85,7 +84,7 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직 요약 정보 조회
+     * 조직 요약 정보를 조회한다.
      *
      * @param org the org
      * @return Org rspOrg
@@ -110,9 +109,9 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직명 변경
+     * 조직명을 변경한다.
      *
-     * @param org the org
+     * @param org 조직 객체
      * @return ModelAndView modelgetUsersForOrg(userRole)
      */
     @RequestMapping(value = {"/org/renameOrg"}, method = RequestMethod.POST)
@@ -128,11 +127,11 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 생성
+     * 조직을 생성한다.
      *
-     * @param org the org
-     * @return boolean boolean
-     * @author kimdojun
+     * @param org 조직 객체
+     * @return boolean (자바 클래스)
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.27 최초작성
      */
@@ -150,10 +149,10 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직 삭제
+     * 조직을 삭제한다.
      *
-     * @param org the org
-     * @return ModelAndView model
+     * @param org 조직 객체
+     * @return ModelAndView (자바 클래스)
      */
     @RequestMapping(value = {"/org/deleteOrg"}, method = RequestMethod.POST)
     @ResponseBody
@@ -169,12 +168,12 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직 목록 조회
+     * 조직 목록을 조회한다.
      *
-     * @param response the response
-     * @param session  the session
-     * @return String orgs
-     * @author kimdojun
+     * @param response 응답 객체
+     * @param session  세션
+     * @return String 문자열 형태의 조직 리스트
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.25 최초작성
      */
@@ -201,13 +200,13 @@ public class OrgController extends Common {
 
 
     /**
-     * 조직 세션값 삽입
+     * 조직 세션값을 삽입한다.
      *
-     * @param org     the org
-     * @param session the session
-     * @return boolean org session
-     * @throws IOException the io exception
-     * @author kimdojun
+     * @param org  조직 객체
+     * @param session 세션
+     * @return boolean 작업 성공 여부
+     * @throws IOException
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.25 최초작성
      */
@@ -224,11 +223,11 @@ public class OrgController extends Common {
 
 
     /**
-     * 해당 조직에 대해 유저가 가진 모든 Role을 제거
+     * 해당 조직에 대해 유저가 가진 모든 Role을 제거한다.
      *
-     * @param org the org
-     * @return boolean boolean
-     * @author kimdojun
+     * @param org (조직 클래스)
+     * @return boolean 작업 성공 여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.28 최초작성
      */
@@ -247,11 +246,11 @@ public class OrgController extends Common {
 
 
     /**
-     * 해당 조직에 특정 Role을 가진 유저목록
+     * 해당 조직의 사용자 목록을 가져온다.
      *
-     * @param body the body
-     * @return boolean users for org
-     * @author kimdojun
+     * @param body (자바 Map 클래스)
+     * @return Map (자바 Map 클래스)
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.28 최초작성
      */
@@ -270,11 +269,11 @@ public class OrgController extends Common {
     }
 
     /**
-     * 특정 유저에게 특정 조직에 대한 특정 역할을 부여
+     * 특정 유저에게 특정 조직에 대한 특정 역할을 부여한다.
      *
-     * @param body the body
-     * @return boolean org role
-     * @author kimdojun
+     * @param body (자바 Map 클래스)
+     * @return boolean 작업 성공 여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.16 최초작성
      */
@@ -288,11 +287,11 @@ public class OrgController extends Common {
     }
 
     /**
-     * 특정 조직에 대한 특정 유저의 특정 역할을 제거
+     * 특정 조직에 대한 특정 유저의 특정 역할을 제거한다.
      *
-     * @param body the body
-     * @return boolean boolean
-     * @author kimdojun
+     * @param body (자바 Map 클래스)
+     * @return boolean 작업 성공여부
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.16 최초작성
      */
@@ -305,6 +304,12 @@ public class OrgController extends Common {
         return true;
     }
 
+    /**
+     * 조직의 모든 사용자를 조회한다.
+     *
+     * @param body the body
+     * @return the users for org async
+     */
     @RequestMapping(value = {"/org/getAllUsers"}, method = RequestMethod.POST)
     @ResponseBody
     public List getUsersForOrg_async(@RequestBody Map body) {
@@ -321,6 +326,12 @@ public class OrgController extends Common {
     }
 
 
+    /**
+     * 해당 조직롤의 사용자를 조회한다.
+     *
+     * @param body the body
+     * @return the users for org role
+     */
     @RequestMapping(value = {"/org/getUsersForOrgRole"}, method = RequestMethod.POST)
     @ResponseBody
     public List getUsersForOrgRole(@RequestBody Map body) {
@@ -339,7 +350,9 @@ public class OrgController extends Common {
 
     /**
      * 조직에 사용자를  이메일 인증을 통해 초대한다.
-     * @return
+     *
+     * @param body the body
+     * @return map map
      * @throws Exception
      */
     @RequestMapping(value = {"/invite/inviteEmailSend"}, method = RequestMethod.POST)
@@ -356,9 +369,12 @@ public class OrgController extends Common {
 
         return users;
     }
+
     /**
      * 조직에 사용자를  이메일 인증을 통해 초대한다.
-     * @return
+     *
+     * @param code the code
+     * @return model and view
      * @throws Exception
      */
     @RequestMapping(value = {"/invitations/accept"})
@@ -395,9 +411,12 @@ public class OrgController extends Common {
         }
         return model;
     }
+
     /**
-     * 조직에 사용자를  초대 이메일 재전송
-     * @return
+     * 조직의 사용자에게 초대 이메일을 재전송한다.
+     *
+     * @param body the body
+     * @return map map
      * @throws Exception
      */
     @RequestMapping(value = {"/invite/inviteEmailReSend"}, method = RequestMethod.POST)
@@ -415,8 +434,10 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직에 사용자를  초대 이메일 취소
-     * @return
+     * 조직의 사용자에게 초대 이메일을 취소한다.
+     *
+     * @param body the body
+     * @return map map
      * @throws Exception
      */
     @RequestMapping(value = {"/invite/cancelInvite"}, method = RequestMethod.POST)
@@ -434,8 +455,10 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직에 사용자를  이메일 인증을 통해 초대한다.
-     * @return
+     * 조직에 사용자를 이메일 인증을 통해 초대한다.
+     *
+     * @param body the body
+     * @return map map
      * @throws Exception
      */
     @RequestMapping(value = {"/invite/inviteEmailSendCnt"}, method = RequestMethod.POST)
@@ -452,9 +475,12 @@ public class OrgController extends Common {
     }
 
 
-    /**사용자 멤버 조직에서 제거
-     * @return
-     * @throws Exception
+    /**
+     * 사용자 멤버을 조직에서 제거한다.
+     *
+     * @param body the body
+     * @return map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/org/deleteUserOrg"}, method = RequestMethod.POST)
     @ResponseBody

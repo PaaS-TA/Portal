@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 /**
- * Org Controller
+ * 서비스 컨트롤 - 서비스 목록 , 서비스 상세 정보, 서비스 인스턴스 추가, 서비스 인스턴스 수정, 서비스 인스턴스 삭제 등 서비스 인스턴스 관리를  제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -29,7 +29,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 인스턴스 조회
+     * 서비스 인스턴스를 조회한다.
      *
      * @param service the service
      * @return String rspApp
@@ -52,7 +52,7 @@ public class ServiceController extends Common {
     }
 
     /**
-     * 서비스 인스턴스 이름 변경
+     * 서비스 인스턴스 이름을 변경한다.
      *
      * @param service the service
      * @return String rspApp
@@ -75,7 +75,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 앱-서비스 연결 해제
+     * 앱-서비스 연결을 해제한다.
      *
      * @param service the service
      * @return String rspApp
@@ -99,7 +99,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 앱-서비스 연결 해제
+     * 바운드앱에 의해 앱-서비스 연결을 해제한다,
      *
      * @param service the service
      * @return String rspApp
@@ -116,10 +116,10 @@ public class ServiceController extends Common {
 
 
     /**
-     * 유저 프로바이디드 서비스 인스턴스 조회
+     * 유저 프로바이디드 서비스 인스턴스를 조회한다.
      *
-     * @param  body the service
-     * @return  Map<String, Object> rspApp
+     * @param body the service
+     * @return Map<String Object> rspApp
      */
     @RequestMapping(value = {"/service/getUserProvidedService"}, method = RequestMethod.POST)
     @ResponseBody
@@ -135,9 +135,8 @@ public class ServiceController extends Common {
     }
 
 
-
     /**
-     * 유저 프로바이드 서비스 생성
+     * 유저 프로바이드 서비스를 생성한다.
      *
      * @param body the body
      * @return boolean boolean
@@ -156,7 +155,7 @@ public class ServiceController extends Common {
     }
 
     /**
-     * 유저 프로바이드 서비스 수정
+     * 유저 프로바이드 서비스를 수정한다.
      *
      * @param body the body
      * @return boolean boolean
@@ -176,11 +175,11 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 이미지 가져오기
+     * 서비스 이미지를 가져온다.
      *
      * @param service the service
-     * @return Map application env
-     * @author kimdojun
+     * @return app image url
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.30 최초작성
      */

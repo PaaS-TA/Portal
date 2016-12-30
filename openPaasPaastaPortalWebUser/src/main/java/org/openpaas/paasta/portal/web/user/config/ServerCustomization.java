@@ -7,7 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
 /**
- * Created by mg on 2016-08-02.
+ * 글로벌 에러 페이지를 설정한다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016-08-02
  */
 @Configuration
 public class ServerCustomization extends ServerProperties {
