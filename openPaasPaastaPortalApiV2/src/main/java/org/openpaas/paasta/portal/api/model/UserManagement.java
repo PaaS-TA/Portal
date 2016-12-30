@@ -3,7 +3,7 @@ package org.openpaas.paasta.portal.api.model;
 /**
  * org.openpaas.paasta.portal.api.model
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.08.31
  */
