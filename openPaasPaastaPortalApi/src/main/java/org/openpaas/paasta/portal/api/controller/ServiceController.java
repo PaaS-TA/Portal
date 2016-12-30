@@ -24,9 +24,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Login Controller
+ * 서비스 컨트롤 - 서비스 목록 , 서비스 상세 정보, 서비스 인스턴스 추가, 서비스 인스턴스 수정, 서비스 인스턴스 삭제 등 서비스 인스턴스 관리를  제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -45,7 +45,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 인스턴스 조회
+     * 서비스 인스턴스를 조회한다.
      *
      * @param service the service
      * @param request the request
@@ -70,7 +70,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 인스턴스 이름 변경
+     * 서비스 인스턴스 이름을 변경한다.
      *
      * @param service the service
      * @param request the request
@@ -95,7 +95,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 인스턴스 삭제
+     * 서비스 인스턴스를 삭제한다.
      *
      * @param service the service
      * @param request the request
@@ -120,7 +120,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 인스턴스 삭제
+     * 서비스 인스턴스를 삭제한다.
      *
      * @param service the service
      * @param request the request
@@ -142,7 +142,7 @@ public class ServiceController extends Common {
     }
 
     /**
-     * 유저프로바이드 서비스 인스턴스 조회
+     * 유저프로바이드 서비스 인스턴스를 조회한다.
      *
      * @param token the token
      * @param body  the body
@@ -165,7 +165,7 @@ public class ServiceController extends Common {
     }
 
     /**
-     * 유저프로바이드 서비스 인스턴스 생성
+     * 유저프로바이드 서비스 인스턴스를 생성한다.
      *
      * @param token the token
      * @param body  the body
@@ -188,7 +188,7 @@ public class ServiceController extends Common {
     }
 
     /**
-     * 유저프로바이드 서비스 인스턴스 수정
+     * 유저프로바이드 서비스 인스턴스를 수정한다.
      *
      * @param token the token
      * @param body  the body
@@ -211,12 +211,11 @@ public class ServiceController extends Common {
     }
 
 
-
     /**
-     * 서비스 브로커 리스트 조회
+     * 서비스 브로커 리스트를 조회한다.
      *
      * @param serviceBroker the serviceBroker
-     * @param request the request
+     * @param request       the request
      * @return CloudServiceInstance cloudServiceInstance
      * @throws Exception the exception
      */
@@ -242,10 +241,10 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 브로커 조회
+     * 서비스 브로커를 조회한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param request the request
+     * @param request       the request
      * @return CloudServiceInstance cloudServiceInstance
      * @throws Exception the exception
      */
@@ -271,10 +270,10 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 브로커 등록
+     * 서비스 브로커를 등록한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param request the request
+     * @param request       the request
      * @return boolean boolean
      * @throws Exception the exception
      */
@@ -299,10 +298,10 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 브로커 수정
+     * 서비스 브로커를 수정한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param request the request
+     * @param request       the request
      * @return boolean boolean
      * @throws Exception the exception
      */
@@ -327,10 +326,10 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 브로커 삭제
+     * 서비스 브로커를 삭제한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param request the request
+     * @param request       the request
      * @return boolean boolean
      * @throws Exception the exception
      */
@@ -354,10 +353,10 @@ public class ServiceController extends Common {
 
 
     /**
-     * 서비스 브로커 이름변경
+     * 서비스 브로커 이름을 변경한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param request the request
+     * @param request       the request
      * @return boolean boolean
      * @throws Exception the exception
      */
@@ -381,7 +380,7 @@ public class ServiceController extends Common {
 
 
     /**
-     * Get service image url
+     * 서비스 이미지를 조회한다.
      *
      * @param service the service
      * @return the menu list

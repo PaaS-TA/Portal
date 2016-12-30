@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 운영자 메인 서비스
+ * 운영자 포탈 관리자 대시보드 기능을 구현한 서비스 클래스이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.08
+ * @since 2016.09.08 최초작성
  */
 @Transactional
 @Service
@@ -29,34 +29,40 @@ public class AdminMainService {
 
 
     /**
-     * 전체 조직 수, 영역 수, APPLICATION 수, 사용자 수 목록 조회
+     * 전체 조직 수, 영역 수, APPLICATION 수, 사용자 수 목록을 조회한다.
      *
-     * @param param the param
-     * @return total count list
+     * @param param AdminMain(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getTotalCountList(AdminMain param) {
-        return new HashMap<String, Object>(){{put("list", adminMainCcMapper.getTotalCountList(param));}};
+        return new HashMap<String, Object>() {{
+            put("list", adminMainCcMapper.getTotalCountList(param));
+        }};
     }
 
 
     /**
-     * 전체 조직 통계 목록 조회
-     *조직별 App 사용량, 스페이스별 App 사용량 정보를 조회
-     * @param param the param
-     * @return total organization list
+     * 전체 조직 통계 목록을 조회한다.
+     *
+     * @param param AdminMain(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getTotalOrganizationList(AdminMain param) {
-        return new HashMap<String, Object>(){{put("list", adminMainCcMapper.getTotalOrganizationList(param));}};
+        return new HashMap<String, Object>() {{
+            put("list", adminMainCcMapper.getTotalOrganizationList(param));
+        }};
     }
 
 
     /**
-     * 전체 영역 통계 목록 조회
+     * 전체 공간 통계 목록을 조회한다.
      *
-     * @param param the param
-     * @return total space list
+     * @param param AdminMain(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getTotalSpaceList(AdminMain param) {
-        return new HashMap<String, Object>(){{put("list", adminMainCcMapper.getTotalSpaceList(param));}};
+        return new HashMap<String, Object>() {{
+            put("list", adminMainCcMapper.getTotalSpaceList(param));
+        }};
     }
 }

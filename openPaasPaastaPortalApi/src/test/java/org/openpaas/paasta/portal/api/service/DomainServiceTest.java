@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.openpaas.paasta.portal.api.common.CloudFoundryExceptionMatcher;
+import org.openpaas.paasta.portal.api.common.CommonTest;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
 import org.openpaas.paasta.portal.api.config.ApiApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,34 +30,30 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = {ApiApplication.class})
-public class DomainServiceTest {
-
-    @Autowired
-    private DomainService domainService;
+public class DomainServiceTest extends CommonTest {
 
     private static CustomCloudFoundryClient admin;
     private static CustomCloudFoundryClient client;
     private static String token = "";
-
-    private static String host = "https://api.115.68.46.29.xip.io";
     private static URL targetUrl;
-
     private static String testOrg = "junit-domain-test-org";
     private static String testSpace = "junit-domain-test-space";
     private static String testDomainName = "test.domain.xip.io";
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+    @Autowired
+    private DomainService domainService;
 
     @BeforeClass
     public static void init() throws Exception {
 
-        String username = "junit-test-user";
-        String password = "1234";
-
-        targetUrl = new URL(host);
+        targetUrl = new URL(getPropertyValue("test.apiTarget"));
+        String username = getPropertyValue("test.clientUserName");
 
         CloudCredentials adminCredentials = new CloudCredentials("admin", "admin");
         admin = new CustomCloudFoundryClient(adminCredentials, targetUrl, true);
 
-        CloudCredentials credentials = new CloudCredentials(username, password);
+        CloudCredentials credentials = new CloudCredentials(username, "1234");
         token = new CustomCloudFoundryClient(credentials, targetUrl, true).login().getValue();
         client = new CustomCloudFoundryClient(credentials, targetUrl,true);
 
@@ -71,10 +68,6 @@ public class DomainServiceTest {
         admin.deleteOrg(testOrg);
 
     }
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
 
     @Test
     public void getDomains_All_TEST() throws Exception{
@@ -146,7 +139,7 @@ public class DomainServiceTest {
     public void addDomain_DuplicateDomain_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"The domain is invalid: name format"));
+                HttpStatus.BAD_REQUEST, "The domain is invalid: name can contain multiple subdomains, each having only alphanumeric characters and hyphens of up to 63 characters, see RFC 1035."));
 
         domainService.addDomain(token,testOrg, testSpace, "invalid-domain");
     }
@@ -155,7 +148,7 @@ public class DomainServiceTest {
     public void addDomain_InvalidDomain_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"The domain is invalid: name format"));
+                HttpStatus.BAD_REQUEST, "The domain is invalid: name can contain multiple subdomains, each having only alphanumeric characters and hyphens of up to 63 characters, see RFC 1035."));
 
         domainService.addDomain(token,testOrg, testSpace, "invalid-domain");
     }

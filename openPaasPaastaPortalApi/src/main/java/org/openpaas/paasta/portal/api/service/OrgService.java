@@ -42,9 +42,9 @@ import java.util.concurrent.Future;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * OrgService
+ * 조직 서비스 - 조직 목록 , 조직 이름 변경 , 조직 생성 및 삭제 등을 제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -52,26 +52,22 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Service
 public class OrgService extends Common {
 
+    private final Logger LOGGER = getLogger(this.getClass());
     @Autowired
     private UserService userService;
-
     @Autowired
     private SpaceService spaceService;
-
     @Autowired
     private AsyncUtilService asyncUtilService;
-
     @Autowired
     private OrgMapper orgMapper;
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private InviteOrgSpaceMapper inviteOrgSpaceMapper;
 
-    private final Logger LOGGER = getLogger(this.getClass());
     /**
-     * 조직 요약 정보 조회
+     * 조직 요약 정보를 조회한다.
      *
      * @param org   the org
      * @param token the token
@@ -118,7 +114,7 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직 정보 이름으로 조회
+     * 조직 정보를 이름으로 조회한다.
      *
      * @param org   the org
      * @param token the token
@@ -138,7 +134,7 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직명 변경
+     * 조직명을 변경한다.
      *
      * @param org   the org
      * @param token the token
@@ -156,7 +152,7 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직 삭제
+     * 조직을 삭제한다.
      *
      * @param org   the org
      * @param token the token
@@ -191,12 +187,12 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직 목록 조회
+     * 조직 목록을 조회한다.
      *
      * @param token the token
-     * @return List<CloudOrganization>  orgList
+     * @return List<CloudOrganization>   orgList
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.13 최초작성
      */
@@ -211,13 +207,13 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직 생성
+     * 조직을 생성한다.
      *
      * @param org   the org
      * @param token the token
      * @return boolean boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.16 최초작성
      */
@@ -248,13 +244,13 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직 탈퇴
+     * 조직을 탈퇴한다.
      *
      * @param org   the org
      * @param token the token
      * @return boolean boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.1 최초작성
      */
@@ -273,7 +269,7 @@ public class OrgService extends Common {
 
         String userGuid = client.getUserGuid();
 
-        //해당 유저가 해당 조직의 모든 영역들에 대해 가진 role을 모두 제거
+        //해당 유저가 해당 조직의 모든 공간들에 대해 가진 role을 모두 제거
         CustomCloudFoundryClient admin = getCustomCloudFoundryClient(adminUserName, adminPassword);
 
         if (spaceList != null) {
@@ -300,7 +296,7 @@ public class OrgService extends Common {
 
 
     /**
-     * 조직 role 부여
+     * 조직 role을 부여한다.
      * users role을 부여하지 않고 다른 role을 부여할 경우에도 그대로 role이 부여되므로 문제가
      *
      * @param orgName  the org name
@@ -309,7 +305,7 @@ public class OrgService extends Common {
      * @param token    the token
      * @return Map org role
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.10 최초작성
      */
@@ -329,7 +325,7 @@ public class OrgService extends Common {
 
 
     /**
-     * 조직 role 제거
+     * 조직 role을 제거한다.
      *
      * @param orgName  the org name
      * @param userGuid the user guid
@@ -337,7 +333,7 @@ public class OrgService extends Common {
      * @param token    the token
      * @return Map boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.10 최초작성
      */
@@ -355,7 +351,7 @@ public class OrgService extends Common {
     }
 
     /*
-     * role 문자 변경
+     * role 문자를 변경한다.
      *
      * @param userRole
      * @return
@@ -376,11 +372,12 @@ public class OrgService extends Common {
 
     /**
      * 해당 조직의 유저목록과 각 유저의 역할을 가져온다.
-     * @param orgName
-     * @param token
-     * @return
-     * @throws Exception
-     * @author kimdojun
+     *
+     * @param orgName the org name
+     * @param token   the token
+     * @return all users
+     * @throws Exception the exception
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.31 최초작성
      */
@@ -414,12 +411,13 @@ public class OrgService extends Common {
 
     /**
      * 요청된 유저가 해당 조직에서 가지고 있는 역할을 가져온다.
-     * @param orgName
-     * @param userList
-     * @param token
-     * @return
-     * @throws Exception
-     * @author kimdojun
+     *
+     * @param orgName  the org name
+     * @param userList the user list
+     * @param token    the token
+     * @return users for org role
+     * @throws Exception the exception
+     * @author 김도준
      * @version 1.0
      * @since 2016.9.05 최초작성
      */
@@ -456,7 +454,7 @@ public class OrgService extends Common {
      * @param auditors
      * @return orgUserList
      * @throws Exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.9.05 최초작성
      */
@@ -491,9 +489,10 @@ public class OrgService extends Common {
 
     /**
      * 운영자 포털에서 조직목록을 요청했을때, 모든 조직목록을 응답한다.
-     * @return HashMap<String, Object>
-     * @throws Exception
-     * @author kimdojun
+     *
+     * @return HashMap<String Object>
+     * @throws Exception the exception
+     * @author 김도준
      * @version 1.0
      * @since 2016.9.12 최초작성
      */
@@ -502,6 +501,14 @@ public class OrgService extends Common {
         return orgMapper.getOrgsForAdmin();
     }
 
+    /**
+     * 조직 role를 조회한다.
+     *
+     * @param org   the org
+     * @param token the token
+     * @return the org role
+     * @throws Exception the exception
+     */
     public List<CloudSpace> getOrgRole(Org org, String token) throws Exception {
 
         List<CloudSpace> listSpace = spaceService.getSpaces(org, token);
@@ -509,20 +516,48 @@ public class OrgService extends Common {
 
     }
 
+    /**
+     * 조직과 공간의 초대 정보를 등록한다.
+     *
+     * @param map the map
+     * @return the int
+     * @throws Exception the exception
+     */
     public int insertOrgSpaceUser(HashMap map) throws Exception{
        int cnt = inviteOrgSpaceMapper.insertInviteOrgSpace(map);
         return cnt;
     }
+
+    /**
+     * 조직과 공간의 초대 정보를 수한다.정
+     *
+     * @param map the map
+     * @return the int
+     * @throws Exception the exception
+     */
     public int updateOrgSpaceUser(HashMap map) throws Exception{
        int cnt = inviteOrgSpaceMapper.updateOrgSpaceUser(map);
         return cnt;
     }
 
+    /**
+     * 조직과 공간의 초대 사용자를 조회한다.
+     *
+     * @param inviteOrgSpace the invite org space
+     * @return the list
+     * @throws Exception the exception
+     */
     public List<InviteOrgSpace> selectOrgSpaceUser (InviteOrgSpace inviteOrgSpace) throws Exception{
         List<InviteOrgSpace> list = inviteOrgSpaceMapper.selectOrgSpaceUser(inviteOrgSpace);
         return list;
     }
 
+    /**
+     * 조직과 공간의 사용자를 저장한다.
+     *
+     * @param map the map
+     * @throws Exception the exception
+     */
     public void setOrgSpaceUser(Map map) throws Exception{
 
         List listOrg = (List)map.getOrDefault("listOrg", new ArrayList());
@@ -561,6 +596,12 @@ public class OrgService extends Common {
         }
     }
 
+    /**
+     * 조직과 공간의 사용자를 삭제한다.
+     *
+     * @param map the map
+     * @throws Exception the exception
+     */
     public void unsetOrgSpaceUser(Map map) throws Exception{
 
         List listOrg = (List)map.getOrDefault("listOrg", new ArrayList());
@@ -599,10 +640,11 @@ public class OrgService extends Common {
     }
 
     /**
-     * 사용자 초대 이메일
+     * 사용자 초대 이메일을 발송한다.
+     *
      * @param map {userId : 초대하는 사용자 아이디,,inviteId 사용자 아이디, }
      * @return
-     * @throws Exception
+     * @throws Exception the exception
      */
     @Async
     public void inviteMemberEmail(Map map) throws Exception{
@@ -643,10 +685,10 @@ public class OrgService extends Common {
      * body의 내용을 url의 parameter로 보내준다.
      * 이미지를 넣을 경우
      *
-     * @param body{userId , refreshToken, ....}
-     * @return
-     * @throws IOException
-     * @throws MessagingException
+     * @param body {userId , refreshToken, ....}
+     * @return boolean
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
      */
     public boolean sendInviteEmail(Map body) throws IOException, MessagingException {
         Boolean bRtn = false;
@@ -717,10 +759,11 @@ public class OrgService extends Common {
     }
 
     /**
-     * 조직 이름을 가지고 조직아이디를 알아온다.
+     * 조직 이름을 가지고 조직 아이디를 조회한다.
+     *
      * @param orgName //조직 이름
      * @return 조직 아이디
-     * @throws Exception
+     * @throws Exception the exception
      */
     public int getOrgId(String orgName) throws Exception{
 
@@ -731,7 +774,7 @@ public class OrgService extends Common {
     }
 
     /**
-     * 영역 공간에 대한 초대를 완료하고 초대상태를 Y로 만들어준다.
+     * 공간에 대한 초대를 완료하고 초대상태를 Y로 만들어준다.
      *
      * @param code 초대 토큰
      * @return 상태를 Y 로 수정한 개수
@@ -744,9 +787,9 @@ public class OrgService extends Common {
     }
 
     /**
-     *  영역 공간 초대 이메일을 통해 접근된 회수를 수정한다.
+     * 공간 초대 이메일을 통해 접근된 회수를 수정한다.
      *
-     * @param code
+     * @param code      the code
      * @param accessCnt //접근회수
      * @return 수정된 개수
      */
@@ -759,8 +802,9 @@ public class OrgService extends Common {
     }
 
     /**
-     * 영역 공간에 초대한 이메일의 token을 가진 초대 정보를 가져온다.
-     * @param code
+     * 공간에 초대한 이메일의 token을 가진 초대 정보를 가져온다.
+     *
+     * @param code the code
      * @return List 초대 정보
      */
     public List selectInviteInfo(String code){
@@ -771,9 +815,10 @@ public class OrgService extends Common {
     }
 
     /**
-     * 초대정보 list 에 대한 영역, 공간의 CloudFoundry에 적용한다.
-     * @param list
-     * @throws Exception
+     * 초대정보 list 에 대한 공간의 CloudFoundry에 적용한다.
+     *
+     * @param list the list
+     * @throws Exception the exception
      */
     public void setOrgSpaceUserList(List<Map> list) throws Exception {
         for (int i=0;i<list.size();i++){
@@ -783,9 +828,10 @@ public class OrgService extends Common {
     }
 
     /**
-     * 초대정보 list 에 대한 영역, 공간의 CloudFoundry에 적용한다.
-     * @param map
-     * @throws Exception
+     * 초대정보 list 에 대한 공간의 CloudFoundry에 적용한다.
+     *
+     * @param map the map
+     * @throws Exception the exception
      */
     public void setOrgSpaceMember(Map map) throws Exception{
         String gubun = (String) map.getOrDefault("gubun", "");
@@ -808,9 +854,11 @@ public class OrgService extends Common {
 
     /**
      * 사용자 탭의 getAllUsers 서비스에 데이터 추가할 데이터를 가져온다.
+     *
      * @param orgName :공간 이름
-     * @param userId : 로그인한 사용자 아이디
-     * @return 예)[{userName: "lij", userGuid: "db040322-c831-4d51-b391-4f9ff8102dc9", inviteYn: "Y",…}]
+     * @param userId  : 로그인한 사용자 아이디
+     * @param gubun   the gubun
+     * @return 예 )[{userName: "lij", userGuid: "db040322-c831-4d51-b391-4f9ff8102dc9", inviteYn: "Y",…}]
      */
     public List<Map<String, Object>> getUsersByInvite(String orgName, String userId, String gubun) {
         InviteOrgSpace inviteOrgSpace = new InviteOrgSpace();
@@ -849,11 +897,13 @@ public class OrgService extends Common {
         }
         return orgUserList;
     }
+
     /**
-     * 사용자 초대 이메일재전송
+     * 사용자 초대 이메일을 재전송한다.
+     *
      * @param map {userId : 초대하는 사용자 아이디,,inviteId 사용자 아이디, }
-     * @return
-     * @throws Exception
+     * @return map
+     * @throws Exception the exception
      */
 
     public Map inviteMemberEmailResend(Map map) throws Exception{
@@ -907,18 +957,22 @@ public class OrgService extends Common {
 
     /**
      * 초대한 token 정보를 가지고 초대취소를 수행한다.
-     * @param map
-     * @return
-     * @throws Exception
+     *
+     * @param map the map
+     * @return int
+     * @throws Exception the exception
      */
     public int cancelInvite(Map map) throws Exception {
         return inviteOrgSpaceMapper.deleteOrgSpaceUserToken(map);
     }
+
     /**
-     * 해당 조직의
-     * @param body, token
+     * 해당 조직의 사용자를 조회한다.
+     *
+     * @param body  the body
+     * @param token the token
      * @return List Map
-     * @throws Exception
+     * @throws Exception the exception
      * @author injeong
      * @version 1.0
      * @since 2016.8.31 최초작성
@@ -941,6 +995,14 @@ public class OrgService extends Common {
         return users;
     }
 
+    /**
+     * 사용자의 조직 권한을 삭제한다.
+     *
+     * @param body  the body
+     * @param token the token
+     * @return the boolean
+     * @throws Exception the exception
+     */
     public boolean unsetUserOrg(Map body, String token) throws Exception {
 
         String orgName = (String) body.getOrDefault("orgName","");
@@ -959,7 +1021,7 @@ public class OrgService extends Common {
 //        keyOfRole.add("spaces");
 //        keyOfRole.add("audited_spaces");
 //        CustomCloudFoundryClient client = getCustomCloudFoundryClient(token);
-    //해당 유저가 해당 조직의 모든 영역들에 대해 가진 role을 모두 제거
+        //해당 유저가 해당 조직의 모든 공간들에 대해 가진 role을 모두 제거
 
         CustomCloudFoundryClient admin = getCustomCloudFoundryClient(adminUserName, adminPassword);
         Map<String, Object> allOrgOrSpace = admin.listAllOrgOrSpaceForTheUser(userGuid, "spaces");

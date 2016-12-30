@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * 사용자 정보 컨트롤러
+ * 사용자 목록, 사용자 삭제 및 운영자 권한 부여 등의 API 를 호출 받는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.08.31
+ * @since 2016.08.31 최초작성
  */
 @RestController
 @RequestMapping(value = {"/userManagement"})
@@ -30,9 +30,9 @@ public class UserManagementController {
 
 
     /**
-     * 사용자 정보 목록 조회
+     * 사용자 정보 목록을 조회한다.
      *
-     * @return user info list
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getUserInfoList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getUserInfoList(@RequestBody UserManagement param) {
@@ -41,11 +41,11 @@ public class UserManagementController {
 
 
     /**
-     * 비밀번호 초기화
+     * 비밀번호를 초기화한다.
      *
-     * @param param the param
-     * @return reset password
-     * @throws Exception the exception
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/setResetPassword"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> setResetPassword(@RequestBody UserManagement param) throws Exception {
@@ -54,10 +54,10 @@ public class UserManagementController {
 
 
     /**
-     * 운영권한 부여
+     * 운영권한을 부여한다.
      *
-     * @param param the param
-     * @return the map
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/updateOperatingAuthority"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> updateOperatingAuthority(@RequestBody UserManagement param) {
@@ -66,11 +66,11 @@ public class UserManagementController {
 
 
     /**
-     * 사용자 계정 삭제
+     * 사용자 계정을 삭제한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/deleteUserAccount"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteUserAccount(@RequestBody UserManagement param) throws Exception {

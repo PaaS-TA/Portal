@@ -14,13 +14,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.junit.Assert.*;
-import static org.openpaas.paasta.portal.api.common.Common.AUTHORIZATION_HEADER_KEY;
+import static org.junit.Assert.assertFalse;
 
 /**
  * org.openpaas.paasta.portal.api.service
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.08.18
  */
@@ -40,8 +39,10 @@ public class RouteServiceTest extends Common {
 
     @Test
     public void getCheckRouteExists() throws Exception {
-        String domain = "115.68.46.29.xip.io";
-        String route = "test-false.115.68.46.29.xip.io";
+
+        String domain = getPropertyValue("test.domainName");
+
+        String route = "test-false." + domain;
         CloudCredentials adminCredentials = new CloudCredentials("admin", "admin");
         CloudFoundryClient cloudFoundryClient = new CloudFoundryClient(adminCredentials, getTargetURL(apiTarget), "app-test-org", "app-test-space", true);
 

@@ -14,27 +14,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.api.service
+ * SupportQnAService.java
+ * 문의 조회, 등록, 수정 등 나의 문의 관리에 필요한 기능을 구현한 서비스 클래스
  *
  * @author yjkim
  * @version 1.0
- * @since 2016.07.28
+ * @since 2016.07.28 최초작성
  */
+
 @Transactional
 @Service
 public class SupportQnAService extends Common {
 
     private final SupportQnAMapper supportQnAMapper;
-
     private final GlusterfsServiceImpl glusterfsService;
 
-
-    /**
-     * Instantiates a new Support qn a service.
-     *
-     * @param supportQnAMapper the support qn a mapper
-     * @param glusterfsService the glusterfs service
-     */
     @Autowired
     public SupportQnAService(SupportQnAMapper supportQnAMapper, GlusterfsServiceImpl glusterfsService) {
         this.supportQnAMapper = supportQnAMapper;
@@ -45,9 +39,9 @@ public class SupportQnAService extends Common {
     /**
      * 문의 목록 조회
      *
-     * @param param the param
-     * @return question list
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getQnAList(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -59,11 +53,11 @@ public class SupportQnAService extends Common {
     }
 
     /**
-     * 문의 조회
+     * 문의 상세정보 조회
      *
-     * @param param the param
-     * @return Question question
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getQuestion(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -77,9 +71,9 @@ public class SupportQnAService extends Common {
     /**
      * 답변 조회
      *
-     * @param param the param
-     * @return Answer answer
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getAnswer(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -93,9 +87,9 @@ public class SupportQnAService extends Common {
     /**
      * 답변 등록
      *
-     * @param param the param
-     * @return Answer map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> insertAnswer(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -111,9 +105,9 @@ public class SupportQnAService extends Common {
     /**
      * 답변 수정
      *
-     * @param param the param
-     * @return Answer map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> updateAnswer(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -128,9 +122,9 @@ public class SupportQnAService extends Common {
     /**
      * 답변 삭제
      *
-     * @param param the param
-     * @return Answer map
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> deleteAnswer(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -178,9 +172,9 @@ public class SupportQnAService extends Common {
     /**
      * 파일 업로드
      *
-     * @param multipartFile the multipart file
-     * @return map map
-     * @throws Exception the exception
+     * @param multipartFile MultipartFile
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> uploadFile(MultipartFile multipartFile) throws Exception {
         return new HashMap<String, Object>() {{
@@ -193,8 +187,8 @@ public class SupportQnAService extends Common {
     /**
      * 파일 삭제
      *
-     * @param fileUriPath the file uri path
-     * @return map map
+     * @param fileUriPath String
+     * @return Map
      */
     public Map<String, Object> deleteFile(String fileUriPath) {
         glusterfsService.delete(fileUriPath);

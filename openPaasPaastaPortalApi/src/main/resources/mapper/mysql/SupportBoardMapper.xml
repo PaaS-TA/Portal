@@ -130,9 +130,6 @@
         DELIMITER ;*/
 
         /* execute command denied ~~ error 발생시
-          GRANT all privileges ON `portaldb`.* to `portaladmin`@`%` identified by 'admin';
-          로 권한 부여.
-
           참고: GRANT all privileges ON `DB_NAME`.* to `USER_NAME`@`EXCUTE_TARGET_URL(%:all)` identified by 'USER_PASSWORD';
         */
 
@@ -312,10 +309,8 @@
         /* SupportBoard.insertBoardComment */
         INSERT INTO portaldb.board_comment (user_id, content, created, lastmodified, board_no, parent_no, group_no)
         values(
-
         #{userId},
         #{content},
-
         now(),
         now(),
         #{boardNo},
@@ -345,7 +340,6 @@
         <if test="content != '' and content != null">
             content = #{content},
         </if>
-
 
         lastModified = now()
 

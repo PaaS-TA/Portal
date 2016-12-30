@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Login Controller
+ * 서비스 컨트롤 - 서비스 목록 , 서비스 상세 정보, 서비스 인스턴스 추가, 서비스 인스턴스 수정, 서비스 인스턴스 삭제 등 서비스 인스턴스 관리를  제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -38,7 +38,7 @@ public class ServiceService extends Common {
 
 
     /**
-     * 서비스 인스턴스 조회
+     * 서비스 인스턴스를 조회한다.
      *
      * @param service the service
      * @param client  the client
@@ -54,7 +54,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 서비스 인스턴스 이름 변경
+     * 서비스 인스턴스 이름을 변경한다.
      *
      * @param service the service
      * @param client  the client
@@ -70,7 +70,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 서비스 인스턴스 삭제
+     * 서비스 인스턴스를 삭제한다.
      *
      * @param service the service
      * @param client  the client
@@ -83,7 +83,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 유저 프로바이드 서비스 조회
+     * 유저 프로바이드 서비스를 조회한다.
      *
      * @author kimdojun
      * @since 2016.8.4 최초작성
@@ -109,7 +109,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 유저 프로바이드 서비스 생성 //유저가 SpaceDeveloper role을 갖고 있을때만 가능
+     * 유저 프로바이드 서비스를 생성한다. (유저가 SpaceDeveloper role을 갖고 있을때만 가능)
      *
      * @param token the token
      * @param body  the body
@@ -144,7 +144,8 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 유저 프로바이드 서비스 생성 //유저가 SpaceDeveloper role을 갖고 있을때만 가능
+     * 유저 프로바이드 서비스를 생성한다. (유저가 SpaceDeveloper role을 갖고 있을때만 가능)
+     *
      *
      * @author kimdojun
      * @since 2016.8.4 최초작성
@@ -178,7 +179,7 @@ public class ServiceService extends Common {
 
 
     /**
-     * 서비스 브로커 리스트
+     * 서비스 브로커 리스트를 조회한다.
      *
      * @param serviceBroker the cloudServiceBroker
      * @param client  the client
@@ -195,7 +196,7 @@ public class ServiceService extends Common {
 
 
     /**
-     * 서비스 브로커 가져오기
+     * 서비스 브로커를 조회한다.
      *
      * @param serviceBroker the serviceBroker
      * @param client  the client
@@ -211,7 +212,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 서비스 브로커 생성
+     * 서비스 브로커를 생성한다.
      *
      * @param serviceBroker the cloudServiceBroker
      * @param client  the client
@@ -230,7 +231,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 서비스 브로커 수정
+     * 서비스 브로커를 수정한다.
      *
      * @param serviceBroker the cloudServiceBroker
      * @param client  the client
@@ -249,7 +250,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 서비스 브로커 삭제
+     * 서비스 브로커를 삭제한다.
      *
      * @param serviceBroker the cloudServiceBroker
      * @param client  the client
@@ -266,7 +267,7 @@ public class ServiceService extends Common {
 
 
     /**
-     * 서비스 브로커 이름 변경
+     * 서비스 브로커 이름을 변경한다.
      *
      * @param serviceBroker the serviceBroker
      * @param client  the client
@@ -282,7 +283,7 @@ public class ServiceService extends Common {
     }
 
     /**
-     * 서비스 이미지 가져오기
+     * 서비스 이미지를 가져온다.
      *
      * @param serviceName the serviceName
      * @return the boolean

@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * 사용량 조회 컨트롤러
+ * 사용량 관련 API 를 호출 받는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.22
+ * @since 2016.09.22 최초작성
  */
 @RestController
 @RequestMapping(value = {"/usage"})
@@ -31,11 +31,11 @@ public class UsageController {
 
 
     /**
-     * 사용량 조직 조회
+     * 사용량 조직을 조회한다.
      *
-     * @param req the req
-     * @return usage organization list
-     * @throws Exception the exception
+     * @param req HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/getUsageOrganizationList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getUsageOrganizationList(HttpServletRequest req) throws Exception {
@@ -44,12 +44,12 @@ public class UsageController {
 
 
     /**
-     * 사용량 공간 조회
+     * 사용량 공간을 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return usage space list
-     * @throws Exception the exception
+     * @param param Usage(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/getUsageSpaceList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getUsageSpaceList(@RequestBody Usage param, HttpServletRequest req) throws Exception {
@@ -58,11 +58,11 @@ public class UsageController {
 
 
     /**
-     * 사용량 조회
+     * 사용량을 조회한다.
      *
-     * @param param the param
-     * @return usage space list
-     * @throws Exception the exception
+     * @param param Usage(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/getUsageSearchList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getUsageSearchList(@RequestBody Usage param) throws Exception {

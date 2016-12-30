@@ -1,14 +1,9 @@
 package org.openpaas.paasta.portal.api.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import java.util.UUID;
-
 /**
  * Web Ide 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.8.30 최초작성
  */

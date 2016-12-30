@@ -22,9 +22,9 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- * Login Controller
+ * 조직 컨트롤러 - 조직 목록 , 조직 이름 변경 , 조직 생성 및 삭제 등을 제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -37,7 +37,6 @@ public class OrgController extends Common {
     /**
      * The User controller.
      */
-
     @Autowired
     public MessageSource messageSource;
     /**
@@ -47,18 +46,19 @@ public class OrgController extends Common {
     OrgService orgService;
 
     /**
-     *  The Space Service
+     * The Space Service
      */
     @Autowired
     SpaceService spaceService;
 
     /**
-     *  The Space Service
+     * The Space Service
      */
     @Autowired
     UserService userService;
+
     /**
-     * 조직 요약 정보 조회
+     * 조직 요약 정보를 조회한다.
      *
      * @param org     the org
      * @param request the request
@@ -80,7 +80,7 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 이름으로 조회
+     * 조직 이름으로 조회한다.
      *
      * @param org     the org
      * @param request the request
@@ -103,7 +103,7 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직명 변경
+     * 조직명을 변경한다.
      *
      * @param org     the org
      * @param request the request
@@ -124,7 +124,7 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 삭제
+     * 조직을 삭제한다.
      *
      * @param org     the org
      * @param request the request
@@ -145,12 +145,12 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 목록 조회
+     * 조직 목록을 조회한다.
      *
      * @param request the request
-     * @return List<CloudOrganization>  orgList
+     * @return List<CloudOrganization>   orgList
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.13 최초작성
      */
@@ -168,13 +168,13 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 생성
+     * 조직을 생성한다.
      *
      * @param org     the org
      * @param request the request
      * @return boolean boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.16 최초작성
      */
@@ -191,13 +191,13 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 탈퇴
+     * 조직을 탈퇴한다.
      *
      * @param org     the org
      * @param request the request
      * @return boolean boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.1 최초작성
      */
@@ -214,13 +214,13 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 role 부여
+     * 조직 role을 부여한다.
      *
      * @param token the token
      * @param body  the body
      * @return Map org role
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.10 최초작성
      */
@@ -237,13 +237,13 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직 role 제거
+     * 조직 role을 제거한다.
      *
      * @param token the token
      * @param body  the body
      * @return Map boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.10 최초작성
      */
@@ -259,6 +259,14 @@ public class OrgController extends Common {
         return true;
     }
 
+    /**
+     * 전체 사용자를 조회한다.
+     *
+     * @param token the token
+     * @param body  the body
+     * @return the all users
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/org/getAllUsers"}, method = RequestMethod.POST)
     public List<Map<String, Object>> getAllUsers(@RequestHeader(AUTHORIZATION_HEADER_KEY) String token, @RequestBody Map<String, String> body) throws Exception {
 
@@ -283,11 +291,12 @@ public class OrgController extends Common {
     }
 
     /**
-     * org 사용자 권한별 리스트 조회
-     * @param token
-     * @param body
-     * @return
-     * @throws Exception
+     * 조직 사용자 권한별 리스트를 조회한다.
+     *
+     * @param token the token
+     * @param body  the body
+     * @return users for org role
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/org/getUsersForOrgRole"}, method = RequestMethod.POST)
     public List<Map<String, Object>> getUsersForOrgRole(@RequestHeader(AUTHORIZATION_HEADER_KEY) String token, @RequestBody Map<String, Object> body) throws Exception {
@@ -312,6 +321,12 @@ public class OrgController extends Common {
         return orgUserList;
     }
 
+    /**
+     * 관리자권한으로 조직 목록을 조회한다.
+     *
+     * @return the orgs for admin
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/org/getOrgsForAdmin"}, method = RequestMethod.POST)
     public Map<String, Object> getOrgsForAdmin() throws Exception {
         LOGGER.info("getOrgsForAdmin ::");
@@ -326,8 +341,10 @@ public class OrgController extends Common {
      * body.put("inviteUserId", inviteId);
      * body.put("org", orgTestOrg);
      * body.put("space", testSpace);
-     * @return
-     * @throws Exception
+     *
+     * @param body the body
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/inviteEmailSend"}, method = RequestMethod.POST)
     public Map<String, Object> inviteEmailSend(@RequestBody Map<String, Object> body) throws Exception {
@@ -414,8 +431,10 @@ public class OrgController extends Common {
     /**
      * 조직에 사용자를  이메일 인증을 통해 초대한다.
      * body.put("space", testSpace);
-     * @return
-     * @throws Exception
+     *
+     * @param request the request
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invitations/accept"})
     public Map<String, Object> inviteAccept(@RequestBody HashMap request) throws Exception {
@@ -439,11 +458,13 @@ public class OrgController extends Common {
         }
         return  result;
     }
+
     /**
-     * 조직에 초대된 사용자의 가입여부
+     * 조직에 초대된 사용자의 가입여부를 조회한다.
      *
-     * @return
-     * @throws Exception
+     * @param request the request
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invitations/userInfo"})
     public Map<String, Object> inviteUserInfo(@RequestBody HashMap request) throws Exception {
@@ -469,8 +490,9 @@ public class OrgController extends Common {
     /**
      * 조직에 초대된 사용자의 미가입시 가입시킨다.
      *
-     * @return
-     * @throws Exception
+     * @param request the request
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invitations/authUser"})
     public Map<String, Object> inviteUserAdd(@RequestBody HashMap request) throws Exception {
@@ -489,10 +511,13 @@ public class OrgController extends Common {
         result.put("userDetail" ,userDetail);
         return  result;
     }
+
     /**
-     * 조직에 사용자를  이메일 재전송.
-     * @return
-     * @throws Exception
+     * 조직에 사용자를  이메일을 재전송한다.
+     *
+     * @param body the body
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/inviteEmailReSend"}, method = RequestMethod.POST)
     public Map<String, Object> inviteEmailReSend(@RequestBody Map<String, Object> body) throws Exception {
@@ -503,9 +528,11 @@ public class OrgController extends Common {
     }
 
     /**
-     * 조직에 사용자를  이메일 재전송.
-     * @return
-     * @throws Exception
+     * 조직에 사용자를 이메일을 재전송한다.
+     *
+     * @param body the body
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/cancelInvite"}, method = RequestMethod.POST)
     public Map<String, Object> cancelInvite(@RequestBody Map<String, Object> body) throws Exception {
@@ -514,11 +541,15 @@ public class OrgController extends Common {
         map.put("cancelInvite", orgService.cancelInvite(body));
         return map;
     }
+
     /**
      * 조직에 사용자를  이메일 인증을 통해 초대하기전 초대정보가 존재하는지 확인한다.
      * body.put("inviteUserId", inviteId);
-     * @return
-     * @throws Exception
+     *
+     * @param token the token
+     * @param body  the body
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/inviteEmailSendCnt"}, method = RequestMethod.POST)
     public Map<String, Object> inviteEmailSendCnt(@RequestHeader(AUTHORIZATION_HEADER_KEY) String token,@RequestBody Map<String, Object> body) throws Exception {
@@ -527,6 +558,15 @@ public class OrgController extends Common {
         map.put("bSend", orgService.getOrgUser(body, token));
         return map;
     }
+
+    /**
+     * 사용자의 조직권한을 삭제한다.
+     *
+     * @param token the token
+     * @param body  the body
+     * @return the map
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/org/deleteUserOrg"}, method = RequestMethod.POST)
     public Map<String, Object> deleteUserOrg(@RequestHeader(AUTHORIZATION_HEADER_KEY) String token,@RequestBody Map<String, Object> body) throws Exception {
 

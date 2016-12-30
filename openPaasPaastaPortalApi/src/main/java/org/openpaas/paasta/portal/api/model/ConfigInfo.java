@@ -1,9 +1,9 @@
 package org.openpaas.paasta.portal.api.model;
 
 /**
- * Web Ide 모델
+ * 설정 정보 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.8.30 최초작성
  */

@@ -15,35 +15,31 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 지원 > 문의 컨트롤러
+ * SupportQnAController.java
+ * 문의 조회, 등록, 수정 등 문의 관리에 필요한 API 를 호출 받는 컨트롤러
  *
  * @author yjkim
  * @version 1.0
- * @since 2016.07.28
+ * @since 2016.07.28 최초작성
  */
 @RestController
 @RequestMapping(value = {"/support"})
 class SupportQnAController extends Common {
+
     private final SupportQnAService supportQnAService;
 
-    /**
-     * Instantiates a new Support qna controller.
-     *
-     * @param supportQnAService the support qn a service
-     */
     @Autowired
     public SupportQnAController(SupportQnAService supportQnAService) {
         this.supportQnAService = supportQnAService;
     }
 
-
     /**
      * 문의 목록 조회
      *
-     * @param param    the param
-     * @param response the response
-     * @return Answer list
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getQnAList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getQnAList(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -52,12 +48,12 @@ class SupportQnAController extends Common {
 
 
     /**
-     * 문의 조회
+     * 문의 상세 정보 조회
      *
-     * @param param    the param
-     * @param response the response
-     * @return Answer question
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getQuestion"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getQuestion(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -66,12 +62,12 @@ class SupportQnAController extends Common {
 
 
     /**
-     * 답변 조회
+     * 답변 상세 정보 조회
      *
-     * @param param    the param
-     * @param response the response
-     * @return Answer answer
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getAnswer"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -82,10 +78,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 등록
      *
-     * @param param    the param
-     * @param response the response
-     * @return insert Answer
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/insertAnswer"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -96,10 +92,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 수정
      *
-     * @param param    the param
-     * @param response the response
-     * @return update Answer
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateAnswer"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -110,10 +106,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 삭제
      *
-     * @param param    the param
-     * @param response the response
-     * @return delete Answer
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteAnswer"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {

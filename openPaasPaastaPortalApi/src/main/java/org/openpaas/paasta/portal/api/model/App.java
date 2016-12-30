@@ -8,15 +8,39 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * 클래스 설명
+ * 앱 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.5.30 최초작성
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class App {
     private int appInstanceIndex;
+    private UUID guid;
+    private String name;
+    private String newName;
+    private String orgName;
+    private String spaceName;
+    private Map<String, String> environment;
+    private UUID serviceGuid;
+    private String serviceName;
+    private String serviceNewName;
+    private List<String> urls;
+    private List<String> services;
+    private int instances = 0;
+    private int memory = 0;
+    private int diskQuota = 0;
+    private String state;
+    private String createdAt;
+    @JsonProperty("package_updated_at")
+    private String updatedAt;
+    private int totalUserCount;
+    private String buildPack;
+    private String stackName;
+    private Staging staging;
+    private String host;
+    private String domainName;
 
     public int getAppInstanceIndex() {
         return appInstanceIndex;
@@ -26,70 +50,9 @@ public class App {
         this.appInstanceIndex = appInstanceIndex;
     }
 
-    private UUID guid;
-    private String name;
-    private String newName;
-
-    private String orgName;
-    private String spaceName;
-
-    private Map<String, String> environment;
-
-    private UUID serviceGuid;
-    private String serviceName;
-    private String serviceNewName;
-
-
-    private List<String> urls;
-
-    private List<String> services;
-
-    private int instances = 0;
-    private int memory = 0;
-    private int diskQuota = 0;
-    private String state;
-    private String createdAt;
-
-    @JsonProperty("package_updated_at")
-    private String updatedAt;
-
-    private int totalUserCount;
-
-    private String buildPack;
-    private String stackName;
-
-    private Staging staging;
-
-    public class Staging {
-        private String detectedBuildpack;
-        private String stack;
-
-        public String getDetectedBuildpack() {
-            return detectedBuildpack;
-        }
-
-        public void setDetectedBuildpack(String detectedBuildpack) {
-            this.detectedBuildpack = detectedBuildpack;
-            setBuildPack(detectedBuildpack);
-        }
-
-        public String getStack() {
-            return stack;
-        }
-
-        public void setStack(String stack) {
-            this.stack = stack;
-            setStackName(stack);
-        }
-    }
-
-    private String host;
-    private String domainName;
-
     public UUID getGuid() {
         return guid;
     }
-
 
     public void setGuid(UUID guid) {
         this.guid = guid;
@@ -221,7 +184,6 @@ public class App {
         this.createdAt = createdAt;
     }
 
-
     public int getTotalUserCount() {
         return totalUserCount;
     }
@@ -301,6 +263,7 @@ public class App {
     public void setEnvironment(Map<String, String> environment) {
         this.environment = environment;
     }
+
     public String getServiceName() {
         return serviceName;
     }
@@ -308,7 +271,6 @@ public class App {
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
-
 
     public String getDomainName() {
         return domainName;
@@ -340,5 +302,28 @@ public class App {
 
     public void setServiceNewName(String serviceNewName) {
         this.serviceNewName = serviceNewName;
+    }
+
+    public class Staging {
+        private String detectedBuildpack;
+        private String stack;
+
+        public String getDetectedBuildpack() {
+            return detectedBuildpack;
+        }
+
+        public void setDetectedBuildpack(String detectedBuildpack) {
+            this.detectedBuildpack = detectedBuildpack;
+            setBuildPack(detectedBuildpack);
+        }
+
+        public String getStack() {
+            return stack;
+        }
+
+        public void setStack(String stack) {
+            this.stack = stack;
+            setStackName(stack);
+        }
     }
 }

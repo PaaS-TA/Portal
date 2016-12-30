@@ -32,11 +32,11 @@ import static java.util.stream.Collectors.*;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * 카탈로그 서비스
+ * 서비스 카탈로그, 개발 환경 카탈로그, 앱 템플릿 카탈로그 정보 조회 및 관리 기능을 구현한 서비스 클래스로 Common(1.3.8) 클래스를 상속하여 구현한다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.07.04
+ * @since 2016.07.04 최초작성
  */
 @Transactional
 @Service
@@ -77,11 +77,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 목록 조회
+     * 앱 개발환경 목록을 조회한다.
      *
-     * @param req the req
-     * @return build pack list
-     * @throws Exception the exception
+     * @param req HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @SuppressWarnings(value = "unchecked")
     public Map<String, Object> getBuildPackList(HttpServletRequest req) throws Exception {
@@ -106,11 +106,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 목록 조회
+     * 서비스 목록을 조회한다.
      *
-     * @param req the req
-     * @return service pack list
-     * @throws Exception the exception
+     * @param req HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getServicePackList(HttpServletRequest req) throws Exception {
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -135,10 +135,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 목록 조회
+     * 앱 개발환경 카탈로그 목록을 조회한다.
      *
-     * @param param the param
-     * @return build pack catalog
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getBuildPackCatalogList(Catalog param) {
         return new HashMap<String, Object>() {{
@@ -148,10 +148,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 카탈로그 목록 조회
+     * 서비스 카탈로그 목록을 조회한다.
      *
-     * @param param the param
-     * @return service pack catalog
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getServicePackCatalogList(Catalog param) {
         return new HashMap<String, Object>() {{
@@ -161,12 +161,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 개수 조회
+     * 앱 개발환경 카탈로그 개수를 조회한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return build pack catalog count
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getBuildPackCatalogCount(Catalog param, HttpServletResponse res) throws Exception {
         if (catalogMapper.getBuildPackCatalogCount(param) > 0) {
@@ -180,12 +180,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 카탈로그 개수 조회
+     * 서비스 카탈로그 개수를 조회한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return service pack catalog count
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getServicePackCatalogCount(Catalog param, HttpServletResponse res) throws Exception {
         if (catalogMapper.getServicePackCatalogCount(param) > 0) {
@@ -199,10 +199,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 저장
+     * 앱 개발환경 카탈로그를 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertBuildPackCatalog(Catalog param) {
         catalogMapper.insertBuildPackCatalog(param);
@@ -214,10 +214,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 카탈로그 저장
+     * 서비스 카탈로그를 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertServicePackCatalog(Catalog param) {
         catalogMapper.insertServicePackCatalog(param);
@@ -229,10 +229,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 수정
+     * 앱 개발환경 카탈로그를 수정한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> updateBuildPackCatalog(Catalog param) {
         catalogMapper.updateBuildPackCatalog(param);
@@ -244,10 +244,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 카탈로그 수정
+     * 서비스 카탈로그를 수정한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> updateServicePackCatalog(Catalog param) {
         catalogMapper.updateServicePackCatalog(param);
@@ -259,10 +259,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 삭제
+     * 앱 개발환경 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> deleteBuildPackCatalog(Catalog param) {
         catalogMapper.deleteBuildPackCatalog(param);
@@ -274,10 +274,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 카탈로그 삭제
+     * 서비스 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> deleteServicePackCatalog(Catalog param) {
         catalogMapper.deleteServicePackCatalog(param);
@@ -289,12 +289,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경 카탈로그 삭제 가능여부 조회
+     * 앱 개발환경 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return check delete build pack catalog count
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCheckDeleteBuildPackCatalogCount(Catalog param, HttpServletResponse res) throws Exception {
         if (catalogMapper.getCheckDeleteBuildPackCatalogCount(param) > 0) {
@@ -308,12 +308,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스 카탈로그 삭제 가능여부 조회
+     * 서비스 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return check delete service pack catalog count
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCheckDeleteServicePackCatalogCount(Catalog param, HttpServletResponse res) throws Exception {
         if (catalogMapper.getCheckDeleteServicePackCatalogCount(param) > 0) {
@@ -327,12 +327,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 개수 조회
+     * 앱 템플릿 카탈로그 개수를 조회한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return starter catalog count
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getStarterCatalogCount(Catalog param, HttpServletResponse res) throws Exception {
         if (catalogMapper.getStarterCatalogCount(param) > 0) {
@@ -346,10 +346,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 템플릿명 목록 조회
+     * 앱 템플릿명 목록을 조회한다.
      *
-     * @param param the param
-     * @return starter names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getStarterNamesList(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -362,10 +362,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 개발환경명 목록 조회
+     * 앱 개발환경명 목록을 조회한다.
      *
-     * @param param the param
-     * @return build pack names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getBuildPackNamesList(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -378,10 +378,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 서비스명 목록 조회
+     * 서비스명 목록을 조회한다.
      *
-     * @param param the param
-     * @return service pack names list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getServicePackNamesList(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -396,8 +396,8 @@ public class CatalogService extends Common {
     /**
      * 앱 템플릿 카탈로그 조회
      *
-     * @param param the param
-     * @return one starter catalog
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getOneStarterCatalog(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -416,9 +416,9 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 MAX NUMBER 조회
+     * 앱 템플릿 카탈로그 최대값울 조회한다.
      *
-     * @return Starter catalog max number
+     * @return Map(자바클래스)
      */
     int getStarterCatalogMaxNumber() {
         return catalogMapper.getStarterCatalogMaxNumber();
@@ -426,10 +426,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 저장
+     * 앱 템플릿 카탈로그를 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertStarterCatalog(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -447,10 +447,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 수정
+     * 앱 템플릿 카탈로그를 수정한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> updateStarterCatalog(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -469,10 +469,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 앱 템플릿 카탈로그 삭제
+     * 앱 템플릿 카탈로그를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> deleteStarterCatalog(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -487,11 +487,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 파일 업로드
+     * 파일을 업로드한다.
      *
-     * @param multipartFile the multipart file
-     * @return map map
-     * @throws Exception the exception
+     * @param multipartFile MultipartFile(Spring 클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> uploadFile(MultipartFile multipartFile) throws Exception {
         return new HashMap<String, Object>() {{
@@ -502,10 +502,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 파일 삭제
+     * 파일을 삭제한다.
      *
-     * @param fileUriPath the file uri path
-     * @return map map
+     * @param fileUriPath String(파일 경로)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> deleteFile(String fileUriPath) {
         glusterfsService.delete(fileUriPath);
@@ -517,10 +517,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 좌측 메뉴 목록 조회
+     * 카탈로그 좌측 메뉴 목록을 조회한다.
      *
-     * @return catalog left menu list
-     * @throws Exception the exception
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCatalogLeftMenuList() throws Exception {
         return new HashMap<String, Object>() {{
@@ -533,10 +533,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 내역 목록 조회
+     * 카탈로그 내역 목록을 조회한다.
      *
-     * @param param the param
-     * @return catalog history list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getCatalogHistoryList(Catalog param) {
         param.setLimitSize(Constants.CATALOG_HISTORY_LIMIT_SIZE);
@@ -548,12 +548,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 공간 목록 조회
+     * 카탈로그 공간 목록을 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return catalog space list
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCatalogSpaceList(Catalog param, HttpServletRequest req) throws Exception {
         return new HashMap<String, Object>() {{
@@ -565,11 +565,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 도메인 목록 조회
+     * 카탈로그 도메인 목록을 조회한다.
      *
-     * @param req the req
-     * @return catalog domain list
-     * @throws Exception the exception
+     * @param req HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCatalogDomainList(HttpServletRequest req) throws Exception {
         return new HashMap<String, Object>() {{
@@ -579,12 +579,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 서비스 이용사양 목록 조회
+     * 카탈로그 서비스 이용사양 목록을 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return catalog service plan list
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCatalogServicePlanList(Catalog param, HttpServletRequest req) throws Exception {
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -609,12 +609,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 서비스 이용사양 목록 조회
+     * 카탈로그 서비스 이용사양 목록을 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return catalog multi service plan list
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCatalogMultiServicePlanList(Catalog param, HttpServletRequest req) throws Exception {
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -659,12 +659,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 목록 조회
+     * 카탈로그 앱 목록을 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return catalog app list
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCatalogAppList(Catalog param, HttpServletRequest req) throws Exception {
         return new HashMap<String, Object>() {{
@@ -677,13 +677,13 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 이름 생성여부 조회
+     * 카탈로그 앱 이름 생성여부를 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @param res   the res
-     * @return check catalog application name exists
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCheckCatalogApplicationNameExists(Catalog param, HttpServletRequest req, HttpServletResponse res) throws Exception {
         List<App> resultList = spaceService.getSpaceSummary(new Space() {{
@@ -704,13 +704,13 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 서비스 이름 생성여부 조회
+     * 카탈로그 서비스 이름 생성여부를 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @param res   the res
-     * @return catalog service instance name exists
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCheckCatalogServiceInstanceNameExists(Catalog param, HttpServletRequest req, HttpServletResponse res) throws Exception {
         CloudFoundryClient cloudFoundryClient = getCloudFoundryClient(req.getHeader(cfAuthorizationHeaderKey), param.getOrgName(), param.getSpaceName());
@@ -727,12 +727,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 URL 생성여부 조회
+     * 카탈로그 앱 URL 생성여부를 조회한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return check route exists
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getCheckCatalogRouteExists(Catalog param, HttpServletResponse res) throws Exception {
         String reqDomainName = param.getDomainName();
@@ -760,10 +760,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 템플릿 구성 조회
+     * 카탈로그 앱 템플릿 구성을 조회한다.
      *
-     * @param param the param
-     * @return catalog starter relation list
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getCatalogStarterRelationList(Catalog param) {
         return new HashMap<String, Object>() {{
@@ -775,12 +775,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 템플릿 실행
+     * 카탈로그 앱 템플릿을 실행한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> executeCatalogStarter(Catalog param, HttpServletRequest req) throws Exception {
         LOGGER.info("#################### executeCatalogStarter :: {}", param);
@@ -843,10 +843,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 템플릿 내역 저장
+     * 카탈로그 앱 템플릿 내역을 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertCatalogHistoryStarter(Catalog param) {
         param.setCatalogType(Constants.CATALOG_TYPE_STARTER);
@@ -859,12 +859,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 개발환경 실행
+     * 카탈로그 앱 개발환경을 실행한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> executeCatalogBuildPack(Catalog param, HttpServletRequest req) throws Exception {
         LOGGER.info("#################### executeCatalogBuildPack :: {}", param);
@@ -892,10 +892,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 개발환경 내역 저장
+     * 카탈로그 앱 개발환경 내역을 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertCatalogHistoryBuildPack(Catalog param) {
         param.setCatalogType(Constants.CATALOG_TYPE_BUILD_PACK);
@@ -908,12 +908,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 서비스 실행
+     * 카탈로그 서비스를 실행한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> executeCatalogServicePack(Catalog param, HttpServletRequest req) throws Exception {
         LOGGER.info("#################### executeCatalogServicePack :: {}", param);
@@ -941,10 +941,10 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 서비스 실행 내역 저장
+     * 카탈로그 서비스 실행 내역을 저장한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param Catalog(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertCatalogHistoryServicePack(Catalog param) {
         param.setCatalogType(Constants.CATALOG_TYPE_SERVICE_PACK);
@@ -957,11 +957,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 생성
+     * 카탈로그 앱을 생성한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private void procCatalogCreateApplication(Catalog param, HttpServletRequest req) throws Exception {
         String appName = param.getName();
@@ -992,11 +992,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 업로드
+     * 카탈로그 앱을 업로드한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private void procCatalogUploadApplication(Catalog param, HttpServletRequest req) throws Exception {
         CloudFoundryClient cloudFoundryClient = getCloudFoundryClient(req.getHeader(cfAuthorizationHeaderKey), param.getOrgName(), param.getSpaceName());
@@ -1007,12 +1007,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 시작
+     * 카탈로그 앱을 시작한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private Map<String, Object> procCatalogStartApplication(Catalog param, HttpServletRequest req) throws Exception {
         CloudFoundryClient cloudFoundryClient = getCloudFoundryClient(req.getHeader(cfAuthorizationHeaderKey), param.getOrgName(), param.getSpaceName());
@@ -1035,12 +1035,12 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 서비스 인스턴스 생성
+     * 카탈로그 서비스 인스턴스를 생성한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return map map
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private Map<String, Object> procCatalogCreateServiceInstance(Catalog param, HttpServletRequest req) throws Exception {
         CustomCloudFoundryClient customCloudFoundryClient = getCustomCloudFoundryClient(req.getHeader(cfAuthorizationHeaderKey), param.getOrgName(), param.getSpaceName());
@@ -1059,11 +1059,11 @@ public class CatalogService extends Common {
 
 
     /**
-     * 카탈로그 앱 서비스 바인드
+     * 카탈로그 앱 서비스를 바인드한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @throws Exception the exception
+     * @param param Catalog(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> procCatalogBindService(Catalog param, HttpServletRequest req) throws Exception {
         CustomCloudFoundryClient customCloudFoundryClient = getCustomCloudFoundryClient(req.getHeader(cfAuthorizationHeaderKey), param.getOrgName(), param.getSpaceName());

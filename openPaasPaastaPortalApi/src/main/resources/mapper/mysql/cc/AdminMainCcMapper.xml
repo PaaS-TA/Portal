@@ -8,7 +8,7 @@
         SELECT
             (SELECT COUNT(o.id) FROM organizations o) AS organizationCount,
             SUM(COALESCE((SELECT COUNT(s.organization_id) FROM spaces s WHERE s.organization_id = org.id GROUP BY s.organization_id), 0)) AS spaceCount,
-            SUM(COALESCE((SELECT COUNT(a.space_id) FROM apps a WHERE a.space_id IN (SELECT s.id FROM spaces s WHERE s.organization_id = org.id)), 0)) AS applicationCount,
+            SUM(COALESCE((SELECT COUNT(a.id) FROM apps a WHERE a.space_guid IN (SELECT s.guid FROM spaces s WHERE s.organization_id = org.id)), 0)) AS applicationCount,
             SUM(COALESCE((SELECT COUNT(*) FROM organizations_users ou WHERE ou.organization_id = org.id GROUP BY ou.organization_id), 0)) AS userCount
         FROM organizations org
     </select>
@@ -20,7 +20,7 @@
             org.id AS organizationId,
             org.name AS organizationName,
             COALESCE((SELECT COUNT(s.organization_id) FROM spaces s WHERE s.organization_id = org.id GROUP BY s.organization_id), 0) AS spaceCount,
-            COALESCE((SELECT COUNT(a.space_id) FROM apps a WHERE a.space_id IN (SELECT s.id FROM spaces s WHERE s.organization_id = org.id)), 0) AS applicationCount,
+            COALESCE((SELECT COUNT(a.id) FROM apps a WHERE a.space_guid IN (SELECT s.guid FROM spaces s WHERE s.organization_id = org.id)), 0) AS applicationCount,
             COALESCE((SELECT COUNT(*) FROM organizations_users ou WHERE ou.organization_id = org.id GROUP BY ou.organization_id), 0) AS userCount
         FROM organizations org
         WHERE 1=1
@@ -46,7 +46,7 @@
         LEFT OUTER JOIN
             (SELECT
                 DISTINCT (space_all.space_id) AS spaceId,
-                (SELECT COUNT(a.space_id) FROM apps a WHERE a.space_id = space_all.space_id) AS applicationCount,
+                (SELECT COUNT(a.id) FROM apps a WHERE a.id = space_all.space_id) AS applicationCount,
                 (SELECT s2.name FROM spaces s2 WHERE s2.id = space_all.space_id) AS spaceName
             FROM
             (SELECT * FROM spaces_auditors

@@ -45,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * org.openpaas.paasta.portal.api.service
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.07.19
  */
@@ -1246,7 +1246,7 @@ public class CatalogServiceTest extends CommonTest {
         // DELETE SERVICE INSTANCE
         this.deleteServiceInstance(TEST_SERVICE_INSTANCE_NAME);
 
-        // DELETE APPLICATION BEFORE TEST
+        // DELETE APPLICATION
         this.deleteApplication(TEST_APP_NAME, testOrg, testSpace, TEST_APP_NAME + "." + testDomainUrl);
 
         // DELETE SPACE
@@ -1274,9 +1274,15 @@ public class CatalogServiceTest extends CommonTest {
             reqHostNameList.add(reqHostName);
             appService.deleteRoute(reqOrgName, reqSpaceName, reqHostNameList, TEST_ADMIN_TOKEN);
 
-
         } catch (Exception e) {
-            // TO DO
+            try {
+                // DELETE ROUTE
+                List<String> reqHostNameList = new ArrayList<>();
+                reqHostNameList.add(reqHostName);
+                appService.deleteRoute(reqOrgName, reqSpaceName, reqHostNameList, TEST_ADMIN_TOKEN);
+            } catch (Exception e1) {
+                // TO DO
+            }
         }
     }
 
@@ -1290,7 +1296,6 @@ public class CatalogServiceTest extends CommonTest {
 
             // DELETE SERVICE INSTANCE
             serviceService.deleteInstanceService(deleteInstanceServiceParam, TEST_CUSTOM_ADMIN_CLIENT);
-
 
         } catch (Exception e) {
             // TO DO

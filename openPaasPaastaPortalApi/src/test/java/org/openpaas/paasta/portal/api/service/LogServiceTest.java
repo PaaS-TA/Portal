@@ -5,6 +5,7 @@ import org.cloudfoundry.client.lib.CloudFoundryClient;
 import org.cloudfoundry.client.lib.domain.CloudApplication;
 import org.junit.Before;
 import org.junit.Test;
+import org.openpaas.paasta.portal.api.common.CommonTest;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 
@@ -15,11 +16,10 @@ import java.util.List;
 /**
  * Created by ijlee on 2016-07-27.
  */
-public class LogServiceTest {
+public class LogServiceTest extends CommonTest {
     private CloudFoundryClient cfc;
     private OAuth2AccessToken token;
 
-    private String host = "https://api.115.68.46.29.xip.io";
     private String org = "OCP";
     private String space = "dev";
 
@@ -31,7 +31,9 @@ public class LogServiceTest {
         String username = "admin";
         String password = "admin";
 
-        targetUrl = new URL(host);
+        apiTarget = getPropertyValue("test.apiTarget");
+
+        targetUrl = new URL(apiTarget);
 
         CloudCredentials credentials = new CloudCredentials(username, password);
 
@@ -47,7 +49,6 @@ public class LogServiceTest {
 
         List<CloudApplication> list = cfc.getApplications();
         String sAppName = list.get(0).getName();
-        System.out.println("getRecentLogs \n"+cfc.getRecentLogs(sAppName));
 
     }
 

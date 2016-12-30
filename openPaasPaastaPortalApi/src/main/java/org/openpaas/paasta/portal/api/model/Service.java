@@ -3,13 +3,12 @@ package org.openpaas.paasta.portal.api.model;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import java.util.List;
 import java.util.UUID;
 
 /**
  * 서비스 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.5.30 최초작성
  */
@@ -35,49 +34,6 @@ public class Service {
     private ServicePlan servicePlan;
 
     private String serviceName;
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public class ServicePlan {
-
-        private String name;
-
-        @JsonProperty("service")
-        private ServiceInfo service;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-            setServicePlanName(name);
-        }
-
-        public ServiceInfo getService() {
-            return service;
-        }
-
-        public void setService(ServiceInfo service) {
-            this.service = service;
-        }
-
-        @JsonIgnoreProperties(ignoreUnknown = true)
-        public class ServiceInfo {
-            private String label;
-
-            public String getLabel() {
-                return label;
-            }
-
-            public void setLabel(String label) {
-                this.label = label;
-                setServiceLabel(label);
-            }
-        }
-
-    }
-
-
 
     public String getName() {
         return name;
@@ -157,5 +113,46 @@ public class Service {
 
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public class ServicePlan {
+
+        private String name;
+
+        @JsonProperty("service")
+        private ServiceInfo service;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+            setServicePlanName(name);
+        }
+
+        public ServiceInfo getService() {
+            return service;
+        }
+
+        public void setService(ServiceInfo service) {
+            this.service = service;
+        }
+
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public class ServiceInfo {
+            private String label;
+
+            public String getLabel() {
+                return label;
+            }
+
+            public void setLabel(String label) {
+                this.label = label;
+                setServiceLabel(label);
+            }
+        }
+
     }
 }

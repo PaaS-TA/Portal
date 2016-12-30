@@ -14,8 +14,8 @@ server:
 cloudfoundry:
   cc:
     api:
-      url: https://api.115.68.46.29.xip.io
-      uaaUrl: https://uaa.115.68.46.29.xip.io
+      url: https://api.115.68.46.30.xip.io
+      uaaUrl: https://uaa.115.68.46.30.xip.io
   # CloudFoundry Login information
   user:
     admin:
@@ -32,7 +32,7 @@ cloudfoundry:
   authorization: cf-Authorization
 
 abacus:
-  url: http://paasta-usage-reporting.115.68.46.29.xip.io/v1
+  url: http://paasta-usage-reporting.115.68.46.30.xip.io/v1
 
 ---
 spring:
@@ -106,17 +106,17 @@ spring:
   datasource:
     cc:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/ccdb
+      url: jdbc:postgresql://10.30.110.42:5524/ccdb
       username: ccadmin
       password: admin
     portal:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/portaldb
+      url: jdbc:postgresql://10.30.110.42:5524/portaldb
       username: portaladmin
       password: admin
     uaa:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/uaadb
+      url: jdbc:postgresql://10.30.110.42:5524/uaadb
       username: uaaadmin
       password: admin
   glusterfs:
@@ -138,7 +138,7 @@ spring:
           enable: true
           required: truie
         maximumTotalQps: 90
-        authUrl: http://portal-web-user-dev.115.68.46.29.xip.io
+        authUrl: http://portal-web-user-dev.115.68.46.30.xip.io
         imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
         sFile: emailTemplate.html
         subject: PaaS-TA User Potal 인증메일
@@ -152,7 +152,7 @@ eureka:
     nonSecurePort: 80
   client:
     serviceUrl:
-      defaultZone: ${vcap.services.portal-eureka-service.credentials.uri:https://portal-registration-dev.115.68.46.29.xip.io}/eureka/
+      defaultZone: ${vcap.services.portal-eureka-service.credentials.uri:https://portal-registration-dev.115.68.46.30.xip.io}/eureka/
 ---
 spring:
   profiles: stg
@@ -162,17 +162,17 @@ spring:
   datasource:
     cc:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/ccdb
+      url: jdbc:postgresql://10.30.110.42:5524/ccdb
       username: ccadmin
       password: admin
     portal:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/portaldb
+      url: jdbc:postgresql://10.30.110.42:5524/portaldb
       username: portaladmin
       password: admin
     uaa:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/uaadb
+      url: jdbc:postgresql://10.30.110.42:5524/uaadb
       username: uaaadmin
       password: admin
   glusterfs:
@@ -194,7 +194,7 @@ spring:
           enable: true
           required: truie
         maximumTotalQps: 90
-        authUrl: http://portal-web-user-stg.115.68.46.29.xip.io
+        authUrl: http://portal-web-user-stg.115.68.46.30.xip.io
         imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
         sFile: emailTemplate.html
         subject: PaaS-TA User Potal 인증메일
@@ -218,17 +218,17 @@ spring:
   datasource:
     cc:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/ccdb
+      url: jdbc:postgresql://10.30.110.42:5524/ccdb
       username: ccadmin
       password: admin
     portal:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/portaldb
+      url: jdbc:postgresql://10.30.110.42:5524/portaldb
       username: portaladmin
       password: admin
     uaa:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://10.30.100.22:5524/uaadb
+      url: jdbc:postgresql://10.30.110.42:5524/uaadb
       username: uaaadmin
       password: admin
   glusterfs:
@@ -250,7 +250,7 @@ spring:
           enable: true
           required: truie
         maximumTotalQps: 90
-        authUrl: http://portal-web-user-prd.115.68.46.29.xip.io
+        authUrl: http://portal-web-user-prd.115.68.46.30.xip.io
         imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
         sFile: emailTemplate.html
         subject: PaaS-TA User Potal 인증메일

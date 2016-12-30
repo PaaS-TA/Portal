@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Login Controller
+ * 설정정보 서비스 - 포탈 설정정보를 수정 관리하는 서비스이다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -20,18 +20,29 @@ import java.util.List;
 @Service
 public class ConfigInfoService extends Common {
 
-//    private  static final Logger LOGGER = LoggerFactory.getLogger(ConfigInfoService.class);
-
     @Autowired
     private ConfigInfoMapper configInfoMapper;
 
-
+    /**
+     * 설정 정보 값을 조회한다.
+     *
+     * @param configInfo the config info
+     * @return value value
+     * @throws Exception the exception
+     */
     public List<ConfigInfo> getValue(ConfigInfo configInfo)  {
 
         return configInfoMapper.getValue(configInfo);
 
     }
 
+    /**
+     * 설정 정보 값을 수정한다.
+     *
+     * @param configInfo the config info
+     * @return map
+     * @throws Exception the exception
+     */
     public void updateValue(ConfigInfo configInfo) {
 
         configInfoMapper.updateValue(configInfo);

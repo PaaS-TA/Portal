@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.api.service
+ * SupportBoardService.java
+ * 커뮤니티 게시판 조회, 등록, 수정 등 커뮤니티 게시판 관리에 필요한 기능을 구현한 서비스 클래스
  *
  * @author yjkim
  * @version 1.0
@@ -29,9 +30,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 게시글 목록 조회
      *
-     * @param param the param
-     * @return Board list
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getBoardList(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -43,11 +44,11 @@ public class SupportBoardService extends Common{
     }
 
     /**
-     * 게시판 게시글 조회
+     * 게시판 게시글 상세 정보 조회
      *
-     * @param param the param
-     * @return Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getBoard(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -61,9 +62,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 댓글 목록 조회
      *
-     * @param param the param
-     * @return Board list
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getBoardCommentList(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -77,9 +78,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 게시글 등록
      *
-     * @param param the param
-     * @return Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> insertBoard(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -95,9 +96,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 게시글 수정
      *
-     * @param param the param
-     * @return Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> updateBoard(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -112,9 +113,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 게시글 삭제
      *
-     * @param param the param
-     * @return Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> deleteBoard(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -130,9 +131,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 댓글 수 조회
      *
-     * @param param the param
-     * @return Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getReplyNum(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -146,9 +147,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 댓글 수 조회
      *
-     * @param param the param
-     * @return Board
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> getCommentReplyNum(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -159,15 +160,12 @@ public class SupportBoardService extends Common{
         return resultMap;
     }
 
-
-
-
     /**
      * 게시판 댓글 등록
      *
-     * @param param the param
-     * @return BoardComment
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> insertBoardComment(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -183,9 +181,9 @@ public class SupportBoardService extends Common{
     /**
      * 게시판 댓글 수정
      *
-     * @param param the param
-     * @return BoardComment
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> updateBoardComment(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -196,15 +194,12 @@ public class SupportBoardService extends Common{
         return resultMap;
     }
 
-
-
-
     /**
      * 게시판 댓글 삭제
      *
-     * @param param the param
-     * @return BoardComment
-     * @throws Exception the exception
+     * @param param Support
+     * @return Map
+     * @throws Exception
      */
     public Map<String, Object> deleteBoardComment(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();

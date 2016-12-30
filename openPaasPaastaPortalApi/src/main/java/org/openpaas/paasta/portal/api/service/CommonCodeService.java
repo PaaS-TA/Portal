@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
- * 공통코드 서비스
+ * 공통코드 기능을 구현한 서비스 클래스이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.06.15
+ * @since 2016.06.15 최초작성
  */
 @Transactional
 @Service
@@ -33,10 +33,10 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드 목록 조회
+     * 공통코드 목록을 조회한다.
      *
-     * @param codeId the code id
-     * @return common code by id
+     * @param codeId String(아이디)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getCommonCodeById(String codeId) {
         return new HashMap<String, Object>() {{
@@ -48,10 +48,10 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드 목록 조회
+     * 공통코드 목록을 조회한다.
      *
-     * @param param the param
-     * @return common code
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getCommonCode(CommonCode param) {
         Map<String, Object> pageInfoMap = new HashMap<>();
@@ -93,7 +93,7 @@ public class CommonCodeService {
 
         List<CommonCode> resultList = tempList;
 
-        return new HashMap<String, Object>(){{
+        return new HashMap<String, Object>() {{
             put("page", pageInfoMap);
             put("result", "ok");      // FIX VALUE
             put("list", resultList);   // FIX VALUE
@@ -102,12 +102,12 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드 저장
+     * 공통코드를 저장한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return map map
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> insertCommonCode(CommonCode param, HttpServletResponse res) throws Exception {
         // CHECK REQUEST PARAM
@@ -123,7 +123,7 @@ public class CommonCodeService {
 
         if (Constants.RESULT_STATUS_FAIL_DUPLICATED.equals(resultMap.get("RESULT"))) {
             commonService.getCustomSendError(res, HttpStatus.CONFLICT, "common.info.result.fail.duplicated"
-                + Constants.DUPLICATION_SEPARATOR + resultMap.get("DUPLICATED_VALUE"));
+                    + Constants.DUPLICATION_SEPARATOR + resultMap.get("DUPLICATED_VALUE"));
 
             return resultMap;
         }
@@ -152,11 +152,11 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드 목록 저장
+     * 공통코드 목록을 저장한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private void saveCommonCodeList(CommonCode param, HttpServletResponse res) throws Exception {
         for (CommonCode tempModel : param.getCommonCodeList()) {
@@ -201,9 +201,9 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드그룹 저장
+     * 공통코드그룹을 저장한다.
      *
-     * @param param the param
+     * @param param CommonCode(모델클래스)
      */
     private void insertCommonCodeGroup(CommonCode param) {
         commonCodeMapper.insertCommonCodeGroup(param);
@@ -211,9 +211,9 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드상세 저장
+     * 공통코드상세를 저장한다.
      *
-     * @param param the param
+     * @param param CommonCode(모델클래스)
      */
     private void insertCommonCodeDetail(CommonCode param) {
         commonCodeMapper.insertCommonCodeDetail(param);
@@ -221,12 +221,12 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드그 수정
+     * 공통코드그룹을 수정한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return map map
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> updateCommonCode(CommonCode param, HttpServletResponse res) throws Exception {
         // COMMON CODE DETAIL
@@ -240,16 +240,18 @@ public class CommonCodeService {
             this.updateCommonCodeDetail(param, res);
         }
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
-     * 공통코드그룹 수정
+     * 공통코드그룹을 수정한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private void updateCommonCodeGroup(CommonCode param, HttpServletResponse res) throws Exception {
         // CHECK ORIGINAL ID
@@ -273,11 +275,11 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드상세 수정
+     * 공통코드상세를 수정한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private void updateCommonCodeDetail(CommonCode param, HttpServletResponse res) throws Exception {
         // CHECK ORIGINAL KEY
@@ -311,10 +313,10 @@ public class CommonCodeService {
 
 
     /**
-     * 공통코드 삭제
+     * 공통코드를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> deleteCommonCode(CommonCode param) {
         // CHECK LIST
@@ -334,14 +336,16 @@ public class CommonCodeService {
             }
         }
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
-     * 공통코드 목록 삭제
+     * 공통코드 목록을 삭제한다.
      *
-     * @param param the param
+     * @param param CommonCode(모델클래스)
      */
     private void deleteCommonCodeList(CommonCode param) {
         param.getCommonCodeList().forEach(commonCodeMapper::deleteCommonCodeDetail);
@@ -349,11 +353,11 @@ public class CommonCodeService {
 
 
     /**
-     * 요청 파라미터 검사
+     * 요청 파라미터를 검사한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private Map<String, Object> checkRequestParam(CommonCode param) throws Exception {
         Map<String, Object> checkedMap = new HashMap<>();
@@ -388,11 +392,11 @@ public class CommonCodeService {
 
 
     /**
-     * 요청 파라미터 검사 실행
+     * 요청 파라미터 검사를 실행한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private Map<String, Object> procCheckRequestParam(CommonCode param) throws Exception {
         Map<String, Object> tempMap = new HashMap<>();
@@ -429,11 +433,11 @@ public class CommonCodeService {
 
 
     /**
-     * 중복 검사
+     * 중복 검사를 한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private Map<String, Object> checkDuplicated(CommonCode param) throws Exception {
         Map<String, Object> checkedMap = new HashMap<>();
@@ -495,11 +499,11 @@ public class CommonCodeService {
 
 
     /**
-     * 중복 검사 실행
+     * 중복 검사를 실행한다.
      *
-     * @param param the param
-     * @return map map
-     * @throws Exception the exception
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     private Map<String, Object> procCheckDuplicated(CommonCode param) throws Exception {
         Map<String, Object> tempMap = new HashMap<>();

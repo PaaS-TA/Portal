@@ -1,10 +1,10 @@
 ---
 applications:
 - name: portal-api
-  memory: 1536M
+  memory: 1024M
   instances: 1
   host: portal-api-dev
-  path: build/libs/openPaasPaastaPortalApi-1.0-SNAPSHOT.war
+  path: build/libs/paasta-portal-api-1.0.war
   buildpack: java_buildpack_offline
   services:
   - portal-eureka-service

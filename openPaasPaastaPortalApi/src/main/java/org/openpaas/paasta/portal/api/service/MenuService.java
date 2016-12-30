@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 /**
- * 메뉴 서비스
+ * 메뉴 관리 기능을 구현한 서비스 클래스이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.29
+ * @since 2016.09.29 최초작성
  */
 @Transactional
 @Service
@@ -22,11 +22,6 @@ public class MenuService {
 
     private final MenuMapper menuMapper;
 
-    /**
-     * Instantiates a new Menu service.
-     *
-     * @param menuMapper the menu mapper
-     */
     @Autowired
     public MenuService(MenuMapper menuMapper) {
         this.menuMapper = menuMapper;
@@ -34,10 +29,10 @@ public class MenuService {
 
 
     /**
-     * Gets menu max no list.
+     * 메뉴 최대값을 조회한다.
      *
-     * @param param the param
-     * @return menu max no list
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getMenuMaxNoList(Menu param) {
         return new HashMap<String, Object>() {{
@@ -48,10 +43,10 @@ public class MenuService {
 
 
     /**
-     * Gets menu list.
+     * 메뉴 목록을 조회한다.
      *
-     * @param param the param
-     * @return menu list
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getMenuList(Menu param) {
         HashMap<String, Object> resultMap = (HashMap<String, Object>) this.getRecursiveMenuList(param);
@@ -77,10 +72,10 @@ public class MenuService {
 
 
     /**
-     * Gets menu list.
+     * 메뉴 목록을 조회한다.
      *
-     * @param param the param
-     * @return menu list
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     private Map<String, Object> getRecursiveMenuList(Menu param) {
         List<HashMap<String, Object>> resultList = new ArrayList<>();
@@ -111,10 +106,10 @@ public class MenuService {
 
 
     /**
-     * Gets menu detail.
+     * 메뉴 상세를 조회한다.
      *
-     * @param param the param
-     * @return menu detail
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getMenuDetail(Menu param) {
         return new HashMap<String, Object>() {{
@@ -125,52 +120,61 @@ public class MenuService {
 
 
     /**
-     * Insert menu.
+     * 메뉴를 등록한다.
      *
-     * @param param the param
-     * @return the map
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> insertMenu(Menu param) {
         menuMapper.insertMenu(param);
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
-     * Update menu.
+     * 메뉴를 수정한다.
      *
-     * @param param the param
-     * @return the map
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> updateMenu(Menu param) {
         menuMapper.updateMenu(param);
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
-     * Delete menu.
+     * 메뉴를 삭제한다.
      *
-     * @param param the param
-     * @return the map
+     * @param param Menu(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> deleteMenu(Menu param) {
         menuMapper.deleteMenu(param);
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
-     * Gets user menu list.
+     * 사용자 메뉴 목록을 조회한다.
      *
-     * @return user menu list
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getUserMenuList() {
         return new HashMap<String, Object>() {{
-            put("list", menuMapper.getMenuList(new Menu(){{setParentNo(0); setUseYn(Constants.USE_YN_Y);}}));
+            put("list", menuMapper.getMenuList(new Menu() {{
+                setParentNo(0);
+                setUseYn(Constants.USE_YN_Y);
+            }}));
             put("RESULT", Constants.RESULT_STATUS_SUCCESS);
         }};
 

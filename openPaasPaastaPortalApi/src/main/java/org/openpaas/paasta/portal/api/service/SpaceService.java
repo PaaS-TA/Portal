@@ -22,7 +22,11 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 /**
- * Created by Dojun on 2016-07-11.
+ * 공간 서비스 - 공간 목록 , 공간 이름 변경 , 공간 생성 및 삭제 등을 제공한다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.4.4 최초작성
  */
 @Service
 public class SpaceService extends Common {
@@ -36,12 +40,12 @@ public class SpaceService extends Common {
     private OrgMapper orgMapper;
 
     /**
-     * 공간(스페이스) 목록 조회
-     * 특정 조직을 인자로 받아 해당 조직의 공간을 조회.
+     * 공간(스페이스) 목록 조회한다.
+     * 특정 조직을 인자로 받아 해당 조직의 공간을 조회한다.
      *
      * @param org   the org
      * @param token the token
-     * @return List<CloudSpace>  orgList
+     * @return List<CloudSpace>     orgList
      * @throws Exception the exception
      * @author kimdojun
      * @version 1.0
@@ -71,7 +75,7 @@ public class SpaceService extends Common {
     }
 
     /**
-     * 공간(스페이스) 생성
+     * 공간을 생성한다.
      *
      * @param space the space
      * @param token the token
@@ -114,7 +118,7 @@ public class SpaceService extends Common {
 
 
     /**
-     * 공간 삭제
+     * 공간을 삭제한다.
      *
      * @param space the space
      * @param token the token
@@ -141,7 +145,7 @@ public class SpaceService extends Common {
     }
 
     /**
-     * 공간명 변경
+     * 공간명을 변경한다.
      *
      * @param space the space
      * @param token the token
@@ -169,7 +173,7 @@ public class SpaceService extends Common {
     }
 
     /**
-     * 공간 요약 정보 조회
+     * 공간 요약 정보를 조회한다.
      *
      * @param space the space
      * @param token the token
@@ -219,7 +223,7 @@ public class SpaceService extends Common {
     }
 
     /**
-     * 공간 role 부여
+     * 공간 role을 부여한다.
      *
      * @param orgName   the org name
      * @param spaceName the space name
@@ -247,7 +251,7 @@ public class SpaceService extends Common {
 
 
     /**
-     * 공간 role 제거
+     * 공간 role을 제거한다.
      *
      * @param orgName   the org name
      * @param spaceName the space name
@@ -273,6 +277,17 @@ public class SpaceService extends Common {
         return true;
     }
 
+
+    /**
+     * role을 문자열로 변환한다.
+     *
+     * @param userRole
+     * @return Map boolean
+     * @throws Exception the exception
+     * @author kimdojun
+     * @version 1.0
+     * @since 2016.8.18 최초작성
+     */
     private String toStringRole(String userRole) {
         String roleStr;
 
@@ -290,12 +305,12 @@ public class SpaceService extends Common {
     /**
      * 요청된 유저들에 대한 해당 스페이스의 역할목록을 가져온다
      *
-     * @param orgName
-     * @param spaceName
-     * @param userList
-     * @param token
-     * @return
-     * @throws Exception
+     * @param orgName   the org name
+     * @param spaceName the space name
+     * @param userList  the user list
+     * @param token     the token
+     * @return users for space role
+     * @throws Exception the exception
      * @author kimdojun
      * @version 1.0
      * @since 2016.9.05 최초작성
@@ -325,7 +340,7 @@ public class SpaceService extends Common {
 
 
     /**
-     * 권한별로 수집된 유저정보를 취합하여 하나의 객체로 통합해 리턴한다.'
+     * 권한별로 수집된 유저정보를 취합하여 하나의 객체로 통합해 리턴한다.
      * @param orgName
      * @param spaceName
      * @param userList
@@ -368,9 +383,10 @@ public class SpaceService extends Common {
 
     /**
      * 운영자 포털에서 스페이스 목록을 요청했을때, 해당 조직의 모든 스페이스 목록을 응답한다.
-     * @param orgName
-     * @return HashMap<String, Object>
-     * @throws Exception
+     *
+     * @param orgName the org name
+     * @return HashMap<String Object>
+     * @throws Exception the exception
      * @author kimdojun
      * @version 1.0
      * @since 2016.9.12 최초작성
@@ -383,6 +399,14 @@ public class SpaceService extends Common {
         return spaceMapper.getSpacesForAdmin(orgId);
     }
 
+    /**
+     * 공간 정보를 조회한다.
+     *
+     * @param spaceName the space name
+     * @param orgId     the org id
+     * @return the spaces info
+     * @throws Exception the exception
+     */
     public List<Space> getSpacesInfo(String spaceName, int orgId) throws Exception{
         Map map = new HashMap();
         map.put("spaceName" , spaceName);
@@ -391,6 +415,13 @@ public class SpaceService extends Common {
         return selectSpace;
     }
 
+    /**
+     * 공간ID로 공간정보를 조회한다.
+     *
+     * @param spaceId the space id
+     * @return the spaces info by id
+     * @throws Exception the exception
+     */
     public List<Space> getSpacesInfoById(int spaceId) throws Exception{
         Map map = new HashMap();
         map.put("spaceId" , spaceId);
@@ -400,7 +431,7 @@ public class SpaceService extends Common {
 
 
     /**
-     * 공간 쿼터
+     * 공간 쿼터를 조회한다.
      *
      * @param space the space
      * @param token the token

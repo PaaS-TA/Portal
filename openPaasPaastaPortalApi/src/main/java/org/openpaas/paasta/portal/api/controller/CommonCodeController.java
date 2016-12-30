@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * 공통코드 컨트롤러
+ * 코드 목록 조회, 등록, 삭제 등 코드 관리의 API 를 호출 받는 컨트롤러이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.06.15
+ * @since 2016.06.15 최초작성
  */
 @RestController
 @RequestMapping(value = {"/commonCode"})
@@ -28,10 +28,10 @@ public class CommonCodeController {
 
 
     /**
-     * 공통코드 목록 조회
+     * 공통코드 목록을 조회한다.
      *
-     * @param codeId the code id
-     * @return common code
+     * @param codeId String(아이디)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCommonCode/{codeId}"}, method = RequestMethod.GET, consumes = "application/json")
     public Map<String, Object> getCommonCode(@PathVariable("codeId") String codeId) {
@@ -40,10 +40,10 @@ public class CommonCodeController {
 
 
     /**
-     * 공통코드 목록 조회
+     * 공통코드 목록을 조회한다.
      *
-     * @param param   the param
-     * @return common code
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/getCommonCode"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getCommonCode(@RequestBody CommonCode param) {
@@ -52,11 +52,11 @@ public class CommonCodeController {
 
 
     /**
-     * 공통코드 저장
+     * 공통코드를 저장한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return map map
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/insertCommonCode"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertCommonCode(@RequestBody CommonCode param, HttpServletResponse res) throws Exception {
@@ -65,11 +65,11 @@ public class CommonCodeController {
 
 
     /**
-     * 공통코드 수정
+     * 공통코드를 수정한다.
      *
-     * @param param the param
-     * @param res   the res
-     * @return map map
+     * @param param CommonCode(모델클래스)
+     * @param res   HttpServletResponse(자바클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/updateCommonCode"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateCommonCode(@RequestBody CommonCode param, HttpServletResponse res) throws Exception {
@@ -78,10 +78,10 @@ public class CommonCodeController {
 
 
     /**
-     * 공통코드 삭제
+     * 공통코드를 삭제한다.
      *
-     * @param param the param
-     * @return map map
+     * @param param CommonCode(모델클래스)
+     * @return Map(자바클래스)
      */
     @RequestMapping(value = {"/deleteCommonCode"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteCommonCode(@RequestBody CommonCode param) {

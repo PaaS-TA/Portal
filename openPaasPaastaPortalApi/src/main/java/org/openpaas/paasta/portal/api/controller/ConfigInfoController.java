@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 설정정보 컨트롤러 - 포탈 설정정보를 수정 관리하는 컨트롤러이다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.4.4 최초작성
+ */
 @RestController
 @Transactional
 @RequestMapping(value = {"/configInfo"})
@@ -22,6 +29,13 @@ public class ConfigInfoController extends Common {
     @Autowired
     private ConfigInfoService ConfigInfoService;
 
+    /**
+     * 설정 정보 값을 조회한다.
+     *
+     * @param ConfigInfo the config info
+     * @return value
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/getValue"}, method = RequestMethod.POST)
     public Map<String, Object> getValue(@RequestBody ConfigInfo ConfigInfo) {
 
@@ -33,6 +47,13 @@ public class ConfigInfoController extends Common {
 
     }
 
+    /**
+     * 설정 정보 값을 수정한다.
+     *
+     * @param ConfigInfo the config info
+     * @return map
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/updateValue"}, method = RequestMethod.POST)
     public Map<String, Object> updateValue(@RequestBody ConfigInfo ConfigInfo) {
 

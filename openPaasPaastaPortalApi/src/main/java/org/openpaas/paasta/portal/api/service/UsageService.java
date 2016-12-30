@@ -21,11 +21,11 @@ import java.util.Map;
 import static java.util.stream.Collectors.toList;
 
 /**
- * 사용량 조회 서비스
+ * 사용량 조회 기능을 구현한 서비스 클래스이다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.22
+ * @since 2016.09.22 최초작성
  */
 @Transactional
 @Service
@@ -41,11 +41,6 @@ public class UsageService {
     private String abacusUrl;
 
 
-    /**
-     * Instantiates a new Usage service.
-     *  @param orgService     the org service
-     * @param spaceService the space service
-     */
     @Autowired
     public UsageService(OrgService orgService, SpaceService spaceService) {
         this.orgService = orgService;
@@ -54,11 +49,11 @@ public class UsageService {
 
 
     /**
-     * Gets usage organization list.
+     * 사용량 조직을 조회한다.
      *
-     * @param req the req
-     * @return usage organization list
-     * @throws Exception the exception
+     * @param req HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getUsageOrganizationList(HttpServletRequest req) throws Exception {
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -70,17 +65,19 @@ public class UsageService {
             put("guid", cloudOrganization.getMeta().getGuid());
         }}));
 
-        return new HashMap<String, Object>(){{put("list", resultList);}};
+        return new HashMap<String, Object>() {{
+            put("list", resultList);
+        }};
     }
 
 
     /**
-     * Gets usage space list.
+     * 사용량 공간을 조회한다.
      *
-     * @param param the param
-     * @param req   the req
-     * @return usage space list
-     * @throws Exception the exception
+     * @param param Usage(모델클래스)
+     * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getUsageSpaceList(Usage param, HttpServletRequest req) throws Exception {
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -94,16 +91,18 @@ public class UsageService {
             put("guid", cloudOrganization.getMeta().getGuid());
         }}));
 
-        return new HashMap<String, Object>(){{put("list", resultList);}};
+        return new HashMap<String, Object>() {{
+            put("list", resultList);
+        }};
     }
 
 
     /**
-     * Gets usage search list.
+     * 사용량을 조회한다.
      *
-     * @param param the param
-     * @return usage space list
-     * @throws Exception the exception
+     * @param param Usage(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> getUsageSearchList(Usage param) throws Exception {
         String reqUrl = abacusUrl + "/org/{org_id}/space/{space_id}/from/{from_month}/to/{to_month}";

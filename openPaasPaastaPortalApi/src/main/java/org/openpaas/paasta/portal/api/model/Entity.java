@@ -21,19 +21,21 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * @author Thomas Risberg
+ * 엔티티 모델
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.8.30 최초작성
  */
 public class Entity {
 
+	public Map<String, Object> map;
 	private Meta meta;
-
 	private String name;
 
 	public Entity() {
 		//empty
 	}
-
-	public Map<String, Object> map;
 
 	public Entity(Meta meta) {
 		this(meta, null);
@@ -72,6 +74,14 @@ public class Entity {
 				getName();
 	}
 
+	public Map<String, Object> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
+
 	public static class Meta {
 
 		private UUID guid;
@@ -95,6 +105,10 @@ public class Entity {
 			this.url = url;
 		}
 
+		public static Meta defaultMeta() {
+			return new Meta(null, null, null);
+		}
+
 		public UUID getGuid() {
 			return guid;
 		}
@@ -110,16 +124,5 @@ public class Entity {
 		public String getUrl() {
 			return url;
 		}
-
-		public static Meta defaultMeta() {
-			return new Meta(null, null, null);
-		}
-	}
-	public Map<String, Object> getMap() {
-		return map;
-	}
-
-	public void setMap(Map<String, Object> map) {
-		this.map = map;
 	}
 }

@@ -14,12 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.api.controller
+ * DocumentsController.java
+ * 문서 조회, 등록, 수정 등 문서 관리에 필요한 API 를 호출 받는 컨트롤러
  *
  * @author yjkim
  * @version 1.0
- * @since 2016.07.28
+ * @since 2016.07.28 최초작성
  */
+
 @RestController
 @RequestMapping(value = {"/documents"})
 public class DocumentsController {
@@ -32,68 +34,70 @@ public class DocumentsController {
     /**
      * 문서 목록 조회
      *
-     * @param response   the response
-     * @return Document list
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getDocumentsList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getDocumentsList(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("getDocumentsList :: param :: {}, param.toString()");
+        LOGGER.debug("getDocumentsList :: param :: {}, param.toString()");
         return documentsService.getDocumentsList(param);
     }
 
     /**
      * 문서 조회
      *
-     * @param response   the response
-     * @return Document
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getDocument"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("getDocument :: param :: {}, param.toString()");
+        LOGGER.debug("getDocument :: param :: {}, param.toString()");
         return documentsService.getDocument(param);
     }
 
     /**
      * 문서 등록
      *
-     * @param response   the response
-     * @return insert Document
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/insertDocument"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("insertDocument :: param :: {}, param.toString()");
-
+        LOGGER.debug("insertDocument :: param :: {}, param.toString()");
         return documentsService.insertDocument(param);
     }
 
     /**
      * 문서 수정
      *
-     * @param response   the response
-     * @return update Document
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateDocument"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("updateDocument :: param :: {}, param.toString()");
-
+        LOGGER.debug("updateDocument :: param :: {}, param.toString()");
         return documentsService.updateDocument(param);
     }
 
     /**
      * 문서 삭제
      *
-     * @param response   the response
-     * @return delete Document
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("deleteDocument :: param :: {}, param.toString()");
-
+        LOGGER.debug("deleteDocument :: param :: {}, param.toString()");
         return documentsService.deleteDocument(param);
     }
 

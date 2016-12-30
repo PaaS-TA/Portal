@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Space Model
+ * 공간 모델
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */

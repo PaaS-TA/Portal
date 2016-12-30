@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * org.openpaas.paasta.portal.api.config
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.07.01
  */

@@ -1,26 +1,27 @@
 package org.openpaas.paasta.portal.api.service;
 
-import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openpaas.paasta.portal.api.common.Common;
 import org.openpaas.paasta.portal.api.common.Constants;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.*;
 
-import static org.slf4j.LoggerFactory.getLogger;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * ClientService
+ * ClientService.java
+ * 클라이언트 목록 , 클라이언트 삭제 등 클라이언트 관리에 필요한 기능을 구현한 서비스 클래스
+ * Common 클래스를 상속하여 구현
  *
  * @author yjkim
  * @version 1.0
- * @since 2016.9.29
+ * @since 2016.9.29 최초작성
  */
-
 
 @Service
 @Transactional
@@ -30,11 +31,11 @@ public class ClientService extends Common {
      * 클라이언트 목록 조회
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param the param
-     * @return client list (map)
-     * @throws Exception the exception
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
-    public Map getClientList(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception { //CustomCloudFoundryClient customCloudFoundryClient
+    public Map getClientList(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
         ResponseEntity<String> responseEntity = customCloudFoundryClient.getClientList(uaaClientId, uaaClientSecret, uaaTarget);
 
@@ -69,8 +70,9 @@ public class ClientService extends Common {
      * 클라이언트 정보 조회
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param the param
-     * @return client (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     public Map getClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -104,8 +106,9 @@ public class ClientService extends Common {
      * 클라이언트 등록
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param the param
-     * @return result, status (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     public Map registerClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -122,8 +125,9 @@ public class ClientService extends Common {
      * 클라이언트 수정
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param the param
-     * @return result, status (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     public Map updateClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -142,8 +146,9 @@ public class ClientService extends Common {
      * 클라이언트 삭제
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param the param
-     * @return result, status (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     public Map deleteClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 

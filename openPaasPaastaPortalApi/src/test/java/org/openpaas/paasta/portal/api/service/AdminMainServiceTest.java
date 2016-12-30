@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * org.openpaas.paasta.portal.api.service
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
  * @since 2016.09.08
  */

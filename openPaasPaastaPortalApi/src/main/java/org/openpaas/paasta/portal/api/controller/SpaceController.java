@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Login Controller
+ * 공간 컨트롤러 - 공간 목록 , 공간 이름 변경 , 공간 생성 및 삭제 등을 제공한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -37,10 +37,14 @@ public class SpaceController extends Common {
      */
     @Autowired
     SpaceService spaceService;
+    /**
+     * The Org service.
+     */
     @Autowired
     OrgService orgService;
+
     /**
-     * 공간 요약 정보 조회
+     * 공간 요약 정보를 조회한다.
      *
      * @param space   the space
      * @param request the request
@@ -61,7 +65,7 @@ public class SpaceController extends Common {
 
 
     /**
-     * 공간명 변경
+     * 공간명을 변경한다.
      *
      * @param space   the space
      * @param request the request
@@ -82,7 +86,7 @@ public class SpaceController extends Common {
 
 
     /**
-     * 공간 삭제
+     * 공간을 삭제한다.
      *
      * @param space   the space
      * @param request the request
@@ -101,14 +105,14 @@ public class SpaceController extends Common {
 
 
     /**
-     * 공간(스페이스) 목록 조회
-     * 특정 조직을 인자로 받아 해당 조직의 공간을 조회.
+     * 공간 목록을 조회한다.
+     * 특정 조직을 인자로 받아 해당 조직의 공간을 조회한다.
      *
      * @param org     the org
      * @param request the request
-     * @return List<CloudSpace>   orgList
+     * @return List<CloudSpace>    orgList
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.20 최초작성
      */
@@ -125,13 +129,13 @@ public class SpaceController extends Common {
 
 
     /**
-     * 공간(스페이스) 생성
+     * 공간을 생성한다.
      *
      * @param space   the space
      * @param request the request
      * @return boolean boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.20 최초작성
      */
@@ -148,13 +152,13 @@ public class SpaceController extends Common {
 
 
     /**
-     * 조직 role 부여
+     * 조직 role을 부여한다.
      *
      * @param token the token
      * @param body  the body
      * @return Map org role
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.10 최초작성
      */
@@ -171,13 +175,13 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 조직 role 제거
+     * 조직 role을 제거한다.
      *
      * @param token the token
      * @param body  the body
      * @return Map boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.8.10 최초작성
      */
@@ -194,13 +198,13 @@ public class SpaceController extends Common {
     }
 
     /**
-     * 조직 role 제거
+     * 조직 role을 제거한다.
      *
      * @param token the token
      * @param body  the body
      * @return Map boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.9.1 최초작성
      */
@@ -226,6 +230,16 @@ public class SpaceController extends Common {
         return spaceUserList;
     }
 
+    /**
+     * 관리자 권한의 공간을 조회한다.
+     *
+     * @param body the body
+     * @return Map boolean
+     * @throws Exception the exception
+     * @author 김도준
+     * @version 1.0
+     * @since 2016.9.1 최초작성
+     */
     @RequestMapping(value = {"/space/getSpacesForAdmin"}, method = RequestMethod.POST)
     public Map<String, Object> getSpacesForAdmin(@RequestBody Map<String, String> body) throws Exception {
 
@@ -238,7 +252,7 @@ public class SpaceController extends Common {
 
 
     /**
-     * 공간 쿼터
+     * 공간 쿼터를 조회한다.
      *
      * @param space   the space
      * @param request the request

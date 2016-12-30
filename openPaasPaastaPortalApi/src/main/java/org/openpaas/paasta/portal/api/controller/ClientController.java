@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.api.controller
- * Client Controller
+ * ClientController.java
+ * 클라이언트 목록 , 클라이언트 삭제 등 클라이언트 관련 API를 호출 받는 컨트롤러
  *
  * @author yjkim
  * @version 1.0
- * @since 2016.9.29
+ * @since 2016.9.29 최초작성
  */
+
 @RestController
 @RequestMapping(value = {"/client"})
 public class ClientController extends Common {
@@ -29,8 +30,9 @@ public class ClientController extends Common {
     /**
      * 클라이언트 목록 조회
      *
-     * @param param the param
-     * @return client list (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getClientList"}, method = RequestMethod.POST)
     public Map<String, Object> getClientList(@RequestBody Map<String, Object> param) throws Exception {
@@ -41,8 +43,9 @@ public class ClientController extends Common {
     /**
      * 클라이언트 상세 정보 조회
      *
-     * @param param the param
-     * @return client (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getClient"}, method = RequestMethod.POST)
     public Map<String, Object> getClient(@RequestBody Map<String, Object> param) throws Exception {
@@ -53,8 +56,9 @@ public class ClientController extends Common {
     /**
      * 클라이언트 등록
      *
-     * @param param the param
-     * @return result, status (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/registerClient"}, method = RequestMethod.POST)
     public Map<String, Object> registerClient(@RequestBody Map<String, Object> param) throws Exception {
@@ -65,8 +69,9 @@ public class ClientController extends Common {
     /**
      * 클라이언트 수정
      *
-     * @param param the param
-     * @return result, status (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateClient"}, method = RequestMethod.POST)
     public Map<String, Object> updateClient(@RequestBody Map<String, Object> param) throws Exception {
@@ -77,17 +82,14 @@ public class ClientController extends Common {
     /**
      * 클라이언트 삭제
      *
-     * @param param the param
-     * @return result, status (map)
+     * @param param Map
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteClient"}, method = RequestMethod.POST)
     public Map<String, Object> deleteClient(@RequestBody Map<String, Object> param) throws Exception {
         CustomCloudFoundryClient adminCcfc = getCustomCloudFoundryClient(uaaAdminClientId, uaaAdminClientSecret);
         return clientService.deleteClient(adminCcfc, param);
     }
-
-
-
-
 
 }

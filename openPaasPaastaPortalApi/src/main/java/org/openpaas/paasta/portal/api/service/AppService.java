@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Login Controller
+ * 앱 서비스 - 애플리케이션 정보 조회, 구동, 정지 등의 API 를 호출 하는 서비스이다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -41,7 +41,7 @@ public class AppService extends Common {
     private AppAutoScaleModalService appAutoScaleModalService;
 
     /**
-     * 앱 요약 정보 조회
+     * 앱 요약 정보를 조회한다.
      *
      * @param app    the app
      * @param client the client
@@ -57,7 +57,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 실시간 상태 조회
+     * 앱 실시간 상태를 조회한다.
      *
      * @param app    the app
      * @param client the client
@@ -72,7 +72,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 변경
+     * 앱을 변경한다.
      *
      * @param app    the app
      * @param client the client
@@ -86,7 +86,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 실행
+     * 앱을 실행한다.
      *
      * @param app    the app
      * @param client the client
@@ -100,7 +100,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 중지
+     * 앱을 중지한다.
      *
      * @param app    the app
      * @param client the client
@@ -113,7 +113,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 삭제
+     * 앱을 삭제한다.
      *
      * @param app    the app
      * @param client the client
@@ -130,7 +130,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 리스테이지
+     * 앱을 리스테이징한다.
      *
      * @param app    the app
      * @param client the client
@@ -143,7 +143,7 @@ public class AppService extends Common {
     }
 
     /**
-     * 앱 인스턴스 변경
+     * 앱 인스턴스를 변경한다.
      *
      * @param app    the app
      * @param client the client
@@ -163,7 +163,7 @@ public class AppService extends Common {
     }
 
     /**
-     * 앱-서비스 바인드
+     * 앱-서비스를 바인드한다.
      *
      * @param app    the app
      * @param client the client
@@ -177,7 +177,7 @@ public class AppService extends Common {
 
 
     /**
-     * 앱-서비스 언바인드
+     * 앱-서비스를 언바인드한다.
      *
      * @param app    the app
      * @param client the client
@@ -190,7 +190,7 @@ public class AppService extends Common {
     }
 
     /**
-     * 앱 이벤트 조회
+     * 앱 이벤트를 조회한다.
      *
      * @param app    the app
      * @param client the client
@@ -205,13 +205,13 @@ public class AppService extends Common {
     }
 
     /**
-     * 앱 환경변수 조회
+     * 앱 환경변수를 조회한다.
      *
      * @param app   the app
      * @param token the token
      * @return the application env
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.29 최초작성
      */
@@ -234,13 +234,13 @@ public class AppService extends Common {
     }
 
     /**
-     * 앱 환경변수 중 사용자 정의 환경변수 추가,수정
+     * 앱 환경변수 중 사용자 정의 환경변수를 추가,수정한다.
      *
      * @param app   the app
      * @param token the token
      * @return the boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.30 최초작성
      */
@@ -267,11 +267,11 @@ public class AppService extends Common {
 
 
     /**
-     * 앱 라우트 가져오기
+     * 앱 라우트를 조회한다.
      *
      * @param domainName,client
      * @return map
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.7.5 최초작성
      */
@@ -286,13 +286,13 @@ public class AppService extends Common {
 
 
     /**
-     * 라우트 추가 및 라우트와 앱을 연결 (앱에 Uri를 추가함)
+     * 라우트 추가 및 라우트와 앱을 연결한다. (앱에 URI를 추가함)
      *
      * @param app   the app
      * @param token the token
      * @return the boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.7.6 최초작성
      */
@@ -316,13 +316,13 @@ public class AppService extends Common {
     }
 
     /**
-     * 앱 라우트 해제
+     * 앱 라우트를 해제한다.
      *
      * @param app   the app
      * @param token the token
      * @return the boolean
      * @throws Exception the exception
-     * @author kimdojun
+     * @author 김도준
      * @version 1.0
      * @since 2016.7.6 최초작성
      */
@@ -348,7 +348,7 @@ public class AppService extends Common {
     }
 
     /**
-     * 라우트 삭제
+     * 라우트를 삭제한다.
      *
      * @param orgName   the org name
      * @param spaceName the space name
@@ -379,7 +379,7 @@ public class AppService extends Common {
     }
 
     /**
-     * index로 앱 인스턴스 종료
+     * 인덱스로 앱 인스턴스를 종료한다.
      *
      * @param param the param
      * @param req   the req
@@ -396,6 +396,12 @@ public class AppService extends Common {
     }
 
 
+    /**
+     * 앱 이미지 URL를 조회한다.
+     *
+     * @param app the app
+     * @return the app image url
+     */
     public String getAppImageUrl(App app) {
 
         String buildPack = appCcMapper.getAppBuildPack(String.valueOf(app.getGuid()));

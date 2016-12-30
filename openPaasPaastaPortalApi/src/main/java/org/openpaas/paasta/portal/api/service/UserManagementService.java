@@ -15,11 +15,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 사용자 관리 서비스
+ * 사용자 목록, 사용자 삭제 및 운영자 권한 부여 등 관리자에게 필요한 기능을 구현한 서비스 클래스로 Common(1.3.8) 클래스를 상속하여 구현한다.
  *
- * @author rex
+ * @author 김도준
  * @version 1.0
- * @since 2016.09.12
+ * @since 2016.09.12 최초작성
  */
 @Transactional
 @Service
@@ -31,14 +31,6 @@ public class UserManagementService extends Common {
     private final UserService userService;
 
 
-    /**
-     * Instantiates a new User management service.
-     *
-     * @param userManagementMapper the user management mapper
-     * @param userMapper           the user mapper
-     * @param userDetailMapper     the user detail mapper
-     * @param userService          the user service
-     */
     @Autowired
     public UserManagementService(UserManagementMapper userManagementMapper,
                                  UserMapper userMapper,
@@ -52,10 +44,10 @@ public class UserManagementService extends Common {
 
 
     /**
-     * 운영자 메뉴에서 사용자 정보 리스트를 가져온다.
+     * 사용자 정보 목록을 조회한다.
      *
-     * @param param the param
-     * @return user info list
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> getUserInfoList(UserManagement param) {
         int pageNo = Constants.PAGE_NO;
@@ -67,16 +59,18 @@ public class UserManagementService extends Common {
 
         param.setPageNo((int) ((pageSize * (pageNo - 1))));
 
-        return new HashMap<String, Object>(){{put("list", userManagementMapper.getUserInfoList(param));}};
+        return new HashMap<String, Object>() {{
+            put("list", userManagementMapper.getUserInfoList(param));
+        }};
     }
 
 
     /**
-     * * 운영자 메뉴에서 사용자 패스워드 초기화를 한다.
+     * 사용자 패스워드 초기화를 한다.
      *
-     * @param param the param
-     * @return reset password
-     * @throws Exception the exception
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> setResetPassword(UserManagement param) throws Exception {
         userService.resetPassword(new HashMap<String, Object>() {{
@@ -84,15 +78,17 @@ public class UserManagementService extends Common {
             put("searchUserId", param.getUserId());
         }});
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
      * 사용자에게 운영자 권한을 부여한다.
      *
-     * @param param userID, useYn
-     * @return map
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
      */
     public Map<String, Object> updateOperatingAuthority(UserManagement param) {
         param.setPageSize(1);
@@ -101,16 +97,18 @@ public class UserManagementService extends Common {
 
         userManagementMapper.updateOperatingAuthority(param);
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 
 
     /**
-     * 운영자 메뉴에서 사용자를 삭제한다.
+     * 사용자를 삭제한다.
      *
-     * @param param the param
-     * @return map
-     * @throws Exception the exception
+     * @param param UserManagement(모델클래스)
+     * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> deleteUserAccount(UserManagement param) throws Exception {
         CustomCloudFoundryClient adminCustomCloudFoundryClient = getCustomCloudFoundryClient(adminUserName, adminPassword);
@@ -123,6 +121,8 @@ public class UserManagementService extends Common {
 
         userDetailMapper.delete(userId);
 
-        return new HashMap<String, Object>(){{put("RESULT", Constants.RESULT_STATUS_SUCCESS);}};
+        return new HashMap<String, Object>() {{
+            put("RESULT", Constants.RESULT_STATUS_SUCCESS);
+        }};
     }
 }

@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * org.openpaas.paasta.portal.api.controller
+ * SupportNoticeController.java
+ * 공지사항 조회, 등록, 수정 등 공지사항 관리에 필요한 API 를 호출 받는 컨트롤러
  *
  * @author yjkim
  * @version 1.0
- * @since 2016.07.28
+ * @since 2016.07.28 최초작성
  */
 @RestController
 @RequestMapping(value = {"/support"})
@@ -28,72 +29,73 @@ public class SupportNoticeController {
     @Autowired
     private SupportNoticeService supportNoticeService;
 
-
     /**
      * 공지 목록 조회
      *
-     * @param response   the response
-     * @return notice list
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getNoticeList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getNoticeList(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("getNoticeList :: param :: {}, param.toString()");
+        LOGGER.debug("getNoticeList :: param :: {}, param.toString()");
         return supportNoticeService.getNoticeList(param);
     }
 
     /**
-     * 공지 조회
+     * 공지 상세 정보 조회
      *
-     * @param response   the response
-     * @return notice
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/getNotice"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getNotice(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("getNoticeList :: param :: {}, param.toString()");
+        LOGGER.debug("getNoticeList :: param :: {}, param.toString()");
         return supportNoticeService.getNotice(param);
     }
 
     /**
      * 공지 등록
      *
-     * @param response   the response
-     * @return insert notice
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/insertNotice"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertNotice(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("insertNotice :: param :: {}, param.toString()");
-
+        LOGGER.debug("insertNotice :: param :: {}, param.toString()");
         return supportNoticeService.insertNotice(param);
     }
 
     /**
      * 공지 수정
      *
-     * @param response   the response
-     * @return update notice
-     * @throws Exception the exception
+     * @param param Support
+     * @param response HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/updateNotice"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateNotice(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("updateNotice :: param :: {}, param.toString()");
-
+        LOGGER.debug("updateNotice :: param :: {}, param.toString()");
         return supportNoticeService.updateNotice(param);
     }
 
     /**
      * 공지 삭제
      *
-     * @param response   the response
-     * @return delete notice
-     * @throws Exception the exception
+     * @param param Support
+     * @param response  HttpServletResponse
+     * @return Map
+     * @throws Exception
      */
     @RequestMapping(value = {"/deleteNotice"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteNotice(@RequestBody Support param, HttpServletResponse response) throws Exception{
-        LOGGER.info("deleteNotice :: param :: {}, param.toString()");
-
+        LOGGER.debug("deleteNotice :: param :: {}, param.toString()");
         return supportNoticeService.deleteNotice(param);
     }
 
