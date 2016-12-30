@@ -4,7 +4,7 @@ applications:
   memory: 512M
   instances: 1
   host: portal-registration-stg
-  path: build/libs/openPaasPaastaPortalRegistration-1.0-SNAPSHOT.war
+  path: build/libs/paasta-portal-registration-1.0.war
   buildpack: java_buildpack_offline
   env:
     test_value: STG_TEST_VALUE

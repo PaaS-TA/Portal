@@ -16,8 +16,8 @@ apply plugin: 'spring-boot'
 apply plugin: "io.spring.dependency-management"
 
 war {
-    baseName = 'openPaasPaastaPortalRegistration'
-    version '1.0-SNAPSHOT'
+    baseName = 'paasta-portal-registration'
+    version '1.0'
 }
 
 sourceCompatibility = 1.8
