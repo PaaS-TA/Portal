@@ -12,21 +12,23 @@
                 <input type="text" maxlength="100" id="org" class="form-control2" onkeyup="procChangeOrgNameInputBox();"
                        onkeydown="if (event.keyCode == 13) {procRenameOrgModal(); return false;}">
                 <button type="button" class="btn btn-cancel btn-sm" onClick="procRenameOrgModal();"
+                        style="margin-top:-4px;"
                         id="renameOrgBtn" disabled>
                     이름변경
                 </button>
-                <button type="button" class="btn btn_del" onClick="procDeleteOrgModal();" id="deleteOrgBtn">
+                <button type="button" class="btn btn_del" onClick="procDeleteOrgModal();" id="deleteOrgBtn"
+                        style="margin-top:-4px;">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
                 <button type="button" id="webIdeApplyBtn" class="btn btn-point btn-sm" onclick="applyWebIdeModal();"
-                        style='display: none;'>
+                        style='display: none;margin-top:-4px;'>
                     WEB IDE 신청
                 </button>
                 <img width="30px" id="webIdeLinkBtn" onclick="openWebIdeUrl();"
-                     style="cursor: pointer; border-radius: 3px; margin-top:-9px; display: none;"
+                     style="cursor: pointer; border-radius: 3px; margin-top:-5px; display: none;"
                      src="<c:url value='/resources/images/web_ide.png' />">
                 <button type="button" id="webIdeCancelBtn" class="btn btn-cancel btn-sm" onclick="cancelWebIdeModal();"
-                        style='display: none;'>
+                        style='display: none;margin-top:-4px;'>
                     WEB IDE 신청 취소
                 </button>
                 <input type="hidden" id="webIdeUrl" value="" />

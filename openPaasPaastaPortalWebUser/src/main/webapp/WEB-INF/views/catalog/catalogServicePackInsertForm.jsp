@@ -20,7 +20,7 @@
 <div id="catalogFormView" style="display: none;">
     <div class="row" style="margin-top:-19px">
         <div class="panel content-box col-md-6 col-md-offset-13" style="height:530px;">
-            <div class="col-sm-4 pt0">
+            <div class="col-sm-12 pt0">
                 <h4 id="catalogTitle" class="modify_h4 fwb"> service name </h4>
             </div>
             <div class="col-sm-12 col-md-12 tar mt65">
@@ -153,7 +153,9 @@ SCRIPT BEGIN
         var catalogDescription = catalogList[0].description;
 
         $('#catalogTitle').text(catalogList[0].name);
-        $('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
+        //$('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
+        // 이미지 바이너리 삽입
+        $('#catalogImage').attr('src', procPrefixImgsrc(catalogList[0].fileString));
         $('#catalogOrgName').text(currentOrg);
 
         catalogSummaryObject.html(catalogSummary.replace(/\r?\n/g, '<br>')).attr('title', catalogSummary);

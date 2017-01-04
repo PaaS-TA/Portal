@@ -9,10 +9,10 @@
 
     $(document).ready(function () {
         $("#minInstance").spinner({
-            min: 2, max: 20, step: 1, start: 2
+            min: 1, max: 20, step: 1, start: 1
         });
         $("#maxInstance").spinner({
-            min: 2, max: 20, step: 1, start: 2
+            min: 1, max: 20, step: 1, start: 1
         });
         $("#minCpu").spinner({
             min: 10, max: 90, step: 10, start: 20

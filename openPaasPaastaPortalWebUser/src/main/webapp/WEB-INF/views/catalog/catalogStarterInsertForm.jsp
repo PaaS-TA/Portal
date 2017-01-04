@@ -215,7 +215,9 @@ SCRIPT BEGIN
         var catalogDescription = catalogList[0].description;
 
         $('#catalogTitle').text(catalogList[0].name);
-        $('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
+        //$('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
+        // 이미지 바이너리 삽입
+        $('#catalogImage').attr('src', procPrefixImgsrc(catalogList[0].fileString));
         $('#catalogOrgName').text(currentOrg);
 
         catalogDescriptionObject.html(catalogDescription.replace(/\r?\n/g, '<br>')).attr('title', catalogDescription);
@@ -327,7 +329,10 @@ SCRIPT BEGIN
         RESULT_CATALOG_STARTER_SERVICE_PLAN_LIST = [];
 
         // STARTER RELATION :: BUILD PACK
-        $('#catalogBuildPackImage').attr('src', procCheckImage(buildPackList[0].thumbImgPath));
+        //$('#catalogBuildPackImage').attr('src', procCheckImage(buildPackList[0].thumbImgPath));
+        // 이미지 바이너리 삽입
+        $('#catalogBuildPackImage').attr('src', procPrefixImgsrc(buildPackList[0].fileString));
+
         $('#catalogBuildPackNameTitle').text(buildPackList[0].name);
         $('#catalogBuildPackDescription').attr('title', buildPackList[0].description);
         $('#catalogBuildPackName').val(buildPackList[0].buildPackName);
@@ -350,7 +355,9 @@ SCRIPT BEGIN
             htmlString.push('<div class="col-sm-6 col-md-3">'
                 + '<div class="applist" data-toggle="tooltip" data-placement="bottom" title="'
                 + servicePackList[i].description + '">'
-                + '<img src=' + procCheckImage(servicePackList[i].thumbImgPath) + ' class="img-circle">'
+                //+ '<img src=' + procCheckImage(servicePackList[i].thumbImgPath) + ' class="img-circle">'
+                // 이미지 바이너리 삽입
+                + '<img src=' + procPrefixImgsrc(servicePackList[i].fileString) + ' class="img-circle">'
                 + '<div class="name"><p>' +  servicePackList[i].name
                 + '</p></div></div></div>');
         }

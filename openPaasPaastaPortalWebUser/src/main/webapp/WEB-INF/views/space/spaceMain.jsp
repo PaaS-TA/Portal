@@ -262,17 +262,20 @@
                 <input type="text" name="space" id="space" class="form-control2" onkeyup="changeSpaceName()"
                        onkeydown="if(event.keyCode==13) { renameSpaceModal(); return false;}">
                 <button type="button" class="btn btn-cancel btn-sm" onClick="renameSpaceModal()" id="renameSpaceBtn"
+                        style="margin-top:-4px;"
                         disabled>
                     이름변경
                 </button>
-                <button type="button" class="btn btn_del" onClick="deleteSpaceModal()" id="deleteSpaceBtn">
+                <button type="button" class="btn btn_del" onClick="deleteSpaceModal()" id="deleteSpaceBtn"
+                        style="margin-top:-4px;">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
-                <button type="button" class="btn btn-cancel btn-sm" onClick="location='/catalog/catalogMain/buildPack'">
+                <button type="button" class="btn btn-cancel btn-sm" onClick="location='/catalog/catalogMain/buildPack'"
+                        style="margin-top:-4px;">
                     앱생성
                 </button>
                 <button type="button" class="btn btn-cancel btn-sm"
-                        onClick="location='/catalog/catalogMain/servicePack'">
+                        onClick="location='/catalog/catalogMain/servicePack'" style="margin-top:-4px;">
                     서비스생성
                 </button>
             </div>

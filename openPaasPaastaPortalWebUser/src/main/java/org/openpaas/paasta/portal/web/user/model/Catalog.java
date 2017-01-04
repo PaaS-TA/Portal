@@ -59,6 +59,11 @@ public class Catalog {
     private int diskSize;
     private int MemorySize;
 
+    // file String test
+    private String fileString;
+    public String getFileString() {return fileString;}
+    public void setFileString(String fileString) {this.fileString = fileString;}
+
     /**
      * GETTER 카탈로그 번호
      *

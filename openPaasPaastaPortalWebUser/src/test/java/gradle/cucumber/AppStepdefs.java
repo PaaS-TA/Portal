@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Paas-TA의 Application에 대한 동작을 테스트한다.
+ * PaaS-TA의 Application에 대한 동작을 테스트한다.
  *
  * @author 조민구
  * @version 1.0

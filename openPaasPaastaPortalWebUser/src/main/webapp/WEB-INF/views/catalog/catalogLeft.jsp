@@ -72,6 +72,12 @@
         return null == reqImagePath || '' == reqImagePath ? "<c:url value='/resources/images/noimage.jpg'/>" : reqImagePath;
     };
 
+    // 바이너리 이미지를 화면에 노출할 수 있도록 태그를 변경함
+    var procPrefixImgsrc = function (fileString) {
+        return null == fileString || '' == fileString ? "<c:url value='/resources/images/noimage.jpg'/>" : "data:image/gif;base64,"+fileString;
+    };
+
+
 
     // GET LIST :: CATALOG LEFT MENU
     var getCatalogLeftMenuList = function () {

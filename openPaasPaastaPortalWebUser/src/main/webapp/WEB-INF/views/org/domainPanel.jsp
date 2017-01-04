@@ -16,7 +16,7 @@
     <div id="addDomainBox" class="col-sm-12 inner-addon left-addon" style="display: none;">
         <input id="addDomain-TextField" maxlength="100" type="text" class="form-control-warning"
                onkeyup="procCheckDomainValidation('addDomain')" placeholder="추가할 도메인을 입력하세요."
-               style="width: 84%; font-size: 11px; color: #c2c2c4; margin: 0; padding-left: 5px">
+               style="width: 75%; font-size: 11px; color: #c2c2c4; margin: 0; padding-left: 5px"> &nbsp;
         <span id="addDomain-StatusIcon" class="glyphicon status-icon-warning" style="display: none;"></span>
         <button type="button" class="btn btn-cancel btn-sm"
                 onclick="procClickCreateFormCancel('addDomain');"
