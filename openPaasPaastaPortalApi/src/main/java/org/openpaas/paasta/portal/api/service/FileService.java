@@ -3,6 +3,7 @@ package org.openpaas.paasta.portal.api.service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by mg on 2016-07-05.
@@ -23,4 +24,8 @@ public interface FileService {
      * @param fileName
      */
     public void delete(String fileName);
+
+
+    public InputStream getBinary_input(String filePath);
+    public byte[] getBinary_byte(String filePath);
 }

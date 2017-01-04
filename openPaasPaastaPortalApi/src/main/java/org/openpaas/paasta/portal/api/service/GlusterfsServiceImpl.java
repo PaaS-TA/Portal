@@ -2,12 +2,18 @@ package org.openpaas.paasta.portal.api.service;
 
 import org.javaswift.joss.model.Container;
 import org.javaswift.joss.model.StoredObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.Base64;
 import java.util.UUID;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  *
@@ -73,5 +79,27 @@ public class GlusterfsServiceImpl implements FileService{
     public Container getContainer() {
         return this.container;
     }
+
+    //에러 발생
+    // No serializer found for class org.javaswift.joss.command.impl.object.InputStream
+    @Override
+    public InputStream getBinary_input(String filePath) {
+        String fileName = filePath.split("/")[6];
+        StoredObject object = container.getObject(fileName);
+
+        InputStream fileInputStream = object.downloadObjectAsInputStream();
+        return fileInputStream;
+    }
+
+    @Override
+    public byte[] getBinary_byte(String filePath) {
+        String fileName = filePath.split("/")[6];
+        StoredObject object = container.getObject(fileName);
+
+        byte[] fileByte = object.downloadObject();
+
+        return fileByte;
+    }
+
 
 }

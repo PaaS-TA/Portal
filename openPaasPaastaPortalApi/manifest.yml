@@ -49,10 +49,10 @@ applications:
     spring_datasource_uaa_username: uaaadmin
     spring_datasource_uaa_password: admin
 
-    spring_glusterfs_tenantName: ${vcap.services.portal-glusterfs-service.credentials.tenantname}
-    spring_glusterfs_username: ${vcap.services.portal-glusterfs-service.credentials.username}
-    spring_glusterfs_password: ${vcap.services.portal-glusterfs-service.credentials.password}
-    spring_glusterfs_authUrl: ${vcap.services.portal-glusterfs-service.credentials.auth_url}
+    spring_glusterfs_tenantName: paasta-portal
+    spring_glusterfs_username: paasta-portal
+    spring_glusterfs_password: paasta
+    spring_glusterfs_authUrl: http://10.30.131.12:5000/v2.0
     spring_glusterfs_container: portal-container
 
     spring_mail_smtp_host: smtp.gmail.com

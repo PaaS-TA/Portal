@@ -5,6 +5,7 @@ import org.cloudfoundry.client.lib.domain.*;
 import org.cloudfoundry.client.lib.org.codehaus.jackson.map.ObjectMapper;
 import org.cloudfoundry.client.lib.org.codehaus.jackson.type.TypeReference;
 import org.cloudfoundry.client.lib.util.JsonUtil;
+import org.javaswift.joss.model.Container;
 import org.openpaas.paasta.portal.api.common.Common;
 import org.openpaas.paasta.portal.api.common.Constants;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
@@ -142,7 +143,10 @@ public class CatalogService extends Common {
      */
     public Map<String, Object> getBuildPackCatalogList(Catalog param) {
         return new HashMap<String, Object>() {{
-            put("list", catalogMapper.getBuildPackCatalogList(param));
+            //put("list", catalogMapper.getBuildPackCatalogList(param));
+
+            // 바이너리 이미지 삽입위해 수정됨
+            put("list", addCatalogImgs(catalogMapper.getBuildPackCatalogList(param)));
         }};
     }
 
@@ -155,7 +159,10 @@ public class CatalogService extends Common {
      */
     public Map<String, Object> getServicePackCatalogList(Catalog param) {
         return new HashMap<String, Object>() {{
-            put("list", catalogMapper.getServicePackCatalogList(param));
+            //put("list", catalogMapper.getServicePackCatalogList(param));
+
+            // 바이너리 이미지 삽입위해 수정됨
+            put("list", addCatalogImgs(catalogMapper.getServicePackCatalogList(param)));
         }};
     }
 
@@ -354,7 +361,9 @@ public class CatalogService extends Common {
     public Map<String, Object> getStarterNamesList(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        resultMap.put("list", catalogMapper.getStarterNamesList(param));
+        //resultMap.put("list", catalogMapper.getStarterNamesList(param));
+        //바이너리 이미지 삽입위해 수정됨
+        resultMap.put("list", addCatalogImgs(catalogMapper.getStarterNamesList(param)));
         resultMap.put("RESULT", Constants.RESULT_STATUS_SUCCESS);
 
         return resultMap;
@@ -542,7 +551,9 @@ public class CatalogService extends Common {
         param.setLimitSize(Constants.CATALOG_HISTORY_LIMIT_SIZE);
 
         return new HashMap<String, Object>() {{
-            put("list", catalogMapper.getCatalogHistoryList(param));
+            //put("list", catalogMapper.getCatalogHistoryList(param));
+            // 바이너리 이미지 삽입위해 수정됨
+            put("list", addCatalogImgs(catalogMapper.getCatalogHistoryList(param)));
         }};
     }
 
@@ -1082,4 +1093,30 @@ public class CatalogService extends Common {
             put("RESULT", Constants.RESULT_STATUS_SUCCESS);
         }};
     }
+
+    /**
+     * 카탈로그 목록에 썸네일 이미지를 바이너리 형태로 삽입
+     *
+     * @param catalogListOrigin
+     * @return List<Catalog>(자바클래스)
+     */
+    private List<Catalog> addCatalogImgs(List<Catalog> catalogListOrigin){
+        List<Catalog> catalogList = new ArrayList<>();
+        for(Catalog catalog : catalogListOrigin){
+            if(!catalog.getThumbImgPath().isEmpty() && catalog.getThumbImgPath().contains("localhost")){
+                byte[] fileByte = new byte[0];
+                try {
+                    fileByte  = glusterfsService.getBinary_byte(catalog.getThumbImgPath());
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                String fileString = Base64.getEncoder().encodeToString(fileByte);
+                catalog.setFileString(fileString);
+            }
+            catalogList.add(catalog);
+        }
+        return catalogList;
+    }
+
+
 }

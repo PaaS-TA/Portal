@@ -25,6 +25,7 @@ public class GlusterfsConfig {
         String username = env.getRequiredProperty("spring.glusterfs.username");
         String password = env.getRequiredProperty("spring.glusterfs.password");
         String authUrl = env.getRequiredProperty("spring.glusterfs.authUrl");
+        String activeProfile =env.getRequiredProperty("spring.profiles");
 
         AccountConfig config = new AccountConfig();
         config.setUsername(username);
@@ -32,6 +33,11 @@ public class GlusterfsConfig {
         config.setPassword(password);
         config.setAuthUrl(authUrl + "/tokens");
         config.setAuthenticationMethod(AuthenticationMethod.KEYSTONE);
+        if("local".equals(activeProfile)) {
+            config.setPreferredRegion("Local");
+        } else {
+            config.setPreferredRegion("Public");
+        }
         return config;
     }
 
