@@ -153,7 +153,7 @@ public class AutoScalingService {
                 totCpuPercentage += (Double.parseDouble(jsonObj.getString("cpuPercentage")) / jsonArray.length());
             }
 
-            LOGGER.info("threadAppAutoScaling Operating !!!!! - " + app.getName() + " (" + guid + ")" + " cpuPercentage: " + totCpuPercentage + " memoryUsageBytes: " + totMemoryBytes + "/" + memQuota + " = " + totMemoryBytes / memQuota + "%");
+            LOGGER.info("AutoScaling Operating !!!!! - " + app.getName() + " (" + guid + ")" + " memoryUsageBytes: " + totMemoryBytes / memQuota + "% cpuPercentage: " + totCpuPercentage);
 
             //메모리 점유율 초과
             if (totMemoryBytes / memQuota * 100 >= (int) appInfo.get("memoryMaxSize") && appInfo.get("autoIncreaseYn").equals("Y")) {
@@ -182,17 +182,6 @@ public class AutoScalingService {
                     return;
                 }
             }
-
-            //cpu 점유율 초과 - 필요비는 즉시 가능
-//              if(Integer.parseInt(appInfo.get("cpuThresholdMaxPer")) <= totCpuPercentage){
-//                app.setInstances(Integer.parseInt(jsonObj.getString("instanceIndex"))+2);
-//                common.procRestTemplate("/app/updateApp", HttpMethod.POST, app, common.getToken(), Boolean.class);
-//
-//              //cpu 점유율 하향
-//              }else if(Integer.parseInt(appInfo.get("cpuThresholdMinPer")) >= totCpuPercentage){
-//                app.setInstances(Integer.parseInt(jsonObj.getString("instanceIndex")));
-//                common.procRestTemplate("/app/updateApp", HttpMethod.POST, app, common.getToken(), Boolean.class);
-//              }
 
 
             Thread.sleep((int) appInfo.get("checkTimeSec") * 1000);
