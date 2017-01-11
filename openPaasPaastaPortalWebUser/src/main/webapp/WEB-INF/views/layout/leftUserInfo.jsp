@@ -1,10 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%--CONSTANT--%>
+<%@ page import="org.openpaas.paasta.portal.web.user.common.Constants" %>
 <div class="userinfo">
+
     <sec:authentication property="principal.imgPath" var="imgPath"/>
     <c:choose>
-        <c:when test="${not empty imgPath}"><img class="circle" id="left_profileImagePath" src="<c:url value='${imgPath}'/>" alt="사용자"/></c:when>
+        <c:when test="${not empty imgPath}"><img class="circle" id="left_profileImagePath" src="<c:url value='${Constants.IMAGE_PATH_PREFIX}${imgPath}'/>" alt="사용자"/></c:when>
         <c:otherwise><img class="circle" id="left_profileImagePath" src="<c:url value='/resources/images/userpic.png'/>" alt="사용자"/></c:otherwise>
     </c:choose>
     <div class="name" id="left_username"><sec:authentication property="principal.name" /></div>

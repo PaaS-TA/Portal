@@ -41,7 +41,7 @@ public class OrgController extends Common {
      * @param response 응답 객체
      * @param session  세션
      * @return ModelAndView (자바 클래스)
-     * @throws JSONException
+     * @throws JSONException the json exception
      */
     @RequestMapping(value = {"/org/orgMain"}, method = RequestMethod.GET)
     public ModelAndView orgMain(HttpServletResponse response, HttpSession session) throws JSONException {
@@ -65,10 +65,10 @@ public class OrgController extends Common {
     /**
      * 조직 생성 화면이다.
      *
+     * @return ModelAndView(자바클래스) model and view
      * @author 김도준
      * @version 1.0
      * @since 2016.6.17 최초작성
-     * @return ModelAndView(자바클래스)
      */
     @RequestMapping(value = {"/org/createOrgMain"}, method = RequestMethod.GET)
     public ModelAndView createOrgMainPage() {
@@ -202,10 +202,10 @@ public class OrgController extends Common {
     /**
      * 조직 세션값을 삽입한다.
      *
-     * @param org  조직 객체
+     * @param org     조직 객체
      * @param session 세션
      * @return boolean 작업 성공 여부
-     * @throws IOException
+     * @throws IOException the io exception
      * @author 김도준
      * @version 1.0
      * @since 2016.5.25 최초작성

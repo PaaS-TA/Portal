@@ -26,6 +26,8 @@
 
                 $("#spaceList2").html("");
 
+                $("#serviceSelect").html("");
+
                 $.each(data.services, function (id, list) {
 
                     var services = new Object();
@@ -42,7 +44,6 @@
                     } else {
                         label = list.servicePlan.service.label;
                     }
-
 
                     if (JSON.stringify(serviceList).indexOf(list.name) < 0) {
                         $("#serviceSelect").append("<option value='" + list.guid + "'>" + list.name + "</option>");

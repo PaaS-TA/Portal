@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletRequest;
  * (사용되지 않음)
  * 각각의 에러 유형에 따른 기본 에러 페이지.
  *
- *
  * @author 조민구
  * @version 1.0
- * @since 2016-08-02
+ * @since 2016 -08-02
  */
 @Controller
 @RequestMapping("/common/error")
@@ -24,6 +23,13 @@ public class CommonErrorController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonErrorController.class);
 
 
+    /**
+     * Throwable string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/throwable")
     public String throwable(HttpServletRequest request, Model model) {
         LOGGER.info("throwable");
@@ -32,6 +38,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Exception string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/exception")
     public String exception(HttpServletRequest request, Model model) {
         LOGGER.info("exception");
@@ -40,6 +53,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Page error 400 string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/400")
     public String pageError400(HttpServletRequest request, Model model) {
         LOGGER.info("page error code 400");
@@ -48,6 +68,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Page error 403 string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/403")
     public String pageError403(HttpServletRequest request, Model model) {
         LOGGER.info("page error code 403");
@@ -56,6 +83,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Page error 404 string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/404")
     public String pageError404(HttpServletRequest request, Model model) {
         LOGGER.info("page error code 404");
@@ -64,6 +98,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Page error 405 string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/405")
     public String pageError405(HttpServletRequest request, Model model) {
         LOGGER.info("page error code 405");
@@ -72,6 +113,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Page error 500 string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/500")
     public String pageError500(HttpServletRequest request, Model model) {
         LOGGER.info("page error code 500");
@@ -80,6 +128,13 @@ public class CommonErrorController {
         return "common/error";
     }
 
+    /**
+     * Page error 503 string.
+     *
+     * @param request the request
+     * @param model   the model
+     * @return the string
+     */
     @RequestMapping(value = "/503")
     public String pageError503(HttpServletRequest request, Model model) {
         LOGGER.info("page error code 503");

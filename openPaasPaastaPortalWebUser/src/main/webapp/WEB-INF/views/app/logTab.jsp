@@ -36,7 +36,7 @@
 
                 $.each(data.log, function (key, dataobj) {
 
-                    str = dataobj + '<br>';
+                    str = dataobj.logMessage.message + '<br>';
                     html = $.parseHTML(str);
                     $log.append(html);
                 });

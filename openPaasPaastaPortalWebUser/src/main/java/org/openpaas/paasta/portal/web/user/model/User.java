@@ -22,7 +22,7 @@ public class User {
     private int count;
     private String refreshToken;
 
-	/**
+    /**
 	 * User 클래스의 기본 생성자
 	 */
 	public User() {
@@ -44,6 +44,8 @@ public class User {
         this.zipCode = (user.containsKey("zipCode")) ? (String) user.get("zipCode") : null;
         this.adminYn = (user.containsKey("adminYn")) ? (String) user.get("adminYn") : null;
         this.refreshToken = (user.containsKey("refreshToken")) ? (String) user.get("refreshToken") : null;
+        //이미지 바이너리
+        //this.imgByte = (user.containsKey("imgByte")) ? (byte[]) user.get("imgByte") : null;
     }
 
     public String getUserId() {

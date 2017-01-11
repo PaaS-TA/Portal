@@ -25,7 +25,7 @@ public class DocumentsController extends Common {
     /**
      * 문서 메인 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView documents main
      */
     @RequestMapping(value = {"/documentsMain"}, method = RequestMethod.GET)
     public ModelAndView getDocumentsMain() {
@@ -41,7 +41,7 @@ public class DocumentsController extends Common {
      * 문서 조회 페이지 이동
      *
      * @param documentNo String(PathVariable)
-     * @return ModelAndView
+     * @return ModelAndView documents view
      */
     @RequestMapping(value = {"/documentsMain/view/{documentNo}"}, method = RequestMethod.GET)
     public ModelAndView getDocumentsView(@PathVariable("documentNo") String documentNo) {
@@ -54,8 +54,8 @@ public class DocumentsController extends Common {
     /**
      * 문서 상세 페이지 이동
      *
-     * @param req
-     * @return ModelAndView
+     * @param req the req
+     * @return ModelAndView documents view 2
      */
     @RequestMapping(value = {"/documentsMain/view"}, method = RequestMethod.POST)
     public ModelAndView getDocumentsView2(HttpServletRequest req) {
@@ -72,7 +72,7 @@ public class DocumentsController extends Common {
      * 문서 목록 조회
      *
      * @param param Support
-     * @return Map
+     * @return Map documents list
      */
     @RequestMapping(value = {"/getDocumentsList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -86,7 +86,7 @@ public class DocumentsController extends Common {
      * 문서 조회
      *
      * @param param Support
-     * @return Map
+     * @return Map document
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/getDocument"}, method = RequestMethod.POST)

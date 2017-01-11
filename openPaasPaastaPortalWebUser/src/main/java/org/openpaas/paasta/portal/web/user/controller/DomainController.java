@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author 김도준
  * @version 1.0
- * @since 2016-07-26
+ * @since 2016 -07-26
  */
 @Controller
 @RequestMapping(value = {"/domain"})
@@ -28,9 +28,9 @@ public class DomainController extends Common {
     /**
      * 도메인 목록을 가져온다.
      *
-     * @author 김도준
      * @param status 도메인 종류 (private / shared)
      * @return List (자바 클래스)
+     * @author 김도준
      * @since 2016.7.27 최초작성
      */
     @RequestMapping(value = {"/getDomains/{status}"}, method = RequestMethod.POST)
@@ -49,13 +49,12 @@ public class DomainController extends Common {
     /**
      * 신규 도메인을 추가한다.
      *
-     * @author 김도준
-     * @version 1.0
      * @param body (자바 Map 클래스)
      * @return boolean (자바 클래스)
      * @throws Exception
+     * @author 김도준
+     * @version 1.0
      * @since 2016.7.27 최초작성
-     *
      */
     @RequestMapping(value = {"/addDomain"}, method = RequestMethod.POST)
     @ResponseBody
@@ -73,13 +72,12 @@ public class DomainController extends Common {
     /**
      * 도메인을 삭제한다.
      *
-     * @author 김도준
-     * @version 1.0
      * @param body (자바 Map 클래스)
      * @return boolean (자바 클래스)
      * @throws Exception
+     * @author 김도준
+     * @version 1.0
      * @since 2016.7.27 최초작성
-     *
      */
     @RequestMapping(value = {"/deleteDomain"}, method = RequestMethod.POST)
     @ResponseBody

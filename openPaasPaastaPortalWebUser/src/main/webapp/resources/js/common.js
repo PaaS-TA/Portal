@@ -806,7 +806,7 @@ var setLeftUsername = function (username) {
 
 
 var setLeftProfileImage = function (imgPath) {
-    $("#left_profileImagePath").attr("src", imgPath);
+    $("#left_profileImagePath").attr("src", IMAGE_PATH_PREFIX+imgPath);
 };
 
 

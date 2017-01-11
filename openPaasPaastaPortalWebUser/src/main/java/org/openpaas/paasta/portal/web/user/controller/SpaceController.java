@@ -184,7 +184,7 @@ public class SpaceController extends Common {
     /**
      * 영역(스페이스) 세션값을 삽입한다.
      *
-     * @param space  영역 객체
+     * @param space   영역 객체
      * @param session 세션
      * @return boolean 작업 성공여부
      * @author 김도준

@@ -29,7 +29,7 @@ public class NoticeController extends Common {
     /**
      * 공지 메인 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView notice main
      */
     @RequestMapping(value = {"/noticeMain"}, method = RequestMethod.GET)
     public ModelAndView getNoticeMain() {
@@ -45,7 +45,7 @@ public class NoticeController extends Common {
      * 공지 조회 페이지 이동
      *
      * @param req HttpServletRequest
-     * @return ModelAndView
+     * @return ModelAndView notice view 2
      */
     @RequestMapping(value = {"/noticeMain/view"}, method = RequestMethod.POST)
     public ModelAndView getNoticeView2(HttpServletRequest req) {
@@ -62,7 +62,7 @@ public class NoticeController extends Common {
      * 공지 목록 조회
      *
      * @param param Support
-     * @return Map
+     * @return Map notice list
      */
     @RequestMapping(value = {"/getNoticeList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -77,7 +77,7 @@ public class NoticeController extends Common {
      * 공지 상세정보 조회
      *
      * @param param Support
-     * @return Map
+     * @return Map notice
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/getNotice"}, method = RequestMethod.POST)

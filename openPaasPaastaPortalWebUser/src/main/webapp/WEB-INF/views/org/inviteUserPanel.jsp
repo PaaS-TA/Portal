@@ -5,12 +5,12 @@
     <form name='inviteForm' onsubmit='procAddUserRole();'>
         <input type="hidden" id="thisUserId" value='<sec:authentication property="principal.username" />'/>
         <div class="col-sm-12 pt10">
-            <div class="col-sm-2" style="padding-top: 6px; padding-left: 0;">
+            <div class="col-sm-3" style="padding-top: 6px; padding-left: 0;">
                 <div class="form-group">
                     <label> 사용자 이메일 </label>
                 </div>
             </div>
-            <div class="col-sm-8 tar" style="padding-top: 2px;">
+            <div class="col-sm-6 tar" style="padding-top: 2px;">
                 <div class="form-group">
                     <input class="form-control" style="align-items: center; height:31px; font-size:11px;"
                            placeholder="sample@example.com" id="inviteUserId" type="email"
@@ -19,7 +19,7 @@
                            pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"/>
                 </div>
             </div>
-            <div class="col-sm-2 tar" style="padding-right: 0;">
+            <div class="col-sm-3 tar" style="padding-right: 0;">
                 <button type="button" class="btn btn-cancel btn-sm" onclick="procResetInviteForm();"
                         style="margin-top: 2px; margin-bottom: 3px">
                     취소

@@ -129,13 +129,13 @@
                     view: {
                         // 속성이 없을때 예외 처리 마지막에 구현
                         width: $(window).width() / 2.82,
-                        height: "120",
+                        height: "125",
                         label: {left: "0", top: "0", width: "0", height: "0"},
                         description: {
                             left: "5",
                             top: "5",
                             width: $(window).width() / 2.82,
-                            height: "115",
+                            height: "120",
                             style: "color:#333;"
                         },
                         format: function () {
@@ -171,7 +171,7 @@
                                 "<ul class='media-list'>" +
                                 "<li class='media'>" +
                                 "<a class='pull-left' href='#'>" +
-                                "<img src='" + serviceImageUrl + "' width=70 height=70 style='border:1px solid #ccc;'>" +
+                                "<img src='" + IMAGE_PATH_PREFIX + serviceImageUrl + "' width=70 height=70 style='border:1px solid #ccc;'>" +
                                 " </a>" +
                                 "<div class='media-body'>" +
                                 "<h1 id='spaceNameNormal" + this.index + "' class='media-heading'>" + this.item.name + "</h1>" +
@@ -180,7 +180,8 @@
                                 " <button type='button' class='btn btn-cancel btn-sm' onclick=\"$('#spaceNameNormal" + this.index + "').show(); $('#spaceNameEdit" + this.index + "').hide();\" style='margin-top: 0px'>취소</button>" +
                                 "</h1>" +
                                 "<h6 class='media-heading' >" + this.item.serviceLabel + "</h6>" +
-                                "<p><b>" + this.item.servicePlanName + "<b></p>" +
+                                "<p><b>" + this.item.servicePlanName + "</b><br>" +
+                                "연결앱 수 : " + this.item.boundAppCount + "</p>" +
                                 "</div>" +
                                 "</li>" +
                                 "</ul>" +

@@ -21,7 +21,7 @@
 <script type="text/javascript" src="<c:url value='/resources/js/highcharts.js' />"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/exporting.js' />"></script>
 
-<div id="usageViewArea" class="ViewArea" style="display: none; position: relative;">
+<div id="usageViewArea" class="ViewArea" style="position: relative;">
     <div class="panel content-box col-sm-12 col-md-12 mt-5">
         <div class="col-sm-12 pt20">
             <div class="fl">
@@ -181,7 +181,6 @@ SCRIPT BEGIN
             $('#chartSubTitle').hide();
             $('#chartSubContainer').hide();
             $('#emptySpaceMessageArea').show();
-            $('#usageViewArea').show();
 
             procCallSpinner(SPINNER_SPIN_STOP);
 
@@ -233,7 +232,6 @@ SCRIPT BEGIN
         if (RESULT_STATUS_SUCCESS != data.RESULT) {
             showAlert('fail', data.RESULT_MESSAGE);
             procCallSpinner(SPINNER_SPIN_STOP);
-            $('#usageViewArea').show();
             $('#noUsageMessageArea').show();
             return false;
         }
@@ -332,8 +330,6 @@ SCRIPT BEGIN
         // EXECUTE CHART
         chartSubContainer.fadeIn();
         chartSubContainer.highcharts(chartOptions);
-
-        $('#usageViewArea').show();
 
         $('#emptySpaceMessageArea').hide();
         $('#chartMainTitle').show();
@@ -548,7 +544,6 @@ SCRIPT BEGIN
         $('#chartSubTitle').hide();
         $('#chartSubContainer').hide();
         $('#emptySpaceMessageArea').hide();
-        $('#usageViewArea').hide();
 
         procCallSpinner(SPINNER_SPIN_START);
         getSpaceList(reqOrgValue);

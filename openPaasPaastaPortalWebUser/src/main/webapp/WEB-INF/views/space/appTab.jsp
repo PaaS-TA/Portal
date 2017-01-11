@@ -151,13 +151,13 @@
                     view: {
                         // 속성이 없을때 예외 처리 마지막에 구현
                         width: $(window).width() / 2.82,
-                        height: "120",
+                        height: "125",
                         label: {left: "0", top: "0", width: "0", height: "0"},
                         description: {
                             left: "5",
                             top: "5",
                             width: $(window).width() / 2.82,
-                            height: "115",
+                            height: "120",
                             style: "color:#333;"
                         },
                         format: function () {
@@ -208,7 +208,7 @@
                                 "<ul class='media-list'>" +
                                 "<li class='media'>" +
                                 "<a class='pull-left' href='#'>" +
-                                "<img src='" + appImageUrl + "' width=70 height=70 style='border:1px solid #ccc;'>" +
+                                "<img src='"+IMAGE_PATH_PREFIX + appImageUrl + "' width=70 height=70 style='border:1px solid #ccc;'>" +
                                 " </a>" +
                                 "<div class='media-body'>" +
                                 "<h1 id='appNameNormal" + this.index + "' class='media-heading'><a href='#none' onclick=\"setAppSession('" + this.item.name + "','" + this.item.guid + "');\">" + this.item.name + "</a></h1>" +
@@ -219,7 +219,8 @@
                                 "</h1>" +
 
                                 "<h6 class='media-heading' >" + this.item.urls[0] + "</h6>" +
-                                "<p><b>" + state_text + "<b> &nbsp; <span id='" + this.item.guid + "'></span></p> " +
+                                "<p><b>" + state_text + "</b> &nbsp; <span id='" + this.item.guid + "'></span><br>" +
+                                "인스턴스 : " + this.item.instances + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;메모리 : " + this.item.memory + "</p> " +
                                 "</div>" +
                                 "</li>" +
                                 "</ul>" +
@@ -463,7 +464,7 @@
                                     if (data) {
                                         serviceImageUrl = data.serviceImageUrl;
 
-                                        $("#" + guid).append("<img src='" + serviceImageUrl + "' width='25'> ");
+                                        $("#" + guid).append("<img src='"+IMAGE_PATH_PREFIX + serviceImageUrl + "' width='25'> ");
 
                                     }
                                 }

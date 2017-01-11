@@ -56,9 +56,10 @@ class CatalogController extends Common {
      */
     @RequestMapping(value = {"/catalogMain/{catalogType}/{catalogSubType}"}, method = RequestMethod.GET)
     public ModelAndView getCatalogMain(@PathVariable("catalogType") String catalogType, @PathVariable("catalogSubType") String catalogSubType) {
-        return new ModelAndView(){{setViewName("/catalog/catalogMain");
-                                    addObject("CATALOG_TYPE", catalogType);
-                                    addObject("CATALOG_SUB_TYPE", catalogSubType);
+        return new ModelAndView() {{
+            setViewName("/catalog/catalogMain");
+            addObject("CATALOG_TYPE", catalogType);
+            addObject("CATALOG_SUB_TYPE", catalogSubType);
         }};
     }
 

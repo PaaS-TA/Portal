@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
- * User Controller
+ * 유저 컨트롤러 - 마이페이지의 유저의 조회 수정을 처리한다.
  *
- * @author mg
+ * @author 조민구
  * @version 1.0
  * @since 2016.5.23 최초작성
  */
@@ -258,7 +258,7 @@ public class UserController extends Common {
         return model;
     }
 
-     /**
+    /**
      * 계정생성을 위한 이메일통한 인증 프로세서
      * 기간 : 30일 , 접근횟수 3회
      *  controller에 접근 할때마다 1회씩 자동으로 횟수가 증가함.

@@ -187,7 +187,7 @@ SCRIPT BEGIN
         $('#catalogTitle').text(catalogList[0].name);
         // $('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
         // 이미지 바이너리 삽입
-        $('#catalogImage').attr('src', procPrefixImgsrc(catalogList[0].fileString));
+        $('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
 
         $('#catalogOrgName').text(currentOrg);
         $('#catalogBuildPackName').val(catalogList[0].buildPackName);

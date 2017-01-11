@@ -12,14 +12,14 @@
 =================================================================
 -->
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../layout/top.jsp" %>
-<%@include file="catalogLeft.jsp" %>
-<%@include file="../layout/alert.jsp" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@include file="../layout/top.jsp" %>
+    <%@include file="catalogLeft.jsp" %>
+    <%@include file="../layout/alert.jsp" %>
 
-<div id="catalogViewListArea">
+    <div id="catalogViewListArea">
 
-    <%--SEARCH FORM--%>
+        <%--SEARCH FORM--%>
     <div class="form-group custom-search-form">
         <label class="control-label sr-only" for="searchKeyword"></label>
         <div class="input-group">
@@ -215,9 +215,7 @@ SCRIPT BEGIN
                         htmlString.push('<div class="col-sm-6 col-md-3" '
                                 + 'onclick="procMoveCatalogInsertFormPage(\'' + reqList[i].catalogType + '\', ' + reqCatalogNo + ');" data-toggle="tooltip" data-placement="bottom" '
                                 + 'title="' + reqList[i].description + '"><div class="applist">'
-                                //+ '<img src=' + procCheckImage(reqList[i].thumbImgPath) + ' class="img-circle">'
-                                // 이미지 바이너리 삽입
-                                + '<img src=' + procPrefixImgsrc(reqList[i].fileString) + ' class="img-circle">'
+                                + '<img src=' + procCheckImage(reqList[i].thumbImgPath) + ' class="img-circle">'
                                 + '<div class="name"><p>' +  reqList[i].name + '</p></div></div>');
                         checkEmptyViewCount++;
                     }
@@ -299,9 +297,7 @@ SCRIPT BEGIN
                                     htmlString.push(tempCssBegin + '<div class="col-sm-6 col-md-3" '
                                             + 'onclick="procMoveCatalogInsertFormPage(\'' + reqCatalogType + '\', ' + reqList[m].no + ');" data-toggle="tooltip" data-placement="bottom" '
                                             + 'title="' + reqList[m].description + '"><div class="applist">'
-                                            //+ '<img src=' + procCheckImage(reqList[m].thumbImgPath) + ' class="img-circle">'
-                                            // 이미지 바이너리 삽입
-                                            + '<img src=' + procPrefixImgsrc(reqList[m].fileString) + ' class="img-circle">'
+                                            + '<img src=' + procCheckImage(reqList[m].thumbImgPath) + ' class="img-circle">'
                                             + '<div class="name"><p>' +  reqList[m].name + '</p></div></div>' + tempCssEnd);
 
                                     checkEmptyViewCount++;

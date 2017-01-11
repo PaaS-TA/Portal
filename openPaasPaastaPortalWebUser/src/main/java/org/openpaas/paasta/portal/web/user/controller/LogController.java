@@ -17,9 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Org Controller
+ * 로그 컨트롤러 - 앱-최근로그를 조회한다.
  *
- * @author ijlee
+ * @author 이인정
  * @version 1.0
  * @since 2016.7.11 최초작성
  */
@@ -31,7 +31,8 @@ public class LogController extends Common {
     /**
      * 앱-최근로그 조회
      *
-     * @param app the app
+     * @param app      the app
+     * @param response the response
      * @return ModelAndView model
      */
     @RequestMapping(value = {"/log/getRecentLogs"}, method = RequestMethod.POST)
@@ -41,7 +42,7 @@ public class LogController extends Common {
         Map rspApp = new HashMap();
         LOGGER.info("getRecentLogs Start : " + app.getName());
 
-        ResponseEntity rssResponse = commonService.procRestTemplate("/log/getRecentLogs", HttpMethod.POST, app, getToken(), Map.class);
+        ResponseEntity rssResponse = commonService.procRestTemplateV2("/app/getRecentLogs", HttpMethod.POST, app, getToken(), Map.class);
         rspApp = (HashMap) rssResponse.getBody();
 
         LOGGER.info("getRecentLogs End ");

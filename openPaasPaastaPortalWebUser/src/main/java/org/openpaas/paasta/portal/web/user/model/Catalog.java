@@ -59,10 +59,10 @@ public class Catalog {
     private int diskSize;
     private int MemorySize;
 
-    // file String test
-    private String fileString;
-    public String getFileString() {return fileString;}
-    public void setFileString(String fileString) {this.fileString = fileString;}
+    // 이미지 바이너리
+    private byte [] imgByte;
+    public byte[] getImgByte() {return imgByte;}
+    public void setImgByte(byte[] imgByte) {this.imgByte = imgByte;}
 
     /**
      * GETTER 카탈로그 번호

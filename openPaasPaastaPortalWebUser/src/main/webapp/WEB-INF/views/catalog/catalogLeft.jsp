@@ -41,6 +41,7 @@
     var CATALOG_TYPE_STARTER = '<%= Constants.CATALOG_TYPE_STARTER %>';
     var CATALOG_TYPE_BUILD_PACK = '<%= Constants.CATALOG_TYPE_BUILD_PACK %>';
     var CATALOG_TYPE_SERVICE_PACK = '<%= Constants.CATALOG_TYPE_SERVICE_PACK %>';
+    var IMAGE_PATH_PREFIX = '<%= Constants.IMAGE_PATH_PREFIX%>'
 
     var <%= Constants.CATALOG_TYPE_STARTER %>_MenuList = null;
     var <%= Constants.CATALOG_TYPE_BUILD_PACK %>_MenuList = null;
@@ -69,15 +70,8 @@
 
     // CHECK IMAGE
     var procCheckImage = function (reqImagePath) {
-        return null == reqImagePath || '' == reqImagePath ? "<c:url value='/resources/images/noimage.jpg'/>" : reqImagePath;
+        return null == reqImagePath || '' == reqImagePath ? "<c:url value='/resources/images/noimage.jpg'/>" : IMAGE_PATH_PREFIX+reqImagePath;
     };
-
-    // 바이너리 이미지를 화면에 노출할 수 있도록 태그를 변경함
-    var procPrefixImgsrc = function (fileString) {
-        return null == fileString || '' == fileString ? "<c:url value='/resources/images/noimage.jpg'/>" : "data:image/gif;base64,"+fileString;
-    };
-
-
 
     // GET LIST :: CATALOG LEFT MENU
     var getCatalogLeftMenuList = function () {

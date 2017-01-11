@@ -309,10 +309,11 @@ public class AppController extends Common {
 
     /**
      * 앱 세션값을 삽입한다.
-     * @author 김도준
-     * @param app (자바 App 클래스)
+     *
+     * @param app     (자바 App 클래스)
      * @param session 세션
      * @return void
+     * @author 김도준
      * @version 1.0
      * @since 2016.5.26 최초작성
      */
@@ -331,9 +332,9 @@ public class AppController extends Common {
     /**
      * 앱 환경변수를 조회한다.
      *
-     * @author 김도준
      * @param app (자바 App 클래스)
      * @return Map (자바 클래스)
+     * @author 김도준
      * @version 1.0
      * @since 2016.6.30 최초작성
      */

@@ -91,6 +91,7 @@
     var CUD_U = "<%= Constants.CUD_U%>";
     var USE_YN_Y = "<%= Constants.USE_YN_Y %>";
     var USE_YN_N = "<%= Constants.USE_YN_N %>";
+    var IMAGE_PATH_PREFIX = "<%= Constants.IMAGE_PATH_PREFIX%>";
 
     var RESULT_STATUS_SUCCESS_MESSAGE = "<spring:message code='common.info.result.success' />";
     var RESULT_STATUS_FAIL_MESSAGE = "<spring:message code='common.system.error.message' />";

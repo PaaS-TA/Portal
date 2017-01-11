@@ -142,4 +142,8 @@ public class Constants {
      * 내 문의 상태 대기
      */
     public static final String MY_QUESTION_STATUS_WAITING = "waiting";
+    /**
+     * 내부망의 이미지 자원에 접근할 수 있도록 이미지 주소 앞에 삽입하는 문자열
+     */
+    public static final String IMAGE_PATH_PREFIX = "/download/getImage?imgPath=";
 }

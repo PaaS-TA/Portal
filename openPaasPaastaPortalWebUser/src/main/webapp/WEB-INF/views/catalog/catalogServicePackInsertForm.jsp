@@ -155,7 +155,7 @@ SCRIPT BEGIN
         $('#catalogTitle').text(catalogList[0].name);
         //$('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
         // 이미지 바이너리 삽입
-        $('#catalogImage').attr('src', procPrefixImgsrc(catalogList[0].fileString));
+        $('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
         $('#catalogOrgName').text(currentOrg);
 
         catalogSummaryObject.html(catalogSummary.replace(/\r?\n/g, '<br>')).attr('title', catalogSummary);

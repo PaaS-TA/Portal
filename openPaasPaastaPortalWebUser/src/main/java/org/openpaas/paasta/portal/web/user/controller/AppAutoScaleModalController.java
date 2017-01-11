@@ -20,7 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by ijlee on 2016-07-06.
+ * 앱 Auto스케일 컨트롤러 - 앱 Auto스케일 정보를 조회하고 저장한다.
+ *
+ * @author 이인정
+ * @version 1.0
+ * @since 2016.7.11 최초작성
  */
 @Controller
 @RequestMapping(value = {"/app"})
@@ -37,7 +41,8 @@ public class AppAutoScaleModalController extends Common {
     /**
      * 앱 AutoScaling info
      *
-     * @param  appAutoScale the entity
+     * @param appAutoScale the entity
+     * @param response     the response
      * @return Map result
      */
     @RequestMapping(value = "/getAppAutoScaleInfo", method = RequestMethod.POST)

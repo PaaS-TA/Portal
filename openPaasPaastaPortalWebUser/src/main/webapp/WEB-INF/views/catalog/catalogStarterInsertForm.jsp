@@ -217,7 +217,7 @@ SCRIPT BEGIN
         $('#catalogTitle').text(catalogList[0].name);
         //$('#catalogImage').attr('src', procCheckImage(catalogList[0].thumbImgPath));
         // 이미지 바이너리 삽입
-        $('#catalogImage').attr('src', procPrefixImgsrc(catalogList[0].fileString));
+        $('#catalogImage').attr('src', procCheckImage(catalogList[0].fileString));
         $('#catalogOrgName').text(currentOrg);
 
         catalogDescriptionObject.html(catalogDescription.replace(/\r?\n/g, '<br>')).attr('title', catalogDescription);
@@ -331,7 +331,7 @@ SCRIPT BEGIN
         // STARTER RELATION :: BUILD PACK
         //$('#catalogBuildPackImage').attr('src', procCheckImage(buildPackList[0].thumbImgPath));
         // 이미지 바이너리 삽입
-        $('#catalogBuildPackImage').attr('src', procPrefixImgsrc(buildPackList[0].fileString));
+        $('#catalogBuildPackImage').attr('src', procCheckImage(buildPackList[0].thumbImgPath));
 
         $('#catalogBuildPackNameTitle').text(buildPackList[0].name);
         $('#catalogBuildPackDescription').attr('title', buildPackList[0].description);
@@ -357,7 +357,7 @@ SCRIPT BEGIN
                 + servicePackList[i].description + '">'
                 //+ '<img src=' + procCheckImage(servicePackList[i].thumbImgPath) + ' class="img-circle">'
                 // 이미지 바이너리 삽입
-                + '<img src=' + procPrefixImgsrc(servicePackList[i].fileString) + ' class="img-circle">'
+                + '<img src=' + procCheckImage(servicePackList[i].thumbImgPath) + ' class="img-circle">'
                 + '<div class="name"><p>' +  servicePackList[i].name
                 + '</p></div></div></div>');
         }

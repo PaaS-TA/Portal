@@ -146,7 +146,7 @@
                 "<div>" + eventID +
                 "<button type='button' class='close'  onclick=removeEnvPopUp('" + eventID + "')>" +
                 "<span class='glyphicon glyphicon-remove' style='font-size: 14px;' aria-hidden='true'></span>" +
-                "</button>" +
+                "</button>&nbsp;" +
                 "<button type='button' class='close' style='margin-right: 8px' onclick=toggleUpdateUserEnvBox('" + eventID + "')>" +
                 "<span class='glyphicon glyphicon-info-sign' style='font-size: 14px;' aria-hidden='true'></span>" +
                 "</button>" +
@@ -154,9 +154,9 @@
                 "<div id='" + eventID + "UpdateBox' style='display: none; margin: 10px'>" +
                 "<input class='form-control' id='" + eventID + "UpdateTextField' type='text' maxlength='200' value='" + eventData + "' size='15' style='width: 50%;'>" +
                 "<div style='float: right'>" +
-                "<button type='button' class='btn btn-cancel btn-sm' onclick=toggleUpdateUserEnvBox('" + eventID + "')>취소" +
-                "</button>" +
-                "<button type='button' class='btn btn-save btn-sm' onclick=changeApplicationEnv('modify','" + eventID + "')>저장" +
+                "<button type='button' class='btn btn-cancel btn-sm' style='margin-top: 0px;' onclick=toggleUpdateUserEnvBox('" + eventID + "')>취소" +
+                "</button>&nbsp;" +
+                "<button type='button' class='btn btn-save btn-sm' style='margin-top: 0px;' onclick=changeApplicationEnv('modify','" + eventID + "')>저장" +
                 "</button>" +
                 "</div>" +
                 "</div>" +

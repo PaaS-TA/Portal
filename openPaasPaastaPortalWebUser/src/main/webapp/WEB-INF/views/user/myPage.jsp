@@ -64,7 +64,7 @@
 
                         <c:choose>
                             <c:when test="${not empty imgPath}">
-                            <img id="userImgDiv" class="circle event-table" style="width:135px; height:135px;" src="${user.imgPath}">
+                            <img id="userImgDiv" class="circle event-table" style="width:135px; height:135px;" src="${Constants.IMAGE_PATH_PREFIX}${user.imgPath}">
                             </c:when>
                             <c:otherwise>
                             <img id="userImgDiv" class="circle event-table" style="width:135px; height:135px;" src="<c:url value='/resources/images/userpic.png' />">
@@ -358,7 +358,7 @@
     }
 
     function uploadProfileImageCallback(path) {
-        $("#userImgDiv").attr("src", path);
+        $("#userImgDiv").attr("src", IMAGE_PATH_PREFIX+path);
 
         var param = {
             imgPath : path

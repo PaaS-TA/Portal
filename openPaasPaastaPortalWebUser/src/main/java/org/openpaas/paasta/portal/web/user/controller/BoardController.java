@@ -30,7 +30,7 @@ public class BoardController extends Common {
     /**
      * 게시판 메인 화면 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView board main
      */
     @RequestMapping(value = {"/boardMain"}, method = RequestMethod.GET)
     public ModelAndView getBoardMain() {
@@ -45,8 +45,8 @@ public class BoardController extends Common {
     /**
      * 게시판 게시글 조회/수정 화면 이동
      *
-     * @param  req HttpServletRequest
-     * @return ModelAndView
+     * @param req HttpServletRequest
+     * @return ModelAndView board view
      */
     @RequestMapping(value = {"/boardMain/view"}, method = RequestMethod.POST)
     public ModelAndView getBoardView(HttpServletRequest req) {
@@ -66,8 +66,8 @@ public class BoardController extends Common {
     /**
      * 게시판 게시글 등록화면 이동
      *
-     * @param  req HttpServletRequest
-     * @return ModelAndView
+     * @param req HttpServletRequest
+     * @return ModelAndView board create
      */
     @RequestMapping(value = {"/boardMain/create"}, method = RequestMethod.GET)
     public ModelAndView getBoardCreate(HttpServletRequest req) {
@@ -87,8 +87,8 @@ public class BoardController extends Common {
     /**
      * 게시판 답글 등록 화면 이동
      *
-     * @param  req HttpServletRequest
-     * @return ModelAndView
+     * @param req HttpServletRequest
+     * @return ModelAndView board reply
      */
     @RequestMapping(value = {"/boardMain/reply"}, method = RequestMethod.GET)
     public ModelAndView getBoardReply(HttpServletRequest req) {
@@ -109,10 +109,9 @@ public class BoardController extends Common {
      * 게시판 목록 조회
      *
      * @param param Support
-     * @return Map
+     * @return Map board list
      * @throws Exception
      */
-
     @RequestMapping(value = {"/getBoardList"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> getBoardList(@RequestBody Support param) {
@@ -125,8 +124,8 @@ public class BoardController extends Common {
      * 게시판 게시글 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map board
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -139,8 +138,8 @@ public class BoardController extends Common {
      * 게시판 게시글 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -155,8 +154,8 @@ public class BoardController extends Common {
      * 게시판 게시글 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -170,8 +169,8 @@ public class BoardController extends Common {
      * 게시판 게시글 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -182,10 +181,9 @@ public class BoardController extends Common {
     /**
      * 게시판 댓글 수 조회
      *
-     *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map reply num
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getReplyNum"}, method = RequestMethod.POST)
     @ResponseBody
@@ -198,8 +196,8 @@ public class BoardController extends Common {
      * 게시판 댓글 수 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map comment reply num
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getCommentReplyNum"}, method = RequestMethod.POST)
     @ResponseBody
@@ -209,13 +207,12 @@ public class BoardController extends Common {
     }
 
 
-
     /**
      * 파일 업로드
      *
      * @param multipartFile MultipartFile
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -228,7 +225,7 @@ public class BoardController extends Common {
      * 파일 삭제
      *
      * @param param Support
-     * @return Map
+     * @return Map map
      * @throws Exception
      */
     @RequestMapping(value = {"/deleteFile"}, method = RequestMethod.POST)
@@ -242,8 +239,8 @@ public class BoardController extends Common {
      * 게시판 댓글 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map board comment list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoardCommentList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -256,8 +253,8 @@ public class BoardController extends Common {
      * 게시판 댓글 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertBoardComment"}, method = RequestMethod.POST)
     @ResponseBody
@@ -271,8 +268,8 @@ public class BoardController extends Common {
      * 게시판 댓글 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateBoardComment"}, method = RequestMethod.POST)
     @ResponseBody
@@ -286,8 +283,8 @@ public class BoardController extends Common {
      * 게시판 댓글 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteBoardComment"}, method = RequestMethod.POST)
     @ResponseBody
