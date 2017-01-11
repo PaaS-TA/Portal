@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Auto 스케일링 서비스 - 포탈에서 설정된 앱들의 Auto 스케일링 동작을 수행한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.11.4 최초작성
  */

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Common Class
+ * 공통 클래스
  *
  * @author 김도준
  * @version 1.0
