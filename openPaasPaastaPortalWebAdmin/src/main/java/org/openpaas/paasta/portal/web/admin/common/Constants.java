@@ -182,4 +182,9 @@ public class Constants {
      * 값 없음
      */
     public static final String NONE_VALUE = "NONE";
+    /**
+     * 내부망의 이미지 자원에 접근할 수 있도록 이미지 주소 앞에 삽입하는 문자열
+     */
+    public static final String IMAGE_PATH_PREFIX = "/download/getImage?imgPath=";
+
 }

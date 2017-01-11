@@ -692,7 +692,7 @@ img.circle {
     background: #fff
 }
 
-.search_box .{display:block;position:relative;margin:0 0 5px 0;}
+.search_box {display:block;position:relative;margin:0 0 5px 0;}
 .search_box .box_group:after{display:block;clear:both;content:''}
 .search_box .box_group .label1{display:block;position:relative;padding:7px 15px 8px 0;margin:0;width:80px;float:left;line-height:15px;font-size:22px;text-align:right}
 .search_box .box_group .in_group{display:block;position:relative;float:left;margin:0 5px 0 0}
@@ -878,7 +878,7 @@ img.circle {
 .btn_search {
     color: #c4c3c3;
     background-color: transparent;
-    border-color: 0 #cccccc;
+    border-color: #cccccc;
 }
 /*강조버튼 20161205수정*/
 .btn-point{color:#fff;background:#4db6ac}
@@ -1142,6 +1142,78 @@ img.circle {
     position: relative;
 }
 
+.form-control-error {
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    font-weight: normal;
+}
+
+.form-control-error:focus {
+    border-color: red;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 0, 0, 0.51);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px  rgba(255, 0, 0, 0.51);
+}
+
+.status-icon-error:before {
+    content: "\e014";
+    color: red;
+    position: relative;
+}
+
+
+.status-icon-error:before {
+    content: "\e014";
+    color: red;
+    position: relative;
+}
+
+.form-control-ok {
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    font-weight: normal;
+}
+.form-control-ok:focus {
+    border-color: darkgreen;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0, 100, 0, 0.51);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0, 100, 0, 0.51);
+}
+
+.status-icon-ok:before {
+    content: "\e013";
+    color: darkgreen;
+    position: relative;
+}
+
 
 /* 큰 기기들 (중간기기 데스크탑992,큰 데스크탑, 1200px 이상) */
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1381,4 +1453,26 @@ select::-ms-expand {
     background-color: #cdcdcd;
     border-color: #cdcdcd;
     cursor: default;
+}
+
+.auto-complete-area {
+    margin-top: 8px;
+    margin-left: 3px;
+    width: 100%;
+    position: absolute;
+    background-color: cornsilk;
+}
+
+.auto-complete-element {
+    padding-left: 13px;
+    display: none;
+    position: relative;
+}
+
+.auto-complete-key-on{
+    background-color: rgba(134, 179, 255, 0.44);
+}
+
+.content-selected{
+    background-color: rgba(134, 179, 255, 0.24);
 }

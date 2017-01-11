@@ -360,7 +360,7 @@
                 $('#divPreview').attr('style', 'display: block; height: 94px;');
             }
 
-            $('#preview').attr('src', tempThumbImgPath);
+            $('#preview').attr('src', IMAGE_PATH_PREFIX+tempThumbImgPath);
             $("#labelThumbName").text(reqThumbImgName.val());
 
             var appSampleFileName = resultData.appSampleFileName;

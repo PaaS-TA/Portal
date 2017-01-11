@@ -27,8 +27,8 @@ public class SupportQnAController {
      * 문의 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map qn a list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getQnAList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -40,8 +40,8 @@ public class SupportQnAController {
      * 문의 상세정보 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map question
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getQuestion"}, method = RequestMethod.POST)
     @ResponseBody
@@ -53,8 +53,8 @@ public class SupportQnAController {
      * 답변 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map answer
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getAnswer"}, method = RequestMethod.POST)
     @ResponseBody
@@ -66,8 +66,8 @@ public class SupportQnAController {
      * 답변 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertAnswer"}, method = RequestMethod.POST)
     @ResponseBody
@@ -81,8 +81,8 @@ public class SupportQnAController {
      * 답변 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateAnswer"}, method = RequestMethod.POST)
     @ResponseBody
@@ -96,8 +96,8 @@ public class SupportQnAController {
      * 답변 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteAnswer"}, method = RequestMethod.POST)
     @ResponseBody

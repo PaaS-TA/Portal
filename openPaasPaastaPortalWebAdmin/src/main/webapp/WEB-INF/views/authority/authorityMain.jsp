@@ -164,7 +164,7 @@
 
     }
 
-    function searchAthorityGroup() {
+    function searchAuthorityGroup() {
         var input = $("#group-searchKeyword").val().toLowerCase();
         if(input === ""){
             $("#groupTable div[id*='groupTable-group-no-']").show()
@@ -545,16 +545,16 @@
             var elements = $("#userName-auto-complete-area div[value*='"+input+"']");
             if(elements.length === 1) {
                 var completedUserName = elements.html();
-                oneUserNameFind(input,completedUserName,isDeletingInput);
+                oneUserNameFound(input,completedUserName,isDeletingInput);
             } else if (elements.length > 1) {
-                manyUserNameFind(input, elements)
+                manyUserNameFound(input, elements)
             } else {
-                noUserNameFind();
+                noUserNameFound();
             }
         }
     }
 
-    function oneUserNameFind(input, completedUserName, isDeletingInput){
+    function oneUserNameFound(input, completedUserName, isDeletingInput){
         //검색결과가 한개인 경우
         $("#userName-auto-complete-area div[value*='"+input+"']").show();
 
@@ -577,7 +577,7 @@
         }
     }
 
-    function manyUserNameFind(input, elements){
+    function manyUserNameFound(input, elements){
         //검색결과가 2개 이상인 경우
         if($("#userName-auto-complete-area div[value='"+input+"']").length === 1){
             //검색결과 중 현재 입력된 값과 완전히 일치하는 값이 있는 경우
@@ -589,7 +589,7 @@
         elements.show();
     }
 
-    function noUserNameFind(){
+    function noUserNameFound(){
         //검색결과가 없는 경우
         inputBoxControl("user-add-name-input", "error", "error");
         $("#userName-auto-complete-area div").hide();
@@ -621,7 +621,7 @@
                     <span class="glyphicon glyphicon-search" style="top: -1px; left: 4px;"></span>
                 </button>
             </div>
-            <input type="text" id="org-searchKeyword" class="form-control ml3" style="top: -6px; left: -3px; width: 99%;" maxlength="100" placeholder="검색어를 입력하세요." onkeyup="searchOrg()">
+            <input type="text" id="group-searchKeyword" class="form-control ml3" style="top: -6px; left: -3px; width: 99%;" maxlength="100" placeholder="검색어를 입력하세요." onkeyup="searchAuthorityGroup()">
         </div>
     </div>
 </div>
@@ -630,10 +630,10 @@
     <div class="panel content-box col-sm-12 col-md-12 mt-50 col-md-offset-13 w98">
         <div class="col-sm-6 pt5"> </div>
 
-        <div style="margin: 10px 0 0 10px; width:98%;">
+        <div style="margin: 10px 0 0 10px; width:98%; height: 60%;">
             <div class="box" align="center">
 
-                <div class="custom-boxL" style="width: 49.5%">
+                <div class="custom-boxL" style="width: 49.5%; margin: 0 0 0 0;">
                     <div style="width:100%; overflow: hidden; margin-top: 10px">
                         <button type="button" id="groupArea-create-group-btn" class="btn btn-primary btn-sm" style="float:right; margin: 3px" onclick="showAddBox('createAuthorityGroupBox')">
                             그룹 생성
@@ -708,7 +708,7 @@
 
                             <div id="userTable-contents"></div>
                         </div>
-                        <div id="noUserMessage" class='mainViewArea-message' style="width: 100%; display:none;">등록된 사용자가 없습니다.</div>
+                        <div id="noUserMessage" class='mainViewArea-message' style="width: 100%; overflow:hidden; display:none;">등록된 사용자가 없습니다.</div>
                     </div>
 
                 </div>

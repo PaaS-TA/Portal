@@ -32,7 +32,7 @@ public class ServiceBrokerController extends Common {
     /**
      * 서비스 브로커 메인 화면이다.
      *
-     * @return
+     * @return model and view
      */
     @RequestMapping(value = {"/service/serviceBrokerMain"}, method = RequestMethod.GET)
     public ModelAndView serviceBroker() {
@@ -46,7 +46,7 @@ public class ServiceBrokerController extends Common {
     /**
      * 서비스 브로커 상세 화면이다.
      *
-     * @return
+     * @return model and view
      */
     @RequestMapping(value = {"/service/serviceBrokerDetail"}, method = RequestMethod.GET)
     public ModelAndView serviceBrokerDetail() {
@@ -61,7 +61,7 @@ public class ServiceBrokerController extends Common {
     /**
      * 서비스 브로커 등록 화면이다.
      *
-     * @return
+     * @return model and view
      */
     @RequestMapping(value = {"/service/serviceBrokerCreate"}, method = RequestMethod.GET)
     public ModelAndView serviceBrokerCreate() {

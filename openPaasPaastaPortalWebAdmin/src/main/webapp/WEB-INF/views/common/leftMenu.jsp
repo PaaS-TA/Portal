@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%--CONSTANT--%>
+<%@ page import="org.openpaas.paasta.portal.web.admin.common.Constants" %>
 
 <%--LEFT BAR--%>
 <div class="col-sm-3 col-md-2 sidebar">
@@ -11,7 +13,7 @@
     <div class="userinfo">
         <sec:authentication property="principal.imgPath" var="imgPath"/>
         <c:choose>
-            <c:when test="${not empty imgPath}"><img class="circle" src="<c:url value='${imgPath}'/>" alt="사용자"/></c:when>
+            <c:when test="${not empty imgPath}"><img class="circle" src="<c:url value='${Constants.IMAGE_PATH_PREFIX}${imgPath}'/>" alt="사용자"/></c:when>
             <c:otherwise><img class="circle" src="<c:url value='/resources/images/userpic.png'/>" alt="사용자"/></c:otherwise>
         </c:choose>
 

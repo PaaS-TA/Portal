@@ -2,8 +2,6 @@ package org.openpaas.paasta.portal.web.admin.controller;
 
 import org.openpaas.paasta.portal.web.admin.common.Common;
 import org.openpaas.paasta.portal.web.admin.model.BuildPack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,9 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 /**
- * BuildPackController
+ * 빌드팩 컨트롤러 - 빌드팩 정보를 조회, 수정한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -29,7 +27,7 @@ public class BuildPackController extends Common {
     /**
      * 빌드팩 화면
      *
-     * @return
+     * @return model and view
      */
     @RequestMapping(value = {"/buildPack/buildPackMain"}, method = RequestMethod.GET)
     public ModelAndView webIdeUser() {

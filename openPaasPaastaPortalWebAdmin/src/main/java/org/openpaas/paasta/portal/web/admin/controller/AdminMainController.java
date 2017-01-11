@@ -28,8 +28,9 @@ public class AdminMainController extends Common {
      */
     @RequestMapping(value = {"/organization/{organizationId}"}, method = RequestMethod.GET)
     public ModelAndView getAdminMain(@PathVariable("organizationId") String organizationId) {
-        return new ModelAndView(){{setViewName("/main/main");
-                                    addObject("ORGANIZATION_ID", organizationId);
+        return new ModelAndView() {{
+            setViewName("/main/main");
+            addObject("ORGANIZATION_ID", organizationId);
         }};
     }
 

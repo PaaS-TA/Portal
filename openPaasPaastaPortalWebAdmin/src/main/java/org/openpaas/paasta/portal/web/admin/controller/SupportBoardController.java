@@ -20,7 +20,6 @@ import java.util.Map;
  * @version 1.0
  * @since 2016.07.25 최초작성
  */
-
 @Controller
 @RequestMapping(value = {"/support"})
 public class SupportBoardController {
@@ -32,8 +31,8 @@ public class SupportBoardController {
      * 게시판 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map board list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoardList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -45,8 +44,8 @@ public class SupportBoardController {
      * 게시판 상세정보 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map board
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -59,8 +58,8 @@ public class SupportBoardController {
      * 게시판 댓글 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map board comment list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoardCommentList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -72,8 +71,8 @@ public class SupportBoardController {
      * 게시판 게시글 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteBoard"}, method = RequestMethod.POST)
     @ResponseBody
@@ -86,8 +85,8 @@ public class SupportBoardController {
      * 게시판 댓글 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteBoardComment"}, method = RequestMethod.POST)
     @ResponseBody

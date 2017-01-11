@@ -40,6 +40,11 @@ public class CommonService {
     @Value("${paasta.portal.api.authorization.base64}")
     private String base64Authorization;
 
+    /**
+     * Instantiates a new Common service.
+     *
+     * @param restTemplate the rest template
+     */
     @Autowired
     public CommonService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -127,7 +132,6 @@ public class CommonService {
 
         return result;
     }
-
 
 
     /**

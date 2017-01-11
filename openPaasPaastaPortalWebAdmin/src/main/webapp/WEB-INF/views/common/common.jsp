@@ -46,6 +46,7 @@
     var RESULT_STATUS_SUCCESS_MESSAGE = "<spring:message code='common.info.result.success' />";
     var RESULT_STATUS_FAIL_MESSAGE = "<spring:message code='common.system.error.message' />";
     var INFO_EMPTY_REQUEST_DATA = "<spring:message code='common.info.empty.req.data' />";
+    var IMAGE_PATH_PREFIX = "<%= Constants.IMAGE_PATH_PREFIX%>";
 </script>
 
 <%--POPUP--%>

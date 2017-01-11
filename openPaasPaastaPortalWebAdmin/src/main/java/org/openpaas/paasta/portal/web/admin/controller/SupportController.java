@@ -22,7 +22,6 @@ import java.util.Map;
  * @version 1.0
  * @since 2016.07.25 최초작성
  */
-
 @Controller
 @RequestMapping(value = {"/support"})
 public class SupportController {
@@ -30,12 +29,12 @@ public class SupportController {
     @Autowired
     private CommonService commonService;
 
-   /**
+    /**
      * 파일 업로드
      *
      * @param multipartFile MultipartFile
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -48,8 +47,8 @@ public class SupportController {
      * 파일 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteFile"}, method = RequestMethod.POST)
     @ResponseBody
@@ -61,7 +60,7 @@ public class SupportController {
     /**
      * 지원 메인 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView support main
      */
     @RequestMapping(value = {"/supportMain"}, method = RequestMethod.GET)
     public ModelAndView getSupportMain() {
@@ -76,7 +75,7 @@ public class SupportController {
      * 지원 메인 페이지 이동 (tab 이름에 따라 이동)
      *
      * @param tabName String(PathVariable)
-     * @return ModelAndView
+     * @return ModelAndView support main
      */
     @RequestMapping(value = {"/supportMain/{tabName}"}, method = RequestMethod.GET)
     public ModelAndView getSupportMain(@PathVariable("tabName") String tabName) {
@@ -99,7 +98,7 @@ public class SupportController {
     /**
      * 공지 등록 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView notice form
      */
     @RequestMapping(value = {"/noticeForm"}, method = RequestMethod.GET)
     public ModelAndView getNoticeForm() {
@@ -116,7 +115,7 @@ public class SupportController {
      * 공지 조회/수정 페이지 이동
      *
      * @param req HttpServletRequest
-     * @return ModelAndView
+     * @return ModelAndView notice form
      */
     @RequestMapping(value = {"/noticeForm"}, method = RequestMethod.POST)
     public ModelAndView getNoticeForm(HttpServletRequest req) {
@@ -133,7 +132,7 @@ public class SupportController {
      * 문의 조회/답변조회/답변등록/답변수정 페이지 이동
      *
      * @param req HttpServletRequest
-     * @return ModelAndView
+     * @return ModelAndView qna form
      */
     @RequestMapping(value = {"/qnaForm"}, method = RequestMethod.POST)
     public ModelAndView getQNAForm(HttpServletRequest req) {
@@ -149,7 +148,7 @@ public class SupportController {
     /**
      * 게시판 등록 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView board form
      */
     @RequestMapping(value = {"/boardForm"}, method = RequestMethod.GET)
     public ModelAndView getBoardForm() {
@@ -166,7 +165,7 @@ public class SupportController {
      * 게시판 조회/수정 페이지 이동
      *
      * @param req HttpServletRequest
-     * @return ModelAndView
+     * @return ModelAndView board form
      */
     @RequestMapping(value = {"/boardForm"}, method = RequestMethod.POST)
     public ModelAndView getBoardForm(HttpServletRequest req) {

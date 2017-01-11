@@ -32,7 +32,7 @@ public class WebIdeUserController extends Common {
     /**
      * WEB IDE 메인 화면이다.
      *
-     * @return
+     * @return model and view
      */
     @RequestMapping(value = {"/webIdeUser/webIdeUserMain"}, method = RequestMethod.GET)
     public ModelAndView webIdeUser() {
@@ -89,6 +89,8 @@ public class WebIdeUserController extends Common {
     /**
      * WEB IDE 사용자 리스트를 조회한다.
      *
+     * @param webIdeUser the web ide user
+     * @return the list
      */
     @RequestMapping(value = {"/webIdeUser/getList"}, method = RequestMethod.POST)
     @ResponseBody

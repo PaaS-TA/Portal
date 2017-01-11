@@ -186,7 +186,6 @@
         var CUD_U = "<%= Constants.CUD_U %>";
         var REQ_NO = "<c:out value='${REQUEST_NO}' default='' />";
 
-
         // GET CATEGORY LIST
         var getCategoryList = function() {
             procCallAjax(CATEGORY_LIST_PROC_URL + "/" + SERVICE_PACK_CATALOG_ID, null, procCallbackCategoryList);
@@ -396,7 +395,7 @@
                 $('#divPreview').hide();
             } else {
                 $('#divPreview').attr('style', 'display: block; height: 94px;');
-                $('#preview').attr('src', tempThumbImgPath);
+                $('#preview').attr('src', IMAGE_PATH_PREFIX+tempThumbImgPath);
                 $("#labelThumbName").text(reqThumbImgName.val());
             }
         };

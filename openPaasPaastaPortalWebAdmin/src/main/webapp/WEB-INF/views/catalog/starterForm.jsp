@@ -574,7 +574,7 @@
 
             } else {
                 $('#divPreview').attr('style', 'display: block; height: 94px;');
-                $('#preview').attr('src', $("#thumbImgPath").val());
+                $('#preview').attr('src', IMAGE_PATH_PREFIX+$("#thumbImgPath").val());
             }
 
             var useYnValue = data.info.useYn;

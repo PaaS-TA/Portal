@@ -31,8 +31,8 @@ public class SupportNoticeController {
      * 공지 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map notice list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getNoticeList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -44,8 +44,8 @@ public class SupportNoticeController {
      * 공지 상세정보 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map notice
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getNotice"}, method = RequestMethod.POST)
     @ResponseBody
@@ -57,8 +57,8 @@ public class SupportNoticeController {
      * 공지 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertNotice"}, method = RequestMethod.POST)
     @ResponseBody
@@ -71,8 +71,8 @@ public class SupportNoticeController {
      * 공지 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateNotice"}, method = RequestMethod.POST)
     @ResponseBody
@@ -85,8 +85,8 @@ public class SupportNoticeController {
      * 공지 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteNotice"}, method = RequestMethod.POST)
     @ResponseBody

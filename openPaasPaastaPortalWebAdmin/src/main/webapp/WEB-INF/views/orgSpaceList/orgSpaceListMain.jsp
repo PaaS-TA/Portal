@@ -304,7 +304,7 @@
         <div style="margin: 20px 0 0 10px; width:98%;">
 
             <div class="box" align="center">
-                <div class="custom-boxL" style="width: 49.5%">
+                <div class="custom-boxL" style="width: 49%">
 
                     <div class="orgArea">
                         <div class="mainViewArea-table" id="orgTable" style="display: none">
@@ -314,7 +314,7 @@
                     </div>
                 </div>
 
-                <div class="custom-boxR" style="width: 49.5%">
+                <div class="custom-boxR" style="width: 49%">
                     <div class="spaceArea">
                         <div id="spaceTable" class="mainViewArea-table" style="display: none">
                         </div>

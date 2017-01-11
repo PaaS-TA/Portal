@@ -34,8 +34,8 @@ public class DocumentsController {
      * 문서 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map documents list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getDocumentsList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -47,8 +47,8 @@ public class DocumentsController {
      * 문서 상세정보 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map document
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getDocument"}, method = RequestMethod.POST)
     @ResponseBody
@@ -60,8 +60,8 @@ public class DocumentsController {
      * 문서 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertDocument"}, method = RequestMethod.POST)
     @ResponseBody
@@ -74,8 +74,8 @@ public class DocumentsController {
      * 문서 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateDocument"}, method = RequestMethod.POST)
     @ResponseBody
@@ -89,8 +89,8 @@ public class DocumentsController {
      * 문서 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST)
     @ResponseBody
@@ -103,7 +103,7 @@ public class DocumentsController {
     /**
      * 문서 메인 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView documents main
      */
     @RequestMapping(value = {"/documentsMain"}, method = RequestMethod.GET)
     public ModelAndView getDocumentsMain() {
@@ -117,7 +117,7 @@ public class DocumentsController {
     /**
      * 문서 등록 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView model and view
      */
     @RequestMapping(value = {"/documentsForm"}, method = RequestMethod.GET)
     public ModelAndView documentForm() {
@@ -134,7 +134,7 @@ public class DocumentsController {
      * 문서 조회/수정 페이지 이동
      *
      * @param req HttpServletRequest
-     * @return ModelAndView
+     * @return ModelAndView model and view
      */
     @RequestMapping(value = {"/documentsForm"}, method = RequestMethod.POST)
     public ModelAndView documentForm(HttpServletRequest req) {

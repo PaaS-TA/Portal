@@ -36,7 +36,7 @@ public class ClientController {
     /**
      * 클라이언트 메인 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView client main
      */
     @RequestMapping(value = {"/clientMain"}, method = RequestMethod.GET)
     public ModelAndView getClientMain() {
@@ -46,7 +46,7 @@ public class ClientController {
     /**
      * 클라이언트 등록 페이지 이동
      *
-     * @return ModelAndView
+     * @return ModelAndView client form
      */
     @RequestMapping(value = {"/clientForm"}, method = RequestMethod.GET)
     public ModelAndView getClientForm() {
@@ -61,8 +61,8 @@ public class ClientController {
     /**
      * 클라이언트 조회/수정 페이지 이동
      *
-     * @param req
-     * @return ModelAndView
+     * @param req the req
+     * @return ModelAndView client form
      */
     @RequestMapping(value = {"/clientForm"}, method = RequestMethod.POST)
     public ModelAndView getClientForm(HttpServletRequest req) {
@@ -80,7 +80,8 @@ public class ClientController {
      * 클라이언트 목록 조회
      *
      * @param param Map
-     * @return Map
+     * @return Map client list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getClientList"}, method = RequestMethod.POST)
     @ResponseBody
@@ -93,7 +94,8 @@ public class ClientController {
      * 클라이언트 정보 조회
      *
      * @param param Map
-     * @return Map
+     * @return Map client
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getClient"}, method = RequestMethod.POST)
     @ResponseBody
@@ -105,7 +107,8 @@ public class ClientController {
      * 클라이언트 등록
      *
      * @param param Map
-     * @return Map
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/registerClient"}, method = RequestMethod.POST)
     @ResponseBody
@@ -117,7 +120,8 @@ public class ClientController {
      * 클라이언트 수정
      *
      * @param param Map
-     * @return Map
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateClient"}, method = RequestMethod.POST)
     @ResponseBody
@@ -129,7 +133,8 @@ public class ClientController {
      * 클라이언트 삭제
      *
      * @param param Map
-     * @return Map
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteClient"}, method = RequestMethod.POST)
     @ResponseBody

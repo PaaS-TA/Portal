@@ -197,6 +197,7 @@ class CatalogController extends Common {
      *
      * @param param Catalog(모델클래스)
      * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertBuildPackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -210,6 +211,7 @@ class CatalogController extends Common {
      *
      * @param param Catalog(모델클래스)
      * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertServicePackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -223,6 +225,7 @@ class CatalogController extends Common {
      *
      * @param param Catalog(모델클래스)
      * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/updateBuildPackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -236,6 +239,7 @@ class CatalogController extends Common {
      *
      * @param param Catalog(모델클래스)
      * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/updateServicePackCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -420,6 +424,7 @@ class CatalogController extends Common {
      *
      * @param param Catalog(모델클래스)
      * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/insertStarterCatalog"}, method = RequestMethod.POST)
     @ResponseBody
@@ -433,6 +438,7 @@ class CatalogController extends Common {
      *
      * @param param Catalog(모델클래스)
      * @return Map(자바클래스)
+     * @throws Exception Exception(자바클래스)
      */
     @RequestMapping(value = {"/updateStarterCatalog"}, method = RequestMethod.POST)
     @ResponseBody

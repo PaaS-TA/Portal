@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,22 +19,25 @@ import java.util.Locale;
  * @author nawkm
  * @version 1.0
  * @since 2016.4.4 최초작성
- *
  */
 @Controller
 public class LoginController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
+    /**
+     * The Rest template.
+     */
     @Autowired
     protected RestTemplate restTemplate;
 
     /**
      * 로그인 화면
      *
-     * @param error  the error
-     * @param logout the logout
-     * @param locale the locale
+     * @param error   the error
+     * @param logout  the logout
+     * @param locale  the locale
+     * @param request the request
      * @return ModelAndView model
      */
     @RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
@@ -60,7 +65,6 @@ public class LoginController {
 
         return model;
     }
-
 
 
     /**
