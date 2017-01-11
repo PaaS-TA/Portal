@@ -21,10 +21,10 @@ apply plugin: 'spring-boot'
 apply plugin: "io.spring.dependency-management"
 
 //war file, sonarqube project version
-version '1.0-SNAPSHOT'
+version '1.0'
 
 war {
-    baseName = 'openPaasPaastaPortalApiV2'
+    baseName = 'paasta-portal-api-v2'
     version "$version"
 }
 
@@ -78,7 +78,9 @@ dependencies {
     }
 
     // test
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.1.RELEASE'
+
+//    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 

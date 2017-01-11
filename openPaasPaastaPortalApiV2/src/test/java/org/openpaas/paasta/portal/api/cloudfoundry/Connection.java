@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class Connection {
 
 
-    private static final String TEST_API_HOST       = "api.115.68.46.29.xip.io";
+    private static final String TEST_API_HOST = "api.115.68.46.30.xip.io";
     private static final String TEST_USERNAME       = "admin";
     private static final String TEST_PASSWORD       = "admin";
     private static final String TEST_CLIENT_ID      = "cloudfoundry";

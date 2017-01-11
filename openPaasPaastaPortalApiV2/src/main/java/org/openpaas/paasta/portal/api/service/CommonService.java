@@ -14,7 +14,7 @@ public class CommonService {
     ReactorCloudFoundryClient cloudFoundryClient;
     @Autowired
     ReactorUaaClient uaaClient;
-    @Autowired
-    ReactorDopplerClient dopplerClient;
+//    @Autowired
+//    ReactorDopplerClient reactorDopplerClient;
 
 }

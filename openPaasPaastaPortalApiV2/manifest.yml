@@ -4,14 +4,13 @@ applications:
   memory: 1536M
   instances: 1
   host: portal-api-v2
-  path: ./openPaasPaastaPortalApi-1.0-SNAPSHOT.war
+  path: ./paasta-portal-api-v2-1.0.war
   buildpack: java_buildpack
   services:
   - portal-eureka-service
-  - portal-glusterfs-service
   env:
     spring_application_name: portal-api-v2
-    server_port: 8080
+    server_port: 3333
 
     security_user_name: admin
     security_user_password: openpaasta
@@ -22,7 +21,7 @@ applications:
     eureka_instance_hostname: localhost
     eureka_client_serviceUrl_defaultZone: http://127.0.0.1:2221/eureka/
 
-    cf_apiHost: api.115.68.46.29.xip.io
+    cf_apiHost: api.115.68.46.30.xip.io
     cf_sslSkipValidation: true
     cf_clientId: cf
     cf_clientSecret:
@@ -46,11 +45,11 @@ applications:
     datasource_uaa_username: uaaadmin
     datasource_uaa_password: admin
 
-    glusterfs_tenantName: op_3079b6c62314d512
-    glusterfs_username: a654aa1ccf074f21
-    glusterfs_password: 37e64201aeffb1d9
-    glusterfs_authUrl: http://52.201.48.51:5000/v2.0
-    glusterfs_containerName: portal-container
+    #glusterfs_tenantName: op_3079b6c62314d512
+    #glusterfs_username: a654aa1ccf074f21
+    #glusterfs_password: 37e64201aeffb1d9
+    #glusterfs_authUrl: http://52.201.48.51:5000/v2.0
+    #glusterfs_containerName: portal-container
 
     #mail_smtp_host: smtp.gmail.com
     #mail_smtp_port: 465
