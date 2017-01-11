@@ -21,10 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ijlee on 2016-07-27.
+ * 로그 컨트롤러 - 앱-최근로그를 조회한다.
+ *
+ * @author 이인정
+ * @version 1.0
+ * @since 2016.7.11 최초작성
  */
-
-
 @RestController
 //@RequestMapping(value = {"/log"})
 public class LogController extends Common {
@@ -34,6 +36,15 @@ public class LogController extends Common {
     @Autowired
     private LogService logService;
 
+    /**
+     * Gets recent logs.
+     *
+     * @param app      the app
+     * @param request  the request
+     * @param response the response
+     * @return the recent logs
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/log/getRecentLogs"}, method = RequestMethod.POST)
     public Map getRecentLogs(@RequestBody App app, HttpServletRequest request, HttpServletResponse response) throws Exception {
 

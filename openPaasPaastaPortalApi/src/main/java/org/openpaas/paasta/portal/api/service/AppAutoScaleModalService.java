@@ -29,6 +29,7 @@ public class AppAutoScaleModalService extends Common {
     /**
      * getAppAutoScaleInfo(HashMap appAutoScale)
      * 앱의 자동인스턴스 증가, 감소 관련 정보를 가져온다.
+     *
      * @param appAutoScale 자동인스턴스 증가, 감소 관련 모델 파라메터
      * @return {mode, list}
      */
@@ -63,10 +64,10 @@ public class AppAutoScaleModalService extends Common {
     /**
      * insertAppAutoScale (HashMap<String,Object> appAutoScale)
      * 앱의 자동인스턴스 증가, 감소 관련 정보를 저장한다.
+     *
      * @param appAutoScale 자동인스턴스 증가, 감소 관련 모델 파라메터
      * @return {결과 값}
      */
-
     public int insertAppAutoScale (HashMap<String,Object> appAutoScale) {
 
         LOGGER.info("SERVICE insertAppAutoScale map : ",  appAutoScale.toString());
@@ -79,10 +80,10 @@ public class AppAutoScaleModalService extends Common {
     /**
      * updateAppAutoScale (HashMap<String,Object> appAutoScale)
      * 앱의 자동인스턴스 증가, 감소 관련 정보를 수정한다.
+     *
      * @param appAutoScale 자동인스턴스 증가, 감소 관련 모델 파라메터
      * @return {결과 값}
      */
-
     public int updateAppAutoScale(HashMap<String,Object> appAutoScale) {
 
         LOGGER.info("SERVICE updateAppAutoScale  : ",  appAutoScale.toString());
@@ -92,9 +93,11 @@ public class AppAutoScaleModalService extends Common {
 
 
     }
+
     /**
      * deleteAppAutoScale (HashMap<String,Object> appAutoScale)
      * 앱의 자동인스턴스 증가, 감소 관련 정보를 삭제한다..
+     *
      * @param guid 자동인스턴스 증가, 감소 관련 모델 아이디
      * @return {결과 값}
      */

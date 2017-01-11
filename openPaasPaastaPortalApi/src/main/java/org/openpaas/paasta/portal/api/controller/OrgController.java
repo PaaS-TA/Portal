@@ -148,7 +148,7 @@ public class OrgController extends Common {
      * 조직 목록을 조회한다.
      *
      * @param request the request
-     * @return List<CloudOrganization>   orgList
+     * @return List<CloudOrganization>    orgList
      * @throws Exception the exception
      * @author 김도준
      * @version 1.0
@@ -343,7 +343,7 @@ public class OrgController extends Common {
      * body.put("space", testSpace);
      *
      * @param body the body
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/inviteEmailSend"}, method = RequestMethod.POST)
@@ -433,7 +433,7 @@ public class OrgController extends Common {
      * body.put("space", testSpace);
      *
      * @param request the request
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invitations/accept"})
@@ -463,7 +463,7 @@ public class OrgController extends Common {
      * 조직에 초대된 사용자의 가입여부를 조회한다.
      *
      * @param request the request
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invitations/userInfo"})
@@ -491,7 +491,7 @@ public class OrgController extends Common {
      * 조직에 초대된 사용자의 미가입시 가입시킨다.
      *
      * @param request the request
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invitations/authUser"})
@@ -516,7 +516,7 @@ public class OrgController extends Common {
      * 조직에 사용자를  이메일을 재전송한다.
      *
      * @param body the body
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/inviteEmailReSend"}, method = RequestMethod.POST)
@@ -531,7 +531,7 @@ public class OrgController extends Common {
      * 조직에 사용자를 이메일을 재전송한다.
      *
      * @param body the body
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/cancelInvite"}, method = RequestMethod.POST)
@@ -548,7 +548,7 @@ public class OrgController extends Common {
      *
      * @param token the token
      * @param body  the body
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/invite/inviteEmailSendCnt"}, method = RequestMethod.POST)

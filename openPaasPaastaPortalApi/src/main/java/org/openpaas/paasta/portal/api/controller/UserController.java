@@ -27,11 +27,11 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * User Controller
+ * 유저 컨트롤러 - 마이페이지의 유저의 조회 수정을 처리한다.
  *
- * @author mg
+ * @author 조민구
  * @version 1.0
- * @since 2016.4.4 최초작성
+ * @since 2016.5.23 최초작성
  */
 @RestController
 @Transactional
@@ -51,7 +51,7 @@ public class UserController extends Common {
      * 사용자 총 명수
      *
      * @param
-     * @return App
+     * @return App user count
      */
     @RequestMapping(value = {"/getUserCount"}, method = RequestMethod.GET)
     public UserDetail getUserCount() {
@@ -67,12 +67,13 @@ public class UserController extends Common {
     }
 
     /**
+     * Update user map.
      *
-     * @param userId
-     * @param body
-     * @param response
+     * @param userId   the user id
+     * @param body     the body
+     * @param response the response
      * @return Map { "result": updateCount}
-     * @throws Exception
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateUser/{userId:.+}"}, method = RequestMethod.PUT, consumes="application/json")
     public Map updateUser(@PathVariable String userId, @RequestBody Map<String, Object> body, HttpServletResponse response) throws Exception{
@@ -108,6 +109,15 @@ public class UserController extends Common {
         return result;
     }
 
+    /**
+     * Update user email map.
+     *
+     * @param userId   the user id
+     * @param body     the body
+     * @param response the response
+     * @return the map
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/updateUserEmail/{userId:.+}"}, method = RequestMethod.PUT)
     public Map updateUserEmail(@PathVariable String userId, @RequestBody Map<String, Object> body, HttpServletResponse response) throws Exception {
 
@@ -131,6 +141,16 @@ public class UserController extends Common {
         return result;
     }
 
+    /**
+     * Update user password map.
+     *
+     * @param userId   the user id
+     * @param body     the body
+     * @param request  the request
+     * @param response the response
+     * @return the map
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/updateUserPassword/{userId:.+}"}, method = RequestMethod.PUT)
     public Map updateUserPassword(@PathVariable String userId, @RequestBody Map<String, Object> body,
                                   HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -154,9 +174,10 @@ public class UserController extends Common {
     }
 
     /**
+     * Gets user.
      *
-     * @param userId
-     * @return Map
+     * @param userId the user id
+     * @return Map user
      */
     @RequestMapping(value = {"/getUser/{userId:.+}"}, method = RequestMethod.GET)
     public Map getUser(@PathVariable String userId) {
@@ -172,12 +193,13 @@ public class UserController extends Common {
     }
 
     /**
+     * Gets user and orgs.
      *
-     * @param userId
-     * @param request
-     * @param response
-     * @return Map
-     * @throws Exception
+     * @param userId   the user id
+     * @param request  the request
+     * @param response the response
+     * @return Map user and orgs
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getUserAndOrgs/{userId:.+}"}, method = RequestMethod.GET)
     public Map getUserAndOrgs(@PathVariable String userId , HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -204,11 +226,12 @@ public class UserController extends Common {
     }
 
     /**
+     * Insert user map.
      *
-     * @param body
-     * @param response
-     * @return Map
-     * @throws Exception
+     * @param body     the body
+     * @param response the response
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertUser"})
     public Map insertUser(@RequestBody Map<String, Object> body, HttpServletResponse response) throws Exception {
@@ -222,13 +245,24 @@ public class UserController extends Common {
         if ( userService.getUser(user.getUserId()) != null ) {
             response.sendError(HttpServletResponse.SC_CONFLICT, "User already exists.");
         } else {
+            if(adminUserName.equals(user.getUserName())){
+                user.setAdminYn("Y");
+            }
             createResult = userService.createUser(user);
             result.put("result", createResult);
         }
-
         return result;
     }
 
+    /**
+     * Delete user map.
+     *
+     * @param userId   the user id
+     * @param body     the body
+     * @param response the response
+     * @return the map
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/deleteUser/{userId:.+}"}, method = RequestMethod.PUT)
     public Map deleteUser(@PathVariable String userId, @RequestBody Map<String, Object> body, HttpServletResponse response) throws Exception {
         LOGGER.info("> into deleteUser");
@@ -257,6 +291,15 @@ public class UserController extends Common {
     }
 
 
+    /**
+     * Gets list for the user.
+     *
+     * @param keyOfRole the key of role
+     * @param request   the request
+     * @param response  the response
+     * @return the list for the user
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/getListForTheUser/{keyOfRole}"}, method = RequestMethod.POST)
     public List<Map> getListForTheUser(@PathVariable String keyOfRole, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -270,9 +313,10 @@ public class UserController extends Common {
 
     /**
      * 계정생성 화면
-     * @param request
-     * @param response
-     * @return
+     *
+     * @param request  the request
+     * @param response the response
+     * @return map
      */
     @RequestMapping(value = "/addUser")
     @ResponseBody
@@ -286,6 +330,12 @@ public class UserController extends Common {
 
     /**
      * 이메일 인증 사용자 확인
+     *
+     * @param userDetail the user detail
+     * @param response   the response
+     * @return the map
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
      */
     @RequestMapping(value = {"/confirmAuthUser"})
     public Map<String, Object> confirmAuthUser(@RequestBody UserDetail userDetail, HttpServletResponse response) throws IOException, MessagingException {
@@ -309,12 +359,13 @@ public class UserController extends Common {
 
 
     /**
-     *계정등록
-     * @param userDetail
-     * @param response
-     * @return
-     * @throws IOException
-     * @throws MessagingException
+     * 계정등록
+     *
+     * @param userDetail the user detail
+     * @param response   the response
+     * @return map
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
      */
     @RequestMapping(value = {"/authUser"})
     public Map<String, Object> authUser(@RequestBody UserDetail userDetail, HttpServletResponse response) throws IOException, MessagingException {
@@ -333,13 +384,15 @@ public class UserController extends Common {
         resultMap.put("resultUser",listUser.size());
         return resultMap;
     }
+
     /**
+     * Reset password map.
      *
-     * @param userDetail
-     * @param response
-     * @return
-     * @throws IOException
-     * @throws MessagingException
+     * @param userDetail the user detail
+     * @param response   the response
+     * @return map
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
      */
     @RequestMapping(value = {"/resetPassword"})
     public Map<String, Object> resetPassword(@RequestBody UserDetail userDetail, HttpServletResponse response) throws IOException, MessagingException {
@@ -364,9 +417,10 @@ public class UserController extends Common {
 
     /**
      * 이메일 인증을 통한 CF 사용자 추가
-     * @param
-     * @return
-     * @throws Exception
+     *
+     * @param userDetail the user detail
+     * @return map
+     * @throws Exception the exception
      */
     @Transactional
     @RequestMapping(value = {"/authAddUser"})
@@ -396,10 +450,10 @@ public class UserController extends Common {
 
     /**
      * 비밀번호 재설정을 한다.
-     * @param userDetail
-     * @return
-     * @throws IOException
-     * @throws MessagingException
+     *
+     * @param userDetail the user detail
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/authResetPassword"})
     public Map<String, Object> authResetPassword(@RequestBody HashMap userDetail) throws Exception {
@@ -415,7 +469,7 @@ public class UserController extends Common {
      * 파일 업로드
      *
      * @param multipartFile the multipart file
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
@@ -423,6 +477,13 @@ public class UserController extends Common {
         return userService.uploadFile(multipartFile);
     }
 
+    /**
+     * Gets users.
+     *
+     * @param map the map
+     * @return the users
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/getUser/"}, method = RequestMethod.POST )
     public Map<String, Object> getUsers(@RequestBody HashMap map) throws Exception {
         LOGGER.info("> into getUser...");
@@ -437,10 +498,10 @@ public class UserController extends Common {
     }
 
     /**
-     *  모든 Uaa 유저의 이름과 Guid를 목록으로 가져온다.
+     * 모든 Uaa 유저의 이름과 Guid를 목록으로 가져온다.
      *
-     * @return map
-     * @throws Exception
+     * @return map all user name
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getUserInfo"}, method = RequestMethod.GET)
     public Map<String, Object> getAllUserName() throws Exception {

@@ -15,11 +15,10 @@ import java.util.Map;
  * SupportNoticeService.java
  * 공지사항 조회, 등록, 수정 등 공지사항 관리에 필요한 기능을 구현한 서비스 클래스
  *
- * @author yjkim
+ * @author 김영지
  * @version 1.0
  * @since 2016.07.28 최초작성
  */
-
 @Transactional
 @Service
 public class SupportNoticeService extends Common{
@@ -31,8 +30,8 @@ public class SupportNoticeService extends Common{
      * 공지 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map notice list
+     * @throws Exception the exception
      */
     public Map<String, Object> getNoticeList(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -47,8 +46,8 @@ public class SupportNoticeService extends Common{
      * 공지 상세정보 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map notice
+     * @throws Exception the exception
      */
     public Map<String, Object> getNotice(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -63,8 +62,8 @@ public class SupportNoticeService extends Common{
      * 공지 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map<String, Object> insertNotice(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -80,8 +79,8 @@ public class SupportNoticeService extends Common{
      * 공지 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map<String, Object> updateNotice(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -96,8 +95,8 @@ public class SupportNoticeService extends Common{
      * 공지 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map<String, Object> deleteNotice(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();

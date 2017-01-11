@@ -45,7 +45,7 @@ public class SpaceService extends Common {
      *
      * @param org   the org
      * @param token the token
-     * @return List<CloudSpace>     orgList
+     * @return List<CloudSpace>      orgList
      * @throws Exception the exception
      * @author kimdojun
      * @version 1.0

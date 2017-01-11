@@ -28,6 +28,11 @@ class SupportQnAController extends Common {
 
     private final SupportQnAService supportQnAService;
 
+    /**
+     * Instantiates a new Support qn a controller.
+     *
+     * @param supportQnAService the support qn a service
+     */
     @Autowired
     public SupportQnAController(SupportQnAService supportQnAService) {
         this.supportQnAService = supportQnAService;
@@ -36,10 +41,10 @@ class SupportQnAController extends Common {
     /**
      * 문의 목록 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map qn a list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getQnAList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getQnAList(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -50,10 +55,10 @@ class SupportQnAController extends Common {
     /**
      * 문의 상세 정보 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map question
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getQuestion"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getQuestion(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -64,10 +69,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 상세 정보 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map answer
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getAnswer"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -78,10 +83,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 등록
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertAnswer"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -92,10 +97,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 수정
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateAnswer"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {
@@ -106,10 +111,10 @@ class SupportQnAController extends Common {
     /**
      * 답변 삭제
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteAnswer"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteAnswer(@RequestBody Support param, HttpServletResponse response) throws Exception {

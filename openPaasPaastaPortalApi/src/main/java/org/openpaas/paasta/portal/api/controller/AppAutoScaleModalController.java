@@ -15,6 +15,13 @@ import java.util.Map;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+/**
+ * 앱 Auto스케일 컨트롤러 - 앱 Auto스케일 정보를 조회하고 저장한다.
+ *
+ * @author 이인정
+ * @version 1.0
+ * @since 2016.7.11 최초작성
+ */
 @RestController
 @Transactional
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,6 +32,13 @@ public class AppAutoScaleModalController extends Common {
     @Autowired
     private AppAutoScaleModalService appAutoScaleModalService;
 
+    /**
+     * Gets app auto scale info.
+     *
+     * @param appAutoScale the app auto scale
+     * @param response     the response
+     * @return the app auto scale info
+     */
     @ResponseBody
     @RequestMapping(value = {"/getAppAutoScaleInfo"}, method = RequestMethod.POST)
     public Map<String, Object> getAppAutoScaleInfo(@RequestBody HashMap appAutoScale, HttpServletResponse response) {
@@ -38,6 +52,13 @@ public class AppAutoScaleModalController extends Common {
         return resultMap;
     }
 
+    /**
+     * Gets app auto scale list.
+     *
+     * @param appAutoScale the app auto scale
+     * @param response     the response
+     * @return the app auto scale list
+     */
     @ResponseBody
     @RequestMapping(value = {"/getAppAutoScaleList"}, method = RequestMethod.POST)
     public Map<String, Object> getAppAutoScaleList(@RequestBody HashMap appAutoScale, HttpServletResponse response) {
@@ -51,6 +72,13 @@ public class AppAutoScaleModalController extends Common {
         return resultMap;
     }
 
+    /**
+     * Insert app auto scale map.
+     *
+     * @param appAutoScale the app auto scale
+     * @param response     the response
+     * @return the map
+     */
     @ResponseBody
     @RequestMapping(value = {"/insertAppAutoScale"}, method = RequestMethod.POST)
     public Map<String, Object> insertAppAutoScale(@RequestBody HashMap<String, Object> appAutoScale, HttpServletResponse response) {
@@ -60,6 +88,14 @@ public class AppAutoScaleModalController extends Common {
 
         return resultMap;
     }
+
+    /**
+     * Update app auto scale map.
+     *
+     * @param appAutoScale the app auto scale
+     * @param response     the response
+     * @return the map
+     */
     @ResponseBody
     @RequestMapping(value = {"/updateAppAutoScale"}, method = RequestMethod.POST)
     public Map<String, Object> updateAppAutoScale(@RequestBody HashMap<String, Object> appAutoScale, HttpServletResponse response) {
@@ -69,6 +105,14 @@ public class AppAutoScaleModalController extends Common {
 
         return resultMap;
     }
+
+    /**
+     * Delete app auto scale map.
+     *
+     * @param appAutoScale the app auto scale
+     * @param response     the response
+     * @return the map
+     */
     @ResponseBody
     @RequestMapping(value = {"/deleteAppAutoScale"}, method = RequestMethod.POST)
     public Map<String, Object> deleteAppAutoScale(@RequestBody HashMap<String, Object> appAutoScale, HttpServletResponse response) {

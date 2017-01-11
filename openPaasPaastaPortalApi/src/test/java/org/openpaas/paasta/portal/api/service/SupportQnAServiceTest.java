@@ -54,7 +54,7 @@ public class SupportQnAServiceTest extends CommonTest {
     private static Gson gson = new Gson();
     private static final String AUTHORIZATION_HEADER_KEY="cf-Authorization";
 
-    private static String API_TARGET = "https://api.115.68.46.29.xip.io";
+    private static String API_TARGET = "https://api.115.68.46.30.xip.io";
     private static String TEST_URL = "/support";
 
 

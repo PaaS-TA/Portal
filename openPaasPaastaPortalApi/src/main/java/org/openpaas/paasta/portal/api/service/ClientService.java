@@ -18,11 +18,10 @@ import java.util.Map;
  * 클라이언트 목록 , 클라이언트 삭제 등 클라이언트 관리에 필요한 기능을 구현한 서비스 클래스
  * Common 클래스를 상속하여 구현
  *
- * @author yjkim
+ * @author 김영지
  * @version 1.0
  * @since 2016.9.29 최초작성
  */
-
 @Service
 @Transactional
 public class ClientService extends Common {
@@ -31,9 +30,9 @@ public class ClientService extends Common {
      * 클라이언트 목록 조회
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param Map
-     * @return Map
-     * @throws Exception
+     * @param param                    Map
+     * @return Map client list
+     * @throws Exception the exception
      */
     public Map getClientList(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -70,9 +69,9 @@ public class ClientService extends Common {
      * 클라이언트 정보 조회
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param Map
-     * @return Map
-     * @throws Exception
+     * @param param                    Map
+     * @return Map client
+     * @throws Exception the exception
      */
     public Map getClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -106,9 +105,9 @@ public class ClientService extends Common {
      * 클라이언트 등록
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param Map
-     * @return Map
-     * @throws Exception
+     * @param param                    Map
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map registerClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -125,9 +124,9 @@ public class ClientService extends Common {
      * 클라이언트 수정
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param Map
-     * @return Map
-     * @throws Exception
+     * @param param                    Map
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map updateClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 
@@ -146,9 +145,9 @@ public class ClientService extends Common {
      * 클라이언트 삭제
      *
      * @param customCloudFoundryClient CustomCloudFoundryClient
-     * @param param Map
-     * @return Map
-     * @throws Exception
+     * @param param                    Map
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map deleteClient(CustomCloudFoundryClient customCloudFoundryClient, Map<String, Object> param) throws Exception {
 

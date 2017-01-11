@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
 /**
- * org.openpaas.paasta.portal.api.service
+ * 공통서비스 - 사용자 정의 에러메세지 처리
  *
  * @author 김도준
  * @version 1.0
@@ -21,6 +21,11 @@ public class CommonService {
 
     private final MessageSource messageSource;
 
+    /**
+     * Instantiates a new Common service.
+     *
+     * @param messageSource the message source
+     */
     @Autowired
     public CommonService(MessageSource messageSource) {
         this.messageSource = messageSource;

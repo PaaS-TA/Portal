@@ -9,5 +9,67 @@ applications:
   services:
   - portal-eureka-service
   env:
-    SPRING_PROFILES_ACTIVE: dev
-    test_value: DEV_TEST_VALUE
+    spring_application_name: portal-api
+    spring_jdbc: postgresql
+
+    server_port: 2222
+
+    cloudfoundry_cc_api_url: https://api.115.68.46.30.xip.io
+    cloudfoundry_cc_api_uaaUrl: https://uaa.115.68.46.30.xip.io
+
+    cloudfoundry_cc_user_admin_username: admin
+    cloudfoundry_cc_user_admin_password: admin
+    cloudfoundry_cc_user_uaaClient_clientId: login
+    cloudfoundry_cc_user_uaaClient_clientSecret: admin
+    cloudfoundry_cc_user_uaaClient_adminClientId: admin
+    cloudfoundry_cc_user_uaaClient_adminClientSecret: admin
+    cloudfoundry_cc_user_uaaClient_loginClientId: login
+    cloudfoundry_cc_user_uaaClient_loginClientSecret: admin
+    cloudfoundry_cc_user_uaaClient_skipSSLValidation: true
+    cloudfoundry_cc_user_authorization: cf-Authorization
+
+    abacus_url: http://paasta-usage-reporting.115.68.46.30.xip.io/v1
+
+    spring_security_username: admin
+    spring_security_password: openpaasta
+
+    spring_datasource_cc_driverClassName: org.postgresql.Driver
+    spring_datasource_cc_url: jdbc:postgresql://10.30.110.42:5524/ccdb
+    spring_datasource_cc_username: ccadmin
+    spring_datasource_cc_password: admin
+    spring_datasource_portal_driverClassName: org.postgresql.Driver
+    spring_datasource_portal_url: jdbc:postgresql://10.30.110.42:5524/portaldb
+    spring_datasource_portal_username: portaladmin
+    spring_datasource_portal_password: admin
+    spring_datasource_uaa_driverClassName: org.postgresql.Driver
+    spring_datasource_uaa_url: jdbc:postgresql://10.30.110.42:5524/uaadb
+    spring_datasource_uaa_username: uaaadmin
+    spring_datasource_uaa_password: admin
+
+    spring_glusterfs_tenantName: paasta-portal
+    spring_glusterfs_username: paasta-portal
+    spring_glusterfs_password: paasta
+    spring_glusterfs_authUrl: http://10.30.131.12:5000/v2.0
+    spring_glusterfs_container: portal-container
+
+    spring_mail_smtp_host: smtp.gmail.com
+    spring_mail_smtp_port: 465
+    spring_mail_smtp_username: PaaS-TA 관리자
+    spring_mail_smtp_password: openpasta!
+    spring_mail_smtp_userEmail: openpasta@gmail.com
+    spring_mail_smtp_properties_auth: true
+    spring_mail_smtp_properties_starttls_enable: true
+    spring_mail_smtp_properties_starttls_required: truie
+    spring_mail_smtp_properties_maximumTotalQps: 90
+    spring_mail_smtp_properties_authUrl: http://portal-web-user.115.68.46.30.xip.io
+    spring_mail_smtp_properties_imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
+    spring_mail_smtp_properties_sFile: emailTemplate.html
+    spring_mail_smtp_properties_subject: PaaS-TA User Potal 인증메일
+    spring_mail_smtp_properties_contextUrl: user/authUser
+
+    multipart_maxFileSize: 1000Mb
+    multipart_maxRequestSize: 1000Mb
+
+    eureka_instance_hostname: ${vcap.application.uris[0]}
+    eureka_instance_nonSecurePort: 80
+    eureka_client_serviceUrl_defaultZone: ${vcap.services.portal-eureka-service.credentials.uri}/eureka/

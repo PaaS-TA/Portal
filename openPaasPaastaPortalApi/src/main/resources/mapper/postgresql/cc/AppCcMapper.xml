@@ -5,9 +5,9 @@
 
     <select id="getAppBuildPack" resultType="string">
         SELECT
-            detected_buildpack_name        "buildPack"
-        FROM apps
-        WHERE guid = #{guid}
+            admin_buildpack_name        "buildPack"
+        FROM buildpack_lifecycle_data
+        WHERE app_guid = #{guid}
     </select>
 
 </mapper>

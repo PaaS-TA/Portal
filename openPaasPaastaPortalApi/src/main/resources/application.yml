@@ -176,10 +176,10 @@ spring:
       username: uaaadmin
       password: admin
   glusterfs:
-    tenantName: ${vcap.services.portal-glusterfs-service.credentials.tenantname}
-    username: ${vcap.services.portal-glusterfs-service.credentials.username}
-    password: ${vcap.services.portal-glusterfs-service.credentials.password}
-    authUrl: ${vcap.services.portal-glusterfs-service.credentials.auth_url}
+    tenantName: paasta-portal
+    username: paasta-portal
+    password: paasta
+    authUrl: http://10.30.131.12:5000/v2.0
     container: portal-container
   mail:
     smtp:
@@ -232,10 +232,10 @@ spring:
       username: uaaadmin
       password: admin
   glusterfs:
-    tenantName: ${vcap.services.portal-glusterfs-service.credentials.tenantname}
-    username: ${vcap.services.portal-glusterfs-service.credentials.username}
-    password: ${vcap.services.portal-glusterfs-service.credentials.password}
-    authUrl: ${vcap.services.portal-glusterfs-service.credentials.auth_url}
+    tenantName: paasta-portal
+    username: paasta-portal
+    password: paasta
+    authUrl: http://10.30.131.12:5000/v2.0
     container: portal-container
   mail:
     smtp:

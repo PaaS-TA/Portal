@@ -25,7 +25,6 @@ import java.util.Map;
 @Transactional
 @RequestMapping(value = {"/configInfo"})
 public class ConfigInfoController extends Common {
-
     @Autowired
     private ConfigInfoService ConfigInfoService;
 
@@ -33,7 +32,7 @@ public class ConfigInfoController extends Common {
      * 설정 정보 값을 조회한다.
      *
      * @param ConfigInfo the config info
-     * @return value
+     * @return value value
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/getValue"}, method = RequestMethod.POST)
@@ -51,7 +50,7 @@ public class ConfigInfoController extends Common {
      * 설정 정보 값을 수정한다.
      *
      * @param ConfigInfo the config info
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateValue"}, method = RequestMethod.POST)

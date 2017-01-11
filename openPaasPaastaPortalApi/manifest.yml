@@ -8,7 +8,6 @@ applications:
   buildpack: java_buildpack_offline
   services:
   - portal-eureka-service
-  - portal-glusterfs-service
   env:
     SPRING_PROFILES_ACTIVE: stg
     spring_application_name: portal-api

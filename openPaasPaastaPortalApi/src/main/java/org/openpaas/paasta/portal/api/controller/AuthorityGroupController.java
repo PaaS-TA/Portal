@@ -17,7 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Dojun on 2016-09-19.
+ * 권한 컨트롤러 - 권한그룹과 권한을 조회, 수정, 삭제한다.
+ *
+ * @author 김도준
+ * @version 1.0
+ * @since 2016.09.19 최초작성
  */
 @RestController
 @Transactional
@@ -27,14 +31,13 @@ public class AuthorityGroupController extends Common {
     @Autowired
     private AuthorityGroupService authorityGroupService;
 
-// 사용안함 주석처리
-//    @Autowired
-//    private UserService userService;
-
     /**
-     * 	권한 그룹 목록 정보 조회
-     * @return HashMap<String, Object>(){{put("groups",  groups);}};
-     * @throws Exception
+     * 권한 그룹을 조회한다.
+     *
+     * @return Map (자바 클래스)
+     * @throws Exception the exception
+     * @author 김도준
+     * @since 2016.09.19
      */
     @RequestMapping(value = {"/getAuthorityGroups"}, method = RequestMethod.POST)
     public Map<String, Object> getAuthorityGroups() throws Exception{
@@ -46,9 +49,12 @@ public class AuthorityGroupController extends Common {
 
     /**
      * 권한 그룹 생성
-     * @param body
-     * @return
-     * @throws Exception
+     *
+     * @param body (자바 클래스)
+     * @return Map (자바 클래스)
+     * @throws Exception the exception
+     * @author 김도준
+     * @since 2016.09.19
      */
     @RequestMapping(value = {"/createAuthorityGroup"}, method = RequestMethod.POST)
     public Map<String, Object> createAuthorityGroup(@RequestBody Map<String, Object> body) throws Exception{
@@ -64,10 +70,13 @@ public class AuthorityGroupController extends Common {
     }
 
     /**
-     * 권한그룹 삭제
-     * @param body
-     * @return
-     * @throws Exception
+     * 권한그룹을 삭제한다.
+     *
+     * @param body (자바 클래스)
+     * @return Map (자바 클래스)
+     * @throws Exception the exception
+     * @author 김도준
+     * @since 2016.09.19
      */
     @RequestMapping(value = {"/deleteAuthorityGroup"}, method = RequestMethod.POST)
     public Map<String, Object> deleteAuthorityGroup(@RequestBody Map<String, Object> body) throws Exception{
@@ -91,9 +100,10 @@ public class AuthorityGroupController extends Common {
 
     /**
      * 사용자 권한 그룹에 사용자 등록
-     * @param body
-     * @return
-     * @throws Exception
+     *
+     * @param body the body
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/addGroupMembers"}, method = RequestMethod.POST)
     public Map<String, Object> addGroupMembers(@RequestBody Map<String, Object> body) throws Exception {
@@ -107,9 +117,10 @@ public class AuthorityGroupController extends Common {
 
     /**
      * 권한 그룹 사용자 삭제
-     * @param body
-     * @return
-     * @throws Exception
+     *
+     * @param body the body
+     * @return map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteGroupMembers"}, method = RequestMethod.POST)
     public Map<String, Object> deleteGroupMembers(@RequestBody Map<String, Object> body) throws Exception {

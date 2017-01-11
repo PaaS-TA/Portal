@@ -85,11 +85,13 @@ public class ServiceService extends Common {
     /**
      * 유저 프로바이드 서비스를 조회한다.
      *
+     * @param token the token
+     * @param body  the body
+     * @return boolean user provided
+     * @throws Exception the exception
      * @author kimdojun
-     * @since 2016.8.4 최초작성
      * @version 1.0
-     * @param body
-     * @return boolean
+     * @since 2016.8.4 최초작성
      */
     public Map<String, Object> getUserProvided(String token, Map<String, String> body) throws Exception {
 
@@ -146,12 +148,13 @@ public class ServiceService extends Common {
     /**
      * 유저 프로바이드 서비스를 생성한다. (유저가 SpaceDeveloper role을 갖고 있을때만 가능)
      *
-     *
+     * @param token the token
+     * @param body  the body
+     * @return boolean boolean
+     * @throws Exception the exception
      * @author kimdojun
-     * @since 2016.8.4 최초작성
      * @version 1.0
-     * @param body
-     * @return boolean
+     * @since 2016.8.4 최초작성
      */
     public boolean updateUserProvided(String token, Map<String, String> body) throws Exception {
 
@@ -176,13 +179,11 @@ public class ServiceService extends Common {
     }
 
 
-
-
     /**
      * 서비스 브로커 리스트를 조회한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param client  the client
+     * @param client        the client
      * @return the boolean
      * @throws Exception the exception
      */
@@ -199,7 +200,7 @@ public class ServiceService extends Common {
      * 서비스 브로커를 조회한다.
      *
      * @param serviceBroker the serviceBroker
-     * @param client  the client
+     * @param client        the client
      * @return the boolean
      * @throws Exception the exception
      */
@@ -215,7 +216,7 @@ public class ServiceService extends Common {
      * 서비스 브로커를 생성한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param client  the client
+     * @param client        the client
      * @return the boolean
      * @throws Exception the exception
      */
@@ -234,7 +235,7 @@ public class ServiceService extends Common {
      * 서비스 브로커를 수정한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param client  the client
+     * @param client        the client
      * @return the boolean
      * @throws Exception the exception
      */
@@ -253,7 +254,7 @@ public class ServiceService extends Common {
      * 서비스 브로커를 삭제한다.
      *
      * @param serviceBroker the cloudServiceBroker
-     * @param client  the client
+     * @param client        the client
      * @return the boolean
      * @throws Exception the exception
      */
@@ -270,7 +271,7 @@ public class ServiceService extends Common {
      * 서비스 브로커 이름을 변경한다.
      *
      * @param serviceBroker the serviceBroker
-     * @param client  the client
+     * @param client        the client
      * @return the boolean
      * @throws Exception the exception
      */

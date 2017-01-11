@@ -7,22 +7,28 @@ import org.cloudfoundry.identity.uaa.rest.SearchResults;
 import org.cloudfoundry.identity.uaa.scim.ScimGroup;
 import org.cloudfoundry.identity.uaa.scim.ScimGroupMember;
 import org.openpaas.paasta.portal.api.common.Common;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
- * Created by Dojun on 2016-09-19.
+ * 권한 컨트롤러 - 권한그룹과 권한을 조회, 수정, 삭제한다.
+ *
+ * @author 김도준
+ * @version 1.0
+ * @since 2016.09.19 최초작성
  */
 @Service
 public class AuthorityGroupService extends Common{
 
     /**
      * 운영자 포털에서 권한 그룹 목록을 요청했을때, 권한 그룹 목록을 응답한다.
-     * @return Collection<ScimGroup>
-     * @throws Exception
+     *
+     * @return Collection<ScimGroup> authority groups
+     * @throws Exception the exception
      * @author kimdojun
      * @version 1.0
      * @since 2016.9.26 최초작성
@@ -36,10 +42,12 @@ public class AuthorityGroupService extends Common{
     }
 
     /**
+     * Create authority group scim group.
      *
-     * @param displayName, memberList
-     * @return ScimGroup
-     * @throws Exception
+     * @param displayName the display name
+     * @param memberList  the member list
+     * @return ScimGroup scim group
+     * @throws Exception the exception
      * @since 2016.10.18 최초작성
      */
     public ScimGroup createAuthorityGroup(String displayName,List<ScimGroupMember> memberList) throws Exception {
@@ -81,8 +89,9 @@ public class AuthorityGroupService extends Common{
 
     /**
      * 권한 그룹을 삭제한다.
-     * @param groupGuid
-     * @throws Exception
+     *
+     * @param groupGuid the group guid
+     * @throws Exception the exception
      * @since 2016.10.19 최초작성
      */
     public void deleteAuthorityGroup(String groupGuid) throws Exception{
@@ -103,10 +112,11 @@ public class AuthorityGroupService extends Common{
 
     /**
      * 권한 그룹에 유저(멤버)를 등록한다. 여러명의 유저를 등록할 수 있게 한다.
-     * @param groupGuid
-     * @param memberUserNameList
-     * @return
-     * @throws Exception
+     *
+     * @param groupGuid          the group guid
+     * @param memberUserNameList the member user name list
+     * @return scim group
+     * @throws Exception the exception
      * @since 2016.10.19 최초작성
      */
     public ScimGroup addGroupMembers(String groupGuid, List<String> memberUserNameList) throws Exception {
@@ -137,10 +147,11 @@ public class AuthorityGroupService extends Common{
 
     /**
      * 권한 그룹에 등록된 멤버를 삭제한다. 여러명의 멤버를 삭제할 수 있다.
-     * @param groupGuid
-     * @param memberUserNameList
-     * @return
-     * @throws Exception
+     *
+     * @param groupGuid          the group guid
+     * @param memberUserNameList the member user name list
+     * @return scim group
+     * @throws Exception the exception
      */
     public  ScimGroup deleteGroupMembers(String groupGuid, List<String> memberUserNameList) throws Exception{
         if (!stringNullCheck(groupGuid)) {

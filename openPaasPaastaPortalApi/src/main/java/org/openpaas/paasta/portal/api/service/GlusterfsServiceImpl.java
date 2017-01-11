@@ -2,30 +2,28 @@ package org.openpaas.paasta.portal.api.service;
 
 import org.javaswift.joss.model.Container;
 import org.javaswift.joss.model.StoredObject;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.util.Base64;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.UUID;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 /**
+ * glusterfs 서비스 - glusterfs 파일을 조회하고 삭제한다.
  *
- * Glusterfs를 사용하기 위해 FileService 인터페이스를 구현한 클레스
- *
- * Created by mg on 2016-07-05.
+ * @author 김도준
+ * @version 1.0
+ * @since 2016.09.19 최초작성
  */
 @Service("glusterfsService")
 public class GlusterfsServiceImpl implements FileService{
 
     /**
-     *  Glusterfs의 저장공간 Container
+     * Glusterfs의 저장공간 Container
      */
     @Autowired
     Container container;
@@ -76,30 +74,45 @@ public class GlusterfsServiceImpl implements FileService{
         }
     }
 
+    /**
+     * Gets container.
+     *
+     * @return the container
+     */
     public Container getContainer() {
         return this.container;
     }
 
-    //에러 발생
-    // No serializer found for class org.javaswift.joss.command.impl.object.InputStream
+    /**
+     * 요청된 이미지 주소에서 이미지를 받아와 byte array로 변환하여 응답한다.
+     *
+     * @param imgPath
+     * @return
+     * @throws IOException
+     */
     @Override
-    public InputStream getBinary_input(String filePath) {
-        String fileName = filePath.split("/")[6];
-        StoredObject object = container.getObject(fileName);
+    public byte[] getImageByte(String imgPath) throws IOException {
+        URL file   = new URL(imgPath);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        InputStream is = null;
+        try {
+            is = file.openStream ();
+            byte[] byteChunk = new byte[4096];
+            int n;
 
-        InputStream fileInputStream = object.downloadObjectAsInputStream();
-        return fileInputStream;
-    }
-
-    @Override
-    public byte[] getBinary_byte(String filePath) {
-        String fileName = filePath.split("/")[6];
-        StoredObject object = container.getObject(fileName);
-
-        byte[] fileByte = object.downloadObject();
+            while ( (n = is.read(byteChunk)) > 0 ) {
+                baos.write(byteChunk, 0, n);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace ();
+        }
+        finally {
+            if (is != null) { is.close(); }
+        }
+        byte[] fileByte = baos.toByteArray();
 
         return fileByte;
     }
-
 
 }

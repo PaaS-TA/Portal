@@ -32,10 +32,10 @@ public class SupportBoardController {
     /**
      * 게시판 목록 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map board list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoardList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getBoardList(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -46,10 +46,10 @@ public class SupportBoardController {
     /**
      * 게시판 게시글 상세 정보 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map board
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoard"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getBoard(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -60,10 +60,10 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 목록 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map board comment list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getBoardCommentList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getBoardCommentList(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -74,10 +74,10 @@ public class SupportBoardController {
     /**
      * 게시판 게시글 등록
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertBoard"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertBoard(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -88,10 +88,10 @@ public class SupportBoardController {
     /**
      * 게시판 게시글 수정
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateBoard"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateBoard(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -102,10 +102,10 @@ public class SupportBoardController {
     /**
      * 게시판 게시글 삭제
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteBoard"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteBoard(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -117,10 +117,10 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 수 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map reply num
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getReplyNum"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getReplyNum(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -131,10 +131,10 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 수 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map comment reply num
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getCommentReplyNum"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getCommentReplyNum(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -146,10 +146,10 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 등록
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertBoardComment"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertBoardComment(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -160,10 +160,10 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 수정
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateBoardComment"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateBoardComment(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -174,10 +174,10 @@ public class SupportBoardController {
     /**
      * 게시판 댓글 삭제
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteBoardComment"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteBoardComment(@RequestBody Support param, HttpServletResponse response) throws Exception{

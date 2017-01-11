@@ -20,50 +20,45 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.util.*;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * Created by mg on 2016-06-07.
- * 사용자조회, 수정, 삭제 등 사용자 관리에 필요한 기능을 구현한 서비스 클래스이다.
+ * 유저 서비스 - 마이페이지의 유저의 조회 수정을 처리한다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.5.23 최초작성
  */
-
 @Service
 @Transactional
 public class UserService extends Common {
 
 //    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
+    //    @Autowired
+//    Container container;
+//
+    private final Logger LOGGER = getLogger(this.getClass());
     /**
      * Portal DB의 UserDetail table을 사용하는 Mapper
      */
     @Autowired
     private UserDetailMapper userDetailMapper;
-
     /**
      * CC DB의 User table을 사용하는 Mapper
      */
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private GlusterfsServiceImpl glusterfsService;
-
-
-
-//    @Autowired
-//    Container container;
-//
-    private final Logger LOGGER = getLogger(this.getClass());
 
     /**
      * 사용자 자동생성
      *
-     * @param userDetail
-     * @return int
+     * @param userDetail the user detail
+     * @return int int
      */
     public int createUser(UserDetail userDetail) {
 
@@ -75,8 +70,8 @@ public class UserService extends Common {
      * 사용자 상세화면에서
      * 사용자 정보 수정
      *
-     * @param userId
-     * @param userDetail
+     * @param userId     the user id
+     * @param userDetail the user detail
      * @return Int updateCount
      */
     public int updateUser(String userId, UserDetail userDetail) {
@@ -86,8 +81,8 @@ public class UserService extends Common {
     /**
      * 아이디 수정
      *
-     * @param oldUserId
-     * @param newUserId
+     * @param oldUserId the old user id
+     * @param newUserId the new user id
      * @return Int updateCount
      */
     @Transactional
@@ -112,6 +107,13 @@ public class UserService extends Common {
         return cnt;
     }
 
+    /**
+     * Update user password.
+     *
+     * @param ccfc        the ccfc
+     * @param credentials the credentials
+     * @param newPassword the new password
+     */
     public void updateUserPassword(CustomCloudFoundryClient ccfc, CloudCredentials credentials, String newPassword) {
         ccfc.updatePassword(credentials, newPassword);
     }
@@ -119,8 +121,8 @@ public class UserService extends Common {
     /**
      * 사용자 상세 정보
      *
-     * @param userId
-     * @return UserDetail
+     * @param userId the user id
+     * @return UserDetail user
      */
     public UserDetail getUser(String userId) {
         return userDetailMapper.selectOne(userId);
@@ -129,7 +131,7 @@ public class UserService extends Common {
     /**
      * portal db에 등록된 UserDetail 수
      *
-     * @return int
+     * @return int user count
      */
     public int getUserCount() {
         return userDetailMapper.getUserDetailCount();
@@ -138,8 +140,8 @@ public class UserService extends Common {
     /**
      * 사용자가 존재하는지 여부
      *
-     * @param userId
-     * @return Boolean
+     * @param userId the user id
+     * @return Boolean boolean
      */
     public boolean isExist(String userId) {
         Boolean flag = false;
@@ -155,9 +157,9 @@ public class UserService extends Common {
     /**
      * CloudFoundry와 DB에서 사용자 삭제
      *
-     * @param adminCcfc
-     * @param ccfc
-     * @param userId
+     * @param adminCcfc the admin ccfc
+     * @param ccfc      the ccfc
+     * @param userId    the user id
      * @return 삭제 정보
      */
     public int deleteUser(CustomCloudFoundryClient adminCcfc, CustomCloudFoundryClient ccfc, String userId) {
@@ -167,10 +169,11 @@ public class UserService extends Common {
 
         return deleteUser(userId);
     }
+
     /**
      * DB에서 사용자 삭제
      *
-     * @param userId
+     * @param userId the user id
      * @return 삭제 정보
      */
     public int deleteUser(String userId) {
@@ -179,26 +182,13 @@ public class UserService extends Common {
     }
 
 
-
     /**
      * role에 따른 조직 및 영역 조회
      *
-     * @param keyOfRole
-     * @return Map
-     * <p>
-     * keyOfRole값을 파라미터로 보내 유저가 해당 role을 가지고 있는 모든 org 또는 space 정보를 가져온다.
-     * ex: 'managed_organizations' 을 입력하여 해당 유저가 Org Manager role을 가지고 있는 모든 org를 확인할 수 있다.
-     * <p>
-     * 조직 role           keyOfRole 값
-     * ORG MANAGER:        managed_organizations
-     * BILLING MANAGER:    billing_managed_organizations
-     * ORG AUDITOR:        audited_organizations
-     * ORG USER:           organizations
-     * <p>
-     * 영역 role
-     * SPACE MANAGER:      managed_spaces
-     * SPACE DEVELOPER:    spaces
-     * SPACE AUDITOR:      audited_spaces
+     * @param keyOfRole the key of role
+     * @param token     the token
+     * @return Map  <p> keyOfRole값을 파라미터로 보내 유저가 해당 role을 가지고 있는 모든 org 또는 space 정보를 가져온다. ex: 'managed_organizations' 을 입력하여 해당 유저가 Org Manager role을 가지고 있는 모든 org를 확인할 수 있다. <p> 조직 role           keyOfRole 값 ORG MANAGER:        managed_organizations BILLING MANAGER:    billing_managed_organizations ORG AUDITOR:        audited_organizations ORG USER:           organizations <p> 영역 role SPACE MANAGER:      managed_spaces SPACE DEVELOPER:    spaces SPACE AUDITOR:      audited_spaces
+     * @throws Exception the exception
      * @author kimdojun
      * @version 1.0
      * @since 2016.6.9 최초작성
@@ -263,10 +253,10 @@ public class UserService extends Common {
      * 사용자 정보 인증
      * potalDB에 사용자 정보를 등록한후 이메일을 보낸다.
      *
-     * @param body
-     * @return
-     * @throws IOException
-     * @throws MessagingException
+     * @param body the body
+     * @return boolean
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
      */
     @Transactional
     public boolean createRequestUser(HashMap body) throws IOException, MessagingException {
@@ -298,8 +288,8 @@ public class UserService extends Common {
     /**
      * 사용자의 상세정보를 조회한다.
      *
-     * @param map
-     * @return List<UserDetail>
+     * @param map the map
+     * @return List<UserDetail> user detail info
      */
     public List<UserDetail> getUserDetailInfo(HashMap map) {
         LOGGER.info(this.getClass().getName() + ":" + "getUserDetailInfo  :: map :: " + map.isEmpty());
@@ -313,8 +303,9 @@ public class UserService extends Common {
      *
      * @param map (userId, refreshToken)
      * @return 성공, 실패 여부
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
      */
-
     public boolean resetPassword(HashMap map) throws IOException, MessagingException {
 
         Boolean bRtn = false;
@@ -337,7 +328,7 @@ public class UserService extends Common {
      * 이메일 인증된 사용자의 추가 정보를 저장한다.
      *
      * @param map (이름, 비밀번호)
-     * @return
+     * @return boolean
      */
     public boolean authAddUser(HashMap map) {
         Boolean bRtn = false;
@@ -354,8 +345,8 @@ public class UserService extends Common {
     /**
      * 이메일 인증된 사용자의 접근 횟수를 더하여 저장한다.
      *
-     * @param map(user Id, AccessCnt)
-     * @return
+     * @param map the map
+     * @return boolean
      */
     public boolean authAddAccessCnt (HashMap map) {
         Boolean bRtn = false;
@@ -378,15 +369,14 @@ public class UserService extends Common {
 
     /**
      * 이메일 인증후 비밀번호를 등록한다.
-     *
+     * <p>
      * id, password 방식으로 CloudFoundry 인증 토큰을 OAuth2AccessToken 형태로 반환한다.
-     * @param map(userId, username, password)
-     * @return OAuth2AccessToken
-     * @throws MalformedURLException
-     * @throws URISyntaxException
-     * @return 성공, 실패 여부
+     *
+     * @param customCloudFoundryClient the custom cloud foundry client
+     * @param map                      the map
+     * @return OAuth2AccessToken boolean
+     * @throws Exception the exception
      */
-
     public boolean updateAuthUserPassword(CustomCloudFoundryClient customCloudFoundryClient, HashMap map) throws Exception {
 
         Boolean bRtn = false;
@@ -401,10 +391,11 @@ public class UserService extends Common {
     }
 
     /**
-     *  메일인증된 CloundFoundry 회원을 생성한다.
-     * @param map
-     * @return
-     * @throws MalformedURLException
+     * 메일인증된 CloundFoundry 회원을 생성한다.
+     *
+     * @param map the map
+     * @return boolean
+     * @throws Exception the exception
      */
     public boolean create(HashMap map) throws Exception {
         Boolean bRtn = false;
@@ -446,12 +437,20 @@ public class UserService extends Common {
 
     /**
      * 전체 UAA 유저의 userName과 userGuid를 가져온다.
-     * @return userInfo
+     *
+     * @return userInfo list
      */
     public List<Map<String,String>> getUserInfo(){
         List<Map<String,String>> userInfo = userMapper.getUserInfo();
         return userInfo;
     }
+
+    /**
+     * Create user add int.
+     *
+     * @param createMap the create map
+     * @return the int
+     */
     public int createUserAdd(Map createMap) {
         return userDetailMapper.createRequestUser(createMap);
     }

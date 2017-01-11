@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * org.openpaas.paasta.portal.api.service
+ * 라우트 서비스 - 라우트 존재여부를 체크한다.
  *
  * @author 김도준
  * @version 1.0

@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Login Controller
+ * 로그인 컨트롤러 - 로그인를 처리한다.
  *
- * @author nawkm
+ * @author 조민구
  * @version 1.0
  * @since 2016.4.4 최초작성
  */
@@ -42,6 +42,13 @@ public class LoginController {
     private UserService userService;
 
 
+    /**
+     * Login map.
+     *
+     * @param body the body
+     * @return the map
+     * @throws Exception the exception
+     */
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST, consumes="application/json")
     public Map login(@RequestBody Map<String, Object> body) throws Exception {
         String id = (String)body.get("id");
@@ -79,6 +86,15 @@ public class LoginController {
         return result;
     }
 
+    /**
+     * Request email authentication map.
+     *
+     * @param userDetail the user detail
+     * @param response   the response
+     * @return the map
+     * @throws IOException        the io exception
+     * @throws MessagingException the messaging exception
+     */
     @RequestMapping(value = {"/requestEmailAuthentication"}, method = RequestMethod.POST)
     public Map<String, Object> requestEmailAuthentication(@RequestBody UserDetail userDetail, HttpServletResponse response) throws IOException, MessagingException {
         HashMap body = new HashMap();

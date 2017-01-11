@@ -17,11 +17,10 @@ import java.util.Map;
  * DocumentsController.java
  * 문서 조회, 등록, 수정 등 문서 관리에 필요한 API 를 호출 받는 컨트롤러
  *
- * @author yjkim
+ * @author 김영지
  * @version 1.0
  * @since 2016.07.28 최초작성
  */
-
 @RestController
 @RequestMapping(value = {"/documents"})
 public class DocumentsController {
@@ -34,10 +33,10 @@ public class DocumentsController {
     /**
      * 문서 목록 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map documents list
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getDocumentsList"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getDocumentsList(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -48,10 +47,10 @@ public class DocumentsController {
     /**
      * 문서 조회
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map document
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/getDocument"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> getDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -62,10 +61,10 @@ public class DocumentsController {
     /**
      * 문서 등록
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/insertDocument"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> insertDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -76,10 +75,10 @@ public class DocumentsController {
     /**
      * 문서 수정
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/updateDocument"}, method = RequestMethod.PUT, consumes = "application/json")
     public Map<String, Object> updateDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{
@@ -90,10 +89,10 @@ public class DocumentsController {
     /**
      * 문서 삭제
      *
-     * @param param Support
+     * @param param    Support
      * @param response HttpServletResponse
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST, consumes = "application/json")
     public Map<String, Object> deleteDocument(@RequestBody Support param, HttpServletResponse response) throws Exception{

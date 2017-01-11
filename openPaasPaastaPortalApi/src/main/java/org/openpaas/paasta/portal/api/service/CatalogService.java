@@ -5,7 +5,6 @@ import org.cloudfoundry.client.lib.domain.*;
 import org.cloudfoundry.client.lib.org.codehaus.jackson.map.ObjectMapper;
 import org.cloudfoundry.client.lib.org.codehaus.jackson.type.TypeReference;
 import org.cloudfoundry.client.lib.util.JsonUtil;
-import org.javaswift.joss.model.Container;
 import org.openpaas.paasta.portal.api.common.Common;
 import org.openpaas.paasta.portal.api.common.Constants;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
@@ -15,7 +14,6 @@ import org.openpaas.paasta.portal.api.model.App;
 import org.openpaas.paasta.portal.api.model.Catalog;
 import org.openpaas.paasta.portal.api.model.Org;
 import org.openpaas.paasta.portal.api.model.Space;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,6 @@ import java.util.*;
 
 import static java.util.Optional.*;
 import static java.util.stream.Collectors.*;
-import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * 서비스 카탈로그, 개발 환경 카탈로그, 앱 템플릿 카탈로그 정보 조회 및 관리 기능을 구현한 서비스 클래스로 Common(1.3.8) 클래스를 상속하여 구현한다.
@@ -42,8 +39,6 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Transactional
 @Service
 public class CatalogService extends Common {
-
-    private final Logger LOGGER = getLogger(this.getClass());
 
     private final CatalogMapper catalogMapper;
     private final CatalogCcMapper catalogCcMapper;
@@ -143,10 +138,7 @@ public class CatalogService extends Common {
      */
     public Map<String, Object> getBuildPackCatalogList(Catalog param) {
         return new HashMap<String, Object>() {{
-            //put("list", catalogMapper.getBuildPackCatalogList(param));
-
-            // 바이너리 이미지 삽입위해 수정됨
-            put("list", addCatalogImgs(catalogMapper.getBuildPackCatalogList(param)));
+            put("list", catalogMapper.getBuildPackCatalogList(param));
         }};
     }
 
@@ -159,10 +151,7 @@ public class CatalogService extends Common {
      */
     public Map<String, Object> getServicePackCatalogList(Catalog param) {
         return new HashMap<String, Object>() {{
-            //put("list", catalogMapper.getServicePackCatalogList(param));
-
-            // 바이너리 이미지 삽입위해 수정됨
-            put("list", addCatalogImgs(catalogMapper.getServicePackCatalogList(param)));
+            put("list", catalogMapper.getServicePackCatalogList(param));
         }};
     }
 
@@ -361,11 +350,7 @@ public class CatalogService extends Common {
     public Map<String, Object> getStarterNamesList(Catalog param) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        //resultMap.put("list", catalogMapper.getStarterNamesList(param));
-        //바이너리 이미지 삽입위해 수정됨
-        resultMap.put("list", addCatalogImgs(catalogMapper.getStarterNamesList(param)));
-        resultMap.put("RESULT", Constants.RESULT_STATUS_SUCCESS);
-
+        resultMap.put("list", catalogMapper.getStarterNamesList(param));
         return resultMap;
     }
 
@@ -551,9 +536,7 @@ public class CatalogService extends Common {
         param.setLimitSize(Constants.CATALOG_HISTORY_LIMIT_SIZE);
 
         return new HashMap<String, Object>() {{
-            //put("list", catalogMapper.getCatalogHistoryList(param));
-            // 바이너리 이미지 삽입위해 수정됨
-            put("list", addCatalogImgs(catalogMapper.getCatalogHistoryList(param)));
+            put("list", catalogMapper.getCatalogHistoryList(param));
         }};
     }
 
@@ -794,8 +777,6 @@ public class CatalogService extends Common {
      * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> executeCatalogStarter(Catalog param, HttpServletRequest req) throws Exception {
-        LOGGER.info("#################### executeCatalogStarter :: {}", param);
-
         // CREATE APPLICATION
         this.procCatalogCreateApplication(param, req);
 
@@ -878,8 +859,6 @@ public class CatalogService extends Common {
      * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> executeCatalogBuildPack(Catalog param, HttpServletRequest req) throws Exception {
-        LOGGER.info("#################### executeCatalogBuildPack :: {}", param);
-
         UUID resultAppGuid = null;
 
         // CREATE APPLICATION
@@ -927,8 +906,6 @@ public class CatalogService extends Common {
      * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> executeCatalogServicePack(Catalog param, HttpServletRequest req) throws Exception {
-        LOGGER.info("#################### executeCatalogServicePack :: {}", param);
-
         // CREATE SERVICE INSTANCE
         Map<String, Object> resultMap = this.procCatalogCreateServiceInstance(param, req);
 
@@ -1074,6 +1051,7 @@ public class CatalogService extends Common {
      *
      * @param param Catalog(모델클래스)
      * @param req   HttpServletRequest(자바클래스)
+     * @return Map(자바클래스)
      * @throws Exception Exception(자바클래스)
      */
     public Map<String, Object> procCatalogBindService(Catalog param, HttpServletRequest req) throws Exception {
@@ -1093,30 +1071,4 @@ public class CatalogService extends Common {
             put("RESULT", Constants.RESULT_STATUS_SUCCESS);
         }};
     }
-
-    /**
-     * 카탈로그 목록에 썸네일 이미지를 바이너리 형태로 삽입
-     *
-     * @param catalogListOrigin
-     * @return List<Catalog>(자바클래스)
-     */
-    private List<Catalog> addCatalogImgs(List<Catalog> catalogListOrigin){
-        List<Catalog> catalogList = new ArrayList<>();
-        for(Catalog catalog : catalogListOrigin){
-            if(!catalog.getThumbImgPath().isEmpty() && catalog.getThumbImgPath().contains("localhost")){
-                byte[] fileByte = new byte[0];
-                try {
-                    fileByte  = glusterfsService.getBinary_byte(catalog.getThumbImgPath());
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
-                String fileString = Base64.getEncoder().encodeToString(fileByte);
-                catalog.setFileString(fileString);
-            }
-            catalogList.add(catalog);
-        }
-        return catalogList;
-    }
-
-
 }

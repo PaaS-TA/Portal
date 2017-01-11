@@ -21,7 +21,6 @@ public class UserDetail {
 
     private int count;
 
-
     private String password;
     private String refreshToken;
 

@@ -110,7 +110,7 @@ public class SpaceController extends Common {
      *
      * @param org     the org
      * @param request the request
-     * @return List<CloudSpace>    orgList
+     * @return List<CloudSpace>     orgList
      * @throws Exception the exception
      * @author 김도준
      * @version 1.0

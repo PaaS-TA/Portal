@@ -25,7 +25,7 @@ public class CloudFoundryLibTest {
     private CloudFoundryClient cfc;
     private OAuth2AccessToken token;
 
-    private String host = "https://api.115.68.46.29.xip.io";
+    private String host = "https://api.115.68.46.30.xip.io";
     private String org = "OCP";
     private String space = "dev";
 

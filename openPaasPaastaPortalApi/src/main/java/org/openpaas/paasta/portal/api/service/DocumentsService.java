@@ -15,11 +15,10 @@ import java.util.Map;
  * DocumentsService.java
  * 문서 조회, 등록, 수정 등 문서 관리에 필요한 기능을 구현한 서비스 클래스
  *
- * @author yjkim
+ * @author 김영지
  * @version 1.0
  * @since 2016.07.28 최초작성
  */
-
 @Transactional
 @Service
 public class DocumentsService extends Common{
@@ -31,8 +30,8 @@ public class DocumentsService extends Common{
      * 문서 목록 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map documents list
+     * @throws Exception the exception
      */
     public Map<String, Object> getDocumentsList(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -47,8 +46,8 @@ public class DocumentsService extends Common{
      * 문서 상세정보 조회
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map document
+     * @throws Exception the exception
      */
     public Map<String, Object> getDocument(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -63,8 +62,8 @@ public class DocumentsService extends Common{
      * 문서 등록
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map<String, Object> insertDocument(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -80,8 +79,8 @@ public class DocumentsService extends Common{
      * 문서 수정
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map<String, Object> updateDocument(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
@@ -97,8 +96,8 @@ public class DocumentsService extends Common{
      * 문서 삭제
      *
      * @param param Support
-     * @return Map
-     * @throws Exception
+     * @return Map map
+     * @throws Exception the exception
      */
     public Map<String, Object> deleteDocument(Support param) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();

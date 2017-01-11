@@ -190,7 +190,7 @@ public class OrgService extends Common {
      * 조직 목록을 조회한다.
      *
      * @param token the token
-     * @return List<CloudOrganization>   orgList
+     * @return List<CloudOrganization>    orgList
      * @throws Exception the exception
      * @author 김도준
      * @version 1.0
@@ -686,7 +686,7 @@ public class OrgService extends Common {
      * 이미지를 넣을 경우
      *
      * @param body {userId , refreshToken, ....}
-     * @return boolean
+     * @return boolean boolean
      * @throws IOException        the io exception
      * @throws MessagingException the messaging exception
      */
@@ -902,10 +902,9 @@ public class OrgService extends Common {
      * 사용자 초대 이메일을 재전송한다.
      *
      * @param map {userId : 초대하는 사용자 아이디,,inviteId 사용자 아이디, }
-     * @return map
+     * @return map map
      * @throws Exception the exception
      */
-
     public Map inviteMemberEmailResend(Map map) throws Exception{
         InviteOrgSpace inviteOrgSpace = new InviteOrgSpace();
         inviteOrgSpace.setToken((String) map.getOrDefault("token", ""));
@@ -959,7 +958,7 @@ public class OrgService extends Common {
      * 초대한 token 정보를 가지고 초대취소를 수행한다.
      *
      * @param map the map
-     * @return int
+     * @return int int
      * @throws Exception the exception
      */
     public int cancelInvite(Map map) throws Exception {
