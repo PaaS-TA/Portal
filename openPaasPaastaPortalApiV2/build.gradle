@@ -64,10 +64,10 @@ dependencies {
     compile ('org.javaswift:joss:0.9.12')
 
     // CloudFoundry
-    compile ('org.cloudfoundry:cloudfoundry-client-reactor:2.0.1.RELEASE')
-    compile ('org.cloudfoundry:cloudfoundry-operations:2.0.1.RELEASE')
-    compile ('io.projectreactor:reactor-core:3.0.2.RELEASE')
-    compile ('io.projectreactor.ipc:reactor-netty:0.5.1.RELEASE')
+    compile 'org.cloudfoundry:cloudfoundry-client-reactor:2.1.0.RELEASE'
+    compile 'org.cloudfoundry:cloudfoundry-operations:2.1.0.RELEASE'
+    compile 'io.projectreactor:reactor-core:3.0.4.RELEASE'
+    compile 'io.projectreactor.ipc:reactor-netty:0.6.0.RELEASE'
 
     // jackson.annotate
     compile ('org.codehaus.jackson:jackson-core-asl:1.9.13')
