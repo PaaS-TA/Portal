@@ -32,14 +32,18 @@
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-                $log.empty();
 
-                $.each(data.log, function (key, dataobj) {
+                if (data.log != "") {
+                    $log.empty();
 
-                    str = dataobj.logMessage.message + '<br>';
-                    html = $.parseHTML(str);
-                    $log.append(html);
-                });
+                    $.each(data.log, function (key, dataobj) {
+
+                        str = dataobj.logMessage.message + '<br>';
+                        html = $.parseHTML(str);
+                        $log.append(html);
+                    });
+                }
+
             },
             error: function (xhr, status, error) {
                 //alert("xhr:"+xhr+",status:"+status+ ",error:"+error);

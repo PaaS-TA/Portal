@@ -99,6 +99,7 @@ public class DownloadController extends Common {
         switch (ext) {
             case "png" : response.setContentType("image/png"); break;
             case "svg" : response.setContentType("image/svg+xml"); break;
+            case "gif" : response.setContentType("image/gif"); break;
             default : response.setContentType("image/jpeg");break;
         }
 
