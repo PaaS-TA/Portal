@@ -4,8 +4,8 @@ spring:
     name: portal-web-user  # Identify this application
   redis:
       host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-      password: ${vcap.services.portal-redis-session.credentials.password:0b8439da-63e9-400a-ab96-87f1b3d0dc92}
-      port: ${vcap.services.portal-redis-session.credentials.port:34972}
+      password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
+      port: ${vcap.services.portal-redis-session.credentials.port:33777}
       timeout: 2100
 
 multipart:
