@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.cloudfoundry.client.lib.CloudCredentials;
 import org.cloudfoundry.client.lib.CloudFoundryClient;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openpaas.paasta.portal.api.common.CommonTest;
@@ -28,7 +31,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -43,46 +47,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional("portalTransactionManager")
 public class SupportQnAServiceTest extends CommonTest {
 
-    @Autowired
-    private WebApplicationContext wac;
-
-    @Autowired
-    private SupportQnAService supportQnAService;
-
-    private MockMvc mvc;
-
+    private static final String AUTHORIZATION_HEADER_KEY = "cf-Authorization";
     private static Gson gson = new Gson();
-    private static final String AUTHORIZATION_HEADER_KEY="cf-Authorization";
-
-    private static String API_TARGET = "https://api.115.68.46.30.xip.io";
     private static String TEST_URL = "/support";
-
-
-
     private static Support testInitSupportAnswer = null;
     private static Support testSelectSupport = null;
     private static Support testInsertSupport = null;
     private static Support testUpdateSupport = null;
     private static Support testDeleteSupport = null;
-
     private static int questionNo = 46;
-
     private static String TEST_ADMIN_TOKEN = "";
     private static String testUserId = "";
-
-    @Before
-    public void setUp() throws Exception {
-        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
-
-        mvc.perform(post(TEST_URL + "/insertAnswer")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(AUTHORIZATION_HEADER_KEY, "")
-                .content(gson.toJson(testInitSupportAnswer)))
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-
+    @Autowired
+    private WebApplicationContext wac;
+    @Autowired
+    private SupportQnAService supportQnAService;
+    private MockMvc mvc;
 
     @BeforeClass
     public static void init() throws Exception {
@@ -101,6 +81,18 @@ public class SupportQnAServiceTest extends CommonTest {
         testUserId = getPropertyValue("test.clientUserName");
     }
 
+    @Before
+    public void setUp() throws Exception {
+        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
+
+        mvc.perform(post(TEST_URL + "/insertAnswer")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(AUTHORIZATION_HEADER_KEY, "")
+                .content(gson.toJson(testInitSupportAnswer)))
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 
     @Test
     public void test_01_getQnAList() throws Exception {
@@ -284,7 +276,6 @@ public class SupportQnAServiceTest extends CommonTest {
 
         supportQnAService.deleteMyQuestion(testDeleteParam);
     }
-
 
 
 }

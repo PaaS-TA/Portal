@@ -61,7 +61,7 @@ spring:
       url: jdbc:postgresql://localhost:5524/uaadb
       username: uaaadmin
       password: admin
-  glusterfs:
+  objectStorage:
     tenantName: paasta-portal
     username: paasta-portal
     password: paasta
@@ -119,7 +119,7 @@ spring:
       url: jdbc:postgresql://10.30.110.42:5524/uaadb
       username: uaaadmin
       password: admin
-  glusterfs:
+  objectStorage:
     tenantName: paasta-portal
     username: paasta-portal
     password: paasta
@@ -175,7 +175,7 @@ spring:
       url: jdbc:postgresql://10.30.110.42:5524/uaadb
       username: uaaadmin
       password: admin
-  glusterfs:
+  objectStorage:
     tenantName: paasta-portal
     username: paasta-portal
     password: paasta
@@ -231,7 +231,7 @@ spring:
       url: jdbc:postgresql://10.30.110.42:5524/uaadb
       username: uaaadmin
       password: admin
-  glusterfs:
+  objectStorage:
     tenantName: paasta-portal
     username: paasta-portal
     password: paasta

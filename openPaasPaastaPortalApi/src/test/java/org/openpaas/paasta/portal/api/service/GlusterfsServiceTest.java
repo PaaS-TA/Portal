@@ -2,7 +2,6 @@ package org.openpaas.paasta.portal.api.service;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -42,13 +41,14 @@ public class GlusterfsServiceTest {
         MockMultipartFile multipartFile = new MockMultipartFile("file",
                 file.getName(), "text/plain", IOUtils.toByteArray(input));
 
-        if(file.exists()) {
+        if (file.exists()) {
             path = glusterfsService.upload(multipartFile);
             System.out.println("Public URL: " + glusterfsService.upload(multipartFile));
         } else {
             System.out.println("File not exists.");
         }
     }
+
     @Test
     public void b_deleteByURI() throws URISyntaxException {
 
@@ -65,7 +65,7 @@ public class GlusterfsServiceTest {
         MockMultipartFile multipartFile = new MockMultipartFile("file",
                 file.getName(), "text/plain", IOUtils.toByteArray(input));
 
-        if(file.exists()) {
+        if (file.exists()) {
             path_c = glusterfsService.upload(multipartFile);
 
         } else {
@@ -74,9 +74,9 @@ public class GlusterfsServiceTest {
     }
 
     @Test
-    public void delete(){
+    public void delete() {
         String[] name = path_c.split("/");
-        String objectName = name[name.length-1];
+        String objectName = name[name.length - 1];
         glusterfsService.delete(objectName);
     }
 

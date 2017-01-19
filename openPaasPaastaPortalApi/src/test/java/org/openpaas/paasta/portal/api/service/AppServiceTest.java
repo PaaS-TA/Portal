@@ -14,17 +14,14 @@ import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
 import org.openpaas.paasta.portal.api.config.ApiApplication;
 import org.openpaas.paasta.portal.api.model.App;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.UUID;
 
 import static org.junit.Assert.assertTrue;
@@ -243,7 +240,7 @@ public class AppServiceTest extends CommonTest {
     public void getApplicationEnv_400_EmptyBody() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         App app = new App();
 
@@ -254,7 +251,7 @@ public class AppServiceTest extends CommonTest {
     public void getApplicationEnv_404_NonexistentApp() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.NOT_FOUND,"The app could not be found: env"));
+                HttpStatus.NOT_FOUND, "The app could not be found: env"));
 
         App app = new App();
         app.setOrgName(appTestOrg);
@@ -268,7 +265,7 @@ public class AppServiceTest extends CommonTest {
     public void getApplicationEnv_400_InvalidOrgOrSpace() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage(
-                "No matching organization and space found for org: "+nonexistentOrNoAuthOrg+" space: "+nonexistentOrNoAuthSpace);
+                "No matching organization and space found for org: " + nonexistentOrNoAuthOrg + " space: " + nonexistentOrNoAuthSpace);
 
         App app = new App();
         app.setOrgName(nonexistentOrNoAuthOrg);
@@ -300,8 +297,8 @@ public class AppServiceTest extends CommonTest {
     public void updateApplicationEnv_400_EmptyBody() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
-        
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
+
         App app = new App();
 
         appService.updateApplicationEnv(app, clientToken);
@@ -311,7 +308,7 @@ public class AppServiceTest extends CommonTest {
     public void updateApplicationEnv_400_EmptyEnv() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         App app = new App();
         app.setOrgName(appTestOrg);
@@ -325,7 +322,7 @@ public class AppServiceTest extends CommonTest {
     public void updateApplicationEnv_400_InvalidOrgOrSpace() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage(
-                "No matching organization and space found for org: "+nonexistentOrNoAuthOrg+" space: "+nonexistentOrNoAuthSpace);
+                "No matching organization and space found for org: " + nonexistentOrNoAuthOrg + " space: " + nonexistentOrNoAuthSpace);
 
         App app = new App();
         app.setOrgName(nonexistentOrNoAuthOrg);
@@ -340,7 +337,7 @@ public class AppServiceTest extends CommonTest {
     public void updateApplicationEnv_404_NonexistentApp() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.NOT_FOUND,"Unknown request"));
+                HttpStatus.NOT_FOUND, "Unknown request"));
 
         App app = new App();
         app.setOrgName(appTestOrg);
@@ -354,7 +351,7 @@ public class AppServiceTest extends CommonTest {
     @Test
     public void addApplicationRoute_200() throws Exception {
 
-        client.unbindRoute(testHost, domainName,testApp);
+        client.unbindRoute(testHost, domainName, testApp);
 
         App app = new App();
         app.setOrgName(appTestOrg);
@@ -363,7 +360,7 @@ public class AppServiceTest extends CommonTest {
         app.setDomainName(domainName);
         app.setHost(testHost);
 
-        boolean result= appService.addApplicationRoute(app, clientToken);
+        boolean result = appService.addApplicationRoute(app, clientToken);
 
         assertTrue(result);
     }
@@ -372,7 +369,7 @@ public class AppServiceTest extends CommonTest {
     public void addApplicationRoute_400_EmptyBody() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         App app = new App();
 
@@ -383,7 +380,7 @@ public class AppServiceTest extends CommonTest {
     public void addApplicationRoute_400_NonexistentOrgOrSpace() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage(
-                "No matching organization and space found for org: "+nonexistentOrNoAuthOrg+" space: "+nonexistentOrNoAuthSpace);
+                "No matching organization and space found for org: " + nonexistentOrNoAuthOrg + " space: " + nonexistentOrNoAuthSpace);
 
         App app = new App();
         app.setOrgName(nonexistentOrNoAuthOrg);
@@ -399,7 +396,7 @@ public class AppServiceTest extends CommonTest {
     public void addApplicationRoute_404_NonexistentApp() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.NOT_FOUND,"Unknown request"));
+                HttpStatus.NOT_FOUND, "Unknown request"));
 
         App app = new App();
         app.setOrgName(appTestOrg);
@@ -422,7 +419,7 @@ public class AppServiceTest extends CommonTest {
         app.setHost(testHost);
 
         boolean result;
-        try{
+        try {
             result = appService.removeApplicationRoute(app, clientToken);
         } finally {
             client.bindRoute(testHost, domainName, testApp);
@@ -435,7 +432,7 @@ public class AppServiceTest extends CommonTest {
     public void removeApplicationRoute_400_EmptyBody() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         App app = new App();
 
@@ -446,7 +443,7 @@ public class AppServiceTest extends CommonTest {
     public void removeApplicationRoute_400_NonexistentOrgOrSpace() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage(
-                "No matching organization and space found for org: "+nonexistentOrNoAuthOrg+" space: "+nonexistentOrNoAuthSpace);
+                "No matching organization and space found for org: " + nonexistentOrNoAuthOrg + " space: " + nonexistentOrNoAuthSpace);
 
         App app = new App();
         app.setOrgName(nonexistentOrNoAuthOrg);
@@ -463,7 +460,7 @@ public class AppServiceTest extends CommonTest {
     public void removeApplicationRoute_404_NonexistentApp() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.NOT_FOUND,"Unknown request"));
+                HttpStatus.NOT_FOUND, "Unknown request"));
 
         App app = new App();
         app.setOrgName(appTestOrg);
@@ -479,7 +476,7 @@ public class AppServiceTest extends CommonTest {
     @Test
     public void removeApplicationRoute_400_NonexistentRoute() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Host 'nonexistentRoute' not found for domain '"+domainName+"'.");
+        expectedException.expectMessage("Host 'nonexistentRoute' not found for domain '" + domainName + "'.");
 
         App app = new App();
         app.setOrgName(appTestOrg);

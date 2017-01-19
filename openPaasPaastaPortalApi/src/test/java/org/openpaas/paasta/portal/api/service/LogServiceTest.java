@@ -37,12 +37,12 @@ public class LogServiceTest extends CommonTest {
 
         CloudCredentials credentials = new CloudCredentials(username, password);
 
-        token = new CloudFoundryClient(credentials, targetUrl,true).login();
+        token = new CloudFoundryClient(credentials, targetUrl, true).login();
         cfc = new CloudFoundryClient(new CloudCredentials(new DefaultOAuth2AccessToken(token)), targetUrl, org, space, true);
     }
+
     /**
      * 앱 로그 정보 가져오기(API)
-     *
      */
     @Test
     public void getLog() {

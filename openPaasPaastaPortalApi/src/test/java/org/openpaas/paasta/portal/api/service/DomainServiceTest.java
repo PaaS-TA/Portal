@@ -55,59 +55,59 @@ public class DomainServiceTest extends CommonTest {
 
         CloudCredentials credentials = new CloudCredentials(username, "1234");
         token = new CustomCloudFoundryClient(credentials, targetUrl, true).login().getValue();
-        client = new CustomCloudFoundryClient(credentials, targetUrl,true);
+        client = new CustomCloudFoundryClient(credentials, targetUrl, true);
 
         client.createOrg(testOrg);
-        client.createSpace(testOrg,testSpace);
+        client.createSpace(testOrg, testSpace);
 
     }
 
     @AfterClass
     public static void testFinalize() throws Exception {
-        client.deleteSpace(testOrg,testSpace);
+        client.deleteSpace(testOrg, testSpace);
         admin.deleteOrg(testOrg);
 
     }
 
     @Test
-    public void getDomains_All_TEST() throws Exception{
+    public void getDomains_All_TEST() throws Exception {
         List<CloudDomain> result = domainService.getDomains(token, "all");
         assertTrue(result.size() > 0);
     }
 
     @Test
-    public void getDomains_Private_TEST() throws Exception{
-        domainService.addDomain(token,testOrg, testSpace, testDomainName);
+    public void getDomains_Private_TEST() throws Exception {
+        domainService.addDomain(token, testOrg, testSpace, testDomainName);
         List<CloudDomain> result;
-        try{
+        try {
             result = domainService.getDomains(token, "private");
         } finally {
-            domainService.deleteDomain(token,testOrg, testSpace, testDomainName);
+            domainService.deleteDomain(token, testOrg, testSpace, testDomainName);
         }
 
         assertTrue(result.size() > 0);
     }
 
     @Test
-    public void getDomains_Shared_TEST() throws Exception{
+    public void getDomains_Shared_TEST() throws Exception {
         List<CloudDomain> result = domainService.getDomains(token, "shared");
         assertTrue(result.size() > 0);
     }
 
     @Test
-    public void getDomains_InvalidStatus_TEST() throws Exception{
+    public void getDomains_InvalidStatus_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Invalid status"));
+                HttpStatus.BAD_REQUEST, "Invalid status"));
 
         domainService.getDomains(token, "invalidStatus");
     }
 
     @Test
-    public void getDomains_EmptyStatus_TEST() throws Exception{
+    public void getDomains_EmptyStatus_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Invalid status"));
+                HttpStatus.BAD_REQUEST, "Invalid status"));
 
         domainService.getDomains(token, "");
     }
@@ -116,7 +116,7 @@ public class DomainServiceTest extends CommonTest {
     public void getDomains_InvalidToken_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.UNAUTHORIZED,"Invalid Auth Token"));
+                HttpStatus.UNAUTHORIZED, "Invalid Auth Token"));
 
         domainService.getDomains("invalidToken", "all");
 
@@ -127,10 +127,10 @@ public class DomainServiceTest extends CommonTest {
 
         boolean result;
 
-        try{
-            result = domainService.addDomain(token,testOrg, testSpace, testDomainName);
+        try {
+            result = domainService.addDomain(token, testOrg, testSpace, testDomainName);
         } finally {
-            domainService.deleteDomain(token,testOrg, testSpace, testDomainName);
+            domainService.deleteDomain(token, testOrg, testSpace, testDomainName);
         }
         assertTrue(result);
     }
@@ -141,7 +141,7 @@ public class DomainServiceTest extends CommonTest {
         expectedException.expect(new CloudFoundryExceptionMatcher(
                 HttpStatus.BAD_REQUEST, "The domain is invalid: name can contain multiple subdomains, each having only alphanumeric characters and hyphens of up to 63 characters, see RFC 1035."));
 
-        domainService.addDomain(token,testOrg, testSpace, "invalid-domain");
+        domainService.addDomain(token, testOrg, testSpace, "invalid-domain");
     }
 
     @Test
@@ -150,14 +150,14 @@ public class DomainServiceTest extends CommonTest {
         expectedException.expect(new CloudFoundryExceptionMatcher(
                 HttpStatus.BAD_REQUEST, "The domain is invalid: name can contain multiple subdomains, each having only alphanumeric characters and hyphens of up to 63 characters, see RFC 1035."));
 
-        domainService.addDomain(token,testOrg, testSpace, "invalid-domain");
+        domainService.addDomain(token, testOrg, testSpace, "invalid-domain");
     }
 
     @Test
     public void addDomain_EmptyParam_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         domainService.addDomain(token, "", "", testDomainName);
     }
@@ -166,7 +166,7 @@ public class DomainServiceTest extends CommonTest {
     public void addDomain_NullParam_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         domainService.addDomain(token, null, null, testDomainName);
     }
@@ -174,8 +174,8 @@ public class DomainServiceTest extends CommonTest {
 
     @Test
     public void deleteDomain_TEST() throws Exception {
-        domainService.addDomain(token,testOrg, testSpace, testDomainName);
-        boolean result = domainService.deleteDomain(token,testOrg, testSpace, testDomainName);
+        domainService.addDomain(token, testOrg, testSpace, testDomainName);
+        boolean result = domainService.deleteDomain(token, testOrg, testSpace, testDomainName);
 
         assertTrue(result);
     }
@@ -185,14 +185,14 @@ public class DomainServiceTest extends CommonTest {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Domain 'nonexistent-domain' not found.");
 
-        domainService.deleteDomain(token,testOrg, testSpace, "nonexistent-domain");
+        domainService.deleteDomain(token, testOrg, testSpace, "nonexistent-domain");
     }
 
     @Test
     public void deleteDomain_EmptyParam_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         domainService.deleteDomain(token, "", "", "");
     }
@@ -201,7 +201,7 @@ public class DomainServiceTest extends CommonTest {
     public void deleteDomain_NullParam_TEST() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         domainService.deleteDomain(token, null, null, null);
     }

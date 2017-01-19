@@ -2,8 +2,6 @@ package org.openpaas.paasta.portal.api.service;
 
 import com.google.gson.Gson;
 import org.cloudfoundry.client.lib.CloudCredentials;
-import org.cloudfoundry.client.lib.CloudFoundryClient;
-import org.cloudfoundry.client.lib.domain.CloudApplication;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -13,14 +11,12 @@ import org.openpaas.paasta.portal.api.common.CommonTest;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
 import org.openpaas.paasta.portal.api.config.ApiApplication;
 import org.openpaas.paasta.portal.api.model.BuildPack;
-import org.openpaas.paasta.portal.api.model.ConfigInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -60,7 +56,7 @@ public class BuildPackServiceTest extends CommonTest {
     @Test
     public void getValue() throws Exception {
 
-        Map<String, Object> list = buildPackService.getBuildPacks(buildPack,clientAdminCustom);
+        Map<String, Object> list = buildPackService.getBuildPacks(buildPack, clientAdminCustom);
         List list2 = (List) list.get("resources");
         Map<String, Object> list3 = (Map<String, Object>) list2.get(0);
         Map<String, Object> list4 = (Map<String, Object>) list3.get("metadata");
@@ -77,7 +73,7 @@ public class BuildPackServiceTest extends CommonTest {
         buildPack.setGuid(UUID.fromString(buildPackGuid));
         buildPack.setEnable(true);
 
-        buildPackService.updateBuildPack(buildPack,clientAdminCustom);
+        buildPackService.updateBuildPack(buildPack, clientAdminCustom);
     }
 
 

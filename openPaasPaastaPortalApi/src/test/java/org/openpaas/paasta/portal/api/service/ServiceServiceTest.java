@@ -73,7 +73,7 @@ public class ServiceServiceTest extends CommonTest {
         serviceBrokerUrl = getPropertyValue("test.serviceBrokerUrl");
 
         CloudCredentials adminCredentials = new CloudCredentials("admin", "admin");
-        clientAdminCustom = new CustomCloudFoundryClient(adminCredentials, getTargetURL(apiTarget) , "OCP", "dev", true);
+        clientAdminCustom = new CustomCloudFoundryClient(adminCredentials, getTargetURL(apiTarget), "OCP", "dev", true);
         clientAdminCustom.login();
 
         clientAdmin = new CloudFoundryClient(adminCredentials, getTargetURL(apiTarget), true);
@@ -86,14 +86,14 @@ public class ServiceServiceTest extends CommonTest {
         customClient.createSpace(serviceTestOrg, serviceTestSpace);
         customClient.setSpaceRole(serviceTestOrg, serviceTestSpace, "junit-test-user", "developers");
 
-        customClient = new CustomCloudFoundryClient(clientCredentials, getTargetURL(apiTarget),serviceTestOrg, serviceTestSpace, true);
+        customClient = new CustomCloudFoundryClient(clientCredentials, getTargetURL(apiTarget), serviceTestOrg, serviceTestSpace, true);
 
         CloudService service = new CloudService();
         service.setName(userProvidedInstanceName);
         Map<String, Object> credentials = new HashedMap();
         credentials.put("testCredentials", "testValue");
 
-        customClient.createUserProvidedService(service,credentials);
+        customClient.createUserProvidedService(service, credentials);
         userProvidedInstanceGuid = customClient.getUserProvidedServiceInstanceGuid(serviceTestOrg, serviceTestSpace, userProvidedInstanceName);
 
     }
@@ -163,7 +163,7 @@ public class ServiceServiceTest extends CommonTest {
 
         boolean result;
         try {
-            result =  serviceService.createUserProvided(customClientToken, body);
+            result = serviceService.createUserProvided(customClientToken, body);
         } finally {
             UUID serviceInstanceGuid = customClient.getUserProvidedServiceInstanceGuid(serviceTestOrg, serviceTestSpace, createTestUP);
             Service service = new Service();
@@ -186,7 +186,7 @@ public class ServiceServiceTest extends CommonTest {
 
         boolean result;
         try {
-            result =  serviceService.createUserProvided(customClientToken, body);
+            result = serviceService.createUserProvided(customClientToken, body);
         } finally {
             UUID serviceInstanceGuid = customClient.getUserProvidedServiceInstanceGuid(serviceTestOrg, serviceTestSpace, createTestUP);
             Service service = new Service();
@@ -201,7 +201,7 @@ public class ServiceServiceTest extends CommonTest {
     public void createUserProvided_EmptyParam() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         Map<String, String> body = new HashMap<String, String>();
         serviceService.createUserProvided(customClientToken, body);
@@ -210,7 +210,7 @@ public class ServiceServiceTest extends CommonTest {
     @Test
     public void createUserProvided_Param_Contains_Spaces() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("No matching organization and space found for org: invalid org name space: "+serviceTestSpace);
+        expectedException.expectMessage("No matching organization and space found for org: invalid org name space: " + serviceTestSpace);
 
         Map<String, String> body = new HashMap<String, String>();
         String credentials = "{\"testCredentials\":\"testValue\"}";
@@ -241,7 +241,6 @@ public class ServiceServiceTest extends CommonTest {
     }
 
 
-
     @Test
     public void getUserProvided_Ok() throws Exception {
 
@@ -259,7 +258,7 @@ public class ServiceServiceTest extends CommonTest {
     public void getUserProvided_EmptyPram() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         Map<String, String> body = new HashMap<String, String>();
 
@@ -282,7 +281,7 @@ public class ServiceServiceTest extends CommonTest {
     @Test
     public void getUserProvided_Nonexistent_OrgName() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("No matching organization and space found for org: nonexistent-org space: "+serviceTestSpace);
+        expectedException.expectMessage("No matching organization and space found for org: nonexistent-org space: " + serviceTestSpace);
 
         Map<String, String> body = new HashMap<String, String>();
         body.put("orgName", "nonexistent-org");
@@ -326,7 +325,7 @@ public class ServiceServiceTest extends CommonTest {
     public void updateUserProvided_EmptyParam() throws Exception {
         expectedException.expect(CloudFoundryException.class);
         expectedException.expect(new CloudFoundryExceptionMatcher(
-                HttpStatus.BAD_REQUEST,"Required request body content is missing"));
+                HttpStatus.BAD_REQUEST, "Required request body content is missing"));
 
         Map<String, String> body = new HashMap<String, String>();
 

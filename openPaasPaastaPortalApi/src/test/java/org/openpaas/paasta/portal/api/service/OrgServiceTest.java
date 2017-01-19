@@ -14,16 +14,12 @@ import org.openpaas.paasta.portal.api.common.CommonTest;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
 import org.openpaas.paasta.portal.api.config.ApiApplication;
 import org.openpaas.paasta.portal.api.model.Org;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.io.InputStream;
 import java.util.*;
 
 import static org.junit.Assert.assertTrue;
@@ -34,8 +30,6 @@ import static org.junit.Assert.assertTrue;
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrgServiceTest extends CommonTest {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrgServiceTest.class);
 
     @Autowired
     private OrgService orgService;
@@ -485,7 +479,7 @@ public class OrgServiceTest extends CommonTest {
 
     @Test
     @Ignore
-    public void getOrgMember() throws Exception{
+    public void getOrgMember() throws Exception {
 
         Map map = new HashMap();
         List listOrg = new ArrayList();
@@ -521,9 +515,10 @@ public class OrgServiceTest extends CommonTest {
         map.put("userId", orgRoleUserGuid);
 
     }
+
     @Test
     @Ignore
-    public void addOrgMember() throws Exception{
+    public void addOrgMember() throws Exception {
 
         Map map = new HashMap();
         List listOrg = new ArrayList();
@@ -559,9 +554,10 @@ public class OrgServiceTest extends CommonTest {
         map.put("userId", orgRoleUserGuid);
 
     }
+
     @Test
     @Ignore
-    public void deleteOrgMember() throws Exception{
+    public void deleteOrgMember() throws Exception {
 
         Map map = new HashMap();
         List listOrg = new ArrayList();
@@ -595,15 +591,16 @@ public class OrgServiceTest extends CommonTest {
         orgService.unsetOrgSpaceUser(map);
 
     }
+
     @Test
-    public void inviteMemberEmail() throws Exception{
+    public void inviteMemberEmail() throws Exception {
 
         Map<String, Object> userMap = new HashedMap();
         userMap.put("userId", userId);
         userMap.put("inviteUserId", inviteId);
         List dataList = new ArrayList();
-        dataList.add(Arrays.asList("org",orgTestOrg,true,true,true));
-        dataList.add(Arrays.asList("space",testSpace,true,false,true));
+        dataList.add(Arrays.asList("org", orgTestOrg, true, true, true));
+        dataList.add(Arrays.asList("space", testSpace, true, false, true));
         userMap.put("dataList", dataList);
 
         orgService.inviteMemberEmail(userMap);
@@ -611,35 +608,36 @@ public class OrgServiceTest extends CommonTest {
     }
 
     @Test
-    public void getOrgId() throws Exception{
-        int id =orgService.getOrgId(appTestOrg);
+    public void getOrgId() throws Exception {
+        int id = orgService.getOrgId(appTestOrg);
     }
 
     @Test
-    public void updateInviteY() throws Exception{
+    public void updateInviteY() throws Exception {
         int cnt = orgService.updateInviteY("ARFTCJO9");
         assertTrue(cnt == 0);
     }
+
     @Test
-    public void updateAccessCnt() throws Exception{
-        int cnt =  orgService.updateAccessCnt("ARFTCJO9", 0);
+    public void updateAccessCnt() throws Exception {
+        int cnt = orgService.updateAccessCnt("ARFTCJO9", 0);
         assertTrue(cnt == 0);
     }
 
 
     @Test
-    public void selectInviteInfo() throws Exception{
+    public void selectInviteInfo() throws Exception {
         List map = orgService.selectInviteInfo("ARFTCJO9");
         assertTrue(map.size() == 0);
-        System.out.print("map::"+map.toString());
+        System.out.print("map::" + map.toString());
     }
 
 
     @Test
-    public void getUsersByInvite() throws Exception{
-        List map = orgService.getUsersByInvite("AAA", inviteId,"0");
+    public void getUsersByInvite() throws Exception {
+        List map = orgService.getUsersByInvite("AAA", inviteId, "0");
         assertTrue(map.size() == 0);
-        System.out.print("map::"+map.toString());
+        System.out.print("map::" + map.toString());
     }
 
     @Test
@@ -649,6 +647,7 @@ public class OrgServiceTest extends CommonTest {
         int cnt = orgService.cancelInvite(userMap);
         assertTrue(cnt == 0);
     }
+
     @Test
     @Ignore
     public void unsetUserOrg() throws Exception {

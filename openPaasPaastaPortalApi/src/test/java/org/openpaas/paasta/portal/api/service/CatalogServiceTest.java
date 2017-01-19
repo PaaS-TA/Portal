@@ -10,9 +10,9 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openpaas.paasta.portal.api.common.CommonTest;
-import org.openpaas.paasta.portal.api.config.ApiApplication;
 import org.openpaas.paasta.portal.api.common.Constants;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
+import org.openpaas.paasta.portal.api.config.ApiApplication;
 import org.openpaas.paasta.portal.api.controller.CatalogController;
 import org.openpaas.paasta.portal.api.model.App;
 import org.openpaas.paasta.portal.api.model.Catalog;
@@ -36,8 +36,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -213,7 +213,9 @@ public class CatalogServiceTest extends CommonTest {
     public void test_05_01_getBuildPackCatalogCount() throws Exception {
         MockHttpServletResponse res = new MockHttpServletResponse();
 
-        catalogService.getBuildPackCatalogCount(new Catalog(){{setName(TEST_COUNT_NAME);}}, res);
+        catalogService.getBuildPackCatalogCount(new Catalog() {{
+            setName(TEST_COUNT_NAME);
+        }}, res);
     }
 
 
@@ -221,7 +223,9 @@ public class CatalogServiceTest extends CommonTest {
     public void test_05_02_checkDuplicated_getBuildPackCatalogCount() throws Exception {
         MockHttpServletResponse res = new MockHttpServletResponse();
 
-        catalogService.getBuildPackCatalogCount(new Catalog(){{setName(testInitCatalog.getName());}}, res);
+        catalogService.getBuildPackCatalogCount(new Catalog() {{
+            setName(testInitCatalog.getName());
+        }}, res);
     }
 
 
@@ -229,7 +233,9 @@ public class CatalogServiceTest extends CommonTest {
     public void test_06_01_getServicePackCatalogCount() throws Exception {
         MockHttpServletResponse res = new MockHttpServletResponse();
 
-        catalogService.getServicePackCatalogCount(new Catalog(){{setName(TEST_COUNT_NAME);}}, res);
+        catalogService.getServicePackCatalogCount(new Catalog() {{
+            setName(TEST_COUNT_NAME);
+        }}, res);
     }
 
 
@@ -237,7 +243,9 @@ public class CatalogServiceTest extends CommonTest {
     public void test_06_02_checkDuplicated_getServicePackCatalogCount() throws Exception {
         MockHttpServletResponse res = new MockHttpServletResponse();
 
-        catalogService.getServicePackCatalogCount(new Catalog(){{setName(testInitCatalog.getName());}}, res);
+        catalogService.getServicePackCatalogCount(new Catalog() {{
+            setName(testInitCatalog.getName());
+        }}, res);
     }
 
 
@@ -405,7 +413,9 @@ public class CatalogServiceTest extends CommonTest {
 
     @Test
     public void test_16_getOneStarterCatalog() throws Exception {
-        catalogService.getOneStarterCatalog(new Catalog(){{setNo(catalogService.getStarterCatalogMaxNumber());}});
+        catalogService.getOneStarterCatalog(new Catalog() {{
+            setNo(catalogService.getStarterCatalogMaxNumber());
+        }});
     }
 
 
@@ -456,7 +466,10 @@ public class CatalogServiceTest extends CommonTest {
 
     @Test
     public void test_19_deleteStarterCatalog() throws Exception {
-        catalogService.deleteStarterCatalog(new Catalog(){{setNo(1);setStarterCategoryNo(1);}});
+        catalogService.deleteStarterCatalog(new Catalog() {{
+            setNo(1);
+            setStarterCategoryNo(1);
+        }});
     }
 
 
@@ -464,7 +477,9 @@ public class CatalogServiceTest extends CommonTest {
     public void test_20_01_OK_getStarterCatalogCount() throws Exception {
         MockHttpServletResponse res = new MockHttpServletResponse();
 
-        catalogService.getStarterCatalogCount(new Catalog(){{setName(TEST_COUNT_NAME);}}, res);
+        catalogService.getStarterCatalogCount(new Catalog() {{
+            setName(TEST_COUNT_NAME);
+        }}, res);
     }
 
 
@@ -472,7 +487,9 @@ public class CatalogServiceTest extends CommonTest {
     public void test_20_02_Conflict_getStarterCatalogCount() throws Exception {
         MockHttpServletResponse res = new MockHttpServletResponse();
 
-        catalogService.getStarterCatalogCount(new Catalog(){{setName(testInitCatalog.getName());}}, res);
+        catalogService.getStarterCatalogCount(new Catalog() {{
+            setName(testInitCatalog.getName());
+        }}, res);
     }
 
 
@@ -535,7 +552,7 @@ public class CatalogServiceTest extends CommonTest {
 
         JSONObject json = new JSONObject(result.getResponse().getContentAsString());
         String path = (String) json.get("path");
-        path = path.substring(path.lastIndexOf("/")+1);
+        path = path.substring(path.lastIndexOf("/") + 1);
         testSelectCatalog = new Catalog();
         testSelectCatalog.setThumbImgPath(path);
 
@@ -570,7 +587,9 @@ public class CatalogServiceTest extends CommonTest {
         MockHttpServletRequest req = new MockHttpServletRequest();
         req.addHeader(cfAuthorization, TEST_ADMIN_TOKEN);
 
-        catalogService.getCatalogSpaceList(new Catalog(){{setOrgName(testOrg);}}, req);
+        catalogService.getCatalogSpaceList(new Catalog() {{
+            setOrgName(testOrg);
+        }}, req);
     }
 
 
@@ -723,7 +742,9 @@ public class CatalogServiceTest extends CommonTest {
 
     @Test
     public void test_40_getCatalogStarterRelationList() throws Exception {
-        catalogService.getCatalogStarterRelationList(new Catalog(){{setCatalogNo(1);}});
+        catalogService.getCatalogStarterRelationList(new Catalog() {{
+            setCatalogNo(1);
+        }});
     }
 
 
@@ -775,7 +796,7 @@ public class CatalogServiceTest extends CommonTest {
 
         List<Catalog> resultList = (List<Catalog>) resultMap.get("SERVICE_INSTANCE_GUID_LIST");
 
-        for (Catalog serviceInstanceGuid: resultList) {
+        for (Catalog serviceInstanceGuid : resultList) {
             Service deleteInstanceServiceParam = new Service();
             deleteInstanceServiceParam.setGuid(serviceInstanceGuid.getServiceInstanceGuid());
 
@@ -843,7 +864,7 @@ public class CatalogServiceTest extends CommonTest {
 
         List<Catalog> resultList = (List<Catalog>) resultMap.get("SERVICE_INSTANCE_GUID_LIST");
 
-        for (Catalog serviceInstanceGuid: resultList) {
+        for (Catalog serviceInstanceGuid : resultList) {
             Service deleteInstanceServiceParam = new Service();
             deleteInstanceServiceParam.setGuid(serviceInstanceGuid.getServiceInstanceGuid());
 
@@ -901,7 +922,7 @@ public class CatalogServiceTest extends CommonTest {
         // FOR TEST
         List<Catalog> resultList = (List<Catalog>) resultMap.get("SERVICE_INSTANCE_GUID_LIST");
 
-        for (Catalog serviceInstanceGuid: resultList) {
+        for (Catalog serviceInstanceGuid : resultList) {
             Service deleteInstanceServiceParam = new Service();
             deleteInstanceServiceParam.setGuid(serviceInstanceGuid.getServiceInstanceGuid());
 
@@ -959,7 +980,7 @@ public class CatalogServiceTest extends CommonTest {
         // FOR TEST
         List<Catalog> resultList = (List<Catalog>) resultMap.get("SERVICE_INSTANCE_GUID_LIST");
 
-        for (Catalog serviceInstanceGuid: resultList) {
+        for (Catalog serviceInstanceGuid : resultList) {
             Service deleteInstanceServiceParam = new Service();
             deleteInstanceServiceParam.setGuid(serviceInstanceGuid.getServiceInstanceGuid());
 
@@ -1198,7 +1219,9 @@ public class CatalogServiceTest extends CommonTest {
 
 
     public Map<String, Object> procBeforeTestGetBuildPackInfo(String reqBuildPackName) throws Exception {
-        Map<String, Object> resultMap = catalogService.getBuildPackCatalogList(new Catalog(){{setBuildPackName(reqBuildPackName);}});
+        Map<String, Object> resultMap = catalogService.getBuildPackCatalogList(new Catalog() {{
+            setBuildPackName(reqBuildPackName);
+        }});
         List<Catalog> resultList = (List<Catalog>) resultMap.get("list");
 
         return new HashMap<String, Object>() {{
@@ -1219,7 +1242,7 @@ public class CatalogServiceTest extends CommonTest {
 
         // CREATE SERVICE INSTANCE
         String servicePlanGuid = this.procBeforeTestGetServicePackInfo().get("SERVICE_PLAN_GUID").toString();
-        catalogService.executeCatalogServicePack(new Catalog(){{
+        catalogService.executeCatalogServicePack(new Catalog() {{
             setServiceInstanceName(TEST_SERVICE_INSTANCE_NAME);
             setOrgName(testOrg);
             setSpaceName(testSpace);

@@ -2,21 +2,15 @@ package org.openpaas.paasta.portal.api.service;
 
 import org.cloudfoundry.client.lib.CloudCredentials;
 import org.cloudfoundry.client.lib.CloudFoundryClient;
-import org.cloudfoundry.client.lib.CloudFoundryException;
 import org.cloudfoundry.identity.uaa.api.group.UaaGroupOperations;
-import org.cloudfoundry.identity.uaa.api.user.UaaUserOperations;
 import org.cloudfoundry.identity.uaa.error.UaaException;
 import org.cloudfoundry.identity.uaa.scim.ScimGroup;
-import org.cloudfoundry.identity.uaa.scim.ScimGroupMember;
-import org.cloudfoundry.identity.uaa.scim.ScimUser;
-import org.cloudfoundry.identity.uaa.user.UaaUser;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.openpaas.paasta.portal.api.common.CloudFoundryExceptionMatcher;
 import org.openpaas.paasta.portal.api.common.CommonTest;
 import org.openpaas.paasta.portal.api.common.CustomCloudFoundryClient;
 import org.openpaas.paasta.portal.api.config.ApiApplication;
@@ -24,16 +18,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertTrue;
+
 /**
  * Created by Dojun on 2016-10-07.
  */
@@ -74,7 +68,7 @@ public class AuthorityGroupServiceTest extends CommonTest {
     }
 
     @AfterClass
-    public static void  testFinalize() throws Exception {
+    public static void testFinalize() throws Exception {
         LOGGER.info(testAuthGroupGuid);
         groupOperations.deleteGroup(testAuthGroupGuid);
     }
@@ -99,7 +93,7 @@ public class AuthorityGroupServiceTest extends CommonTest {
         String groupDisplayName = getPropertyValue("test.authorityGroupForEachTest");
         ScimGroup createdGroup = new ScimGroup();
 
-        try{
+        try {
             createdGroup = authorityGroupService.createAuthorityGroup(groupDisplayName, null);
         } finally {
             authorityGroupService.deleteAuthorityGroup(createdGroup.getId());
@@ -210,9 +204,8 @@ public class AuthorityGroupServiceTest extends CommonTest {
     }
 
 
-
     @Test
-    public void deleteGroupMembers_Ok() throws Exception{
+    public void deleteGroupMembers_Ok() throws Exception {
 
         List<String> memberList = new ArrayList<>();
         memberList.add(getPropertyValue("test.clientUserName"));

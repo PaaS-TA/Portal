@@ -1,6 +1,5 @@
 package org.openpaas.paasta.portal.api.service;
 
-import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.cloudfoundry.client.lib.CloudCredentials;
 import org.cloudfoundry.client.lib.CloudFoundryClient;
@@ -47,7 +46,6 @@ import static org.junit.Assert.assertTrue;
 
 public class UserServiceTest extends CommonTest {
 
-
     @Autowired
     private UserService userService;
 
@@ -59,31 +57,17 @@ public class UserServiceTest extends CommonTest {
 
     private MockMvc mvc;
 
-    private static Gson gson = new Gson();
-
-    private static final String AUTHORIZATION_HEADER_KEY="cf-Authorization";
-
     // token
     private static String adminTestToken = "";
-    private static String testToken      = "";
-
-    private static UserDetail testUser          = null;
 
     // cf user
-    private static String testId               = getPropertyValue("test.clientUserName");
-    private static String testPassword        = getPropertyValue("test.clientUserPassword");
     private static String adminTestId = getPropertyValue("test.admin.id");
     private static String adminTestPassword = getPropertyValue("test.admin.password");
-    private static CloudCredentials credentials =new CloudCredentials(adminTestId, adminTestPassword);
+    private static CloudCredentials credentials = new CloudCredentials(adminTestId, adminTestPassword);
 
     @BeforeClass
-    public static void a_init() throws Exception{
-
+    public static void a_init() throws Exception {
         adminTestToken = new CloudFoundryClient(credentials, getTargetURL(apiTarget), true).login().getValue();
-
-        CloudCredentials clientCredentials = new CloudCredentials(testId, testPassword);
-        testToken = new CloudFoundryClient(clientCredentials, getTargetURL(apiTarget), true).login().getValue();
-
     }
 
     @Test
@@ -96,6 +80,7 @@ public class UserServiceTest extends CommonTest {
         userDetail.setStatus("0");
         userService.createUser(userDetail);
     }
+
     @Test
 //  @Ignore
     public void a_create() throws Exception {
@@ -106,6 +91,7 @@ public class UserServiceTest extends CommonTest {
         userService.create(userDetail);
 
     }
+
     @Test
     public void b_updateUser() throws Exception {
         UserDetail userDetail = new UserDetail();
@@ -113,15 +99,17 @@ public class UserServiceTest extends CommonTest {
         userDetail.setPassword(getPropertyValue("test.newPassword"));
         userDetail.setAdminYn("N");
         userDetail.setStatus("1");
-        userService.updateUser( userDetail.getUserId(), userDetail);
+        userService.updateUser(userDetail.getUserId(), userDetail);
     }
+
     @Test
     public void updateUserPassword() throws Exception {
 
-        CloudCredentials re_passwordCredentials =  new CloudCredentials(getPropertyValue("test.insetTestId"), getPropertyValue("test.newPassword"));
-        userService.updateUserPassword(new CustomCloudFoundryClient(re_passwordCredentials, getTargetURL(apiTarget), true),re_passwordCredentials, getPropertyValue("test.password"));
+        CloudCredentials re_passwordCredentials = new CloudCredentials(getPropertyValue("test.insetTestId"), getPropertyValue("test.newPassword"));
+        userService.updateUserPassword(new CustomCloudFoundryClient(re_passwordCredentials, getTargetURL(apiTarget), true), re_passwordCredentials, getPropertyValue("test.password"));
 
     }
+
     @Test
     public void updateUserId() throws Exception {
         userService.updateUserId(getPropertyValue("test.insetTestId"), getPropertyValue("test.updateUserId"));
@@ -196,17 +184,17 @@ public class UserServiceTest extends CommonTest {
     public void updateAuthUserPassword() throws Exception {
         HashMap userDetail = new HashMap();
         CloudCredentials adminCredentials = new CloudCredentials(getPropertyValue("test.admin.id"), getPropertyValue("test.admin.password"));
-        CustomCloudFoundryClient adminCcfc =  new CustomCloudFoundryClient(adminCredentials, getTargetURL(apiTarget), true);
-        userDetail.put("userId",getPropertyValue("test.insetTestId"));
-        userDetail.put("newPassword",getPropertyValue("test.newPassword"));
-        userService.updateAuthUserPassword(adminCcfc,userDetail);
+        CustomCloudFoundryClient adminCcfc = new CustomCloudFoundryClient(adminCredentials, getTargetURL(apiTarget), true);
+        userDetail.put("userId", getPropertyValue("test.insetTestId"));
+        userDetail.put("newPassword", getPropertyValue("test.newPassword"));
+        userService.updateAuthUserPassword(adminCcfc, userDetail);
     }
 
     @Test
     public void resetPassword() throws Exception {
-        HashMap map =new HashMap();
-        map.put("userId",getPropertyValue("test.insetTestId"));
-        map.put("searchUserId",getPropertyValue("test.insetTestId"));
+        HashMap map = new HashMap();
+        map.put("userId", getPropertyValue("test.insetTestId"));
+        map.put("searchUserId", getPropertyValue("test.insetTestId"));
 
         userService.resetPassword(map);
     }
@@ -221,19 +209,19 @@ public class UserServiceTest extends CommonTest {
         String path = null;
 
         Map<String, Object> map = userService.uploadFile(multipartFile);
-        path = (String) map.getOrDefault("path","");
-        System.out.println("path:"+path);
+        path = (String) map.getOrDefault("path", "");
+        System.out.println("path:" + path);
         glusterfsService.delete(path);
     }
 
     @Test
-    public void getUserInfo_OK() throws Exception{
+    public void getUserInfo_OK() throws Exception {
         String userName = getPropertyValue("test.testUser");
         String userPassword = getPropertyValue("test.testUserPassword");
 
         HashMap map = new HashMap();
-        map.put("userId",userName);
-        map.put("password",userPassword);
+        map.put("userId", userName);
+        map.put("password", userPassword);
 
         List<Map<String, String>> userInfo = userService.getUserInfo();
 
@@ -245,16 +233,18 @@ public class UserServiceTest extends CommonTest {
     public void z_deleteUser1() throws Exception {
         HashMap map = new HashMap();
         CloudCredentials adminCredentials = new CloudCredentials(getPropertyValue("test.admin.id"), getPropertyValue("test.admin.password"));
-        CustomCloudFoundryClient adminCcfc =  new CustomCloudFoundryClient(adminCredentials, getTargetURL(apiTarget), true);
+        CustomCloudFoundryClient adminCcfc = new CustomCloudFoundryClient(adminCredentials, getTargetURL(apiTarget), true);
         CloudCredentials userCredentials = new CloudCredentials(getPropertyValue("test.insetTestId"), getPropertyValue("test.password"));
-        CustomCloudFoundryClient userCcfc =  new CustomCloudFoundryClient(userCredentials, getTargetURL(apiTarget), true);
-        map.put("userId" , getPropertyValue("test.insetTestId"));
-        userService.deleteUser(adminCcfc,userCcfc, getPropertyValue("test.insetTestId"));
+        CustomCloudFoundryClient userCcfc = new CustomCloudFoundryClient(userCredentials, getTargetURL(apiTarget), true);
+        map.put("userId", getPropertyValue("test.insetTestId"));
+        userService.deleteUser(adminCcfc, userCcfc, getPropertyValue("test.insetTestId"));
     }
+
     @Test
     public void z_deleteUser2() throws Exception {
         userService.deleteUser(getPropertyValue("test.insetTestId"));
     }
+
     @Test
     @Ignore
     public void createRequestUserCnt() throws Exception {

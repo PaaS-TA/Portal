@@ -42,7 +42,7 @@ public class AppAutoScaleModalServiceTest {
     private WebApplicationContext wac;
 
     private static MockMvc mvc;
-    AppAutoScale appAutoScale  = new AppAutoScale();
+    AppAutoScale appAutoScale = new AppAutoScale();
 
     @Before
     public void init() {
@@ -52,7 +52,7 @@ public class AppAutoScaleModalServiceTest {
     @Test
     public void getAppAutoScaleInfo() throws Exception {
         Gson gson = new Gson();
-        AppAutoScale appAutoScale  = new AppAutoScale();
+        AppAutoScale appAutoScale = new AppAutoScale();
         appAutoScale.setGuid("guid");
         mvc.perform(post("/app/getAppAutoScaleInfo")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -119,6 +119,6 @@ public class AppAutoScaleModalServiceTest {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
                 .andDo(print());
-        }
+    }
 
 }

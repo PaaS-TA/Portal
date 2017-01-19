@@ -21,10 +21,10 @@ public class GlusterfsConfig {
 
     @Bean
     public AccountConfig accountConfig(){
-        String tenantName = env.getRequiredProperty("spring.glusterfs.tenantName");
-        String username = env.getRequiredProperty("spring.glusterfs.username");
-        String password = env.getRequiredProperty("spring.glusterfs.password");
-        String authUrl = env.getRequiredProperty("spring.glusterfs.authUrl");
+        String tenantName = env.getRequiredProperty("spring.objectStorage.tenantName");
+        String username = env.getRequiredProperty("spring.objectStorage.username");
+        String password = env.getRequiredProperty("spring.objectStorage.password");
+        String authUrl = env.getRequiredProperty("spring.objectStorage.authUrl");
 
 
         AccountConfig config = new AccountConfig();
@@ -53,7 +53,7 @@ public class GlusterfsConfig {
 
     @Bean
     public Container container(Account account) {
-        String containerName = env.getRequiredProperty("spring.glusterfs.container");
+        String containerName = env.getRequiredProperty("spring.objectStorage.container");
 
         Container container = account.getContainer(containerName);
         if(!container.exists()){

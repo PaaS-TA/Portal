@@ -36,26 +36,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional("portalTransactionManager")
 public class DocumentsServiceTest {
 
-    @Autowired
-    private WebApplicationContext wac;
-
-    private MockMvc mvc;
-
+    private static final String AUTHORIZATION_HEADER_KEY = "cf-Authorization";
     private static Gson gson = new Gson();
-    private static final String AUTHORIZATION_HEADER_KEY="cf-Authorization";
-
-    private static String API_TARGET = "https://api.115.68.46.30.xip.io";
     private static String TEST_URL = "/documents";
-
-
-
     private static Support testInitSupport = null;
     private static Support testSelectSupport = null;
     private static Support testInsertSupport = null;
     private static Support testUpdateSupport = null;
     private static Support testDeleteSupport = null;
-
     private static int documentsNo = 7;
+    @Autowired
+    private WebApplicationContext wac;
+    private MockMvc mvc;
+
+    @BeforeClass
+    public static void init() throws Exception {
+        testInitSupport = new Support();
+        testInitSupport.setTitle("test_title");
+        testInitSupport.setUserId("test_userId");
+        testInitSupport.setClassification("test_classification");
+        testInitSupport.setUseYn("Y");
+        testInitSupport.setContent("test_content");
+        testInitSupport.setFileName("test_fileName");
+        testInitSupport.setFilePath("test_filePath");
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -68,21 +72,6 @@ public class DocumentsServiceTest {
 //                .andExpect(content().contentType("application/json;charset=UTF-8"))
 //                .andExpect(status().isOk())
 //                .andDo(print());
-
-
-    }
-    @BeforeClass
-    public static void init() throws Exception {
-        testInitSupport = new Support();
-        testInitSupport.setTitle("test_title");
-        testInitSupport.setUserId("test_userId");
-        testInitSupport.setClassification("test_classification");
-        testInitSupport.setUseYn("Y");
-        testInitSupport.setContent("test_content");
-        testInitSupport.setFileName("test_fileName");
-        testInitSupport.setFilePath("test_filePath");
-
-
     }
 
     @Test
@@ -127,8 +116,6 @@ public class DocumentsServiceTest {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
                 .andDo(print());
-
-
     }
 
 
@@ -142,8 +129,8 @@ public class DocumentsServiceTest {
         testInsertSupport.setContent("test_content");
         testInsertSupport.setFileName("test_fName");
         testInsertSupport.setFilePath("test_fPath");
-       // testInsertSupport.setSearchStartDate("2016/01/01");
-       // testInsertSupport.setSearchEndDate("2016/01/01");
+        // testInsertSupport.setSearchStartDate("2016/01/01");
+        // testInsertSupport.setSearchEndDate("2016/01/01");
 
 
         mvc.perform(post(TEST_URL + "/insertDocument")
@@ -153,9 +140,8 @@ public class DocumentsServiceTest {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
                 .andDo(print());
-
-
     }
+
     @Test
     public void test04_updateDocument() throws Exception {
         testUpdateSupport = new Support();
@@ -167,8 +153,8 @@ public class DocumentsServiceTest {
         testUpdateSupport.setContent("test_content");
         testUpdateSupport.setFileName("test_fName");
         testUpdateSupport.setFilePath("test_fPath");
-  //      testUpdateSupport.setStartDate("2016/01/01");
-   //     testUpdateSupport.setEndDate("2016/01/01");
+        //      testUpdateSupport.setStartDate("2016/01/01");
+        //     testUpdateSupport.setEndDate("2016/01/01");
 
         mvc.perform(put(TEST_URL + "/updateDocument")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -191,8 +177,6 @@ public class DocumentsServiceTest {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
                 .andDo(print());
-
-
     }
 
 

@@ -5,7 +5,7 @@ applications:
   instances: 1
   host: portal-api-prd
   path: build/libs/paasta-portal-api-1.0.war
-  domain: 115.68.46.30.xip.io
+  domain: 115.68.46.186.xip.io
   buildpack: java_buildpack_offline
   services:
   - portal-eureka-service

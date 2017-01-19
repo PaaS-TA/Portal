@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
+import static org.openpaas.paasta.portal.api.common.CommonTest.getPropertyValue;
+
 /**
  * Created by mg on 2016-05-02.
  */
@@ -24,25 +26,17 @@ public class CloudFoundryLibTest {
 
     private CloudFoundryClient cfc;
     private OAuth2AccessToken token;
-
-    private String host = "https://api.115.68.46.30.xip.io";
-    private String org = "OCP";
-    private String space = "dev";
-
     private URL targetUrl;
 
     @Before
     public void init() throws IOException {
 
-        String username = "junit-test-user";
-        String password = "1234";
+        targetUrl = new URL(getPropertyValue("test.apiTarget"));
 
-        targetUrl = new URL(host);
+        CloudCredentials credentials = new CloudCredentials(getPropertyValue("test.clientUserName"), getPropertyValue("test.clientUserPassword"));
 
-        CloudCredentials credentials = new CloudCredentials(username, password);
-
-        token = new CloudFoundryClient(credentials, targetUrl,true).login();
-        cfc = new CloudFoundryClient(new CloudCredentials(new DefaultOAuth2AccessToken(token)), targetUrl,true);
+        token = new CloudFoundryClient(credentials, targetUrl, true).login();
+        cfc = new CloudFoundryClient(new CloudCredentials(new DefaultOAuth2AccessToken(token)), targetUrl, true);
 
     }
 
@@ -60,7 +54,7 @@ public class CloudFoundryLibTest {
 
         JSONArray ja = new JSONArray(csList);
 
-        System.out.println("jsonArray: \n"+ja);
+        System.out.println("jsonArray: \n" + ja);
 /*
 
         for (int i = 0; i < csList.size(); i++ ) {

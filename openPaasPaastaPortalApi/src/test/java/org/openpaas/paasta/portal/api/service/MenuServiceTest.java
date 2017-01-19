@@ -1,6 +1,9 @@
 package org.openpaas.paasta.portal.api.service;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openpaas.paasta.portal.api.common.CommonTest;
@@ -13,8 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.Assert.*;
 
 /**
  * org.openpaas.paasta.portal.api.service
@@ -83,7 +84,9 @@ public class MenuServiceTest extends CommonTest {
 
     @Test
     public void test_03_getMenuDetail() throws Exception {
-        menuService.getMenuDetail(new Menu(){{setNo(1);}});
+        menuService.getMenuDetail(new Menu() {{
+            setNo(1);
+        }});
     }
 
 
@@ -127,7 +130,9 @@ public class MenuServiceTest extends CommonTest {
 
     @Test
     public void test_06_deleteMenu() throws Exception {
-        menuService.deleteMenu(new Menu(){{setNo(1);}});
+        menuService.deleteMenu(new Menu() {{
+            setNo(1);
+        }});
     }
 
 

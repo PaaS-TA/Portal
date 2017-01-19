@@ -102,6 +102,4 @@ public class WebIdeUserServiceTest extends CommonTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
-
-
 }
