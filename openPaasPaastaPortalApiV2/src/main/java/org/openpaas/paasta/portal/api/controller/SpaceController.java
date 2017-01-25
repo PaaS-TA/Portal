@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by mg on 2016-10-20.
+ * 공간 컨트롤러 - 공간 목록 , 공간 이름 변경 , 공간 생성 및 삭제 등을 제공한다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.12.4 최초작성
  */
 @RestController
 @RequestMapping(value = {"space"})

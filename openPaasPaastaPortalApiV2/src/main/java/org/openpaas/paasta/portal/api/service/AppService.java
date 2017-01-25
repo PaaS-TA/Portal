@@ -13,7 +13,11 @@ import reactor.core.publisher.Flux;
 import java.util.List;
 
 /**
- * Created by mg on 2016-10-19.
+ * 앱 서비스 - 애플리케이션 정보 조회, 구동, 정지 등의 API 를 호출 하는 서비스이다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.12.4 최초작성
  */
 @Service
 public class AppService extends CommonService{

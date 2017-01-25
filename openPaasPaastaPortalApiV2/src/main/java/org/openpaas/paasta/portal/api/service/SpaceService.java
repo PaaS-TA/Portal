@@ -2,7 +2,10 @@ package org.openpaas.paasta.portal.api.service;
 
 import com.google.gson.Gson;
 import org.cloudfoundry.client.CloudFoundryClient;
-import org.cloudfoundry.client.v2.spaces.*;
+import org.cloudfoundry.client.v2.spaces.GetSpaceSummaryRequest;
+import org.cloudfoundry.client.v2.spaces.GetSpaceSummaryResponse;
+import org.cloudfoundry.client.v2.spaces.ListSpacesRequest;
+import org.cloudfoundry.client.v2.spaces.SpaceResource;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.openpaas.paasta.portal.api.model.App;
 import org.openpaas.paasta.portal.api.model.Space;
@@ -14,9 +17,12 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by mg on 2016-10-20.
+ * 공간 서비스 - 공간 목록 , 공간 이름 변경 , 공간 생성 및 삭제 등을 제공한다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.12.4 최초작성
  */
-
 @Service
 public class SpaceService extends CommonService{
     private static final Logger LOGGER = LoggerFactory.getLogger(SpaceService.class);

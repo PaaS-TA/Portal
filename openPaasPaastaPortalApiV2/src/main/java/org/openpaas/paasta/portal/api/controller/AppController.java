@@ -22,7 +22,11 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 /**
- * Created by mg on 2016-10-20.
+ * 앱 컨트롤러 - 애플리케이션 정보 조회, 구동, 정지 등의 API 를 호출 하는 컨트롤러이다.
+ *
+ * @author 조민구
+ * @version 1.0
+ * @since 2016.12.4 최초작성
  */
 @RestController
 @RequestMapping(value = {"app"})

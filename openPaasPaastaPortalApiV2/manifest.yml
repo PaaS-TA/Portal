@@ -21,7 +21,7 @@ applications:
     eureka_instance_hostname: localhost
     eureka_client_serviceUrl_defaultZone: http://127.0.0.1:2221/eureka/
 
-    cf_apiHost: api.115.68.46.30.xip.io
+    cf_apiHost: api.115.68.46.186.xip.io
     cf_sslSkipValidation: true
     cf_clientId: cf
     cf_clientSecret:
