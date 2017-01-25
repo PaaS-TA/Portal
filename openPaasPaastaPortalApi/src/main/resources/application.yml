@@ -23,11 +23,11 @@ cloudfoundry:
       password: admin
     uaaClient:
       clientId: login
-      clientSecret: admin
+      clientSecret: login-secret
       adminClientId: admin
-      adminClientSecret: admin
+      adminClientSecret: admin-secret
       loginClientId: login
-      loginClientSecret: admin
+      loginClientSecret: login-secret
       skipSSLValidation: true
   authorization: cf-Authorization
 
