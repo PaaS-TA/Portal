@@ -161,7 +161,14 @@ public class AutoScalingService {
                 //인스턴스 max 갯수보다 작다면 동작
                 if ((int) appInfo.get("instanceMaxCnt") > instanceCnt) {
                     app.setInstances(instanceCnt + 1);
-                    common.procRestTemplate("/app/updateApp", HttpMethod.POST, app, common.getToken(), Boolean.class);
+                    try {
+                        common.procRestTemplate("/app/updateApp", HttpMethod.POST, app, common.getToken(), Boolean.class);
+                    } catch (Exception e) {
+                        LOGGER.info("instance Scale Out Fail!");
+                        Thread.sleep((int) appInfo.get("checkTimeSec") * 10000);
+                        continue;
+                    }
+
                     LOGGER.info("---------------------------------------------------------------------------");
                     LOGGER.info(instanceCnt + 1 + " instance Scale Out !!!!!");
                     Thread.sleep(120000);
@@ -174,7 +181,14 @@ public class AutoScalingService {
                 //인스턴스 min 갯수보다 크다면 동작
                 if ((int) appInfo.get("instanceMinCnt") < instanceCnt) {
                     app.setInstances(instanceCnt - 1);
-                    common.procRestTemplate("/app/updateApp", HttpMethod.POST, app, common.getToken(), Boolean.class);
+                    try {
+                        common.procRestTemplate("/app/updateApp", HttpMethod.POST, app, common.getToken(), Boolean.class);
+                    } catch (Exception e) {
+                        LOGGER.info("instance Scale Out Fail!");
+                        Thread.sleep((int) appInfo.get("checkTimeSec") * 10000);
+                        continue;
+                    }
+
                     LOGGER.info("---------------------------------------------------------------------------");
                     LOGGER.info(instanceCnt - 1 + " instance Scale Out !!!!!");
                     Thread.sleep(120000);

@@ -10,7 +10,7 @@ applications:
   - portal-eureka-service
   - portal-redis-session
   env:
-    SPRING_PROFILES_ACTIVE: stg
+    SPRING_PROFILES_ACTIVE: prd
 
     spring_application_name: portal-auto-scaling
     spring_redis_host: ${vcap.services.portal-redis-session.credentials.host}
@@ -25,7 +25,7 @@ applications:
 
     paasta_portal_api_authorization_base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
     paasta_portal_api_url: http://PORTAL-API
-    paasta_portal_api_monitor: http://115.68.46.185:9999
+    paasta_portal_api_monitor: http://115.68.46.190:9999
 
     ribbon_eureka_enabled: true
     ribbon_ConnectTimeout: 30000

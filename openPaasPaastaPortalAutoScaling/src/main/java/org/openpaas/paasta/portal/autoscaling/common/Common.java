@@ -1,5 +1,7 @@
 package org.openpaas.paasta.portal.autoscaling.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -25,6 +27,8 @@ import java.util.Map;
  */
 @Service
 public class Common {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Common.class);
 
     private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
     private static final String CF_AUTHORIZATION_HEADER_KEY = "cf-Authorization";
@@ -121,6 +125,8 @@ public class Common {
         reqHeaders.add(AUTHORIZATION_HEADER_KEY, base64Authorization);
 
         if (null != reqToken && !"".equals(reqToken)) reqHeaders.add(CF_AUTHORIZATION_HEADER_KEY, reqToken);
+
+        LOGGER.info("apiUrl: " + apiUrl + reqUrl);
 
         HttpEntity<Object> reqEntity = new HttpEntity<>(obj, reqHeaders);
         ResponseEntity<T> result = restTemplate.exchange(apiUrl + reqUrl, httpMethod, reqEntity, responseType);

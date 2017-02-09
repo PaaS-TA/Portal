@@ -3,8 +3,8 @@ spring:
     name: portal-auto-scaling  # Identify this application
   redis:
     host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-    password: ${vcap.services.portal-redis-session.credentials.password:0b8439da-63e9-400a-ab96-87f1b3d0dc92}
-    port: ${vcap.services.portal-redis-session.credentials.port:34972}
+    password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
+    port: ${vcap.services.portal-redis-session.credentials.port:33777}
     timeout: 2100
 
 # HTTP Server
@@ -26,7 +26,7 @@ paasta:
       authorization:
         base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
       url: http://PORTAL-API
-      monitor: http://115.68.46.185:9999
+      monitor: http://115.68.46.190:9999
 ribbon:
     eureka:
         enabled: true
@@ -41,8 +41,8 @@ spring:
     name: portal-auto-scaling  # Identify this application
   redis:
     host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-    password: ${vcap.services.portal-redis-session.credentials.password:0b8439da-63e9-400a-ab96-87f1b3d0dc92}
-    port: ${vcap.services.portal-redis-session.credentials.port:34972}
+    password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
+    port: ${vcap.services.portal-redis-session.credentials.port:33777}
     timeout: 2100
 
 ---
@@ -53,8 +53,8 @@ spring:
     name: portal-auto-scaling  # Identify this application
   redis:
     host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-    password: ${vcap.services.portal-redis-session.credentials.password:0b8439da-63e9-400a-ab96-87f1b3d0dc92}
-    port: ${vcap.services.portal-redis-session.credentials.port:34972}
+    password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
+    port: ${vcap.services.portal-redis-session.credentials.port:33777}
     timeout: 2100
 
 ---
@@ -64,8 +64,8 @@ spring:
     name: portal-auto-scaling  # Identify this application
   redis:
     host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-    password: ${vcap.services.portal-redis-session.credentials.password:0b8439da-63e9-400a-ab96-87f1b3d0dc92}
-    port: ${vcap.services.portal-redis-session.credentials.port:34972}
+    password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
+    port: ${vcap.services.portal-redis-session.credentials.port:33777}
     timeout: 2100
 
 ---
@@ -75,8 +75,8 @@ spring:
     name: portal-auto-scaling  # Identify this application
   redis:
     host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-    password: ${vcap.services.portal-redis-session.credentials.password:0b8439da-63e9-400a-ab96-87f1b3d0dc92}
-    port: ${vcap.services.portal-redis-session.credentials.port:34972}
+    password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
+    port: ${vcap.services.portal-redis-session.credentials.port:33777}
     timeout: 2100
 
 
