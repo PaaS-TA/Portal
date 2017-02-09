@@ -1,12 +1,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="notice" role="alert" id="alert">
+<div class="notice" role="alert" id="alert" style="display: none">
     <button type="button" class="close" aria-label="Close" onClick="$('#alert').hide()">
         <span aria-hidden="true">&times;</span></button>
     <h1><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> 알림사항</h1>
     <span class="txt" id="alertMsg" style="margin: 2px 0 0 0;"> <spring:message code="common.system.welcome.message" /> </span>
 </div>
+
+
+<script>
+    id = $('#dropdownTopMenu').text().trim().substring(0, 5);
+    if (AXUtil.getCookie("cookie_alert_close" + id) != "Y") {
+        $("#alert").show();
+    }
+</script>
 
 
 <div class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-2 main">

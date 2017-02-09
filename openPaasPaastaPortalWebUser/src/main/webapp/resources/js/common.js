@@ -181,7 +181,7 @@ function moveLocationSpaceMain(){
 //알림창 공통 함수
 function showAlert(type, message){
 
-    id = $('#dropdownTopMenu').text().trim();
+    id = $('#dropdownTopMenu').text().trim().substring(0, 5);
 
     if(type == "success"){
         color = "blue";
@@ -221,8 +221,7 @@ function hideAlert() {
 
 
 function alertList(){
-    id = $('#dropdownTopMenu').text().trim();
-
+    id = $('#dropdownTopMenu').text().trim().substring(0, 5);
     $("#modalTitle").html("알림 내역");
     if(AXUtil.getCookie("cookie_alert1"+id) == ""){
         AXUtil.setCookie("cookie_alert1"+id, Base64.encode("파스타 포털에 오신걸 환영합니다.","euc-kr"),"1",{path:"/"});
@@ -253,7 +252,7 @@ function alertList(){
 
 
 function closeAlert(){
-    id = $('#dropdownTopMenu').text().trim();
+    id = $('#dropdownTopMenu').text().trim().substring(0, 5);
     AXUtil.setCookie("cookie_alert_close" + id, "Y", "1", {path: "/"});
     $('#alert').hide();
     $("#modalExecuteBtn").text("알림창켜기");
@@ -262,7 +261,7 @@ function closeAlert(){
 
 
 function openAlert(){
-    id = $('#dropdownTopMenu').text().trim();
+    id = $('#dropdownTopMenu').text().trim().substring(0, 5);
     AXUtil.setCookie("cookie_alert_close" + id, "N", "1", {path: "/"});
     $('#alert').show();
     $("#modalExecuteBtn").text("알림창끄기");
