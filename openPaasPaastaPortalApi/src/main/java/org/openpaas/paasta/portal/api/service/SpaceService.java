@@ -189,10 +189,9 @@ public class SpaceService extends Common {
             throw new CloudFoundryException(HttpStatus.BAD_REQUEST, "Bad Request", "Required request body content is missing");
         }
 
+        CustomCloudFoundryClient admin = getCustomCloudFoundryClient(adminUserName, adminPassword);
 
-        CustomCloudFoundryClient client = getCustomCloudFoundryClient(token);
-
-        String spaceString = client.getSpaceSummary(space.getOrgName(), space.getSpaceName());
+        String spaceString = admin.getSpaceSummary(space.getOrgName(), space.getSpaceName());
         Space respSpace = new ObjectMapper().readValue(spaceString, Space.class);
 
         //LOGGER.info(spaceString);
@@ -450,9 +449,9 @@ public class SpaceService extends Common {
             throw new CloudFoundryException(HttpStatus.BAD_REQUEST, "Bad Request", "Required request body content is missing");
         }
 
-        CustomCloudFoundryClient client = getCustomCloudFoundryClient(token);
+        CustomCloudFoundryClient admin = getCustomCloudFoundryClient(adminUserName, adminPassword);
 
-        String spaceInfo = client.getSpace(orgName, spaceName);
+        String spaceInfo = admin.getSpace(orgName, spaceName);
 
         LOGGER.info(spaceInfo);
 
@@ -461,7 +460,7 @@ public class SpaceService extends Common {
         if (respSpace.getEntity().getSpaceQuotaDefinitionGuid() == null) {
             return null;
         } else {
-            return client.getSpaceQuota(respSpace.getEntity().getSpaceQuotaDefinitionGuid());
+            return admin.getSpaceQuota(respSpace.getEntity().getSpaceQuotaDefinitionGuid());
         }
 
     }

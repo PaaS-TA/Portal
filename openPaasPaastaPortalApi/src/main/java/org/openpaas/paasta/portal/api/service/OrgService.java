@@ -77,11 +77,11 @@ public class OrgService extends Common {
     public Org getOrgSummary(@RequestBody Org org , String token) throws Exception {
 
         //token setting
-        CustomCloudFoundryClient client = getCustomCloudFoundryClient(token);
+        CustomCloudFoundryClient admin = getCustomCloudFoundryClient(adminUserName, adminPassword);
 
         Org rspOrg = new Org();
 
-        String orgString = client.getOrgSummary(org.getOrgName());
+        String orgString = admin.getOrgSummary(org.getOrgName());
         rspOrg  = new ObjectMapper().readValue(orgString, Org.class);
 
         int memTotal = 0;
@@ -90,7 +90,7 @@ public class OrgService extends Common {
             memTotal += space.getMemDevTotal();
 
             //apps state
-            String spaceString = client.getSpaceSummary(org.getOrgName(),space.getName());
+            String spaceString = admin.getSpaceSummary(org.getOrgName(), space.getName());
             Space spaces  = new ObjectMapper().readValue(spaceString, Space.class);
 
             for(App apps : spaces.getApps()){
@@ -107,7 +107,7 @@ public class OrgService extends Common {
         rspOrg.setMemoryUsage(memTotal);
 
         //memory quota
-        CloudOrganization cloudOrg = client.getOrgByName(rspOrg.getName(),true);
+        CloudOrganization cloudOrg = admin.getOrgByName(rspOrg.getName(), true);
         rspOrg.setMemoryLimit((int)cloudOrg.getQuota().getMemoryLimit());
 
         return rspOrg;
@@ -124,11 +124,11 @@ public class OrgService extends Common {
     public CloudOrganization getOrgByName(@RequestBody Org org ,  String token) throws Exception {
 
         //token setting
-        CustomCloudFoundryClient client = getCustomCloudFoundryClient(token);
+        CustomCloudFoundryClient admin = getCustomCloudFoundryClient(adminUserName, adminPassword);
 
         CloudOrganization cloudOrg = new CloudOrganization(null,null);
 
-        cloudOrg = client.getOrgByName(org.getOrgName(),true);
+        cloudOrg = admin.getOrgByName(org.getOrgName(), true);
 
         return cloudOrg;
     }
