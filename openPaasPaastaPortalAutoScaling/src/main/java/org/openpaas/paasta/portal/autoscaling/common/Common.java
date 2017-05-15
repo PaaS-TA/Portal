@@ -40,6 +40,12 @@ public class Common {
     @Value("${paasta.portal.api.authorization.base64}")
     private String base64Authorization;
 
+    @Value("${cloudfoundry.user.admin.username}")
+    private String adminUserName;
+
+    @Value("${cloudfoundry.user.admin.password}")
+    private String adminPassword;
+
     /**
      * Instantiates a new Common service.
      *
@@ -138,8 +144,8 @@ public class Common {
     public String getToken() {
 
         Map<String, Object> resBody = new HashMap();
-        resBody.put("id", "admin");
-        resBody.put("password", "admin");
+        resBody.put("id", adminUserName);
+        resBody.put("password", adminPassword);
 
     Map result;
 
