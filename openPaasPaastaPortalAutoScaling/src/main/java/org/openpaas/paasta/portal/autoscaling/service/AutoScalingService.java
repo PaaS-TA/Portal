@@ -7,6 +7,7 @@ import org.openpaas.paasta.portal.autoscaling.common.Common;
 import org.openpaas.paasta.portal.autoscaling.model.App;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -79,9 +80,11 @@ public class AutoScalingService {
         Map appInfo = (Map) appInfoList.get("list");
 
         try {
+            //Auto 스케줄링 사용 유무 체크
             if (appInfo.get("autoIncreaseYn") == null || (appInfo.get("autoIncreaseYn").equals("N") && appInfo.get("autoDecreaseYn").equals("N"))) {
                 LOGGER.info("---------------------------------------------------------------------------");
                 LOGGER.info("threadAppAutoScaling Stop !!!!! - " + appInfo.get("app") + " (" + guid + ")");
+                //앱 상태를 stop 으로 변경
                 redisValue.set(guid, "stop");
                 return;
             }
@@ -119,6 +122,7 @@ public class AutoScalingService {
                 return;
 
             } else if (redisValue.get(guid).equals("restart")) {
+                //앱 상태를 running 으로 변경
                 redisValue.set(guid, "running");
                 LOGGER.info("---------------------------------------------------------------------------");
                 LOGGER.info("threadAppAutoScaling Restart !!!!! - " + app.getName() + " (" + guid + ")");
@@ -134,6 +138,9 @@ public class AutoScalingService {
                 result = restTemplate.getForObject(monitor_api_url + "/container/metrics/" + guid, String.class);
 
             } catch (Exception e) {
+
+                LOGGER.info("paasta monitoring server url = " + monitor_api_url + "/container/metrics/" + guid);
+                LOGGER.error("paasta monitoring server can't connect.",e);
                 LOGGER.info("Metrics Server can't connect.");
                 Thread.sleep((int) appInfo.get("checkTimeSec") * 1000);
                 continue;
@@ -146,6 +153,7 @@ public class AutoScalingService {
 
             Long totMemoryBytes = Long.valueOf(0);
             Double totCpuPercentage = Double.valueOf(0);
+
             //인스턴스 평균값 구하기
             for (int i = 0; i < instanceCnt; i++) {
                 JSONObject jsonObj = jsonArray.getJSONObject(i);
@@ -175,6 +183,7 @@ public class AutoScalingService {
                     threadAppAutoScaling(guid);
                     return;
                 }
+
                 //메모리 점유율 하향
             } else if (totMemoryBytes / memQuota * 100 <= (int) appInfo.get("memoryMinSize") && appInfo.get("autoDecreaseYn").equals("Y")) {
 
