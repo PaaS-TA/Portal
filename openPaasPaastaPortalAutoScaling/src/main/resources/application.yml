@@ -3,8 +3,8 @@ spring:
     name: portal-auto-scaling  # Identify this application
   redis:
     host: ${vcap.services.portal-redis-session.credentials.host:localhost}
-    password: ${vcap.services.portal-redis-session.credentials.password:4333c2c0-4f51-433d-a5c3-ede30af0c63f}
-    port: ${vcap.services.portal-redis-session.credentials.port:33777}
+    password: ${vcap.services.portal-redis-session.credentials.password:53728b4d-8196-488d-b162-20c4a44e045d}
+    port: ${vcap.services.portal-redis-session.credentials.port:43142}
     timeout: 2100
 
 # HTTP Server
@@ -27,11 +27,19 @@ paasta:
         base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
       url: http://PORTAL-API
       monitor: http://115.68.46.190:9999
+
+# CloudFoundry API Url
+cloudfoundry:
+  user:
+    admin:
+      username: admin
+      password: xxxxx
+
 ribbon:
-    eureka:
-        enabled: true
-    ConnectTimeout: 30000
-    ReadTimeout: 30000
+  eureka:
+    enabled: true
+  ConnectTimeout: 30000
+  ReadTimeout: 30000
 
 ---
 # Spring properties
